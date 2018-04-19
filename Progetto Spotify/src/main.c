@@ -1,12 +1,6 @@
-/*
-*Created By: claud
-*18:41:19
-*19 apr 2018
-*main.c
-*/
 #include <stdio.h>
 #include <stdlib.h>
-#include <conio.h>
+#include "funzioni.h"
 
 int main(int argc, char *argv[]){
 
@@ -19,6 +13,6 @@ int main(int argc, char *argv[]){
 	printf("claudio");
 
 
-getch();
+system("PAUSE");
 return 0;
 }
