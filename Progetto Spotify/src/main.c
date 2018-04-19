@@ -10,6 +10,8 @@
 
 int main(int argc, char *argv[]){
 
+	printf("Se tanto mi da tanto\n");
+
 
 getch();
 return 0;
