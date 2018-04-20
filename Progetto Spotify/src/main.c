@@ -7,27 +7,32 @@ int main(int argc, char *argv[]){
 
 	int I=0;
 	FILE *pf;
+	char buffer[101]={'\0'};
+	char *token;
+	char c[2]={","};
 
-	pf=fopen("C:\\Users\\Mattia\\git\\progetto_esame\\Progetto Spotify\\File\\Utenti.csv","r");
+	pf=fopen("C:\\Users\\claud\\git\\progetto_esame\\Progetto Spotify\\File\\Utenti.csv","r");
 
 	if(pf!=NULL)
 	{
-		while(!feof(pf))
+		I=0;
+		while(!feof(pf) && I<1)
 	    {
-			fgets(UTENTI[I].nickname, LUNGHEZZA_MAX ,pf);
+			fgets(buffer, 101,pf);
 			fflush(stdin);
-			fgets(UTENTI[I].password, LUNGHEZZA_MAX ,pf);
-			fflush(stdin);
-			fgets(UTENTI[I].nome, LUNGHEZZA_MAX ,pf);
-			fflush(stdin);
-			fgets(UTENTI[I].cognome, LUNGHEZZA_MAX ,pf);
-			fflush(stdin);
-			fscanf(pf, "%d", &UTENTI[I].data_nascita.giorno);
-			fscanf(pf, "%d", &UTENTI[I].data_nascita.mese);
-			fscanf(pf, "%d", &UTENTI[I].data_nascita.anno);
-			fscanf(pf, "%d", &UTENTI[I].data_iscrizione.giorno);
-			fscanf(pf, "%d", &UTENTI[I].data_iscrizione.mese);
-			fscanf(pf, "%d", &UTENTI[I].data_iscrizione.anno);
+
+			token=strtok(buffer, c);
+			strcpy(UTENTI[I].nickname, token);
+
+			token=strtok(NULL, c);
+			strcpy(UTENTI[I].password, token);
+
+			token=strtok(NULL, c);
+			strcpy(UTENTI[I].nome, token);
+
+			token=strtok(NULL, c);
+			strcpy(UTENTI[I].cognome, token);
+
 			I++;
 		}
 	}
@@ -37,9 +42,9 @@ int main(int argc, char *argv[]){
 	}
 	fclose(pf);
 
-	for(I=0;I<10;I++)
+	for(I=0;I<1;I++)
 	{
-		printf("%s	%s	%s	%s	%d	%d	%d	%d	%d	%d\n",UTENTI[I].nickname,UTENTI[I].password,UTENTI[I].nome,UTENTI[I].cognome, UTENTI[I].data_nascita.giorno, UTENTI[I].data_nascita.mese, UTENTI[I].data_nascita.anno, UTENTI[I].data_iscrizione.giorno, UTENTI[I].data_iscrizione.mese, UTENTI[I].data_iscrizione.anno);
+		printf("%s	%s	%s	%s	\n",UTENTI[I].nickname,UTENTI[I].password,UTENTI[I].nome,UTENTI[I].cognome);
 	}
 
 
