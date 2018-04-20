@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 #include "funzioni.h"
 
 int main(int argc, char *argv[]){
@@ -12,12 +13,12 @@ int main(int argc, char *argv[]){
 	char virgola[2]={","};
 	char barra[2]={"/"};
 
-	pf=fopen("C:\\Users\\Mattia\\git\\progetto_esame\\Progetto Spotify\\File\\Utenti.csv","r");
+	pf=fopen("C:\\Users\\claud\\git\\progetto_esame\\Progetto Spotify\\File\\Utenti.csv","r");
 
 	if(pf!=NULL)
 	{
 		I=0;
-		while(!feof(pf) && I<1)
+		while(!feof(pf) && I<2)
 	    {
 			fgets(buffer, 101,pf);		//Mette tutta la riga
 			fflush(stdin);
@@ -68,7 +69,6 @@ int main(int argc, char *argv[]){
 		printf("%d/%d/%d	",UTENTI[I].data_nascita.giorno,UTENTI[I].data_nascita.mese,UTENTI[I].data_nascita.anno);
 		printf("%d/%d/%d",UTENTI[I].data_iscrizione.giorno,UTENTI[I].data_iscrizione.mese,UTENTI[I].data_iscrizione.anno);
 	}
-
 
 
 system("PAUSE");
