@@ -13,7 +13,7 @@ struct DATA{		//Struttura utilizzata per la data
 };
 
 struct UTENTE {		//Struttura utilizzata per la gestione degli utenti
-	char nome_utente[LUNGHEZZA_MAX];
+	char nickname[LUNGHEZZA_MAX];
 	char password[LUNGHEZZA_PASS];
 	char nome[LUNGHEZZA_MAX];
 	char cognome[LUNGHEZZA_MAX];
