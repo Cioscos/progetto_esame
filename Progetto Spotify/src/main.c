@@ -11,12 +11,11 @@ int main(int argc, char *argv[]){
 
 	char input_utente[LUNGHEZZA_MAX]={"1"};		//Variabile contenente l'input dell'utente
 
-
 	while(strcmp(input_utente,"0")!=0)		//Permette di eseguire più opreazioni fin quando non viene inserito uno 0, ovverol'opzione termina programma
 	{
+		flag=1;
 		do{
 			controllo_menu(input_utente,MENU_PRINCIPALE);
-
 		}while(isControllo_Numero(input_utente)!=1);		//Controllo sull'input dell'utente fin quando non viene digitato una cifra
 
 
@@ -30,15 +29,19 @@ int main(int argc, char *argv[]){
 
 			case 1:	system("cls");
 					logo();
-					controllo_menu(input_utente,MENU_ARTISTA);
-
+					flag=1;
+					do{
+						controllo_menu(input_utente,MENU_ARTISTA);
+					}while(isControllo_Numero(input_utente)!=1);		//Controllo sull'input dell'utente fin quando non viene digitato una cifra
 					system("PAUSE");
 					break;
 
 			case 2:	system("cls");
 					logo();
-					controllo_menu(input_utente,MENU_UTENTE);
-
+					flag=1;
+					do{
+						controllo_menu(input_utente,MENU_UTENTE);
+					}while(isControllo_Numero(input_utente)!=1);		//Controllo sull'input dell'utente fin quando non viene digitato una cifra
 					system("PAUSE");
 					break;
 

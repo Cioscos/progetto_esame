@@ -1,5 +1,4 @@
 #include "funzioni.h"
-
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -96,7 +95,6 @@ int isControllo_Numero(char appoggio[LUNGHEZZA_MAX])
 
 void controllo_menu(char* input_utente, int menu)
 {
-	static unsigned int flag=1;		//Controllo sull'entrata nel do while | 0 Entrato almeno una volta nel do while - 1 Mai entrato nel do while
 
 	if(flag==1)
 	{
@@ -121,8 +119,8 @@ void controllo_menu(char* input_utente, int menu)
 		logo();
 		printf("Comando errato, inserisci un valore corretto\a\n");
 		system("PAUSE");
-
 		system("cls");
+
 		logo();
 		switch(menu)
 		{	case MENU_PRINCIPALE: stampa_menu_principale();

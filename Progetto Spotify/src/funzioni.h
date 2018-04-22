@@ -10,7 +10,6 @@
 #define MENU_UTENTE 2
 
 
-
 struct DATA{		//Struttura utilizzata per la data
 	unsigned int giorno;
 	unsigned int mese;
@@ -28,15 +27,14 @@ struct UTENTE {		//Struttura utilizzata per la gestione degli utenti
 
 struct UTENTE UTENTI[1];
 
+unsigned int flag;		//Controllo sull'entrata nel do while | 0 Entrato almeno una volta nel do while - 1 Mai entrato nel do while
+
 
 void logo();
 void stampa_menu_principale();
 void stampa_menu_artista();
 void stampa_menu_utente();
-
 void controllo_menu(char* input_utente, int menu);
-
-
 int isControllo_Numero(char appoggio[LUNGHEZZA_MAX]);
 
 
