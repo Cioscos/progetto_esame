@@ -10,7 +10,7 @@
 #define MENU_ARTISTA 1
 #define MENU_UTENTE 2
 
-#define strclr(s) memset(s, '\0', strlen(s));
+#define strclr(s) memset(s, '\0', strlen(s));                   //* Macro azzeramento stringa
 
 
 struct DATA{		//Struttura utilizzata per la data

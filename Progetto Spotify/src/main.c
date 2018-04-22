@@ -21,7 +21,7 @@ int main(int argc, char *argv[]){
 			switch(atoi(input_utente))		//Funzione atoi converta da stringa a intero
 			{
 
-				case 0:	system("cls");		//0000=0
+				case 0:	system("cls");
 						logo();
 						printf("Programma terminato\n");
 						break;
@@ -31,7 +31,7 @@ int main(int argc, char *argv[]){
 						do{
 							controllo_menu(input_utente,MENU_ARTISTA);
 						}while(isControllo_Numero(input_utente)!=1);		//Controllo sull'input dell'utente fin quando non viene digitato una cifra
-						strcpy(input_utente,"1");
+						strcpy(input_utente,"1");            //*   PERMETTE DI ENTRARE NEL MENU PRINCIPALE
 						system("PAUSE");
 						break;
 
@@ -40,7 +40,7 @@ int main(int argc, char *argv[]){
 						do{
 							controllo_menu(input_utente,MENU_UTENTE);
 						}while(isControllo_Numero(input_utente)!=1);		//Controllo sull'input dell'utente fin quando non viene digitato una cifra
-						strcpy(input_utente,"1");
+						strcpy(input_utente,"1");               //*   PERMETTE DI ENTRARE NEL MENU PRINCIPALE
 						system("PAUSE");
 						break;
 
@@ -57,7 +57,7 @@ int main(int argc, char *argv[]){
 
 	}
 
-fflush(stdin);
+fflush(stdin);           //PROVAVO A CAPIRE SE POTESSE FIXARE L'EVENTUALE CRASH FINALE, MA NIENTE
 strclr(input_utente);
 
 system("PAUSE");

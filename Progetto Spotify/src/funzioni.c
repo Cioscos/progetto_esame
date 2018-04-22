@@ -28,24 +28,24 @@ void stampa_menu_principale()
 
 void stampa_menu_artista()
 {
-	printf("[1]Aggiungi nuovo artista\n");
-	printf("[2]Modifica artista\n");
-	printf("[3]Elimina artista\n");
-	printf("[0]Torna al menu principale\n");
-	printf("Inserisci comando:");
+	printf("[1]Aggiungi nuovo artista\n"
+			"[2]Modifica artista\n"
+			"[3]Elimina artista\n"
+			"[0]Torna al menu principale\n"
+			"Inserisci comando:");
 }
 
 void stampa_menu_utente()
 {
-	printf("[1]Visualizza profilo utente\n");
-	printf("[2]Aggiungi nuova preferenza\n");
-	printf("[3]Modifica preferenza\n");
-	printf("[4]Elimina preferenza\n");
-	printf("[5]Aggiungi nuovo utente\n");
-	printf("[6]Modifica utente\n");
-	printf("[6]Elimina utente\n");
-	printf("[0]Torna al menu principale\n");
-	printf("Inserisci comando:");
+	printf("[1]Visualizza profilo utente\n"
+	"[2]Aggiungi nuova preferenza\n"
+	"[3]Modifica preferenza\n"
+	"[4]Elimina preferenza\n"
+	"[5]Aggiungi nuovo utente\n"
+	"[6]Modifica utente\n"
+	"[6]Elimina utente\n"
+	"[0]Torna al menu principale\n"
+	"Inserisci comando:");
 }
 
 int isControllo_Numero(char appoggio[])
@@ -66,9 +66,9 @@ int isControllo_Numero(char appoggio[])
 		}
 	}
 
-	if( (appoggio[0]=='0' && appoggio[1]!='0') || (appoggio[0]!='0' && appoggio[1]=='0') || (appoggio[0]=='0' && appoggio[1]=='0'))
-		if(appoggio[0]=='0' && appoggio[1]!='\0')
-			input_valido = 0;
+	if( (appoggio[0]=='0' && appoggio[1]!='0') || (appoggio[0]!='0' && appoggio[1]=='0') || (appoggio[0]=='0' && appoggio[1]=='0'))   // *
+		if(appoggio[0]=='0' && appoggio[1]!='\0')      //*
+			input_valido = 0;                          //*
 
 	if(input_valido==1)		//Ritorna il valore 1 se la striga era corretta oppure ritorna il valore 0 se la stringa non era corretta
 	{
@@ -97,7 +97,7 @@ void controllo_menu(char* input_utente, int menu)
 			case MENU_UTENTE:     stampa_menu_utente();
 							      break;
 		}
-		strclr(input_utente);
+		strclr(input_utente);                 //*
 		scanf("%s",input_utente);
 		flag=0;
 	}
@@ -120,7 +120,7 @@ void controllo_menu(char* input_utente, int menu)
 			case MENU_UTENTE:     stampa_menu_utente();
 							      break;
 		}
-		strclr(input_utente);
+		strclr(input_utente);              //*
 		scanf("%s",input_utente);
 	}
 }
