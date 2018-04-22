@@ -1,76 +1,44 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <unistd.h>
 #include "funzioni.h"
 
 int main(int argc, char *argv[]){
 
-	int I=0;
-	FILE *pf;
-	char buffer[101]={'\0'};
-	char *token;
-	char virgola[2]={","};
-	char barra[2]={"/"};
+	char input_utente[LUNGHEZZA_MAX]={"1"};
 
-	pf=fopen("C:\\Users\\claud\\git\\progetto_esame\\Progetto Spotify\\File\\Utenti.csv","r");
 
-	if(pf!=NULL)
+	while(strcmp(input_utente,"0")!=0)
 	{
-		I=0;
-		while(!feof(pf) && I<2)
-	    {
-			fgets(buffer, 101,pf);		//Mette tutta la riga
-			fflush(stdin);
+		do{
+			system("cls");
+			stampa_menu_principale();
+			scanf("%s",input_utente);
+		}while(isControllo_Numero(input_utente)!=1);
 
-			token=strtok(buffer, virgola);
-			strcpy(UTENTI[I].nickname, token);
+		switch(atoi(input_utente))
+		{
+			case 1:	system("cls");
+					printf("Hai selezionato 1\n");
+					system("PAUSE");
+					break;
 
-			token=strtok(NULL, virgola);
-			strcpy(UTENTI[I].password, token);
+			case 2:	system("cls");
+					printf("Hai selezionato 2\n");
+					system("PAUSE");
+					break;
 
-			token=strtok(NULL, virgola);
-			strcpy(UTENTI[I].nome, token);
-
-			token=strtok(NULL, virgola);
-			strcpy(UTENTI[I].cognome, token);
-
-			token=strtok(NULL, barra);
-			UTENTI[I].data_nascita.giorno=atoi(token);
-
-			token=strtok(NULL, barra);
-			UTENTI[I].data_nascita.mese=atoi(token);
-
-			token=strtok(NULL, virgola);
-			UTENTI[I].data_nascita.anno=atoi(token);
-
-			token=strtok(NULL, barra);
-			UTENTI[I].data_iscrizione.giorno=atoi(token);
-
-			token=strtok(NULL, barra);
-			UTENTI[I].data_iscrizione.mese=atoi(token);
-
-			token=strtok(NULL, barra);
-			UTENTI[I].data_iscrizione.anno=atoi(token);
-
-
-			I++;
+			case 3:	system("cls");
+					printf("Hai selezionato 3\n");
+					system("PAUSE");
+					break;
 		}
 	}
-	else
-	{
-		printf("\n Errore nel caricamento del file ");
-	}
-	fclose(pf);
 
-	for(I=0;I<1;I++)
-	{
-		printf("%s	%s	%s	%s  ",UTENTI[I].nickname,UTENTI[I].password,UTENTI[I].nome,UTENTI[I].cognome);
-		printf("%d/%d/%d	",UTENTI[I].data_nascita.giorno,UTENTI[I].data_nascita.mese,UTENTI[I].data_nascita.anno);
-		printf("%d/%d/%d\n",UTENTI[I].data_iscrizione.giorno,UTENTI[I].data_iscrizione.mese,UTENTI[I].data_iscrizione.anno);
-	}
 
 
 system("PAUSE");
 return 0;
 }
+
+
