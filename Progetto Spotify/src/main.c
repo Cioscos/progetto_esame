@@ -23,6 +23,7 @@ int main(int argc, char *argv[]){
 			else
 			{
 				system("cls");
+				logo();
 				printf("Comando errato, inserisci un valore corretto\a\n");
 				system("PAUSE");
 
@@ -41,15 +42,18 @@ int main(int argc, char *argv[]){
 		{
 
 			case 0:	system("cls");
+					logo();
 					printf("Programma terminato\n");
 					break;
 
 			case 1:	system("cls");
+					logo();
 					stampa_menu_artista();
 					system("PAUSE");
 					break;
 
 			case 2:	system("cls");
+					logo();
 					stampa_menu_utente();
 					system("PAUSE");
 					break;
@@ -60,6 +64,7 @@ int main(int argc, char *argv[]){
 					break;
 
 			default : 	system("cls");
+						logo();
 						printf("Comando errato, inserisci un valore corretto\a\n");
 						system("PAUSE");
 		}
