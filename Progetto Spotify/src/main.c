@@ -8,9 +8,10 @@
 
 int main(int argc, char *argv[]){
 
-	char input_utente[LUNGHEZZA_MAX]={"1"};		//Variabile contenente l'input dell'utente
+	char input_utente[LUNGHEZZA_INP]={'\0'};		//Variabile contenente l'input dell'utente
+	strcpy(input_utente,"1");
 
-	while(strcmp(input_utente,"0")!=0)		//Permette di eseguire più opreazioni fin quando non viene inserito uno 0, ovverol'opzione termina programma
+	while(strcmp(input_utente,"0")!=0)		//Permette di eseguire piÃ¹ opreazioni fin quando non viene inserito uno 0, ovvero l'opzione termina programma
 	{
 		flag=1;
 		do{
@@ -26,20 +27,20 @@ int main(int argc, char *argv[]){
 						break;
 
 				case 1:	system("cls");
-						logo();
 						flag=1;
 						do{
 							controllo_menu(input_utente,MENU_ARTISTA);
 						}while(isControllo_Numero(input_utente)!=1);		//Controllo sull'input dell'utente fin quando non viene digitato una cifra
+						strcpy(input_utente,"1");
 						system("PAUSE");
 						break;
 
 				case 2:	system("cls");
-						logo();
 						flag=1;
 						do{
 							controllo_menu(input_utente,MENU_UTENTE);
 						}while(isControllo_Numero(input_utente)!=1);		//Controllo sull'input dell'utente fin quando non viene digitato una cifra
+						strcpy(input_utente,"1");
 						system("PAUSE");
 						break;
 
@@ -56,7 +57,8 @@ int main(int argc, char *argv[]){
 
 	}
 
-
+fflush(stdin);
+strclr(input_utente);
 
 system("PAUSE");
 return 0;

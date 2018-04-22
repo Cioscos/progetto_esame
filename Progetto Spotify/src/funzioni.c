@@ -48,40 +48,27 @@ void stampa_menu_utente()
 	printf("Inserisci comando:");
 }
 
-int isControllo_Numero(char appoggio[LUNGHEZZA_MAX])
+int isControllo_Numero(char appoggio[])
 {
 	int i=0;
 	int input_valido=1;			//1 Input valido - 0 Input non valido
-	int numero_caratteri=0;		//Contatore numero caratteri della stringa
 
-	while(i<LUNGHEZZA_MAX)		//Conta numero effettivo di caratteri
+	for(i=0;i<LUNGHEZZA_INP-1;i++)
 	{
-		if(appoggio[i]!='\0')
-		{
-			numero_caratteri++;
-			i++;
-		}
-		else
-		{
-			i=LUNGHEZZA_MAX;
-		}
-	}
 
-	i = 0;
-
-	while(i<numero_caratteri)		//Controlla la correttezza della stringa in input
-	{
-		if(isdigit(appoggio[i]))
+		if((isdigit(appoggio[i])!=0) || (appoggio[i]=='\0' ) )
 		{
 			input_valido = 1;
 		}
 		else
 		{
 			input_valido = 0;
-			i = numero_caratteri;
 		}
-		i++;
 	}
+
+	if( (appoggio[0]=='0' && appoggio[1]!='0') || (appoggio[0]!='0' && appoggio[1]=='0') || (appoggio[0]=='0' && appoggio[1]=='0'))
+		if(appoggio[0]=='0' && appoggio[1]!='\0')
+			input_valido = 0;
 
 	if(input_valido==1)		//Ritorna il valore 1 se la striga era corretta oppure ritorna il valore 0 se la stringa non era corretta
 	{
@@ -110,6 +97,7 @@ void controllo_menu(char* input_utente, int menu)
 			case MENU_UTENTE:     stampa_menu_utente();
 							      break;
 		}
+		strclr(input_utente);
 		scanf("%s",input_utente);
 		flag=0;
 	}
@@ -132,6 +120,7 @@ void controllo_menu(char* input_utente, int menu)
 			case MENU_UTENTE:     stampa_menu_utente();
 							      break;
 		}
+		strclr(input_utente);
 		scanf("%s",input_utente);
 	}
 }

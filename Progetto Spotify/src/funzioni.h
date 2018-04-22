@@ -5,9 +5,12 @@
 #define ARTISTI_MAX 100		//Numero massimo di artisti inseribili
 #define LUNGHEZZA_MAX 31 	//Numero massimo di caratteri(30) per nome, cognome, nome_utente..
 #define LUNGHEZZA_PASS 9 	//Lunghezza password fissa di 8 caratteri
+#define LUNGHEZZA_INP 3
 #define MENU_PRINCIPALE 0
 #define MENU_ARTISTA 1
 #define MENU_UTENTE 2
+
+#define strclr(s) memset(s, '\0', strlen(s));
 
 
 struct DATA{		//Struttura utilizzata per la data
@@ -35,7 +38,7 @@ void stampa_menu_principale();
 void stampa_menu_artista();
 void stampa_menu_utente();
 void controllo_menu(char* input_utente, int menu);
-int isControllo_Numero(char appoggio[LUNGHEZZA_MAX]);
+int isControllo_Numero(char appoggio[]);
 
 
 
