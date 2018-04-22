@@ -6,11 +6,22 @@
 
 void stampa_menu_principale()
 {
-	printf("[1]Gestione artisti\n");
-	printf("[2]Gestione utenti\n");
-	printf("[3]Gestione file\n");
-	printf("[0]Termina programma\n");
-	printf("Inserisci comando:");
+
+	printf("   _____                   _     _    __         \n");
+	printf("  / ____|                 | |   (_)  / _|        \n");
+	printf(" | (___    _ __     ___   | |_   _  | |_   _   _ \n");
+	printf("  \\___ \\  | '_ \\   / _ \\  | __| | | |  _| | | | |\n");
+	printf("  ____) | | |_) | | (_) | | |_  | | | |   | |_| |\n");
+	printf(" |_____/  | .__/   \\___/   \\__| |_| |_|    \\__, |\n");
+	printf("          | |                               __/ |\n");
+	printf("          |_|                              |___/ \n\n\n");
+
+
+	printf("\t\t[1]Gestione artisti\n"
+			"\t\t[2]Gestione utenti\n"
+			"\t\t[3]Gestione file\n"
+			"\t\t[0]Termina programma\n"
+			"\t\tInserisci comando:");
 }
 
 void stampa_menu_artista()
