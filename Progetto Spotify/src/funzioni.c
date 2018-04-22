@@ -1,8 +1,22 @@
 #include "funzioni.h"
 
+#include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
+
+
+void logo()
+{
+	printf("   _____                   _     _    __         \n");
+	printf("  / ____|                 | |   (_)  / _|        \n");
+	printf(" | (___    _ __     ___   | |_   _  | |_   _   _ \n");
+	printf("  \\___ \\  | '_ \\   / _ \\  | __| | | |  _| | | | |\n");
+	printf("  ____) | | |_) | | (_) | | |_  | | | |   | |_| |\n");
+	printf(" |_____/  | .__/   \\___/   \\__| |_| |_|    \\__, |\n");
+	printf("          | |                               __/ |\n");
+	printf("          |_|                              |___/ \n\n\n");
+}
 
 void stampa_menu_principale()
 {
@@ -34,7 +48,6 @@ void stampa_menu_utente()
 	printf("[0]Torna al menu principale\n");
 	printf("Inserisci comando:");
 }
-
 
 int isControllo_Numero(char appoggio[LUNGHEZZA_MAX])
 {
@@ -81,15 +94,46 @@ int isControllo_Numero(char appoggio[LUNGHEZZA_MAX])
 	}
 }
 
-void logo()
+void controllo_menu(char* input_utente, int menu)
 {
-	printf("   _____                   _     _    __         \n");
-	printf("  / ____|                 | |   (_)  / _|        \n");
-	printf(" | (___    _ __     ___   | |_   _  | |_   _   _ \n");
-	printf("  \\___ \\  | '_ \\   / _ \\  | __| | | |  _| | | | |\n");
-	printf("  ____) | | |_) | | (_) | | |_  | | | |   | |_| |\n");
-	printf(" |_____/  | .__/   \\___/   \\__| |_| |_|    \\__, |\n");
-	printf("          | |                               __/ |\n");
-	printf("          |_|                              |___/ \n\n\n");
-}
+	static unsigned int flag=1;		//Controllo sull'entrata nel do while | 0 Entrato almeno una volta nel do while - 1 Mai entrato nel do while
 
+	if(flag==1)
+	{
+		system("cls");
+		logo();
+		switch(menu)
+		{	case MENU_PRINCIPALE: stampa_menu_principale();
+								  break;
+
+			case MENU_ARTISTA: 	  stampa_menu_artista();
+							      break;
+
+			case MENU_UTENTE:     stampa_menu_utente();
+							      break;
+		}
+		scanf("%s",input_utente);
+		flag=0;
+	}
+	else
+	{
+		system("cls");
+		logo();
+		printf("Comando errato, inserisci un valore corretto\a\n");
+		system("PAUSE");
+
+		system("cls");
+		logo();
+		switch(menu)
+		{	case MENU_PRINCIPALE: stampa_menu_principale();
+								  break;
+
+			case MENU_ARTISTA: 	  stampa_menu_artista();
+							      break;
+
+			case MENU_UTENTE:     stampa_menu_utente();
+							      break;
+		}
+		scanf("%s",input_utente);
+	}
+}
