@@ -9,12 +9,13 @@ int main(int argc, char *argv[]){
 	unsigned int flag=1;						//Controllo sull'entrata nel do while | 0 Entrato almeno una volta nel do while - 1 Mai entrato nel do while
 
 
-	while(strcmp(input_utente,"0")!=0)		//Permette di eseguire più opreazioni fin quando non viene inserito uno 0, ovverol'opzione termina programma
+	while(strcmp(input_utente,"0")!=0)		//Permette di eseguire piï¿½ opreazioni fin quando non viene inserito uno 0, ovverol'opzione termina programma
 	{
 		do{
 			if(flag==1)
 			{
 				system("cls");
+				logo();
 				stampa_menu_principale();
 				scanf("%s",input_utente);
 				flag=0;
@@ -26,6 +27,7 @@ int main(int argc, char *argv[]){
 				system("PAUSE");
 
 				system("cls");
+				logo();
 				stampa_menu_principale();
 				scanf("%s",input_utente);
 			}

@@ -28,6 +28,7 @@ struct UTENTE UTENTI[1];
 void stampa_menu_principale();
 void stampa_menu_artista();
 void stampa_menu_utente();
+void logo();
 
 int isControllo_Numero(char appoggio[LUNGHEZZA_MAX]);
 
