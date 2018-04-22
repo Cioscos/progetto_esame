@@ -5,26 +5,50 @@
 
 int main(int argc, char *argv[]){
 
-	char input_utente[LUNGHEZZA_MAX]={"1"};
+	char input_utente[LUNGHEZZA_MAX]={"1"};		//Variabile contenente l'input dell'utente
+	unsigned int flag=1;						//Controllo sull'entrata nel do while | 0 Entrato almeno una volta nel do while - 1 Mai entrato nel do while
 
 
-	while(strcmp(input_utente,"0")!=0)
+	while(strcmp(input_utente,"0")!=0)		//Permette di eseguire più opreazioni fin quando non viene inserito uno 0, ovverol'opzione termina programma
 	{
 		do{
-			system("cls");
-			stampa_menu_principale();
-			scanf("%s",input_utente);
-		}while(isControllo_Numero(input_utente)!=1);
+			if(flag==1)
+			{
+				system("cls");
+				stampa_menu_principale();
+				scanf("%s",input_utente);
+				flag=0;
+			}
+			else
+			{
+				system("cls");
+				printf("Comando errato, inserisci un valore corretto\a\n");
+				system("PAUSE");
 
-		switch(atoi(input_utente))
+				system("cls");
+				stampa_menu_principale();
+				scanf("%s",input_utente);
+			}
+
+		}while(isControllo_Numero(input_utente)!=1);		//Controllo sull'input dell'utente fin quando non viene digitato una cifra
+
+		flag=1;
+
+
+		switch(atoi(input_utente))		//Funzione atoi converta da stringa a intero
 		{
+
+			case 0:	system("cls");
+					printf("Programma terminato\n");
+					break;
+
 			case 1:	system("cls");
-					printf("Hai selezionato 1\n");
+					stampa_menu_artista();
 					system("PAUSE");
 					break;
 
 			case 2:	system("cls");
-					printf("Hai selezionato 2\n");
+					stampa_menu_utente();
 					system("PAUSE");
 					break;
 
@@ -32,6 +56,10 @@ int main(int argc, char *argv[]){
 					printf("Hai selezionato 3\n");
 					system("PAUSE");
 					break;
+
+			default : 	system("cls");
+						printf("Comando errato, inserisci un valore corretto\a\n");
+						system("PAUSE");
 		}
 	}
 

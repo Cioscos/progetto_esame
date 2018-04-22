@@ -13,6 +13,28 @@ void stampa_menu_principale()
 	printf("Inserisci comando:");
 }
 
+void stampa_menu_artista()
+{
+	printf("[1]Aggiungi nuovo artista\n");
+	printf("[2]Modifica artista\n");
+	printf("[3]Elimina artista\n");
+	printf("[0]Torna al menu principale\n");
+	printf("Inserisci comando:");
+}
+
+void stampa_menu_utente()
+{
+	printf("[1]Visualizza profilo utente\n");
+	printf("[2]Aggiungi nuova preferenza\n");
+	printf("[3]Modifica preferenza\n");
+	printf("[4]Elimina preferenza\n");
+	printf("[5]Aggiungi nuovo utente\n");
+	printf("[6]Modifica utente\n");
+	printf("[6]Elimina utente\n");
+	printf("[0]Torna al menu principale\n");
+	printf("Inserisci comando:");
+}
+
 
 int isControllo_Numero(char appoggio[LUNGHEZZA_MAX])
 {
