@@ -3,9 +3,6 @@
 #include <string.h>
 #include "funzioni.h"
 
-
-
-
 int main(int argc, char *argv[]){
 
 	char input_utente[LUNGHEZZA_INP]={'\0'};		//Variabile contenente l'input dell'utente
@@ -59,6 +56,7 @@ int main(int argc, char *argv[]){
 
 fflush(stdin);           //PROVAVO A CAPIRE SE POTESSE FIXARE L'EVENTUALE CRASH FINALE, MA NIENTE
 strclr(input_utente);
+//prova
 
 system("PAUSE");
 return 0;
