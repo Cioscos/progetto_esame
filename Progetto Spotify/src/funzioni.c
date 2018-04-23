@@ -54,9 +54,8 @@ int isControllo_Numero(char appoggio[])
 	int i=0;
 	int input_valido=1;			//1 Input valido - 0 Input non valido
 
-	for(i=0;i<LUNGHEZZA_INP-1;i++)
+	for(i=0;i<LUNGHEZZA_INPUT-1;i++)		//Controllo se l'input è diverso da un numero
 	{
-
 		if((isdigit(appoggio[i])!=0) || (appoggio[i]=='\0' ) )
 		{
 			input_valido = 1;
@@ -67,9 +66,11 @@ int isControllo_Numero(char appoggio[])
 		}
 	}
 
-	if( (appoggio[0]=='0' && appoggio[1]!='0') || (appoggio[0]!='0' && appoggio[1]=='0') || (appoggio[0]=='0' && appoggio[1]=='0'))   // *
-		if(appoggio[0]=='0' && appoggio[1]!='\0')      //*
-			input_valido = 0;                          //*
+	if( (appoggio[0]=='0' && appoggio[1]!='0') || (appoggio[0]!='0' && appoggio[1]=='0') || (appoggio[0]=='0' && appoggio[1]=='0'))   //Controlla i casi limiti di 01-10-00-0'\0'
+	{
+		if((appoggio[0]=='0' && appoggio[1]!='\0'))
+		input_valido = 0;
+	}
 
 	if(input_valido==1)		//Ritorna il valore 1 se la striga era corretta oppure ritorna il valore 0 se la stringa non era corretta
 	{
@@ -83,12 +84,11 @@ int isControllo_Numero(char appoggio[])
 
 void controllo_menu(char* input_utente, int menu)
 {
-
-	if(flag==1)
+	if(flag==1)		//Comando input accettato
 	{
 		system("cls");
 		logo();
-		switch(menu)
+		switch(menu)		//Scelta del menu da stampare
 		{	case MENU_PRINCIPALE: stampa_menu_principale();
 								  break;
 
@@ -98,11 +98,12 @@ void controllo_menu(char* input_utente, int menu)
 			case MENU_UTENTE:     stampa_menu_utente();
 							      break;
 		}
-		strclr(input_utente);                 //*
-		scanf("%s",input_utente);
+		stringclear(input_utente);
+		scanf("%3s",input_utente);
+		fflush(stdin);		//Svuota flusso in input
 		flag=0;
 	}
-	else
+	else	//Comando input non accettato
 	{
 		system("cls");
 		logo();
@@ -111,7 +112,7 @@ void controllo_menu(char* input_utente, int menu)
 		system("cls");
 
 		logo();
-		switch(menu)
+		switch(menu)		//Scelta del menu da stampare
 		{	case MENU_PRINCIPALE: stampa_menu_principale();
 								  break;
 
@@ -121,7 +122,8 @@ void controllo_menu(char* input_utente, int menu)
 			case MENU_UTENTE:     stampa_menu_utente();
 							      break;
 		}
-		strclr(input_utente);              //*
-		scanf("%s",input_utente);
+		stringclear(input_utente);
+		scanf("%3s",input_utente);
+		fflush(stdin);		//Svuota flusso in input
 	}
 }

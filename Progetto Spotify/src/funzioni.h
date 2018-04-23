@@ -5,12 +5,12 @@
 #define ARTISTI_MAX 100		//Numero massimo di artisti inseribili
 #define LUNGHEZZA_MAX 31 	//Numero massimo di caratteri(30) per nome, cognome, nome_utente..
 #define LUNGHEZZA_PASS 9 	//Lunghezza password fissa di 8 caratteri
-#define LUNGHEZZA_INP 3
+#define LUNGHEZZA_INPUT 3	//Lunghezza input del menu utente
 #define MENU_PRINCIPALE 0
 #define MENU_ARTISTA 1
 #define MENU_UTENTE 2
 
-#define strclr(s) memset(s, '\0', strlen(s));                   //* Macro azzeramento stringa
+#define stringclear(s) memset(s, '\0', strlen(s));                   // Macro azzeramento stringa, ovvero riempie la stringa di caratteri terminatori
 
 
 struct DATA{		//Struttura utilizzata per la data
@@ -31,7 +31,6 @@ struct UTENTE {		//Struttura utilizzata per la gestione degli utenti
 struct UTENTE UTENTI[1];
 
 unsigned int flag;		//Controllo sull'entrata nel do while | 0 Entrato almeno una volta nel do while - 1 Mai entrato nel do while
-
 
 void logo();
 void stampa_menu_principale();
