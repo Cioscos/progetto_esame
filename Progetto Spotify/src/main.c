@@ -61,6 +61,7 @@ fflush(stdin);           //PROVAVO A CAPIRE SE POTESSE FIXARE L'EVENTUALE CRASH 
 strclr(input_utente);
 //CAMBIAMENTO DI CISCHI
 
+//CAMBIAMENTO DI CIOSCOS
 system("PAUSE");
 return 0;
 }
