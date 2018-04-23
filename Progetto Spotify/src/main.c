@@ -59,6 +59,7 @@ int main(int argc, char *argv[]){
 
 fflush(stdin);           //PROVAVO A CAPIRE SE POTESSE FIXARE L'EVENTUALE CRASH FINALE, MA NIENTE
 strclr(input_utente);
+//CAMBIAMENTO DI CISCHI
 
 system("PAUSE");
 return 0;
