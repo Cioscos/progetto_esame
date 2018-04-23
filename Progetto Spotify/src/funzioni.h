@@ -6,9 +6,9 @@
 #define LUNGHEZZA_MAX 31 	//Numero massimo di caratteri(30) per nome, cognome, nome_utente..
 #define LUNGHEZZA_PASS 9 	//Lunghezza password fissa di 8 caratteri
 #define LUNGHEZZA_INPUT 3	//Lunghezza input del menu utente
-#define MENU_PRINCIPALE 0
-#define MENU_ARTISTA 1
-#define MENU_UTENTE 2
+#define MENU_PRINCIPALE 0	//Menu principale
+#define MENU_ARTISTA 1		//Menu artista
+#define MENU_UTENTE 2		//Menu utente
 
 #define stringclear(s) memset(s, '\0', strlen(s));                   // Macro azzeramento stringa, ovvero riempie la stringa di caratteri terminatori
 

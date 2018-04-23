@@ -17,7 +17,6 @@ void logo()
 		   "          |_|                              |___/ \n\n\n");
 }
 
-
 void stampa_menu_principale()
 {
 	printf("[1]Gestione artisti\n"
