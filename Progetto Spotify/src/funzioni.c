@@ -7,14 +7,14 @@
 
 void logo()
 {
-	printf("   _____                   _     _    __         \n");
-	printf("  / ____|                 | |   (_)  / _|        \n");
-	printf(" | (___    _ __     ___   | |_   _  | |_   _   _ \n");
-	printf("  \\___ \\  | '_ \\   / _ \\  | __| | | |  _| | | | |\n");
-	printf("  ____) | | |_) | | (_) | | |_  | | | |   | |_| |\n");
-	printf(" |_____/  | .__/   \\___/   \\__| |_| |_|    \\__, |\n");
-	printf("          | |                               __/ |\n");
-	printf("          |_|                              |___/ \n\n\n");
+	printf("   _____                   _     _    __         \n"
+		   "  / ____|                 | |   (_)  / _|        \n"
+	       " | (___    _ __     ___   | |_   _  | |_   _   _ \n"
+	       "  \\___ \\  | '_ \\   / _ \\  | __| | | |  _| | | | |\n"
+	       "  ____) | | |_) | | (_) | | |_  | | | |   | |_| |\n"
+	       " |_____/  | .__/   \\___/   \\__| |_| |_|    \\__, |\n"
+	       "          | |                               __/ |\n"
+		   "          |_|                              |___/ \n\n\n");
 }
 
 
@@ -39,14 +39,14 @@ void stampa_menu_artista()
 void stampa_menu_utente()
 {
 	printf("[1]Visualizza profilo utente\n"
-	"[2]Aggiungi nuova preferenza\n"
-	"[3]Modifica preferenza\n"
-	"[4]Elimina preferenza\n"
-	"[5]Aggiungi nuovo utente\n"
-	"[6]Modifica utente\n"
-	"[6]Elimina utente\n"
-	"[0]Torna al menu principale\n"
-	"Inserisci comando:");
+			"[2]Aggiungi nuova preferenza\n"
+			"[3]Modifica preferenza\n"
+			"[4]Elimina preferenza\n"
+			"[5]Aggiungi nuovo utente\n"
+			"[6]Modifica utente\n"
+			"[6]Elimina utente\n"
+			"[0]Torna al menu principale\n"
+			"Inserisci comando:");
 }
 
 int isControllo_Numero(char appoggio[])
