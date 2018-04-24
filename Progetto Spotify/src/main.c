@@ -137,9 +137,31 @@ int main(int argc, char *argv[]){
 											fflush(stdin);		//Svuota flusso in input
 										}while(strcmp(risposta,"si")!=0 && strcmp(risposta,"no")!=0);
 
-
 									}while(strcmp(risposta,"si")==0);
 
+
+									system("cls");
+									logo();
+									printf("Inserisci produttore:");
+									gets(ARTISTI[artisti_effettivi].produttore);
+									fflush(stdin);
+
+									system("cls");
+									logo();
+									printf("Inserisci nazionalita:");
+									gets(ARTISTI[artisti_effettivi].nazionalita);
+									fflush(stdin);
+
+
+									char anno_provvisorio[LUNGHEZZA_MAX];
+									do{
+										system("cls");
+										logo();
+										printf("Inserisci anno di inizio:");
+										gets(anno_provvisorio);
+										fflush(stdin);
+									}while(isControllo_Numero(anno_provvisorio)!=1);
+									ARTISTI[artisti_effettivi].anno_inizio=atoi(anno_provvisorio);
 
 /*------------------------------------------------------------------------------------------------*/
 									system("PAUSE");
