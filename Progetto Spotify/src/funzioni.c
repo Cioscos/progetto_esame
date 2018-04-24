@@ -28,22 +28,24 @@ void stampa_menu_principale()
 
 void stampa_menu_artista()
 {
-	printf("[1]Aggiungi nuovo artista\n"
-			"[2]Modifica artista\n"
-			"[3]Elimina artista\n"
+	printf("[1]Visualizza artisti\n"
+			"[2]Aggiungi nuovo artista\n"
+			"[3]Modifica artista\n"
+			"[4]Elimina artista\n"
 			"[0]Torna al menu principale\n"
 			"Inserisci comando:");
 }
 
 void stampa_menu_utente()
 {
-	printf("[1]Visualizza profilo utente\n"
-			"[2]Aggiungi nuova preferenza\n"
-			"[3]Modifica preferenza\n"
-			"[4]Elimina preferenza\n"
-			"[5]Aggiungi nuovo utente\n"
-			"[6]Modifica utente\n"
-			"[6]Elimina utente\n"
+	printf("[1]Visualizza utenti\n"
+			"[2]Visualizza profilo utente\n"
+			"[3]Aggiungi nuova preferenza\n"
+			"[4]Modifica preferenza\n"
+			"[5]Elimina preferenza\n"
+			"[6]Aggiungi nuovo utente\n"
+			"[7]Modifica utente\n"
+			"[8]Elimina utente\n"
 			"[0]Torna al menu principale\n"
 			"Inserisci comando:");
 }
@@ -53,7 +55,7 @@ int isControllo_Numero(char appoggio[])
 	int i=0;
 	int input_valido=1;			//1 Input valido - 0 Input non valido
 
-	for(i=0;i<LUNGHEZZA_INPUT-1;i++)		//Controllo se l'input ï¿½ diverso da un numero
+	for(i=0;i<LUNGHEZZA_INPUT-1;i++)		//Controllo se l'input è diverso da un numero
 	{
 		if((isdigit(appoggio[i])!=0) || (appoggio[i]=='\0' ) )
 		{
