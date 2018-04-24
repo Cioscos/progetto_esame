@@ -3,12 +3,14 @@
 
 #define UTENTI_MAX 100		//Numero massimo di utenti inseribili
 #define ARTISTI_MAX 100		//Numero massimo di artisti inseribili
-#define LUNGHEZZA_MAX 31 	//Numero massimo di caratteri(30) per nome, cognome, nome_utente..
-#define LUNGHEZZA_PASS 9 	//Lunghezza password fissa di 8 caratteri
-#define LUNGHEZZA_INPUT 3	//Lunghezza input del menu utente
+#define LUNGHEZZA_MAX 31 	//Numero massimo di caratteri(30) per nome, cognome, nickname, generi..
+#define LUNGHEZZA_PASS 9 	//Lunghezza della password fissa di 8 caratteri
+#define LUNGHEZZA_INPUT 3	//Lunghezza dell'input del menu utente
 #define MENU_PRINCIPALE 0	//Menu principale
 #define MENU_ARTISTA 1		//Menu artista
 #define MENU_UTENTE 2		//Menu utente
+#define GENERI_TOT 10		//Numero generi preesistenti
+#define LUNGHEZZA_CODICE 4	//Lunghezza massima del codice artista
 
 #define stringclear(s) memset(s, '\0', strlen(s));                   // Macro azzeramento stringa, ovvero riempie la stringa di caratteri terminatori
 
@@ -19,6 +21,19 @@ struct DATA{		//Struttura utilizzata per la data
 	unsigned int anno;
 };
 
+struct ARTISTA{
+	char codice[LUNGHEZZA_CODICE];
+	char nome[LUNGHEZZA_MAX];
+	int genere[GENERI_TOT];		//Gestiamo i generi come se fosse un vettore di zero e uno
+	char produttore[LUNGHEZZA_MAX];
+	char nazionalita[LUNGHEZZA_MAX];
+	int anno_inizio;
+	int ascolti;
+	int preferenze;
+};
+
+struct ARTISTA ARTISTI[ARTISTI_MAX];
+
 struct UTENTE {		//Struttura utilizzata per la gestione degli utenti
 	char nickname[LUNGHEZZA_MAX];
 	char password[LUNGHEZZA_PASS];
@@ -28,7 +43,8 @@ struct UTENTE {		//Struttura utilizzata per la gestione degli utenti
 	struct DATA data_iscrizione;
 };	/*Bisogna ancora inserire le preferenze sugli artisti e sui generi*/
 
-struct UTENTE UTENTI[1];
+struct UTENTE UTENTI[UTENTI_MAX];
+
 
 unsigned int flag;		//Controllo sull'entrata nel do while | 0 Entrato almeno una volta nel do while - 1 Mai entrato nel do while
 
@@ -36,8 +52,8 @@ void logo();
 void stampa_menu_principale();
 void stampa_menu_artista();
 void stampa_menu_utente();
-void controllo_menu(char* input_utente, int menu);
-int isControllo_Numero(char appoggio[]);
+void controllo_menu(char* input_utente, unsigned int menu);
+int isControllo_Numero(char appoggio[]);										//Funzione booleana - Verifica se l'input in ingresso è un numero
 
 
 

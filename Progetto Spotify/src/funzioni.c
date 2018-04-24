@@ -83,7 +83,7 @@ int isControllo_Numero(char appoggio[])
 	}
 }
 
-void controllo_menu(char* input_utente, int menu)
+void controllo_menu(char* input_utente, unsigned int menu)
 {
 	if(flag==1)		//Comando input accettato
 	{
@@ -128,3 +128,4 @@ void controllo_menu(char* input_utente, int menu)
 		fflush(stdin);		//Svuota flusso in input
 	}
 }
+
