@@ -14,7 +14,7 @@ void logo()
 	       "  ____) | | |_) | | (_) | | |_  | | | |   | |_| |\n"
 	       " |_____/  | .__/   \\___/   \\__| |_| |_|    \\__, |\n"
 	       "          | |                               __/ |\n"
-		   "          |_|                              |___/ \n\n\n");
+		   "          |_|                              |___/   %c\n\n\n",169);
 }
 
 void stampa_menu_principale()
@@ -53,7 +53,7 @@ int isControllo_Numero(char appoggio[])
 	int i=0;
 	int input_valido=1;			//1 Input valido - 0 Input non valido
 
-	for(i=0;i<LUNGHEZZA_INPUT-1;i++)		//Controllo se l'input è diverso da un numero
+	for(i=0;i<LUNGHEZZA_INPUT-1;i++)		//Controllo se l'input ï¿½ diverso da un numero
 	{
 		if((isdigit(appoggio[i])!=0) || (appoggio[i]=='\0' ) )
 		{
