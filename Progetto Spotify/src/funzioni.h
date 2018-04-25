@@ -10,9 +10,10 @@
 #define MENU_ARTISTA 1		//Menu artista
 #define MENU_UTENTE 2		//Menu utente
 #define GENERI_TOT 10		//Numero generi preesistenti
-#define LUNGHEZZA_CODICE 4	//Lunghezza massima del codice artista
+#define LUNGHEZZA_CODICE 5	//Lunghezza massima del codice artista
 
 #define stringclear(s) memset(s, '\0', strlen(s));                   // Macro azzeramento stringa, ovvero riempie la stringa di caratteri terminatori
+
 
 
 struct DATA{		//Struttura utilizzata per la data
@@ -45,7 +46,6 @@ struct UTENTE {		//Struttura utilizzata per la gestione degli utenti
 
 struct UTENTE UTENTI[UTENTI_MAX];
 
-
 unsigned int flag;		//Controllo sull'entrata nel do while | 0 Entrato almeno una volta nel do while - 1 Mai entrato nel do while
 
 void logo();
@@ -53,8 +53,9 @@ void stampa_menu_principale();
 void stampa_menu_artista();
 void stampa_menu_utente();
 void controllo_menu(char* input_utente, unsigned int menu);
-int isControllo_Numero(char appoggio[]);										//Funzione booleana - Verifica se l'input in ingresso è un numero
-
+int isControllo_Numero(char appoggio[]);										//Funzione booleana - Verifica se l'input in ingresso ï¿½ un numero
+void inserimento_artista(struct ARTISTA *input, char lista_generi[][LUNGHEZZA_MAX], int *artisti_effettivi);
+void visualizzazione_artisti(char lista_generi[][LUNGHEZZA_MAX], int *artisti_effettivi);
 
 
 

@@ -55,7 +55,7 @@ int isControllo_Numero(char appoggio[])
 	int i=0;
 	int input_valido=1;			//1 Input valido - 0 Input non valido
 
-	for(i=0;i<LUNGHEZZA_INPUT-1;i++)		//Controllo se l'input è diverso da un numero
+	for(i=0;i<LUNGHEZZA_INPUT-1;i++)		//Controllo se l'input ï¿½ diverso da un numero
 	{
 		if((isdigit(appoggio[i])!=0) || (appoggio[i]=='\0' ) )
 		{
@@ -129,3 +129,150 @@ void controllo_menu(char* input_utente, unsigned int menu)
 	}
 }
 
+void inserimento_artista(struct ARTISTA *input, char lista_generi[][LUNGHEZZA_MAX], int *artisti_effettivi)
+{
+
+	logo();		//nome artista
+	printf("Inserisci nome artista:");
+	gets(input[*artisti_effettivi].nome);
+	fflush(stdin);
+
+
+	do{		//codice artista
+		system("cls");
+		logo();
+		printf("Inserisci codice artista di lunghezza 4:");
+		gets(input[*artisti_effettivi].codice);
+		fflush(stdin);
+	}while(strlen(input[*artisti_effettivi].codice)>4 || strlen(input[*artisti_effettivi].codice)<4 /* && Fare una funzione che controlla se il codice ï¿½ giï¿½ stato utlizzato */);
+
+
+
+	int posizione_genere=0;					//pozione del genere nel vettore lista_generi
+	char genere_provvisorio[LUNGHEZZA_MAX];
+	int genere_esistente=GENERI_TOT;		//0 genere non esistente 1 genere esistente
+	char risposta[LUNGHEZZA_INPUT]={"si"};			//Risposta alla domanda 'Vuoi inserire un'altra preferenza?'
+
+	do{		//Inserimento generi fin quando non viene digitato no
+		genere_esistente=GENERI_TOT;
+
+		do{
+			system("cls");
+			logo();
+			printf("Lista generi:");
+
+			for(int i=0;i<GENERI_TOT;i++) //Stampa generi su schermo
+			{
+				printf("%s	",lista_generi[i]);
+			}
+
+			printf("\n");
+
+			printf("Inserisci genere artista:");
+			gets(genere_provvisorio);
+			fflush(stdin);
+
+			for(int i=0;i<GENERI_TOT;i++) //Controlla se il genere ï¿½ presente nella lista_generi
+			{
+				if(strcmp(genere_provvisorio,lista_generi[i])==0)	//Quando non ï¿½ presente (quindi 0) lo inserisce
+				{
+					genere_esistente=1;
+					posizione_genere=i;
+					i=GENERI_TOT;
+
+					if(input[*artisti_effettivi].genere[posizione_genere]==0)
+					{
+						input[*artisti_effettivi].genere[posizione_genere]=1;		//Genere inserito
+						system("cls");
+						logo();
+						printf("Genere inserito correttamente\n");
+						system("PAUSE");
+					}
+					else
+					{
+						system("cls");
+						logo();
+						printf("Genere gia inserito precedentemente\n");
+						system("PAUSE");
+					}
+				}
+				else
+				{
+					if(i==GENERI_TOT-1)
+					{
+						system("cls");
+						logo();
+						printf("Genere non inserito correttamente\n");
+						system("PAUSE");
+					}
+
+				}
+			}
+		}while(genere_esistente!=1);
+
+
+		do{
+			system("cls");
+			logo();
+			printf("Vuoi inserire un altro genere?\nRispondere con si o no:");
+			scanf("%3s",risposta);
+			fflush(stdin);		//Svuota flusso in input
+		}while(strcmp(risposta,"si")!=0 && strcmp(risposta,"no")!=0);
+
+	}while(strcmp(risposta,"si")==0);
+
+
+	system("cls");
+	logo();
+	printf("Inserisci produttore:");
+	gets(input[*artisti_effettivi].produttore);
+	fflush(stdin);
+
+	system("cls");
+	logo();
+	printf("Inserisci nazionalita:");
+	gets(input[*artisti_effettivi].nazionalita);
+	fflush(stdin);
+
+
+	char anno_provvisorio[LUNGHEZZA_MAX];
+	do{
+		system("cls");
+		logo();
+		printf("Inserisci anno di inizio:");
+		gets(anno_provvisorio);
+		fflush(stdin);
+	}while(isControllo_Numero(anno_provvisorio)!=1);
+
+	input[*artisti_effettivi].anno_inizio=atoi(anno_provvisorio);
+
+	*artisti_effettivi+=1;
+}
+
+void visualizzazione_artisti(char lista_generi[][LUNGHEZZA_MAX], int *artisti_effettivi)
+{
+	int i=0,j;
+	logo();
+
+
+	for(i=0;i<*artisti_effettivi;i++)
+	{
+		printf("%d -----------CODICE:%s----------------\n"
+				"ARTISTA: %s\n",i+1, ARTISTI[i].codice, ARTISTI[i].nome);
+		printf("\nGENERE: ");
+		for(j=0;j<GENERI_TOT;j++)
+		{
+			if(ARTISTI[i].genere[j]==1)
+			{
+				printf("%s ", lista_generi[j]);
+			}
+		}
+
+		printf("\nNAZIONALITA': %s\n"
+				"PRODUTTORE: %s\n"
+				"ANNO:%d\n"
+				"ASCOLTI:%d\n"
+				"MI PIACE:%d\n", ARTISTI[i].nazionalita, ARTISTI[i].produttore, ARTISTI[i].anno_inizio,
+				ARTISTI[i].ascolti, ARTISTI[i].preferenze);
+	}
+}
