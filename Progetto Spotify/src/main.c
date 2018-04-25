@@ -47,7 +47,7 @@ int main(int argc, char *argv[]){
 									break;
 
 							case 2:	system("cls");
-									inserimento_artista(ARTISTI, lista_generi, &artisti_effettivi);
+									inserimento_artista(lista_generi, &artisti_effettivi);
 									system("PAUSE");
 									break;
 

@@ -129,12 +129,12 @@ void controllo_menu(char* input_utente, unsigned int menu)
 	}
 }
 
-void inserimento_artista(struct ARTISTA *input, char lista_generi[][LUNGHEZZA_MAX], int *artisti_effettivi)
+void inserimento_artista(char lista_generi[][LUNGHEZZA_MAX], int *artisti_effettivi)
 {
 
 	logo();		//nome artista
 	printf("Inserisci nome artista:");
-	gets(input[*artisti_effettivi].nome);
+	gets(ARTISTI[*artisti_effettivi].nome);
 	fflush(stdin);
 
 
@@ -142,9 +142,9 @@ void inserimento_artista(struct ARTISTA *input, char lista_generi[][LUNGHEZZA_MA
 		system("cls");
 		logo();
 		printf("Inserisci codice artista di lunghezza 4:");
-		gets(input[*artisti_effettivi].codice);
+		gets(ARTISTI[*artisti_effettivi].codice);
 		fflush(stdin);
-	}while(strlen(input[*artisti_effettivi].codice)>4 || strlen(input[*artisti_effettivi].codice)<4 /* && Fare una funzione che controlla se il codice � gi� stato utlizzato */);
+	}while(strlen(ARTISTI[*artisti_effettivi].codice)>4 || strlen(ARTISTI[*artisti_effettivi].codice)<4 /* && Fare una funzione che controlla se il codice � gi� stato utlizzato */);
 
 
 
@@ -180,9 +180,9 @@ void inserimento_artista(struct ARTISTA *input, char lista_generi[][LUNGHEZZA_MA
 					posizione_genere=i;
 					i=GENERI_TOT;
 
-					if(input[*artisti_effettivi].genere[posizione_genere]==0)
+					if(ARTISTI[*artisti_effettivi].genere[posizione_genere]==0)
 					{
-						input[*artisti_effettivi].genere[posizione_genere]=1;		//Genere inserito
+						ARTISTI[*artisti_effettivi].genere[posizione_genere]=1;		//Genere inserito
 						system("cls");
 						logo();
 						printf("Genere inserito correttamente\n");
@@ -225,13 +225,13 @@ void inserimento_artista(struct ARTISTA *input, char lista_generi[][LUNGHEZZA_MA
 	system("cls");
 	logo();
 	printf("Inserisci produttore:");
-	gets(input[*artisti_effettivi].produttore);
+	gets(ARTISTI[*artisti_effettivi].produttore);
 	fflush(stdin);
 
 	system("cls");
 	logo();
 	printf("Inserisci nazionalita:");
-	gets(input[*artisti_effettivi].nazionalita);
+	gets(ARTISTI[*artisti_effettivi].nazionalita);
 	fflush(stdin);
 
 
@@ -244,7 +244,7 @@ void inserimento_artista(struct ARTISTA *input, char lista_generi[][LUNGHEZZA_MA
 		fflush(stdin);
 	}while(isControllo_Numero(anno_provvisorio)!=1);
 
-	input[*artisti_effettivi].anno_inizio=atoi(anno_provvisorio);
+	ARTISTI[*artisti_effettivi].anno_inizio=atoi(anno_provvisorio);
 
 	*artisti_effettivi+=1;
 }
