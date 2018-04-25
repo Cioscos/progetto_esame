@@ -132,28 +132,33 @@ void controllo_menu(char* input_utente, unsigned int menu)
 void inserimento_artista(char lista_generi[][LUNGHEZZA_MAX], int *artisti_effettivi)
 {
 
-	logo();		//nome artista
+//NOME ARTISTA-----------------------
+
+	logo();
 	printf("Inserisci nome artista:");
 	gets(ARTISTI[*artisti_effettivi].nome);
 	fflush(stdin);
 
-
-	do{		//codice artista
+//CODICE ARTISTA---------------------
+	do{
 		system("cls");
 		logo();
 		printf("Inserisci codice artista di lunghezza 4:");
 		gets(ARTISTI[*artisti_effettivi].codice);
 		fflush(stdin);
-	}while(strlen(ARTISTI[*artisti_effettivi].codice)>4 || strlen(ARTISTI[*artisti_effettivi].codice)<4 /* && Fare una funzione che controlla se il codice � gi� stato utlizzato */);
+	}while(strlen(ARTISTI[*artisti_effettivi].codice)!=LUNGHEZZA_CODICE-1 /* && Fare una funzione che controlla se il codice � gi� stato utlizzato */);
 
 
 
 	int posizione_genere=0;					//pozione del genere nel vettore lista_generi
 	char genere_provvisorio[LUNGHEZZA_MAX];
-	int genere_esistente=GENERI_TOT;		//0 genere non esistente 1 genere esistente
-	char risposta[LUNGHEZZA_INPUT]={"si"};			//Risposta alla domanda 'Vuoi inserire un'altra preferenza?'
+	int genere_esistente=GENERI_TOT;		//0 genere non esistente | 1 genere esistente
+	char risposta[LUNGHEZZA_INPUT]={"si"};	//Risposta alla domanda 'Vuoi inserire un'altra preferenza?'
 
-	do{		//Inserimento generi fin quando non viene digitato no
+
+//Inserimento generi fin quando non viene digitato no-----------------
+
+	do{
 		genere_esistente=GENERI_TOT;
 
 		do{
@@ -221,21 +226,23 @@ void inserimento_artista(char lista_generi[][LUNGHEZZA_MAX], int *artisti_effett
 
 	}while(strcmp(risposta,"si")==0);
 
-
+//INSERIMENTO PRODUTTORE------------------
 	system("cls");
 	logo();
 	printf("Inserisci produttore:");
 	gets(ARTISTI[*artisti_effettivi].produttore);
 	fflush(stdin);
 
+//INSERIEMNTO NAZIONALITA'----------------
 	system("cls");
 	logo();
 	printf("Inserisci nazionalita:");
 	gets(ARTISTI[*artisti_effettivi].nazionalita);
 	fflush(stdin);
 
-
+//INSERIMENTO ANNO NASCITA GRUPPO---------
 	char anno_provvisorio[LUNGHEZZA_MAX];
+
 	do{
 		system("cls");
 		logo();
@@ -246,7 +253,7 @@ void inserimento_artista(char lista_generi[][LUNGHEZZA_MAX], int *artisti_effett
 
 	ARTISTI[*artisti_effettivi].anno_inizio=atoi(anno_provvisorio);
 
-	*artisti_effettivi+=1;
+	*artisti_effettivi+=1;        //Incrementa di 1 il numero degli artisti
 }
 
 void visualizzazione_artisti(char lista_generi[][LUNGHEZZA_MAX], int *artisti_effettivi)
