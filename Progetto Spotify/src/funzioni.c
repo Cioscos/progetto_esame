@@ -261,13 +261,14 @@ void visualizzazione_artisti(char lista_generi[][LUNGHEZZA_MAX], int *artisti_ef
 	int i=0,j;
 	logo();
 
-
+//MOSTRO INFORMAZIONE ARTISTA-----------------------------
 	for(i=0;i<*artisti_effettivi;i++)
 	{
 		printf("%d -----------CODICE:%s----------------\n"
 				"ARTISTA: %s\n",i+1, ARTISTI[i].codice, ARTISTI[i].nome);
 		printf("\nGENERE: ");
-		for(j=0;j<GENERI_TOT;j++)
+
+		for(j=0;j<GENERI_TOT;j++)                    //Trovo il generere dell'artista (1 genere trovato)
 		{
 			if(ARTISTI[i].genere[j]==1)
 			{
