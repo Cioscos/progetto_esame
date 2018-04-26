@@ -3,10 +3,21 @@
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
+#include <windows.h>
+
+void SetColor(short Color)
+{
+HANDLE hCon = GetStdHandle(STD_OUTPUT_HANDLE); /*HANDLE=Puntatore "opaco";gli viene assegnato
+												*un valore da una funzione
+												*GetStdHandle=restituisce a HANDLE un dispositivo
+												*standard (STD_OUTPUT_HANDLE)*/
+SetConsoleTextAttribute(hCon,Color);
+}
 
 
 void logo()
 {
+	SetColor(2);
 	printf("   _____                   _     _    __         \n"
 		   "  / ____|                 | |   (_)  / _|        \n"
 	       " | (___    _ __     ___   | |_   _  | |_   _   _ \n"
@@ -15,39 +26,91 @@ void logo()
 	       " |_____/  | .__/   \\___/   \\__| |_| |_|    \\__, |\n"
 	       "          | |                               __/ |\n"
 		   "          |_|                              |___/   %c\n\n\n",169);
+	SetColor(15);
 }
 
 void stampa_menu_principale()
 {
-	printf("[1]Gestione artisti\n"
-			"[2]Gestione utenti\n"
-			"[3]Gestione file\n"
-			"[0]Termina programma\n"
-			"Inserisci comando:");
+	SetColor(2);
+	printf("[1]");
+	SetColor(15);
+	printf("Gestione artisti\n");
+	SetColor(2);
+	printf("[2]");
+	SetColor(15);
+	printf("Gestione utenti\n");
+	SetColor(2);
+	printf("[3]");
+	SetColor(15);
+	printf("Gestione file\n");
+	SetColor(2);
+	printf("[0]");
+	SetColor(15);
+	printf("Termina programma\n\nInserisci comando:");
 }
 
 void stampa_menu_artista()
 {
-	printf("[1]Visualizza artisti\n"
-			"[2]Aggiungi nuovo artista\n"
-			"[3]Modifica artista\n"
-			"[4]Elimina artista\n"
-			"[0]Torna al menu principale\n"
-			"Inserisci comando:");
+	SetColor(2);
+	printf("[1]");
+	SetColor(15);
+	printf("Viualizza artisti\n");
+	SetColor(2);
+	printf("[2]");
+	SetColor(15);
+	printf("Aggiungi nuovo artista\n");
+	SetColor(2);
+	printf("[3]");
+	SetColor(15);
+	printf("Modifica artista\n");
+	SetColor(2);
+	printf("[4]");
+	SetColor(15);
+	printf("Elimina artista\n");
+	SetColor(2);
+	printf("[0]");
+	SetColor(15);
+	printf("Torna al menu principale\n\nInserisci comando: ");
 }
 
 void stampa_menu_utente()
 {
-	printf("[1]Visualizza utenti\n"
-			"[2]Visualizza profilo utente\n"
-			"[3]Aggiungi nuova preferenza\n"
-			"[4]Modifica preferenza\n"
-			"[5]Elimina preferenza\n"
-			"[6]Aggiungi nuovo utente\n"
-			"[7]Modifica utente\n"
-			"[8]Elimina utente\n"
-			"[0]Torna al menu principale\n"
-			"Inserisci comando:");
+	SetColor(2);
+	printf("[1]");
+	SetColor(15);
+	printf("Visualizza utenti\n");
+	SetColor(2);
+	printf("[2]");
+	SetColor(15);
+	printf("Visualizza profilo utente\n");
+	SetColor(2);
+	printf("[3]");
+	SetColor(15);
+	printf("Aggiungi nuova preferenza\n");
+	SetColor(2);
+	printf("[4]");
+	SetColor(15);
+	printf("Modifica preferenza\n");
+	SetColor(2);
+	printf("[5]");
+	SetColor(15);
+	printf("Elimina preferenza\n");
+	SetColor(2);
+	printf("[6]");
+	SetColor(15);
+	printf("Aggiungi nuovo utente\n");
+	SetColor(2);
+	printf("[7]");
+	SetColor(15);
+	printf("Modifica utente\n");
+	SetColor(2);
+	printf("[8]");
+	SetColor(15);
+	printf("Elimina utente\n");
+	SetColor(2);
+	printf("[0]");
+	SetColor(15);
+	printf("Torna al menu principale\n\nInserisci comndo: ");
 }
 
 int isControllo_Numero(char appoggio[])
@@ -108,7 +171,9 @@ void controllo_menu(char* input_utente, unsigned int menu)
 	{
 		system("cls");
 		logo();
-		printf("Comando errato, inserisci un valore corretto\a\n");
+		SetColor(4);
+		printf("Comando errato, inserisci un valore corretto\a\n\n");
+		SetColor(15);
 		system("PAUSE");
 		system("cls");
 
@@ -264,10 +329,18 @@ void visualizzazione_artisti(char lista_generi[][LUNGHEZZA_MAX], int artisti_eff
 //MOSTRO INFORMAZIONE ARTISTA-----------------------------
 	for(i=0;i<artisti_effettivi;i++)
 	{
-		printf("%d -----------CODICE:%s----------------\n"
-				"ARTISTA: %s\n",i+1, ARTISTI[i].codice, ARTISTI[i].nome);
+		printf("%d ",i+1);
+		SetColor(2);
+		printf("-----------CODICE:");
+		SetColor(15);
+		printf("%s",ARTISTI[i].codice);
+		SetColor(2);
+		printf("----------------\nARTISTA: ");
+		SetColor(15);
+		printf("%s\n", ARTISTI[i].nome);
+		SetColor(2);
 		printf("\nGENERE: ");
-
+		SetColor(15);
 		for(j=0;j<GENERI_TOT;j++)                    //Trovo il generere dell'artista (1 genere trovato)
 		{
 			if(ARTISTI[i].genere[j]==1)
@@ -275,13 +348,26 @@ void visualizzazione_artisti(char lista_generi[][LUNGHEZZA_MAX], int artisti_eff
 				printf("%s ", lista_generi[j]);
 			}
 		}
-
-		printf("\nNAZIONALITA': %s\n"
-				"PRODUTTORE: %s\n"
-				"ANNO:%d\n"
-				"ASCOLTI:%d\n"
-				"MI PIACE:%d\n", ARTISTI[i].nazionalita, ARTISTI[i].produttore, ARTISTI[i].anno_inizio,
-				ARTISTI[i].ascolti, ARTISTI[i].preferenze);
+		SetColor(2);
+		printf("\nNAZIONALITA': ");
+		SetColor(15);
+		printf("%s\n",ARTISTI[i].nazionalita);
+		SetColor(2);
+		printf("PRODUTTORE: ");
+		SetColor(15);
+		printf("%s\n", ARTISTI[i].produttore);
+		SetColor(2);
+		printf("ANNO: ");
+		SetColor(15);
+		printf("%d\n", ARTISTI[i].anno_inizio);
+		SetColor(2);
+		printf("ASCOLTI: ");
+		SetColor(15);
+		printf("%d\n", ARTISTI[i].ascolti);
+		SetColor(2);
+		printf("MI PIACE: ");
+		SetColor(15);
+		printf("%d\n", ARTISTI[i].preferenze);
 	}
 }
 

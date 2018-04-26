@@ -48,6 +48,7 @@ struct UTENTE UTENTI[UTENTI_MAX];
 
 unsigned int flag;		//Controllo sull'entrata nel do while | 0 Entrato almeno una volta nel do while - 1 Mai entrato nel do while
 
+void SetColor(short Color);
 void logo();
 void stampa_menu_principale();
 void stampa_menu_artista();
