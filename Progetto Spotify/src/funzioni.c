@@ -374,7 +374,7 @@ void visualizzazione_artisti(char lista_generi[][LUNGHEZZA_MAX], int artisti_eff
 	}
 }
 
-void modifica_artista(int artisti_effettivi, char lista_generi[][LUNGHEZZA_MAX])
+void modifica_artista(int artisti_effettivi, char lista_generi[][LUNGHEZZA_MAX]) //TODO
 {
 	int i,j;
 	char artista[LUNGHEZZA_MAX]={"\0"};
@@ -610,7 +610,7 @@ void modifica_artista(int artisti_effettivi, char lista_generi[][LUNGHEZZA_MAX])
 							break;
 
 
-					case 3: system("cls");	//Cambio anno di inzio attività
+					case 3: system("cls");	//Cambio anno di inzio attivitï¿½
 							char anno_provvisorio[LUNGHEZZA_MAX];
 
 							logo();
@@ -651,7 +651,7 @@ void modifica_artista(int artisti_effettivi, char lista_generi[][LUNGHEZZA_MAX])
 							printf("Anno inserito!\n\n");
 							break;
 
-					case 5: system("cls");		//Cambio nazionalità
+					case 5: system("cls");		//Cambio nazionalitï¿½
 							logo();
 							printf("L'attuale nazionalit%c %c: ",133, 138);
 							SetColor(11);
