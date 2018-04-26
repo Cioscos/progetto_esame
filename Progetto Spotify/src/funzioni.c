@@ -374,8 +374,8 @@ void visualizzazione_artisti(char lista_generi[][LUNGHEZZA_MAX], int artisti_eff
 void modifica_artista(int artisti_effettivi)
 {
 	int i;
-	char risposta[LUNGHEZZA_MAX];
-	int scelta;
+	char artista[LUNGHEZZA_MAX];
+	char scelta[LUNGHEZZA_INPUT]={"\0"};
 
 	printf("\nQuale artista vuoi modificare?\n\n");
 
@@ -383,31 +383,68 @@ void modifica_artista(int artisti_effettivi)
 	{
 		printf("%s  %s\n", ARTISTI[i].nome, ARTISTI[i].codice);
 	}
-	gets(risposta);
+	gets(artista);
 	fflush(stdin);
 
 	for(i=0;i<artisti_effettivi;i++)
 	{
-		if(strcmp(risposta, ARTISTI[i].nome)==0)
+		if(strcmp(artista, ARTISTI[i].nome)==0)
 		{
 			printf("Artista trovato!\n");
 			i=artisti_effettivi;
 
-			printf("Cosa vuoi modificare?\n"
-					"1)Nome\n"
-					"2)Genere\n"
-					"3)Anno\n"
-					"4)Produttore\n"
-					"5)Nazionalit%c\n"
-					,133);
-			scanf("%d", &scelta);
-			printf("%d", scelta); //TODO
+			do{
+				system("cls");
+				logo();
+				printf("Cosa vuoi modificare?\n"
+						"1)Nome\n"
+						"2)Genere\n"
+						"3)Anno\n"
+						"4)Produttore\n"
+						"5)Nazionalit%c\n\n"
+						,133);
+				scanf("%s", scelta);
+				if((strcmp(scelta,"1")!=0) || (strcmp(scelta,"2")!=0) || (strcmp(scelta,"3")!=0) || (strcmp(scelta,"4")!=0)
+						|| (strcmp(scelta,"5")!=0) )
+				{
+					system("cls");
+					logo();
+					SetColor(5);
+					printf("Inserire un campo valido!");
+					SetColor(15);
+					system("pause");
+				}
+
+			}while((strcmp(scelta,"1")!=0) || (strcmp(scelta,"2")!=0) || (strcmp(scelta,"3")!=0) || (strcmp(scelta,"4")!=0)
+					|| (strcmp(scelta,"5")!=0) );
+
+
+//SELEZIONE ATTRIBUTI DA CAMBIARE------------------------------------
+			switch(atoi(scelta))
+			{
+
+			case 1: system("cls");
+					logo();
+					printf("L'attuale nome %c: ", 138);
+					SetColor(11);
+					printf("%s\n\n", ARTISTI[i].nome);
+					SetColor(15);
+					printf("Con che nome vuoi sostituirlo?\n");
+					stringclear(ARTISTI[i].nome);
+					gets(ARTISTI[i].nome);
+					system("cls");
+					printf("Nome sostituito!\n\n");
+
+
+
+			}      //TODO
 
 			system("pause");
 		}
 		else
 		{
-
+			SetColor(5);
+			printf("Artista non trovato!");
 		}
 	}
 }
