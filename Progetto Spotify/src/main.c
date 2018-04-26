@@ -10,7 +10,6 @@ int main(int argc, char *argv[]){
 	char lista_generi[GENERI_TOT][LUNGHEZZA_MAX]={"Electro","Pop","Techno","Rock","Jazz","Rap","Blues","Country","Britpop","Dubstep"};
 
 	int artisti_effettivi=0;
-	//int* punt_artisti_effettivi=&artisti_effettivi;
 
 	while(strcmp(input_utente,"0")!=0)		//Permette di eseguire pi� opreazioni fin quando non viene inserito uno 0, ovvero l'opzione termina programma
 	{
@@ -53,8 +52,7 @@ int main(int argc, char *argv[]){
 
 							case 3:	system("cls");
 									logo();
-									modifica_artista(artisti_effettivi);
-									system("PAUSE");
+									modifica_artista(artisti_effettivi, lista_generi);
 									break;
 
 							case 4:	system("cls");

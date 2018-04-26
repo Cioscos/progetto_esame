@@ -371,11 +371,14 @@ void visualizzazione_artisti(char lista_generi[][LUNGHEZZA_MAX], int artisti_eff
 	}
 }
 
-void modifica_artista(int artisti_effettivi)
+void modifica_artista(int artisti_effettivi, char lista_generi[][LUNGHEZZA_MAX])
 {
-	int i;
-	char artista[LUNGHEZZA_MAX];
+	int i,j;
+	char artista[LUNGHEZZA_MAX]={"\0"};
+	char genere[LUNGHEZZA_MAX]={"\0"};
 	char scelta[LUNGHEZZA_INPUT]={"\0"};
+	int artista_trovato=0;
+	int genere_trovato=0;
 
 	printf("\nQuale artista vuoi modificare?\n\n");
 
@@ -386,65 +389,264 @@ void modifica_artista(int artisti_effettivi)
 	gets(artista);
 	fflush(stdin);
 
-	for(i=0;i<artisti_effettivi;i++)
-	{
-		if(strcmp(artista, ARTISTI[i].nome)==0)
-		{
-			printf("Artista trovato!\n");
-			i=artisti_effettivi;
+	do{
 
-			do{
-				system("cls");
-				logo();
-				printf("Cosa vuoi modificare?\n"
-						"1)Nome\n"
-						"2)Genere\n"
-						"3)Anno\n"
-						"4)Produttore\n"
-						"5)Nazionalit%c\n\n"
-						,133);
-				scanf("%s", scelta);
-				if((strcmp(scelta,"1")!=0) || (strcmp(scelta,"2")!=0) || (strcmp(scelta,"3")!=0) || (strcmp(scelta,"4")!=0)
-						|| (strcmp(scelta,"5")!=0) )
-				{
+		for(i=0;i<artisti_effettivi;i++)
+		{
+			if(strcmp(artista, ARTISTI[i].nome)==0)
+			{
+				printf("Artista trovato!\n");
+				artista_trovato=1;
+				system("pause");
+				do{
 					system("cls");
 					logo();
-					SetColor(5);
-					printf("Inserire un campo valido!");
-					SetColor(15);
-					system("pause");
+					printf("Cosa vuoi modificare?\n"
+							"1)Nome\n"
+							"2)Genere\n"
+							"3)Anno\n"
+							"4)Produttore\n"
+							"5)Nazionalit%c\n\n"
+							,133);
+					scanf("%s", scelta);
+					if((strcmp(scelta,"1")!=0) && (strcmp(scelta,"2")!=0) && (strcmp(scelta,"3")!=0) && (strcmp(scelta,"4")!=0)
+							&& (strcmp(scelta,"5")!=0) )
+					{
+						system("cls");
+						logo();
+						SetColor(5);
+						printf("Inserire un campo valido!\n\n");
+						SetColor(15);
+						system("pause");
+					}
+
+				}while((strcmp(scelta,"1")!=0) && (strcmp(scelta,"2")!=0) && (strcmp(scelta,"3")!=0) && (strcmp(scelta,"4")!=0)
+						&& (strcmp(scelta,"5")!=0) );
+
+
+	//SELEZIONE ATTRIBUTI DA CAMBIARE------------------------------------
+				switch(atoi(scelta))
+				{
+
+					case 1: system("cls");
+							logo();
+							printf("L'attuale nome %c: ", 138);
+							SetColor(11);
+							printf("%s\n\n", ARTISTI[i].nome);
+							SetColor(15);
+							printf("Con che nome vuoi sostituirlo?\n");
+							stringclear(ARTISTI[i].nome);
+							gets(ARTISTI[i].nome);
+							system("cls");
+							logo();
+							printf("Nome sostituito!\n\n");
+
+							break;
+
+					case 2: system("cls");
+							do{
+								system("cls");
+								logo();
+								printf("L'attuale genere %c: ", 138);
+								SetColor(11);
+								for(j=0;j<GENERI_TOT;j++)
+								{
+									if(ARTISTI[i].genere[j]==1)
+									{
+										printf("%s  ", lista_generi[j]);
+									}
+								}
+								SetColor(15);
+
+
+								printf("\nHai a disposizione le seguenti opzioni:\n"
+										"1)Modificare preferenza\n"
+										"2)Aggiungere preferenza\n\n"
+										"Inserisci l'opzione: ");
+								scanf("%1s", scelta);
+								fflush(stdin);
+								if((strcmp(scelta,"1")!=0) && (strcmp(scelta,"2")!=0) )
+								{
+									system("cls");
+									logo();
+									SetColor(4);
+									printf("Opzione non disponibile!\n\n");
+									SetColor(15);
+									system("pause");
+								}
+							}while((strcmp(scelta,"1")!=0) && (strcmp(scelta,"2")!=0));
+
+							system("cls");
+
+							if(strcmp(scelta,"1")==0)
+							{
+								logo();
+								printf("L'attuale genere %c: ", 138);
+								SetColor(11);
+								for(j=0;j<GENERI_TOT;j++)
+								{
+									if(ARTISTI[i].genere[j]==1)
+									{
+										printf("%s  ", lista_generi[j]);
+									}
+								}
+								SetColor(15);
+								printf("\nInserire genere da modificare: ");
+								scanf("%s", genere);
+								for(j=0;j<GENERI_TOT;j++)
+								{
+									if(strcmp(lista_generi[j],genere)==0)
+									{
+										if(ARTISTI[i].genere[j]==1)
+										{
+											ARTISTI[i].genere[j]=0;
+											genere_trovato=1;
+										}
+										else
+										{
+											system("cls");
+											logo();
+											SetColor(4);
+											printf("Genere gi%c non inserito\n\n", 133);
+											SetColor(15);
+											system("pause");
+										}
+									}
+								}
+								if(genere_trovato==0)
+								{
+									system("cls");
+									logo();
+									SetColor(4);
+									printf("Genere inserito non esistente\n\n");
+									SetColor(15);
+									system("pause");
+								}
+								else
+								{
+									printf("\nGenere modificato! ");
+								}
+							}
+							else
+							{
+								logo();
+								printf("L'attuale genere %c: ", 138);
+								SetColor(11);
+								for(j=0;j<GENERI_TOT;j++)
+								{
+									if(ARTISTI[i].genere[j]==1)
+									{
+										printf("%s  ", lista_generi[j]);
+									}
+								}
+								SetColor(15);
+								printf("\nI generi disponibili sono: ");
+								for(j=0;j<GENERI_TOT;j++)
+								{
+									printf("%s  ", lista_generi[j]);
+								}
+								printf("\n\nInserire genere da aggiungere: ");
+								scanf("%s", genere);
+								for(j=0;j<GENERI_TOT;j++)
+								{
+									if(strcmp(lista_generi[j],genere)==0)
+									{
+										if(ARTISTI[i].genere[j]==0)
+										{
+											ARTISTI[i].genere[j]=1;
+											genere_trovato=1;
+										}
+										else
+										{
+											system("cls");
+											logo();
+											SetColor(4);
+											printf("Genere gi%c inserito\n\n", 133);
+											SetColor(15);
+											system("pause");
+										}
+									}
+								}
+								if(genere_trovato==0)
+								{
+									system("cls");
+									logo();
+									SetColor(4);
+									printf("Genere inserito non esistente\n\n");
+									SetColor(15);
+									system("pause");
+								}
+								else
+								{
+									printf("\nGenere inserito! ");
+								}
+							}
+							break;
+					case 3: system("cls");
+							logo();
+							printf("L'attuale anno %c: ", 138);
+							SetColor(11);
+							printf("%d\n\n", ARTISTI[i].anno_inizio);
+							SetColor(15);
+							printf("Inserisci nuovo anno: ");
+							scanf("%d", &ARTISTI[i].anno_inizio);
+							system("cls");
+							logo();
+							printf("Anno inserito!\n\n");
+							break;
+
+					case 4: system("cls");
+							logo();
+							printf("L'attuale produttore %c: ", 138);
+							SetColor(11);
+							printf("%s\n\n", ARTISTI[i].produttore);
+							SetColor(15);
+							printf("Inserisci nuovo produttore: ");
+							scanf("%s", ARTISTI[i].produttore);
+							system("cls");
+							logo();
+							printf("Anno inserito!\n\n");
+							break;
+
+					case 5: system("cls");
+							logo();
+							printf("L'attuale nazionalit%c %c: ",133, 138);
+							SetColor(11);
+							printf("%s\n\n", ARTISTI[i].nazionalita);
+							SetColor(15);
+							printf("Inserisci nuovo produttore: ");
+							scanf("%s", ARTISTI[i].nazionalita);
+							system("cls");
+							logo();
+							printf("Anno inserito!\n\n");
+							break;
 				}
 
-			}while((strcmp(scelta,"1")!=0) || (strcmp(scelta,"2")!=0) || (strcmp(scelta,"3")!=0) || (strcmp(scelta,"4")!=0)
-					|| (strcmp(scelta,"5")!=0) );
-
-
-//SELEZIONE ATTRIBUTI DA CAMBIARE------------------------------------
-			switch(atoi(scelta))
-			{
-
-			case 1: system("cls");
-					logo();
-					printf("L'attuale nome %c: ", 138);
-					SetColor(11);
-					printf("%s\n\n", ARTISTI[i].nome);
-					SetColor(15);
-					printf("Con che nome vuoi sostituirlo?\n");
-					stringclear(ARTISTI[i].nome);
-					gets(ARTISTI[i].nome);
-					system("cls");
-					printf("Nome sostituito!\n\n");
-
-
-
-			}      //TODO
-
-			system("pause");
+				system("pause");
+			}
+			i=artisti_effettivi;
 		}
-		else
+		if(artista_trovato==0)
 		{
-			SetColor(5);
-			printf("Artista non trovato!");
+			SetColor(4);
+			printf("Artista non trovato!\n\n");
+			SetColor(15);
+			printf("Vuoi riprovare? Rispondi si o no\n");
+			stringclear(scelta);
+			do{
+				scanf("%s", scelta);
+				for(j=0;j<LUNGHEZZA_INPUT;j++)
+				{
+					scelta[j]=tolower(scelta[j]);
+				}
+				if((strcmp(scelta,"si")!=0) || (strcmp(scelta,"no")!=0))
+				{
+					SetColor(4);
+					printf("Risposta non accettata! Riprova\n");
+					SetColor(15);
+				}
+			}while((strcmp(scelta,"si")!=0) || (strcmp(scelta,"no")!=0));
+
 		}
-	}
+	}while(artista_trovato==0 || (strcmp(scelta,"si")==0));
 }
