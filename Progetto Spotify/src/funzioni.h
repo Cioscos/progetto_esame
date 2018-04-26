@@ -62,7 +62,7 @@ void visualizzazione_artisti(char lista_generi[][LUNGHEZZA_MAX], int artisti_eff
 void modifica_artista(int artisti_effettivi, char lista_generi[][LUNGHEZZA_MAX]);
 
 
-
+//TODO FARE UNA CAZZO DI FUNZIONE PER EVITARE CODICI E NOMI MULTIPLI
 
 
 /*

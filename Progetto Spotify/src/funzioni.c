@@ -374,7 +374,7 @@ void visualizzazione_artisti(char lista_generi[][LUNGHEZZA_MAX], int artisti_eff
 	}
 }
 
-void modifica_artista(int artisti_effettivi, char lista_generi[][LUNGHEZZA_MAX]) //TODO
+void modifica_artista(int artisti_effettivi, char lista_generi[][LUNGHEZZA_MAX]) //TODO Controllare bene di tu tu di tutto
 {
 	int i,j;
 	char artista[LUNGHEZZA_MAX]={"\0"};
