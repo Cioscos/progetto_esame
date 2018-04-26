@@ -42,7 +42,7 @@ int main(int argc, char *argv[]){
 									break;
 
 							case 1:	system("cls");
-									visualizzazione_artisti(lista_generi, &artisti_effettivi);
+									visualizzazione_artisti(lista_generi, artisti_effettivi);
 									system("PAUSE");
 									break;
 
@@ -53,7 +53,7 @@ int main(int argc, char *argv[]){
 
 							case 3:	system("cls");
 									logo();
-									printf("Caso 3 selezionato\n");
+									modifica_artista(artisti_effettivi);
 									system("PAUSE");
 									break;
 

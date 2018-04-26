@@ -177,9 +177,9 @@ void inserimento_artista(char lista_generi[][LUNGHEZZA_MAX], int *artisti_effett
 			gets(genere_provvisorio);
 			fflush(stdin);
 
-			for(int i=0;i<GENERI_TOT;i++) //Controlla se il genere � presente nella lista_generi
+			for(int i=0;i<GENERI_TOT;i++) //Controlla se il genere è presente nella lista_generi
 			{
-				if(strcmp(genere_provvisorio,lista_generi[i])==0)	//Quando non � presente (quindi 0) lo inserisce
+				if(strcmp(genere_provvisorio,lista_generi[i])==0)	//Quando non è presente (quindi 0) lo inserisce
 				{
 					genere_esistente=1;
 					posizione_genere=i;
@@ -256,13 +256,13 @@ void inserimento_artista(char lista_generi[][LUNGHEZZA_MAX], int *artisti_effett
 	*artisti_effettivi+=1;        //Incrementa di 1 il numero degli artisti
 }
 
-void visualizzazione_artisti(char lista_generi[][LUNGHEZZA_MAX], int *artisti_effettivi)
+void visualizzazione_artisti(char lista_generi[][LUNGHEZZA_MAX], int artisti_effettivi)
 {
 	int i=0,j;
 	logo();
 
 //MOSTRO INFORMAZIONE ARTISTA-----------------------------
-	for(i=0;i<*artisti_effettivi;i++)
+	for(i=0;i<artisti_effettivi;i++)
 	{
 		printf("%d -----------CODICE:%s----------------\n"
 				"ARTISTA: %s\n",i+1, ARTISTI[i].codice, ARTISTI[i].nome);
@@ -282,5 +282,46 @@ void visualizzazione_artisti(char lista_generi[][LUNGHEZZA_MAX], int *artisti_ef
 				"ASCOLTI:%d\n"
 				"MI PIACE:%d\n", ARTISTI[i].nazionalita, ARTISTI[i].produttore, ARTISTI[i].anno_inizio,
 				ARTISTI[i].ascolti, ARTISTI[i].preferenze);
+	}
+}
+
+void modifica_artista(int artisti_effettivi)
+{
+	int i;
+	char risposta[LUNGHEZZA_MAX];
+	int scelta;
+
+	printf("\nQuale artista vuoi modificare?\n\n");
+
+	for(i=0;i<artisti_effettivi;i++)
+	{
+		printf("%s  %s\n", ARTISTI[i].nome, ARTISTI[i].codice);
+	}
+	gets(risposta);
+	fflush(stdin);
+
+	for(i=0;i<artisti_effettivi;i++)
+	{
+		if(strcmp(risposta, ARTISTI[i].nome)==0)
+		{
+			printf("Artista trovato!\n");
+			i=artisti_effettivi;
+
+			printf("Cosa vuoi modificare?\n"
+					"1)Nome\n"
+					"2)Genere\n"
+					"3)Anno\n"
+					"4)Produttore\n"
+					"5)Nazionalit%c\n"
+					,133);
+			scanf("%d", &scelta);
+			printf("%d", scelta); //TODO
+
+			system("pause");
+		}
+		else
+		{
+
+		}
 	}
 }
