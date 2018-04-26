@@ -53,9 +53,11 @@ void logo();
 void stampa_menu_principale();
 void stampa_menu_artista();
 void stampa_menu_utente();
+
 void controllo_menu(char* input_utente, unsigned int menu);
+
 int isControllo_Numero(char appoggio[]);										//Funzione booleana - Verifica se l'input in ingresso � un numero
-void inserimento_artista(char lista_generi[][LUNGHEZZA_MAX], int *artisti_effettivi);
+int inserimento_artista(char lista_generi[][LUNGHEZZA_MAX], int artisti_effettivi);
 void visualizzazione_artisti(char lista_generi[][LUNGHEZZA_MAX], int artisti_effettivi);
 void modifica_artista(int artisti_effettivi, char lista_generi[][LUNGHEZZA_MAX]);
 
