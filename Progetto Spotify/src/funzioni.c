@@ -612,6 +612,7 @@ void modifica_artista(int artisti_effettivi, char lista_generi[][LUNGHEZZA_MAX])
 
 					case 3: system("cls");	//Cambio anno di inzio attivit�
 							char anno_provvisorio[LUNGHEZZA_MAX];
+							stringclear(anno_provvisorio);
 
 							logo();
 							printf("L'attuale anno %c: ", 138);
@@ -630,7 +631,9 @@ void modifica_artista(int artisti_effettivi, char lista_generi[][LUNGHEZZA_MAX])
 								printf("Inserisci nuovo anno: ");
 								gets(anno_provvisorio);
 								fflush(stdin);
-							}while(isControllo_Numero(anno_provvisorio)!=1);
+
+
+							}while(isControllo_Numero(anno_provvisorio)!=1 || atoi(anno_provvisorio)>=10000);
 
 							ARTISTI[i].anno_inizio=atoi(anno_provvisorio);
 
@@ -645,23 +648,24 @@ void modifica_artista(int artisti_effettivi, char lista_generi[][LUNGHEZZA_MAX])
 							printf("%s\n\n", ARTISTI[i].produttore);
 							SetColor(15);
 							printf("Inserisci nuovo produttore: ");
-							scanf("%s", ARTISTI[i].produttore);
+							gets(ARTISTI[i].produttore);
 							system("cls");
 							logo();
-							printf("Anno inserito!\n\n");
+							printf("Nuovo produttore inserito!\n\n");
 							break;
 
-					case 5: system("cls");		//Cambio nazionalit�
+					case 5: system("cls");		//Cambio nazionalità
 							logo();
 							printf("L'attuale nazionalit%c %c: ",133, 138);
 							SetColor(11);
 							printf("%s\n\n", ARTISTI[i].nazionalita);
 							SetColor(15);
-							printf("Inserisci nuovo produttore: ");
-							scanf("%s", ARTISTI[i].nazionalita);
+							printf("Inserisci nuova nazionalit%c: ",133);
+							gets(ARTISTI[i].nazionalita);
+							fflush(stdin);
 							system("cls");
 							logo();
-							printf("Anno inserito!\n\n");
+							printf("Nuova nazionalit%c inserita inserito!\n\n",133);
 							break;
 				}
 
