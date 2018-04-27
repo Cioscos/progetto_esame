@@ -302,7 +302,7 @@ int inserimento_artista(char lista_generi[][LUNGHEZZA_MAX], int artisti_effettiv
 //INSERIEMNTO NAZIONALITA'----------------
 	system("cls");
 	logo();
-	printf("Inserisci nazionalita:");
+	printf("Inserisci nazionalit%c:", 133);
 	gets(ARTISTI[artisti_effettivi].nazionalita);
 	fflush(stdin);
 
@@ -334,15 +334,16 @@ void visualizzazione_artisti(char lista_generi[][LUNGHEZZA_MAX], int artisti_eff
 	{
 		printf("%d ",i+1);
 		SetColor(2);
-		printf("-----------CODICE:");
+		printf("---");
+		SetColor(11);
+		printf("%s", ARTISTI[i].nome);
+		SetColor(2);
+		printf("----CODICE:");
 		SetColor(15);
 		printf("%s",ARTISTI[i].codice);
 		SetColor(2);
-		printf("----------------\nARTISTA: ");
-		SetColor(15);
-		printf("%s\n", ARTISTI[i].nome);
-		SetColor(2);
-		printf("\nGENERE: ");
+		printf("-----\n");
+		printf("GENERE: ");
 		SetColor(15);
 		for(j=0;j<GENERI_TOT;j++)                    //Trovo il generere dell'artista (1 genere trovato)
 		{
@@ -420,8 +421,8 @@ void modifica_artista(int artisti_effettivi, char lista_generi[][LUNGHEZZA_MAX])
 					{
 						system("cls");
 						logo();
-						SetColor(5);
-						printf("Inserire un campo valido!\n\n");
+						SetColor(4);
+						printf("Inserire un campo valido!\a\n\n");
 						SetColor(15);
 						system("pause");
 					}
@@ -447,167 +448,161 @@ void modifica_artista(int artisti_effettivi, char lista_generi[][LUNGHEZZA_MAX])
 							printf("Nome sostituito correttamente\n\n");
 							break;
 
-					case 2: system("cls");		//Cambio generi
-							do{
-								system("cls");
-								logo();
-								printf("L'attuale genere %c: ", 138);
-								SetColor(11);
-
-								for(j=0;j<GENERI_TOT;j++)		//Stampa lista generi dell'artista chiesto in input
-								{
-									if(ARTISTI[i].genere[j]==1)
-									{
-										printf("%s  ", lista_generi[j]);
-									}
-								}
-								SetColor(15);
-
-
-								printf("\nHai a disposizione le seguenti opzioni:\n"
-										"[1]Elimina genere\n"
-										"[2]Aggiungere genere\n\n"
-										"Inserisci l'opzione: ");
-								scanf("%s", scelta);
-								fflush(stdin);
-
-								if((strcmp(scelta,"1")!=0) && (strcmp(scelta,"2")!=0) )		//Controllo sull'input fornito dall'utente
-								{
-									system("cls");
-									logo();
-									SetColor(4);
-									printf("Opzione non disponibile!\n\n");
-									SetColor(15);
-									system("pause");
-								}
-							}while((strcmp(scelta,"1")!=0) && (strcmp(scelta,"2")!=0));		//Continua fin quando non viene inserito 1 o 2
-
+					case 2: do{
 							system("cls");
+							logo();
+							printf("L'attuale genere %c: ", 138);
+							SetColor(11);
 
-							if(strcmp(scelta,"1")==0)		//Elimina genere
+							for(j=0;j<GENERI_TOT;j++)		//Stampa lista generi dell'artista chiesto in input
 							{
-								logo();
-								printf("L'attuale genere %c: ", 138);
-								SetColor(11);
-
-								for(j=0;j<GENERI_TOT;j++)
+								if(ARTISTI[i].genere[j]==1)
 								{
-									if(ARTISTI[i].genere[j]==1)		//Stampa i generi dell'artista chiesto in input
-									{
-										printf("%s  ", lista_generi[j]);
-									}
-								}
-								SetColor(15);
-								printf("\nInserire genere da modificare: ");
-								gets(genere);
-								fflush(stdin);
-
-								for(j=0;j<GENERI_TOT;j++)
-								{
-									if(strcmp(lista_generi[j],genere)==0)		//Controllo se il genere inserito esiste
-									{
-										if(ARTISTI[i].genere[j]==1)		//Controllo se il genere appartiene all'artista
-										{
-											ARTISTI[i].genere[j]=0;		//Azzeramento genere
-											genere_trovato=1;
-											j=GENERI_TOT;
-										}
-										else
-										{
-											system("cls");
-											logo();
-											SetColor(4);
-											printf("Genere non appartenente all'artista\n\n");
-											SetColor(15);
-											system("pause");
-										}
-									}
-								}
-
-								if(genere_trovato==0)
-								{
-									system("cls");
-									logo();
-									SetColor(4);
-									printf("Genere inserito non esistente\n\n");
-									SetColor(15);
-									system("pause");
-								}
-								else
-								{
-									system("cls");
-									logo();
-									printf("\nGenere eliminato ");
-									system("pause");
+									printf("%s  ", lista_generi[j]);
 								}
 							}
-							else		//Aggiungi genere
-							{
-								logo();
-								printf("L'attuale genere %c: ", 138);
-								SetColor(11);
+							SetColor(15);
 
-								for(j=0;j<GENERI_TOT;j++)		//Stampa generi appartenenti all'artista
+
+							printf("\nHai a disposizione le seguenti opzioni:\n"
+									"[1]Elimina genere\n"
+									"[2]Aggiungere genere\n\n"
+									"Inserisci l'opzione: ");
+							scanf("%s", scelta);
+							fflush(stdin);
+
+							if((strcmp(scelta,"1")!=0) && (strcmp(scelta,"2")!=0) )		//Controllo sull'input fornito dall'utente
+							{
+								system("cls");
+								logo();
+								SetColor(4);
+								printf("Opzione non disponibile!\a\n\n");
+								SetColor(15);
+								system("pause");
+							}
+						}while((strcmp(scelta,"1")!=0) && (strcmp(scelta,"2")!=0));		//Continua fin quando non viene inserito 1 o 2
+
+						system("cls");
+
+						if(strcmp(scelta,"1")==0)		//Elimina genere
+						{
+							logo();
+							printf("L'attuale genere %c: ", 138);
+							SetColor(11);
+
+							for(j=0;j<GENERI_TOT;j++)
+							{
+								if(ARTISTI[i].genere[j]==1)		//Stampa i generi dell'artista chiesto in input
 								{
-									if(ARTISTI[i].genere[j]==1)
+									printf("%s  ", lista_generi[j]);
+								}
+							}
+							SetColor(15);
+							printf("\nInserire genere da modificare: ");
+							gets(genere);
+							fflush(stdin);
+
+							for(j=0;j<GENERI_TOT;j++)
+							{
+								if(strcmp(lista_generi[j],genere)==0)		//Controllo se il genere inserito esiste
+								{
+									if(ARTISTI[i].genere[j]==1)		//Controllo se il genere appartiene all'artista
 									{
-										printf("%s  ", lista_generi[j]);
+										ARTISTI[i].genere[j]=0;		//Azzeramento genere
+										genere_trovato=1;
+										j=GENERI_TOT;
+									}
+									else
+									{
+										system("cls");
+										logo();
+										SetColor(4);
+										printf("Genere non appartenente all'artista\n\n");
+										SetColor(15);
 									}
 								}
+							}
 
+							if(genere_trovato==0)
+							{
+								system("cls");
+								logo();
+								SetColor(4);
+								printf("Genere inserito non esistente\a\n\n");
 								SetColor(15);
-								printf("\nI generi disponibili sono: ");
-								for(j=0;j<GENERI_TOT;j++)		//Stampa tutti i generi disponibili
+							}
+							else
+							{
+								system("cls");
+								logo();
+								printf("\nGenere eliminato\n\n");
+							}
+						}
+						else		//Aggiungi genere
+						{
+							logo();
+							printf("L'attuale genere %c: ", 138);
+							SetColor(11);
+
+							for(j=0;j<GENERI_TOT;j++)		//Stampa generi appartenenti all'artista
+							{
+								if(ARTISTI[i].genere[j]==1)
+								{
+									printf("%s  ", lista_generi[j]);
+								}
+							}
+
+							SetColor(15);
+							printf("\nI generi disponibili sono: ");
+							for(j=0;j<GENERI_TOT;j++)		//Stampa tutti i generi disponibili
+							{
+								if(ARTISTI[i].genere[j]==0)
+								{
+									printf("%s  ", lista_generi[j]);
+								}
+							}
+
+							printf("\n\nInserire genere da aggiungere: ");
+							gets(genere);
+							fflush(stdin);
+
+							for(j=0;j<GENERI_TOT;j++)
+							{
+								if(strcmp(lista_generi[j],genere)==0)		//Controllo se il genere inserito esiste
 								{
 									if(ARTISTI[i].genere[j]==0)
 									{
-										printf("%s  ", lista_generi[j]);
+										ARTISTI[i].genere[j]=1;
+										genere_trovato=1;
 									}
-								}
-
-								printf("\n\nInserire genere da aggiungere: ");
-								gets(genere);
-								fflush(stdin);
-
-								for(j=0;j<GENERI_TOT;j++)
-								{
-									if(strcmp(lista_generi[j],genere)==0)		//Controllo se il genere inserito esiste
+									else
 									{
-										if(ARTISTI[i].genere[j]==0)
-										{
-											ARTISTI[i].genere[j]=1;
-											genere_trovato=1;
-										}
-										else
-										{
-											system("cls");
-											logo();
-											SetColor(4);
-											printf("Genere gi%c inserito\n\n", 133);
-											SetColor(15);
-											system("pause");
-										}
+										system("cls");
+										logo();
+										SetColor(4);
+										printf("Genere gi%c inserito\n\n", 133);
+										SetColor(15);
 									}
-								}
-
-								if(genere_trovato==0)		//Controllo sul genere inserito
-								{
-									system("cls");
-									logo();
-									SetColor(4);
-									printf("Genere inserito non esistente\n\n");
-									SetColor(15);
-									system("pause");
-								}
-								else
-								{
-									system("cls");
-									logo();
-									printf("\nGenere inserito ");
-									system("pause");
 								}
 							}
-							break;
+
+							if(genere_trovato==0)		//Controllo sul genere inserito
+							{
+								system("cls");
+								logo();
+								SetColor(4);
+								printf("Genere inserito non esistente\n\n");
+								SetColor(15);
+								system("pause");
+							}
+							else
+							{
+								system("cls");
+								logo();
+								printf("\nGenere inserito\n\n");
+							}
+						}
+						break;
 
 
 					case 3: system("cls");	//Cambio anno di inzio attivit�
@@ -677,7 +672,7 @@ void modifica_artista(int artisti_effettivi, char lista_generi[][LUNGHEZZA_MAX])
 		if(artista_trovato==0)		//Artista non trovato
 		{
 			SetColor(4);
-			printf("Artista non trovato!\n\n");
+			printf("Artista non trovato!\a\n\n");
 			SetColor(15);
 			printf("Vuoi riprovare? Rispondi si o no\n");
 			stringclear(scelta);

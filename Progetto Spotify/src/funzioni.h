@@ -9,7 +9,7 @@
 #define MENU_PRINCIPALE 0	//Menu principale
 #define MENU_ARTISTA 1		//Menu artista
 #define MENU_UTENTE 2		//Menu utente
-#define GENERI_TOT 10		//Numero generi preesistenti
+#define GENERI_TOT 20		//Numero generi esistenti
 #define LUNGHEZZA_CODICE 5	//Lunghezza massima del codice artista
 
 #define stringclear(s) memset(s, '\0', strlen(s));                   // Macro azzeramento stringa, ovvero riempie la stringa di caratteri terminatori
