@@ -16,7 +16,7 @@ int main(int argc, char *argv[]){
 		flag=1;
 		do{
 			controllo_menu(input_utente,MENU_PRINCIPALE);
-		}while(isControllo_Numero(input_utente)!=1);		//Controllo sull'input dell'utente fin quando non viene digitato una cifra
+		}while(isControllo_Numero(input_utente,LUNGHEZZA_INPUT)!=1);		//Controllo sull'input dell'utente fin quando non viene digitato una cifra
 
 		switch(atoi(input_utente))		//Funzione atoi converta da stringa a intero
 		{
@@ -32,7 +32,7 @@ int main(int argc, char *argv[]){
 						flag=1;
 						do{
 							controllo_menu(input_utente,MENU_ARTISTA);
-						}while(isControllo_Numero(input_utente)!=1);		//Controllo sull'input dell'utente fin quando non viene digitato una cifra
+						}while(isControllo_Numero(input_utente,LUNGHEZZA_INPUT)!=1);		//Controllo sull'input dell'utente fin quando non viene digitato una cifra
 
 						switch(atoi(input_utente))
 						{
@@ -77,7 +77,7 @@ int main(int argc, char *argv[]){
 						flag=1;
 						do{
 							controllo_menu(input_utente,MENU_UTENTE);
-						}while(isControllo_Numero(input_utente)!=1);		//Controllo sull'input dell'utente fin quando non viene digitato una cifra
+						}while(isControllo_Numero(input_utente,LUNGHEZZA_INPUT)!=1);		//Controllo sull'input dell'utente fin quando non viene digitato una cifra
 
 						switch(atoi(input_utente))
 						{
