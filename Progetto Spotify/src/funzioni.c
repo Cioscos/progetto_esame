@@ -406,7 +406,7 @@ void visualizzazione_artisti(char lista_generi[][LUNGHEZZA_MAX], int artisti_eff
 	}
 }
 
-void modifica_artista(int artisti_effettivi, char lista_generi[][LUNGHEZZA_MAX]) //TODO Controllare bene di tu tu di tutto
+void modifica_artista(int artisti_effettivi, char lista_generi[][LUNGHEZZA_MAX])
 {
 	int i,j;
 	char scelta[LUNGHEZZA_INPUT]={"\0"};	//Variabile d'appoggio per l'input della scelta per il menù chiesto in input
@@ -448,7 +448,7 @@ void modifica_artista(int artisti_effettivi, char lista_generi[][LUNGHEZZA_MAX])
 							"[5]Nazionalit%c\nInserisci comando:",133);
 					gets(scelta);
 
-					if((strcmp(scelta,"1")!=0) && (strcmp(scelta,"2")!=0) && (strcmp(scelta,"3")!=0) && (strcmp(scelta,"4")!=0) && (strcmp(scelta,"5")!=0) )
+					if((strcmp(scelta,"1")<0) || (strcmp(scelta,"5")>0))
 					{
 						system("cls");
 						logo();
@@ -458,7 +458,7 @@ void modifica_artista(int artisti_effettivi, char lista_generi[][LUNGHEZZA_MAX])
 						system("pause");
 					}
 
-				}while((strcmp(scelta,"1")!=0) && (strcmp(scelta,"2")!=0) && (strcmp(scelta,"3")!=0) && (strcmp(scelta,"4")!=0) && (strcmp(scelta,"5")!=0));
+				}while((strcmp(scelta,"1")<0) || (strcmp(scelta,"5")>0));
 
 
 	//SELEZIONE ATTRIBUTI DA CAMBIARE------------------------------------
@@ -506,7 +506,7 @@ void modifica_artista(int artisti_effettivi, char lista_generi[][LUNGHEZZA_MAX])
 								scanf("%s", scelta);
 								fflush(stdin);
 
-								if((strcmp(scelta,"1")!=0) && (strcmp(scelta,"2")!=0) )		//Controllo sull'input fornito dall'utente
+								if( (strcmp(scelta,"1")<0) || (strcmp(scelta,"2")>0) )		//Controllo sull'input fornito dall'utente
 								{
 									system("cls");
 									logo();
@@ -515,7 +515,7 @@ void modifica_artista(int artisti_effettivi, char lista_generi[][LUNGHEZZA_MAX])
 									SetColor(15);
 									system("pause");
 								}
-							}while((strcmp(scelta,"1")!=0) && (strcmp(scelta,"2")!=0));		//Continua fin quando non viene inserito 1 o 2
+							}while( (strcmp(scelta,"1")<0) || (strcmp(scelta,"2")>0) );		//Continua fin quando non viene inserito 1 o 2
 
 							system("cls");
 
@@ -734,3 +734,5 @@ void modifica_artista(int artisti_effettivi, char lista_generi[][LUNGHEZZA_MAX])
 
 	}while(strcmp(scelta,"si")==0);		//Termina quando viene digitato si
 }
+
+
