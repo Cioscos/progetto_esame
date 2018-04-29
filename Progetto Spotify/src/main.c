@@ -5,12 +5,17 @@
 
 int main(int argc, char *argv[]){
 
+	//DEFINIZIONE VARIABILI --------------------------------------------------------------------------------------------------------------------------------------------------
 	char input_utente[LUNGHEZZA_INPUT]={"1"};		//Variabile contenente l'input dell'utente
-
 	char lista_generi[GENERI_TOT][LUNGHEZZA_MAX]={"Electro","Pop","Techno","Rock","Jazz","Rap","Blues","Country","Britpop","Dubstep"};
-
 	int artisti_effettivi=0;
 
+
+
+	isControllo_Esistenza(artisti_effettivi, ARTISTI.nome, ARTISTI[artisti_effettivi].nome);
+
+
+	//CODICE -----------------------------------------------------------------------------------------------------------------------------------------------------------------
 	while(strcmp(input_utente,"0")!=0)		//Permette di eseguire pi� opreazioni fin quando non viene inserito uno 0, ovvero l'opzione termina programma
 	{
 		flag=1;
@@ -68,7 +73,6 @@ int main(int argc, char *argv[]){
 						}
 					}
 					strcpy(input_utente,"1");            //Permette di rientrare nel menu principale
-					system("PAUSE");
 					break;
 
 			case 2:	system("cls");
@@ -140,7 +144,6 @@ int main(int argc, char *argv[]){
 						}
 					}
 					strcpy(input_utente,"1");            //Permette di rientrare nel menu principale
-					system("PAUSE");
 					break;
 
 			case 3:	system("cls");

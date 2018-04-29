@@ -228,7 +228,7 @@ int inserimento_artista(char lista_generi[][LUNGHEZZA_MAX], int artisti_effettiv
 			printf("Inserisci nome artista:");
 			gets(ARTISTI[artisti_effettivi].nome);
 			fflush(stdin);
-	}while(strlen(ARTISTI[artisti_effettivi].nome)<1);system("cls");		//Controllo per evitare che non venga inserito nulla
+	}while((strlen(ARTISTI[artisti_effettivi].nome)<1));		//Controllo per evitare che non venga inserito nulla
 
 
 //CODICE ARTISTA---------------------
@@ -735,4 +735,27 @@ void modifica_artista(int artisti_effettivi, char lista_generi[][LUNGHEZZA_MAX])
 	}while(strcmp(scelta,"si")==0);		//Termina quando viene digitato si
 }
 
+int isControllo_Esistenza(int numero_presenze, char vettore[][LUNGHEZZA_MAX], char* campo)
+{
+	int i;
+	int presenza=0;		//0 elemento già presente - 1 elemento non presente
 
+
+	for(i=0;i<numero_presenze;i++)
+	{
+		if(strcmp(campo,vettore[i])==0)
+		{
+			presenza=1;
+		}
+	}
+
+	if(presenza==1)
+	{
+		return presenza;		//Ritorna 1 - elemento non presente
+	}
+	else
+	{
+		return presenza;		//Ritorna 0 - elemento già presente
+	}
+
+}
