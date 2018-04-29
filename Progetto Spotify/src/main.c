@@ -12,7 +12,7 @@ int main(int argc, char *argv[]){
 
 
 
-	isControllo_Esistenza(artisti_effettivi, ARTISTI.nome, ARTISTI[artisti_effettivi].nome);
+
 
 
 	//CODICE -----------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -62,7 +62,7 @@ int main(int argc, char *argv[]){
 
 							case 4:	system("cls");
 									logo();
-									printf("Caso 4 selezionato\n");
+									elimina_artista(&artisti_effettivi);
 									system("PAUSE");
 									break;
 

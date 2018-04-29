@@ -9,7 +9,7 @@
 #define MENU_PRINCIPALE 0	//Menu principale
 #define MENU_ARTISTA 1		//Menu artista
 #define MENU_UTENTE 2		//Menu utente
-#define GENERI_TOT 20		//Numero generi esistenti
+#define GENERI_TOT 10		//Numero generi esistenti
 #define LUNGHEZZA_CODICE 5	//Lunghezza massima del codice artista
 
 #define stringclear(s) memset(s, '\0', strlen(s));                   // Macro azzeramento stringa, ovvero riempie la stringa di caratteri terminatori
@@ -57,12 +57,13 @@ void stampa_menu_utente();
 void controllo_menu(char* input_utente, unsigned int menu);
 
 int isControllo_Numero(char appoggio[], int lunghezza_massima);		//Funzione booleana - Verifica se l'input in ingresso � un numero
-int isControllo_Esistenza(int numero_presenze, char vettore[][LUNGHEZZA_MAX], char* campo);
+int isControllo_Esistenza(int numero_presenze, char* campo, char* controllo);
 
 
 int inserimento_artista(char lista_generi[][LUNGHEZZA_MAX], int artisti_effettivi);
 void visualizzazione_artisti(char lista_generi[][LUNGHEZZA_MAX], int artisti_effettivi);
 void modifica_artista(int artisti_effettivi, char lista_generi[][LUNGHEZZA_MAX]);
+void elimina_artista(int* artisti_effetivi);
 
 
 //TODO FARE UNA CAZZO DI FUNZIONE PER EVITARE CODICI E NOMI MULTIPLI

@@ -228,7 +228,7 @@ int inserimento_artista(char lista_generi[][LUNGHEZZA_MAX], int artisti_effettiv
 			printf("Inserisci nome artista:");
 			gets(ARTISTI[artisti_effettivi].nome);
 			fflush(stdin);
-	}while((strlen(ARTISTI[artisti_effettivi].nome)<1));		//Controllo per evitare che non venga inserito nulla
+	}while((strlen(ARTISTI[artisti_effettivi].nome)<1) || (isControllo_Esistenza(artisti_effettivi, ARTISTI[artisti_effettivi].nome, "nome_artista")!=0));		//Controllo per evitare che non venga inserito nulla
 
 
 //CODICE ARTISTA---------------------
@@ -238,7 +238,7 @@ int inserimento_artista(char lista_generi[][LUNGHEZZA_MAX], int artisti_effettiv
 		printf("Inserisci codice artista di lunghezza 4:");
 		gets(ARTISTI[artisti_effettivi].codice);
 		fflush(stdin);
-	}while(strlen(ARTISTI[artisti_effettivi].codice)!=LUNGHEZZA_CODICE-1 /* && Fare una funzione che controlla se il codice ï¿½ giï¿½ stato utlizzato */);
+	}while(strlen(ARTISTI[artisti_effettivi].codice)!=LUNGHEZZA_CODICE-1 || (isControllo_Esistenza(artisti_effettivi, ARTISTI[artisti_effettivi].codice, "codice_artista")!=0));
 
 
 
@@ -465,18 +465,26 @@ void modifica_artista(int artisti_effettivi, char lista_generi[][LUNGHEZZA_MAX])
 				switch(atoi(scelta))
 				{
 
-					case 1: system("cls");			//Cambio nome
-							logo();
-							printf("L'attuale nome %c: ", 138);
-							SetColor(11);
-							printf("%s\n\n", ARTISTI[i].nome);
-							SetColor(15);
-							printf("Con che nome vuoi sostituirlo?\n");
+					case 1: do{
+								system("cls");			//Cambio nome
+								logo();
+								printf("L'attuale nome %c: ", 138);
+								SetColor(11);
+								printf("%s\n\n", ARTISTI[i].nome);
+								SetColor(15);
+								printf("Con che nome vuoi sostituirlo?\n");
+								stringclear(artista);
+								gets(artista);
+
+							}while((strlen(artista)<1) || (isControllo_Esistenza(artisti_effettivi, artista, "nome_artista")!=0));
+
 							stringclear(ARTISTI[i].nome);
-							gets(ARTISTI[i].nome);
+							strcpy(ARTISTI[i].nome,artista);
+
 							system("cls");
 							logo();
 							printf("Nome sostituito correttamente\n\n");
+
 							break;
 
 					case 2:
@@ -735,19 +743,59 @@ void modifica_artista(int artisti_effettivi, char lista_generi[][LUNGHEZZA_MAX])
 	}while(strcmp(scelta,"si")==0);		//Termina quando viene digitato si
 }
 
-int isControllo_Esistenza(int numero_presenze, char vettore[][LUNGHEZZA_MAX], char* campo)
+int isControllo_Esistenza(int numero_presenze, char* campo, char* controllo)
 {
 	int i;
 	int presenza=0;		//0 elemento già presente - 1 elemento non presente
 
-
-	for(i=0;i<numero_presenze;i++)
+	if(strcmp(controllo,"nome_artista")==0)
 	{
-		if(strcmp(campo,vettore[i])==0)
+		for(i=0;i<numero_presenze;i++)
 		{
-			presenza=1;
+			if(strcmp(campo,ARTISTI[i].nome)==0)
+			{
+				presenza=1;
+			}
 		}
 	}
+
+
+	if(strcmp(controllo,"codice_artista")==0)
+	{
+		for(i=0;i<numero_presenze;i++)
+		{
+			if(strcmp(campo,ARTISTI[i].codice)==0)
+			{
+				presenza=1;
+			}
+		}
+	}
+
+
+	if(strcmp(controllo,"nickname_utente")==0)
+	{
+		for(i=0;i<numero_presenze;i++)
+		{
+			if(strcmp(campo,UTENTI[i].nickname)==0)
+			{
+				presenza=1;
+			}
+		}
+	}
+
+
+	if(strcmp(controllo,"password_utente")==0)
+		{
+			for(i=0;i<numero_presenze;i++)
+			{
+				if(strcmp(campo,UTENTI[i].password)==0)
+				{
+					presenza=1;
+				}
+			}
+		}
+
+
 
 	if(presenza==1)
 	{
@@ -757,5 +805,106 @@ int isControllo_Esistenza(int numero_presenze, char vettore[][LUNGHEZZA_MAX], ch
 	{
 		return presenza;		//Ritorna 0 - elemento già presente
 	}
+
+}
+
+void elimina_artista(int* artisti_effettivi)
+{
+	int i,j;
+	char scelta[LUNGHEZZA_INPUT]={"\0"};	//Variabile d'appoggio per l'input della scelta per il menù chiesto in input
+	char artista[LUNGHEZZA_MAX]={"\0"};		//Variabile d'appoggio per l'artista chiesto in input
+	int posizione_artista=0;				//Contiene la posizone dell'artista trovato nel vettore
+	int artista_trovato=0;					//0 artista non trovato - 1 artista trovato
+
+	do{
+		system("cls");
+		logo();
+		SetColor(3);
+		printf("CODICE\t\tNOME\n");
+		SetColor(15);
+
+		for(i=0;i<*artisti_effettivi;i++)		//Stampa artisti
+		{
+			printf("%s\t\t%s\n", ARTISTI[i].codice, ARTISTI[i].nome);
+		}
+		printf("Inserisci il nome dell'artista da eliminare:");
+		gets(artista);
+		fflush(stdin);
+
+		for(i=0;i<*artisti_effettivi;i++)
+		{
+			if(strcmp(artista, ARTISTI[i].nome)==0)		//Controllo per individuare l'artista inserito in input
+			{
+				artista_trovato=1;
+				posizione_artista=i;
+			}
+		}
+
+		if(artista_trovato==0)		//Artista non trovato
+		{
+			SetColor(4);
+			printf("Artista non trovato!\a\n\n");
+			SetColor(15);
+			printf("Vuoi riprovare? Rispondi si o no\n");
+			stringclear(scelta);
+
+			do{							//Continua a chiedere l'input fin quando non viene inserito si o no
+				gets(scelta);
+				fflush(stdin);
+				for(j=0;j<LUNGHEZZA_INPUT;j++)
+				{
+					scelta[j]=tolower(scelta[j]);		//Trasforma in minuscolo in primo carattere
+				}
+
+				if((strcmp(scelta,"si")!=0) && (strcmp(scelta,"no")!=0))
+				{
+					SetColor(4);
+					printf("Risposta non accettata! Riprova\n");
+					SetColor(15);
+				}
+			}while((strcmp(scelta,"si")!=0) && (strcmp(scelta,"no")!=0));
+
+		}
+		else		//Artista trovato
+		{
+			for(i=posizione_artista+1;i<*artisti_effettivi;i++)		//Spostamento degli artisti nella posizione precendete fino all'indice del artista da eliminare
+			{
+				//COPIA DEL ARTISTA IN POSIZIONE SUPERIORE IN QUELLO IN POSIZIONE INFERIORE
+				strcpy(ARTISTI[i-1].codice,ARTISTI[i].codice);
+				strcpy(ARTISTI[i-1].nome,ARTISTI[i].nome);
+				for(j=0;j<GENERI_TOT;j++)
+				{
+					ARTISTI[i-1].genere[j]=ARTISTI[i].genere[j];
+				}
+				strcpy(ARTISTI[i-1].produttore,ARTISTI[i].produttore);
+				strcpy(ARTISTI[i-1].nazionalita,ARTISTI[i].nazionalita);
+				ARTISTI[i-1].anno_inizio=ARTISTI[1].anno_inizio;
+				ARTISTI[i-1].ascolti=ARTISTI[i].ascolti;
+				ARTISTI[i-1].preferenze=ARTISTI[i].preferenze;
+			}
+
+			//PULITURA ULTIMO POSZIONE ARTISTI
+			stringclear(ARTISTI[*artisti_effettivi-1].codice);
+			stringclear(ARTISTI[*artisti_effettivi-1].nome);
+			for(j=0;j<GENERI_TOT;j++)
+			{
+				ARTISTI[*artisti_effettivi-1].genere[j]=0;
+			}
+			stringclear(ARTISTI[*artisti_effettivi-1].produttore);
+			stringclear(ARTISTI[*artisti_effettivi-1].nazionalita);
+			ARTISTI[*artisti_effettivi-1].anno_inizio=0;
+			ARTISTI[*artisti_effettivi-1].ascolti=0;
+			ARTISTI[*artisti_effettivi-1].preferenze=0;
+
+			*artisti_effettivi-=1;		//Eliminazione di un artista
+
+			printf("\nArtista eliminato!\n");
+		}
+
+		i=0;
+
+	}while(strcmp(scelta,"si")==0 && artista_trovato==0);		//Termina quando viene digitato si o quando viene trovato l'artista
+
+
 
 }
