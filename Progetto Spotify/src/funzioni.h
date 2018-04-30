@@ -63,7 +63,7 @@ int isControllo_Esistenza(int numero_presenze, char* campo, char* controllo);
 int inserimento_artista(char lista_generi[][LUNGHEZZA_MAX], int artisti_effettivi);
 void visualizzazione_artisti(char lista_generi[][LUNGHEZZA_MAX], int artisti_effettivi);
 void modifica_artista(int artisti_effettivi, char lista_generi[][LUNGHEZZA_MAX]);
-void elimina_artista(int* artisti_effetivi);
+int elimina_artista(int artisti_effetivi);
 
 int inserimento_utente(int utenti_effettivi);
 

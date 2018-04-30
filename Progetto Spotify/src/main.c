@@ -69,7 +69,7 @@ int main(int argc, char *argv[]){
 							//---- Elimina un artista ----
 							case 4:	system("cls");
 									logo();
-									elimina_artista(&artisti_effettivi);
+									artisti_effettivi=elimina_artista(artisti_effettivi);
 									system("PAUSE");
 									break;
 
@@ -89,25 +89,28 @@ int main(int argc, char *argv[]){
 
 			//-----------------------  GESTIONE UTENTE -------------------------------------------
 			case 2:	system("cls");
-					while(strcmp(input_utente,"0")!=0)
+					while(strcmp(input_utente,"0")!=0)	//Permette di eseguire piu opreazioni fin quando non viene inserito 0, ovvero l'opzione torna al menu principale
 					{
 						flag=1;
-						do{
+						do{		//Controllo sull'input dell'utente fin quando non viene digitato una cifra
 							controllo_menu(input_utente,MENU_UTENTE);
-						}while(isControllo_Numero(input_utente,LUNGHEZZA_INPUT)!=1);		//Controllo sull'input dell'utente fin quando non viene digitato una cifra
+						}while(isControllo_Numero(input_utente,LUNGHEZZA_INPUT)!=1);
 
 						switch(atoi(input_utente))
 						{
+							//---- Torna al menu principale ----
 							case 0: system("cls");
 									logo();
 									break;
 
+							//---- Stampa tutti gli utenti ----
 							case 1:	system("cls");
 									logo();
 									printf("Caso 1 selezionato\n");
 									system("PAUSE");
 									break;
 
+							//---- Stampa tutti gli artisti ----
 							case 2:	system("cls");
 									logo();
 									printf("Caso 2 selezionato\n");
