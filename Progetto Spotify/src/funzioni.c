@@ -968,41 +968,104 @@ int inserimento_utente(int utenti_effettivi)
 	//INSERIMENTO PASSWORD UTENTE
 
 	char carattere_bf;
-	int i=0;
+	unsigned int i=0;
+	char controllo[LUNGHEZZA_PASS];
+	int uguali;
 
 		system("cls");
 		logo();
-		stringclear(UTENTI[utenti_effettivi].password);
-		printf("Inserisci Password nuovo utente: ");
-		SetColor(6);
-		do{
-			carattere_bf='\0';
-			if( (carattere_bf=getch() )=='\r' )
-			{
-				UTENTI[utenti_effettivi].password[i]='\n';
 
-			}
-			else
-			{
-				if( (carattere_bf=getch() )=='\b' )
+		do{
+			i=0;
+			stringclear(controllo);
+			printf("Inserisci Password nuovo utente di 8 caratteri: ");
+			SetColor(6);
+			do{
+				carattere_bf='\0';
+				if( (carattere_bf=getch() )=='\r' )
 				{
-					printf("\b");
-					UTENTI[utenti_effettivi].password[i]='\0';
+					controllo[i]='\n';
+
 				}
 				else
 				{
-					fflush(stdin);
-					UTENTI[utenti_effettivi].password[i]=carattere_bf;
-					printf("*");
-					i++;
+					if(carattere_bf=='\b')
+					{
+						if(i!=0)
+						{
+							printf("\b \b");
+							i--;
+							controllo[i]='\0';
+						}
+
+					}
+					else
+					{
+						fflush(stdin);
+						controllo[i]=carattere_bf;
+						printf("*");
+						i++;
+					}
 				}
+
+			}while(strlen(controllo)!=LUNGHEZZA_PASS-1);
+
+			SetColor(15);
+			printf("\nConferma password: ");
+			SetColor(6);
+			i=0;
+			do{
+				carattere_bf='\0';
+				if( (carattere_bf=getch() )=='\r' )
+				{
+					UTENTI[utenti_effettivi].password[i]='\n';
+
+				}
+				else
+				{
+					if(carattere_bf=='\b')
+					{
+						if(i!=0)
+						{
+							printf("\b \b");
+							i--;
+							UTENTI[utenti_effettivi].password[i]='\0';
+						}
+
+					}
+					else
+					{
+						fflush(stdin);
+						UTENTI[utenti_effettivi].password[i]=carattere_bf;
+						printf("*");
+						i++;
+					}
+				}
+
+			}while(strlen(UTENTI[utenti_effettivi].password)!=LUNGHEZZA_PASS-1);
+
+			if(strcmp(controllo, UTENTI[utenti_effettivi].password)==0)
+			{
+				uguali=1;
+			}
+			else
+			{
+				SetColor(4);
+				printf("\nLe password non corrispondono\n\a");
+				SetColor(15);
+				system("pause");
+				system("cls");
+				logo();
+				uguali=0;
+				stringclear(controllo);
+				stringclear(UTENTI[utenti_effettivi].password);
 			}
 
-		}while( (UTENTI[utenti_effettivi].password[i]!='\n')  /*|| i==9*/);   //FIXME
+		}while(uguali==0);
 
 		SetColor(15);
-		fflush(stdin);
-
+		printf("\n");
+		system("pause");
 
 	//INSERIMENTO DATA DI NASCITA
 
