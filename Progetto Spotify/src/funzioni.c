@@ -4,6 +4,7 @@
 #include <string.h>
 #include <ctype.h>
 #include <windows.h>
+#include <conio.h>
 
 void SetColor(short Color)
 {
@@ -225,7 +226,7 @@ int inserimento_artista(char lista_generi[][LUNGHEZZA_MAX], int artisti_effettiv
 	do{
 			system("cls");
 			logo();
-			printf("Inserisci nome artista:");
+			printf("Inserisci nome nuovo artista:");
 			gets(ARTISTI[artisti_effettivi].nome);
 			fflush(stdin);
 	}while((strlen(ARTISTI[artisti_effettivi].nome)<1) || (isControllo_Esistenza(artisti_effettivi, ARTISTI[artisti_effettivi].nome, "nome_artista")!=0));		//Controllo per evitare che non venga inserito nulla
@@ -783,17 +784,27 @@ int isControllo_Esistenza(int numero_presenze, char* campo, char* controllo)
 		}
 	}
 
-
-	if(strcmp(controllo,"password_utente")==0)
+	if(strcmp(controllo,"nome_utente")==0)
+	{
+		for(i=0;i<numero_presenze;i++)
 		{
-			for(i=0;i<numero_presenze;i++)
+			if(strcmp(campo,UTENTI[i].nome)==0)
 			{
-				if(strcmp(campo,UTENTI[i].password)==0)
-				{
-					presenza=1;
-				}
+				presenza=1;
 			}
 		}
+	}
+
+	if(strcmp(controllo,"cognome_utente")==0)
+	{
+		for(i=0;i<numero_presenze;i++)
+		{
+			if(strcmp(campo,UTENTI[i].cognome)==0)
+			{
+				presenza=1;
+			}
+		}
+	}
 
 
 
@@ -905,6 +916,285 @@ void elimina_artista(int* artisti_effettivi)
 
 	}while(strcmp(scelta,"si")==0 && artista_trovato==0);		//Termina quando viene digitato si o quando viene trovato l'artista
 
-
-
 }
+
+//GESTIONE UTENTI---------------------------------------------------------------------------------------------------------------------
+
+int inserimento_utente(int utenti_effettivi)
+{
+	//INSERIMENTO NOME NUOVO UTENTE
+	do{
+		system("cls");
+		logo();
+		printf("Inserisci nome nuovo utente: ");
+		SetColor(6);
+		gets(UTENTI[utenti_effettivi].nome);
+		fflush(stdin);
+		SetColor(15);
+		fflush(stdin);
+	}while((strlen(UTENTI[utenti_effettivi].nome)<1) || (isControllo_Esistenza(utenti_effettivi, UTENTI[utenti_effettivi].nome, "nome_utente")!=0));
+
+	//INSERIMENTO NUOVA COGNOME UTENTE
+	do{
+		system("cls");
+		logo();
+		printf("Inserisci cognome nuovo utente: ");
+		SetColor(6);
+		gets(UTENTI[utenti_effettivi].cognome);
+		fflush(stdin);
+		SetColor(15);
+		fflush(stdin);
+	}while((strlen(UTENTI[utenti_effettivi].cognome)<1) || (isControllo_Esistenza(utenti_effettivi, UTENTI[utenti_effettivi].cognome, "cognome_utente")!=0));
+
+	//INSERIMENTO NICKNAME UTENTE
+	do{
+		system("cls");
+		logo();
+		printf("Inserisci Nickname nuovo utente: ");
+		SetColor(6);
+		gets(UTENTI[utenti_effettivi].nickname);
+		fflush(stdin);
+		SetColor(15);
+		fflush(stdin);
+	}while((strlen(UTENTI[utenti_effettivi].nickname)<1) || (isControllo_Esistenza(utenti_effettivi, UTENTI[utenti_effettivi].nickname, "nickname_utente")!=0));
+
+	//INSERIMENTO PASSWORD UTENTE
+
+	char carattere_bf;
+	int i=0;
+
+	do{
+		system("cls");
+		logo();
+		stringclear(UTENTI[utenti_effettivi].password);
+		printf("Inserisci Password nuovo utente: ");
+		SetColor(6);
+		do{
+			carattere_bf='\0';
+			if( (carattere_bf=getch() )!='\r')
+			{
+				fflush(stdin);
+				UTENTI[utenti_effettivi].password[i]=carattere_bf;
+				printf("*");
+				i++;
+			}
+			else
+			{
+				UTENTI[utenti_effettivi].password[i]='\n';
+			}
+		}while( (UTENTI[utenti_effettivi].password[i]!='\n') /*|| i==9*/);   //FIXME
+
+		SetColor(15);
+		fflush(stdin);
+
+	}while(strlen(UTENTI[utenti_effettivi].nickname)<5);
+
+	//INSERIMENTO DATA DI NASCITA
+
+	system("cls");
+	logo();
+	printf("Inserisci data di nascita:\n");
+
+	do{
+		printf("Mese: ");
+		SetColor(6);
+		scanf("%d", &UTENTI[utenti_effettivi].data_nascita.mese);
+		SetColor(15);
+		if(UTENTI[utenti_effettivi].data_nascita.mese<0 || UTENTI[utenti_effettivi].data_nascita.mese>12)
+		{
+			SetColor(4);
+			printf("Hai inserito un mese non corretto! Riprova\n\a");
+			system("pause");
+			system("cls");
+			logo();
+			printf("Inserisci data di nascita:\n");
+		}
+	}while(UTENTI[utenti_effettivi].data_nascita.mese<0 || UTENTI[utenti_effettivi].data_nascita.mese>12);
+
+	if(UTENTI[utenti_effettivi].data_nascita.mese==2)
+	{
+		do{
+			printf("\nGiorno: ");
+			SetColor(6);
+			scanf("%d", &UTENTI[utenti_effettivi].data_nascita.giorno);
+			SetColor(15);
+			if(UTENTI[utenti_effettivi].data_nascita.giorno<0 || UTENTI[utenti_effettivi].data_nascita.giorno>28)
+			{
+				SetColor(4);
+				printf("Hai inserito un giorno non corretto! Riprova\n\a");
+				system("pause");
+				system("cls");
+				logo();
+				printf("Inserisci data di nascita:\n");
+			}
+		}while(UTENTI[utenti_effettivi].data_nascita.giorno<0 || UTENTI[utenti_effettivi].data_nascita.giorno>28);
+	}
+	else
+	{
+		if(UTENTI[utenti_effettivi].data_nascita.mese==4 || UTENTI[utenti_effettivi].data_nascita.mese==6 ||
+				UTENTI[utenti_effettivi].data_nascita.mese==9 || UTENTI[utenti_effettivi].data_nascita.mese==11)
+		{
+			do{
+				printf("\nGiorno: ");
+				SetColor(6);
+				scanf("%d", &UTENTI[utenti_effettivi].data_nascita.giorno);
+				SetColor(15);
+				if(UTENTI[utenti_effettivi].data_nascita.giorno<0 || UTENTI[utenti_effettivi].data_nascita.giorno>30)
+				{
+					SetColor(4);
+					printf("Hai inserito un giorno non corretto! Riprova\n\a");
+					system("pause");
+					system("cls");
+					logo();
+					printf("Inserisci data di nascita:\n");
+				}
+			}while(UTENTI[utenti_effettivi].data_nascita.giorno<0 || UTENTI[utenti_effettivi].data_nascita.giorno>30);
+		}
+		else
+		{
+			do{
+				printf("\nGiorno: ");
+				SetColor(6);
+				scanf("%d", &UTENTI[utenti_effettivi].data_nascita.giorno);
+				SetColor(15);
+				if(UTENTI[utenti_effettivi].data_nascita.giorno<0 || UTENTI[utenti_effettivi].data_nascita.giorno>31)
+				{
+					SetColor(4);
+					printf("Hai inserito un giorno non corretto! Riprova\n\a");
+					system("pause");
+					system("cls");
+					logo();
+					printf("Inserisci data di nascita:\n");
+				}
+			}while(UTENTI[utenti_effettivi].data_nascita.giorno<0 || UTENTI[utenti_effettivi].data_nascita.giorno>31);
+		}
+	}
+
+	do{
+		printf("\nAnno: ");
+		SetColor(6);
+		scanf("%d", &UTENTI[utenti_effettivi].data_nascita.anno);
+		SetColor(15);
+		if(UTENTI[utenti_effettivi].data_nascita.anno<1900 || UTENTI[utenti_effettivi].data_nascita.anno>2018)
+		{
+			SetColor(4);
+			printf("Hai inserito un anno non corretto! Riprova\n\a");
+			system("pause");
+			system("cls");
+			logo();
+			printf("Inserisci data di nascita:\n");
+		}
+
+	}while(UTENTI[utenti_effettivi].data_nascita.anno<1900 || UTENTI[utenti_effettivi].data_nascita.anno>2018);
+
+	system("cls");
+	logo();
+	printf("Data di nascita inserita correttamente!\n\n");
+	system("pause");
+
+	//INSERIMENTO DATA DI ISCRIZIONE
+
+	system("cls");
+	logo();
+	printf("Inserisci data di iscrizione:\n");
+
+	do{
+		printf("Mese: ");
+		SetColor(6);
+		scanf("%d", &UTENTI[utenti_effettivi].data_iscrizione.mese);
+		SetColor(15);
+		if(UTENTI[utenti_effettivi].data_iscrizione.mese<0 || UTENTI[utenti_effettivi].data_iscrizione.mese>12)
+		{
+			SetColor(4);
+			printf("Hai inserito un mese non corretto! Riprova\n\a");
+			system("pause");
+			system("cls");
+			logo();
+			printf("Inserisci data di nascita:\n");
+		}
+	}while(UTENTI[utenti_effettivi].data_iscrizione.mese<0 || UTENTI[utenti_effettivi].data_iscrizione.mese>12);
+
+	if(UTENTI[utenti_effettivi].data_iscrizione.mese==2)
+	{
+		do{
+			printf("\nGiorno: ");
+			SetColor(6);
+			scanf("%d", &UTENTI[utenti_effettivi].data_iscrizione.giorno);
+			SetColor(15);
+			if(UTENTI[utenti_effettivi].data_iscrizione.giorno<0 || UTENTI[utenti_effettivi].data_iscrizione.giorno>28)
+			{
+				SetColor(4);
+				printf("Hai inserito un giorno non corretto! Riprova\n\a");
+				system("pause");
+				system("cls");
+				logo();
+				printf("Inserisci data di nascita:\n");
+			}
+		}while(UTENTI[utenti_effettivi].data_iscrizione.giorno<0 || UTENTI[utenti_effettivi].data_iscrizione.giorno>28);
+	}
+	else
+	{
+		if(UTENTI[utenti_effettivi].data_iscrizione.mese==4 || UTENTI[utenti_effettivi].data_iscrizione.mese==6 ||
+				UTENTI[utenti_effettivi].data_iscrizione.mese==9 || UTENTI[utenti_effettivi].data_iscrizione.mese==1)
+		{
+			do{
+				printf("\nGiorno: ");
+				SetColor(6);
+				scanf("%d", &UTENTI[utenti_effettivi].data_iscrizione.giorno);
+				SetColor(15);
+				if(UTENTI[utenti_effettivi].data_iscrizione.giorno<0 || UTENTI[utenti_effettivi].data_iscrizione.giorno>30)
+				{
+					SetColor(4);
+					printf("Hai inserito un giorno non corretto! Riprova\n\a");
+					system("pause");
+					system("cls");
+					logo();
+					printf("Inserisci data di nascita:\n");
+				}
+			}while(UTENTI[utenti_effettivi].data_iscrizione.giorno<0 || UTENTI[utenti_effettivi].data_iscrizione.giorno>30);
+		}
+		else
+		{
+			do{
+				printf("\nGiorno: ");
+				SetColor(6);
+				scanf("%d", &UTENTI[utenti_effettivi].data_iscrizione.giorno);
+				SetColor(15);
+				if(UTENTI[utenti_effettivi].data_iscrizione.giorno<0 || UTENTI[utenti_effettivi].data_iscrizione.giorno>31)
+				{
+					SetColor(4);
+					printf("Hai inserito un giorno non corretto! Riprova\n\a");
+					system("pause");
+					system("cls");
+					logo();
+					printf("Inserisci data di nascita:\n");
+				}
+			}while(UTENTI[utenti_effettivi].data_iscrizione.giorno<0 || UTENTI[utenti_effettivi].data_iscrizione.giorno>31);
+		}
+	}
+
+	do{
+		printf("\nAnno: ");
+		SetColor(6);
+		scanf("%d", &UTENTI[utenti_effettivi].data_iscrizione.anno);
+		SetColor(15);
+		if(UTENTI[utenti_effettivi].data_iscrizione.anno<1900 || UTENTI[utenti_effettivi].data_iscrizione.anno>2018)
+		{
+			SetColor(4);
+			printf("Hai inserito un anno non corretto! Riprova\n\a");
+			system("pause");
+			system("cls");
+			logo();
+			printf("Inserisci data di nascita:\n");
+		}
+	}while(UTENTI[utenti_effettivi].data_iscrizione.anno<1900 || UTENTI[utenti_effettivi].data_iscrizione.anno>2018);
+
+	system("cls");
+	logo();
+	printf("Data di nascita inserita correttamente!\n\n");
+	system("pause");
+
+	utenti_effettivi+=1;
+	return(utenti_effettivi);
+}
+

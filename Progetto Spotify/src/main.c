@@ -10,7 +10,7 @@ int main(int argc, char *argv[]){
 	char input_utente[LUNGHEZZA_INPUT]={"1"};		//Variabile contenente l'input dell'utente
 	char lista_generi[GENERI_TOT][LUNGHEZZA_MAX]={"Electro","Pop","Techno","Rock","Jazz","Rap","Blues","Country","Britpop","Dubstep"};
 	int artisti_effettivi=0;
-
+	int utenti_effettivi=0;
 
 
 	//CODICE -----------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -133,9 +133,7 @@ int main(int argc, char *argv[]){
 									break;
 
 							case 6:	system("cls");
-									logo();
-									printf("Caso 6 selezionato\n");
-									system("PAUSE");
+									utenti_effettivi=inserimento_utente(utenti_effettivi);
 									break;
 
 							case 7:	system("cls");

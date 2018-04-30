@@ -56,7 +56,7 @@ void stampa_menu_utente();
 
 void controllo_menu(char* input_utente, unsigned int menu);
 
-int isControllo_Numero(char appoggio[], int lunghezza_massima);		//Funzione booleana - Verifica se l'input in ingresso � un numero
+int isControllo_Numero(char appoggio[], int lunghezza_massima);		//Funzione booleana - Verifica se l'input in ingresso e' un numero
 int isControllo_Esistenza(int numero_presenze, char* campo, char* controllo);
 
 
@@ -64,6 +64,8 @@ int inserimento_artista(char lista_generi[][LUNGHEZZA_MAX], int artisti_effettiv
 void visualizzazione_artisti(char lista_generi[][LUNGHEZZA_MAX], int artisti_effettivi);
 void modifica_artista(int artisti_effettivi, char lista_generi[][LUNGHEZZA_MAX]);
 void elimina_artista(int* artisti_effetivi);
+
+int inserimento_utente(int utenti_effettivi);
 
 
 //TODO FARE UNA CAZZO DI FUNZIONE PER EVITARE CODICI E NOMI MULTIPLI
