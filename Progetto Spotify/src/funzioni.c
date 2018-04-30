@@ -965,7 +965,7 @@ int inserimento_utente(int utenti_effettivi)
 		fflush(stdin);
 	}while((strlen(UTENTI[utenti_effettivi].nickname)<1) || (isControllo_Esistenza(utenti_effettivi, UTENTI[utenti_effettivi].nickname, "nickname_utente")!=0));
 
-	//INSERIMENTO PASSWORD UTENTE
+	//INSERIMENTO PASSWORD UTENTE		//TODO fare controllo sulla password
 
 	char carattere_bf;
 	unsigned int i=0;
@@ -1067,7 +1067,7 @@ int inserimento_utente(int utenti_effettivi)
 		printf("\n");
 		system("pause");
 
-	//INSERIMENTO DATA DI NASCITA
+	//INSERIMENTO DATA DI NASCITA		//controllo sull'input
 
 	char data_provvisoria[LUNGHEZZA_MAX];
 	stringclear(data_provvisoria);
@@ -1209,7 +1209,7 @@ int inserimento_utente(int utenti_effettivi)
 	printf("Data di nascita inserita correttamente!\n\n");
 	system("pause");
 
-	//INSERIMENTO DATA DI ISCRIZIONE
+	//INSERIMENTO DATA DI ISCRIZIONE		//idem con patate (bsta copiare)
 
 	system("cls");
 	logo();

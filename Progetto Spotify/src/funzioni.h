@@ -68,8 +68,6 @@ int elimina_artista(int artisti_effetivi);
 int inserimento_utente(int utenti_effettivi);
 
 
-//TODO FARE UNA CAZZO DI FUNZIONE PER EVITARE CODICI E NOMI MULTIPLI
-//TODO FARE UNA CAZZO DI FUNZIONE PER ELIMINARE L'UTENTE
 
 
 /*
