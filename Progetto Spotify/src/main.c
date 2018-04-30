@@ -5,6 +5,7 @@
 
 int main(int argc, char *argv[]){
 
+
 	//DEFINIZIONE VARIABILI --------------------------------------------------------------------------------------------------------------------------------------------------
 	char input_utente[LUNGHEZZA_INPUT]={"1"};		//Variabile contenente l'input dell'utente
 	char lista_generi[GENERI_TOT][LUNGHEZZA_MAX]={"Electro","Pop","Techno","Rock","Jazz","Rap","Blues","Country","Britpop","Dubstep"};
@@ -12,69 +13,81 @@ int main(int argc, char *argv[]){
 
 
 
-
-
-
 	//CODICE -----------------------------------------------------------------------------------------------------------------------------------------------------------------
-	while(strcmp(input_utente,"0")!=0)		//Permette di eseguire pi� opreazioni fin quando non viene inserito uno 0, ovvero l'opzione termina programma
+	while(strcmp(input_utente,"0")!=0)		//Permette di eseguire piu opreazioni fin quando non viene inserito 0, ovvero l'opzione termina programma
 	{
 		flag=1;
-		do{
+
+		do{//Controllo sull'input dell'utente fin quando non viene digitato una cifra
 			controllo_menu(input_utente,MENU_PRINCIPALE);
-		}while(isControllo_Numero(input_utente,LUNGHEZZA_INPUT)!=1);		//Controllo sull'input dell'utente fin quando non viene digitato una cifra
+		}while(isControllo_Numero(input_utente,LUNGHEZZA_INPUT)!=1);
 
 		switch(atoi(input_utente))		//Funzione atoi converta da stringa a intero
 		{
 
+			//---- Termina programma ----
 			case 0:	system("cls");
 					logo();
 					printf("Programma terminato\n");
 					break;
 
+			//-----------------------  GESTIONE ARTISTA -------------------------------------------
 			case 1:	system("cls");
 					while(strcmp(input_utente,"0")!=0)
 					{
 						flag=1;
-						do{
+
+						do{	//Controllo sull'input dell'utente fin quando non viene digitato una cifra
 							controllo_menu(input_utente,MENU_ARTISTA);
-						}while(isControllo_Numero(input_utente,LUNGHEZZA_INPUT)!=1);		//Controllo sull'input dell'utente fin quando non viene digitato una cifra
+						}while(isControllo_Numero(input_utente,LUNGHEZZA_INPUT)!=1);
 
 						switch(atoi(input_utente))
 						{
+							//---- Torna al menu principale ----
 							case 0: system("cls");
 									logo();
 									break;
 
+							//---- Stampa tutti gli artisti ----
 							case 1:	system("cls");
 									visualizzazione_artisti(lista_generi, artisti_effettivi);
 									system("PAUSE");
 									break;
 
+							//---- Inserimento nuovo artista ----
 							case 2:	system("cls");
 									artisti_effettivi=inserimento_artista(lista_generi, artisti_effettivi);
 									system("PAUSE");
 									break;
 
+							//---- Modifica un artista ----
 							case 3:	system("cls");
 									logo();
 									modifica_artista(artisti_effettivi, lista_generi);
 									break;
 
+							//---- Elimina un artista ----
 							case 4:	system("cls");
 									logo();
 									elimina_artista(&artisti_effettivi);
 									system("PAUSE");
 									break;
 
+							//---- Cattura gli errori dell'utente ----
 							default : 	system("cls");
 										logo();
 										printf("Comando errato, inserisci un valore corretto\a\n");
 										system("PAUSE");
 						}
 					}
-					strcpy(input_utente,"1");            //Permette di rientrare nel menu principale
+
+					strcpy(input_utente,"1");//Permette di rientrare nel menu principale
 					break;
 
+
+
+
+			//-----------------------  GESTIONE UTENTE -------------------------------------------
 			case 2:	system("cls");
 					while(strcmp(input_utente,"0")!=0)
 					{
@@ -137,20 +150,27 @@ int main(int argc, char *argv[]){
 									system("PAUSE");
 									break;
 
+							//---- Cattura gli errori dell'utente ----
 							default : 	system("cls");
 										logo();
 										printf("Comando errato, inserisci un valore corretto\a\n");
 										system("PAUSE");
 						}
 					}
-					strcpy(input_utente,"1");            //Permette di rientrare nel menu principale
+					strcpy(input_utente,"1");//Permette di rientrare nel menu principale
 					break;
 
+
+
+
+			//-----------------------  GESTIONE FILE -------------------------------------------
 			case 3:	system("cls");
 					printf("Hai selezionato 3\n");
 					system("PAUSE");
 					break;
 
+
+			//---- Cattura gli errori dell'utente ----
 			default : 	system("cls");
 						logo();
 						printf("Comando errato, inserisci un valore corretto\a\n");
