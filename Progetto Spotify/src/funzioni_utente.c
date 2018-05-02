@@ -7,24 +7,31 @@
 #include <time.h>
 #include "funzioni.h"
 
-
+//INSERIMENTO NUOVO UTENTE----------------------------------------------------------------------------------------------------------------------------
 
 int inserimento_utente(int utenti_effettivi)
 {
+	//VARIABILI MOMENTANEE CONTENENTI LA DATA ATTUALE
 	char giorno_corrente[3];
 	int mese_corrente;
 	char anno_corrente[5];
+
+	//CREAZIONE VARIABILE DI TIPO STRUCT DATA
 	struct DATA DATA_CORRENTE;
-	time_t t      = time (NULL);
-    struct tm *tp = localtime (&t);
-    strftime (anno_corrente,5,"%Y", tp);
-    mese_corrente=tp->tm_mon+1;										//strftime (mese_corrente,10,"%b", tp);
+
+	//CREAZIONE DI UNA VERIABILE DI TIPO "time_t" NELLA QUALE INSERISCO TUTTE LE INFORMAZINI DEL CALENDARIO DI WINDOWS
+	time_t t=time(NULL);
+    //CREO UNA VARIABILE DI TIPO STRUCT "tm" NELLA QUALE INSERISCO LE INFORMAZIONI CONTENUTE IN "t"
+	struct tm *tp=localtime(&t);
+	//INSERISCO NELLE VARIABILI MOMENTANEE ELEMENTI DELLA VARIABILE "tp"
+	strftime (anno_corrente,5,"%Y", tp);
+    mese_corrente=tp->tm_mon+1;
     strftime (giorno_corrente,3,"%d", tp);
     DATA_CORRENTE.anno=atoi(anno_corrente);
     DATA_CORRENTE.mese=mese_corrente;
     DATA_CORRENTE.giorno=atoi(giorno_corrente);
 
-	//INSERIMENTO NOME NUOVO UTENTE
+//INSERIMENTO NOME NUOVO UTENTE
 	do{
 		system("cls");
 		logo();
@@ -36,7 +43,7 @@ int inserimento_utente(int utenti_effettivi)
 		fflush(stdin);
 	}while((strlen(UTENTI[utenti_effettivi].nome)<1));
 
-	//INSERIMENTO NUOVA COGNOME UTENTE
+//INSERIMENTO NUOVA COGNOME UTENTE
 	do{
 		system("cls");
 		logo();
@@ -48,7 +55,7 @@ int inserimento_utente(int utenti_effettivi)
 		fflush(stdin);
 	}while((strlen(UTENTI[utenti_effettivi].cognome)<1));
 
-	//INSERIMENTO NICKNAME UTENTE
+//INSERIMENTO NICKNAME UTENTE
 	do{
 		system("cls");
 		logo();
@@ -60,16 +67,21 @@ int inserimento_utente(int utenti_effettivi)
 		fflush(stdin);
 	}while((strlen(UTENTI[utenti_effettivi].nickname)<1) || (isControllo_Esistenza(utenti_effettivi, UTENTI[utenti_effettivi].nickname, "nickname_utente")!=0));
 
-	//INSERIMENTO PASSWORD UTENTE
+//INSERIMENTO PASSWORD UTENTE
 
+	//CREO UNA VARIABILE CONTENENTE UN SOLO CARATTERE
 	char carattere_bf;
+	//CREO UN INDICE CHE NON PUO' ANDARE IN NEGATIVO
 	unsigned int i=0;
+	//VARIABILE NELLA QUALE I CARATTERI SARANNO INSERITI; SERVIRA' PER ATTUARE IL CONTROLLO DI SICUREZZA
 	char controllo[LUNGHEZZA_PASS]={'\0'};
+	//VARIABILE FLAG       0=Controllo non superato | 1=Controllo superato
 	int uguali;
 
 		system("cls");
 		logo();
 
+		//PRIMO INSERIMENTO
 		do{
 			i=0;
 			printf("Inserisci Password nuovo utente di 8 caratteri: ");
@@ -107,6 +119,8 @@ int inserimento_utente(int utenti_effettivi)
 			SetColor(15);
 			printf("\nConferma password: ");
 			SetColor(6);
+
+			//SECONDO INSERIMENTO
 			i=0;
 			do{
 				carattere_bf='\0';
@@ -151,6 +165,7 @@ int inserimento_utente(int utenti_effettivi)
 				system("cls");
 				logo();
 				uguali=0;
+				//AZZERO I VETTORI DI CHAR PER PREPARARGLI AD UN NUOVO INSERIMENTO
 				stringclear(controllo, LUNGHEZZA_PASS);
 				stringclear(UTENTI[utenti_effettivi].password, LUNGHEZZA_PASS);
 			}
@@ -161,7 +176,7 @@ int inserimento_utente(int utenti_effettivi)
 		printf("\n");
 		system("pause");
 
-//INSERIMENTO DATA DI NASCITA		//controllo sull'input
+//INSERIMENTO DATA DI NASCITA
 
 	char data_provvisoria[LUNGHEZZA_MAX]={'\0'};
 
@@ -169,7 +184,7 @@ int inserimento_utente(int utenti_effettivi)
 	logo();
 	printf("Inserisci data di nascita\n");
 
-
+	//INSERIMENTO ANNO
 	do{
 			do{
 				printf("\nAnno: ");
@@ -207,7 +222,7 @@ int inserimento_utente(int utenti_effettivi)
 			}
 	}while(UTENTI[utenti_effettivi].data_nascita.anno<1900 || UTENTI[utenti_effettivi].data_nascita.anno>2018);
 
-
+	//INSERIMENTO MESE
 	do{
 
 		do{
@@ -246,11 +261,13 @@ int inserimento_utente(int utenti_effettivi)
 		}
 	}while(UTENTI[utenti_effettivi].data_nascita.mese<0 || UTENTI[utenti_effettivi].data_nascita.mese>12);
 
+	//CONTROLLO ANNO BISESTILE
 	if(UTENTI[utenti_effettivi].data_nascita.mese==2)
 	{
-		if(UTENTI[utenti_effettivi].data_nascita.anno % 4 == 0)		//Controllo anno bisestile
+		if(UTENTI[utenti_effettivi].data_nascita.anno % 4 == 0)
 		{
-			do{		//Anno bisestile
+			//ANNO BISESTILE
+			do{
 				do{
 
 				printf("\nGiorno: ");
@@ -291,6 +308,7 @@ int inserimento_utente(int utenti_effettivi)
 		}
 		else
 		{
+			//ANNO NON BISESTILE
 			do{
 				do{
 				printf("\nGiorno: ");
@@ -331,6 +349,7 @@ int inserimento_utente(int utenti_effettivi)
 	}
 	else
 	{
+		//CONTROLLO MESI DA 30 GIORNI
 		if(UTENTI[utenti_effettivi].data_nascita.mese==4 || UTENTI[utenti_effettivi].data_nascita.mese==6 || UTENTI[utenti_effettivi].data_nascita.mese==9 || UTENTI[utenti_effettivi].data_nascita.mese==11)
 		{
 			do{
@@ -372,6 +391,7 @@ int inserimento_utente(int utenti_effettivi)
 		}
 		else
 		{
+			//CONTROLLO MESI DA 31 GIORNI
 			do{
 				do{
 				printf("\nGiorno: ");
@@ -426,6 +446,7 @@ int inserimento_utente(int utenti_effettivi)
 	printf("Inserisci data di iscrizione:\n");
 	stringclear(data_provvisoria, LUNGHEZZA_MAX);
 
+	//INSERIMENTO ANNO
 	do{
 			do{
 				printf("\nAnno: ");
@@ -463,7 +484,7 @@ int inserimento_utente(int utenti_effettivi)
 			}
 	}while(UTENTI[utenti_effettivi].data_iscrizione.anno<1900 || UTENTI[utenti_effettivi].data_iscrizione.anno>DATA_CORRENTE.anno);
 
-
+	//INSERIMENTO MESE
 	do{
 
 		do{
@@ -502,11 +523,13 @@ int inserimento_utente(int utenti_effettivi)
 		}
 	}while(UTENTI[utenti_effettivi].data_iscrizione.mese<0 || UTENTI[utenti_effettivi].data_iscrizione.mese>12);
 
+	//CONTROLLO ANNO BISESTIVO
 	if(UTENTI[utenti_effettivi].data_iscrizione.mese==2)
 	{
 		if(UTENTI[utenti_effettivi].data_iscrizione.anno % 4 == 0)		//Controllo anno bisestile
 		{
-			do{		//Anno bisestile
+			//ANNO BISESTILE
+			do{
 				do{
 
 				printf("\nGiorno: ");
@@ -547,6 +570,7 @@ int inserimento_utente(int utenti_effettivi)
 		}
 		else
 		{
+			//ANNO NON BISESTILE
 			do{
 				do{
 				printf("\nGiorno: ");
@@ -589,6 +613,7 @@ int inserimento_utente(int utenti_effettivi)
 	{
 		if(UTENTI[utenti_effettivi].data_iscrizione.mese==4 || UTENTI[utenti_effettivi].data_iscrizione.mese==6 || UTENTI[utenti_effettivi].data_nascita.mese==9 || UTENTI[utenti_effettivi].data_nascita.mese==11)
 		{
+			//MESE DA 30 GIORNI
 			do{
 				do{
 				printf("\nGiorno: ");
@@ -628,6 +653,7 @@ int inserimento_utente(int utenti_effettivi)
 		}
 		else
 		{
+			//MESE DA 31 GIORNI
 			do{
 				do{
 				printf("\nGiorno: ");
