@@ -49,7 +49,7 @@ int inserimento_utente(int utenti_effettivi)
 
 	char carattere_bf;
 	unsigned int i=0;
-	char controllo[LUNGHEZZA_PASS];
+	char controllo[LUNGHEZZA_PASS]={'\0'};
 	int uguali;
 
 		system("cls");
@@ -57,7 +57,6 @@ int inserimento_utente(int utenti_effettivi)
 
 		do{
 			i=0;
-			stringclear(controllo);
 			printf("Inserisci Password nuovo utente di 8 caratteri: ");
 			SetColor(6);
 			do{
@@ -137,8 +136,8 @@ int inserimento_utente(int utenti_effettivi)
 				system("cls");
 				logo();
 				uguali=0;
-				stringclear(controllo);
-				stringclear(UTENTI[utenti_effettivi].password);
+				stringclear(controllo, LUNGHEZZA_PASS);
+				stringclear(UTENTI[utenti_effettivi].password, LUNGHEZZA_PASS);
 			}
 
 		}while(uguali==0);
@@ -149,8 +148,7 @@ int inserimento_utente(int utenti_effettivi)
 
 	//INSERIMENTO DATA DI NASCITA		//controllo sull'input
 
-	char data_provvisoria[LUNGHEZZA_MAX];
-	stringclear(data_provvisoria);
+	char data_provvisoria[LUNGHEZZA_MAX]={'\0'};
 
 	system("cls");
 	logo();
@@ -313,7 +311,7 @@ int inserimento_utente(int utenti_effettivi)
 	system("cls");
 	logo();
 	printf("Inserisci data di iscrizione:\n");
-	stringclear(data_provvisoria);
+	stringclear(data_provvisoria, LUNGHEZZA_MAX);
 
 	do{
 			do{

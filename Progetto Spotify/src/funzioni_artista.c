@@ -6,219 +6,6 @@
 #include <conio.h>
 #include "funzioni.h"
 
-void SetColor(short Color)
-{
-	/*	1 = Blue 2 = Green 3 = Light Blue 4 = Red 5 = Purple
-	  	6 = Orange/Brown 7 = White 8 = Grey 9 = Blue
-		10 = Green 11 = Light Blue 12 = Pink/Red 13 = Purple
-		14 = Yellow 15 = White	*/
-	HANDLE hCon = GetStdHandle(STD_OUTPUT_HANDLE); /*HANDLE=Puntatore "opaco";gli viene assegnato
-													*un valore da una funzione
-													*GetStdHandle=restituisce a HANDLE un dispositivo
-													*standard (STD_OUTPUT_HANDLE)*/
-	SetConsoleTextAttribute(hCon,Color);
-}
-
-void logo()
-{
-	SetColor(2);
-	printf("   _____                   _     _    __         \n"
-		   "  / ____|                 | |   (_)  / _|        \n"
-	       " | (___    _ __     ___   | |_   _  | |_   _   _ \n"
-	       "  \\___ \\  | '_ \\   / _ \\  | __| | | |  _| | | | |\n"
-	       "  ____) | | |_) | | (_) | | |_  | | | |   | |_| |\n"
-	       " |_____/  | .__/   \\___/   \\__| |_| |_|    \\__, |\n"
-	       "          | |                               __/ |\n"
-		   "          |_|                              |___/   %c\n\n\n",169);
-	SetColor(15);
-}
-
-void stampa_menu_principale()
-{
-	SetColor(2);
-	printf("[1]");
-	SetColor(15);
-	printf("Gestione artisti\n");
-	SetColor(2);
-	printf("[2]");
-	SetColor(15);
-	printf("Gestione utenti\n");
-	SetColor(2);
-	printf("[3]");
-	SetColor(15);
-	printf("Gestione file\n");
-	SetColor(2);
-	printf("[0]");
-	SetColor(15);
-	printf("Termina programma\n\nInserisci comando:");
-}
-
-void stampa_menu_artista()
-{
-	SetColor(2);
-	printf("[1]");
-	SetColor(15);
-	printf("Viualizza artisti\n");
-	SetColor(2);
-	printf("[2]");
-	SetColor(15);
-	printf("Aggiungi nuovo artista\n");
-	SetColor(2);
-	printf("[3]");
-	SetColor(15);
-	printf("Modifica artista\n");
-	SetColor(2);
-	printf("[4]");
-	SetColor(15);
-	printf("Elimina artista\n");
-	SetColor(2);
-	printf("[0]");
-	SetColor(15);
-	printf("Torna al menu principale\n\nInserisci comando: ");
-}
-
-void stampa_menu_utente()
-{
-	SetColor(2);
-	printf("[1]");
-	SetColor(15);
-	printf("Visualizza utenti\n");
-	SetColor(2);
-	printf("[2]");
-	SetColor(15);
-	printf("Visualizza profilo utente\n");
-	SetColor(2);
-	printf("[3]");
-	SetColor(15);
-	printf("Aggiungi nuova preferenza\n");
-	SetColor(2);
-	printf("[4]");
-	SetColor(15);
-	printf("Modifica preferenza\n");
-	SetColor(2);
-	printf("[5]");
-	SetColor(15);
-	printf("Elimina preferenza\n");
-	SetColor(2);
-	printf("[6]");
-	SetColor(15);
-	printf("Aggiungi nuovo utente\n");
-	SetColor(2);
-	printf("[7]");
-	SetColor(15);
-	printf("Modifica utente\n");
-	SetColor(2);
-	printf("[8]");
-	SetColor(15);
-	printf("Elimina utente\n");
-	SetColor(2);
-	printf("[0]");
-	SetColor(15);
-	printf("Torna al menu principale\n\nInserisci comndo: ");
-}
-
-int isControllo_Numero(char appoggio[], int lunghezza_massima)
-{
-	int i=0;
-	int input_valido=1;			//1 Input valido - 0 Input non valido
-	int lughezza_effettiva=0;	//Numero caratteri effettivi
-
-	while(i<lunghezza_massima)		//Conta numero effettivo di caratteri
-	{
-		if(appoggio[i]!='\0')
-		{
-			lughezza_effettiva++;
-			i++;
-		}
-		else
-		{
-			i=lunghezza_massima;
-		}
-	}
-	i = 0;
-
-	for(i=0;i<lughezza_effettiva;i++)		//Controllo se l'input ï¿½ diverso da un numero
-	{
-		if((isdigit(appoggio[i])!=0) || (appoggio[i]=='\0' ) )
-		{
-			input_valido = 1;
-		}
-		else
-		{
-			input_valido = 0;
-		}
-	}
-
-	if(lunghezza_massima==3)		//Ulteriore controllo su i casi limiti di 01-10-00-0'\0'
-	{
-		if( (appoggio[0]=='0' && appoggio[1]!='0') || (appoggio[0]!='0' && appoggio[1]=='0') || (appoggio[0]=='0' && appoggio[1]=='0'))
-		{
-			if((appoggio[0]=='0' && appoggio[1]!='\0'))
-			input_valido = 0;
-		}
-	}
-
-
-
-	if(input_valido==1)		//Ritorna il valore 1 se la striga era corretta oppure ritorna il valore 0 se la stringa non era corretta
-	{
-		return 1;		//Input corretto
-	}
-	else
-	{
-		return 0;		//Input non corretto
-	}
-}
-
-void controllo_menu(char* input_utente, unsigned int menu)
-{
-	if(flag==1)		//Comando input accettato
-	{
-		system("cls");
-		logo();
-		switch(menu)		//Scelta del menu da stampare
-		{	case MENU_PRINCIPALE: stampa_menu_principale();
-								  break;
-
-			case MENU_ARTISTA: 	  stampa_menu_artista();
-							      break;
-
-			case MENU_UTENTE:     stampa_menu_utente();
-							      break;
-		}
-		stringclear(input_utente);
-		scanf("%3s",input_utente);
-		fflush(stdin);		//Svuota flusso in input
-		flag=0;
-	}
-	else	//Comando input non accettato
-	{
-		system("cls");
-		logo();
-		SetColor(4);
-		printf("Comando errato, inserisci un valore corretto\a\n\n");
-		SetColor(15);
-		system("PAUSE");
-		system("cls");
-
-		logo();
-		switch(menu)		//Scelta del menu da stampare
-		{	case MENU_PRINCIPALE: stampa_menu_principale();
-								  break;
-
-			case MENU_ARTISTA: 	  stampa_menu_artista();
-							      break;
-
-			case MENU_UTENTE:     stampa_menu_utente();
-							      break;
-		}
-		stringclear(input_utente);
-		scanf("%3s",input_utente);
-		fflush(stdin);		//Svuota flusso in input
-	}
-}
-
-
 //GESTIONE ARTISTI---------------------------------------------------------------------------------------------------------------------
 
 int inserimento_artista(char lista_generi[][LUNGHEZZA_MAX], int artisti_effettivi)
@@ -342,8 +129,7 @@ int inserimento_artista(char lista_generi[][LUNGHEZZA_MAX], int artisti_effettiv
 
 
 //INSERIMENTO ANNO NASCITA GRUPPO---------
-	char anno_provvisorio[LUNGHEZZA_MAX];
-	stringclear(anno_provvisorio);
+	char anno_provvisorio[LUNGHEZZA_MAX]={'\0'};
 
 	do{
 		system("cls");
@@ -413,7 +199,7 @@ void visualizzazione_artisti(char lista_generi[][LUNGHEZZA_MAX], int artisti_eff
 void modifica_artista(int artisti_effettivi, char lista_generi[][LUNGHEZZA_MAX])
 {
 	int i,j;
-	char scelta[LUNGHEZZA_INPUT]={"\0"};	//Variabile d'appoggio per l'input della scelta per il menù chiesto in input
+	char scelta[LUNGHEZZA_INPUT]={"\0"};	//Variabile d'appoggio per l'input della scelta per il menï¿½ chiesto in input
 	int numero_generi=0;					//Numero generi
 	int genere_trovato=0;					//0 genere non trovato - 1 genere trovato
 	char genere[LUNGHEZZA_MAX]={"\0"};		//Variabile d'appoggio per il genere chiesto in input
@@ -477,12 +263,11 @@ void modifica_artista(int artisti_effettivi, char lista_generi[][LUNGHEZZA_MAX])
 								printf("%s\n\n", ARTISTI[i].nome);
 								SetColor(15);
 								printf("Con che nome vuoi sostituirlo?\n");
-								stringclear(artista);
 								gets(artista);
 
 							}while((strlen(artista)<1) || (isControllo_Esistenza(artisti_effettivi, artista, "nome_artista")!=0));
 
-							stringclear(ARTISTI[i].nome);
+							stringclear(ARTISTI[i].nome, LUNGHEZZA_MAX);
 							strcpy(ARTISTI[i].nome,artista);
 
 							system("cls");
@@ -533,7 +318,7 @@ void modifica_artista(int artisti_effettivi, char lista_generi[][LUNGHEZZA_MAX])
 
 							if(strcmp(scelta,"1")==0)		//Elimina genere
 							{
-								if(numero_generi==1)		//Controllo per non far rimuovere il genere quando quando quest'ultimo è l'unico
+								if(numero_generi==1)		//Controllo per non far rimuovere il genere quando quando quest'ultimo ï¿½ l'unico
 								{
 									logo();
 									printf("Non %c possibile eliminare l'unico genere\n", 138);
@@ -570,7 +355,7 @@ void modifica_artista(int artisti_effettivi, char lista_generi[][LUNGHEZZA_MAX])
 										}
 									}
 
-									if(genere_trovato==0)		//Controllo se il genere inserito in input dall'utente è stato trovato
+									if(genere_trovato==0)		//Controllo se il genere inserito in input dall'utente ï¿½ stato trovato
 									{
 										system("cls");
 										logo();
@@ -655,8 +440,7 @@ void modifica_artista(int artisti_effettivi, char lista_generi[][LUNGHEZZA_MAX])
 
 
 					case 3: system("cls");	//Cambio anno di inzio attivitï¿½
-							char anno_provvisorio[LUNGHEZZA_MAX];
-							stringclear(anno_provvisorio);
+							char anno_provvisorio[LUNGHEZZA_MAX]={'\0'};
 
 							logo();
 							printf("L'attuale anno %c: ", 138);
@@ -724,7 +508,7 @@ void modifica_artista(int artisti_effettivi, char lista_generi[][LUNGHEZZA_MAX])
 			printf("Artista non trovato!\a\n\n");
 			SetColor(15);
 			printf("Vuoi riprovare? Rispondi si o no\n");
-			stringclear(scelta);
+			stringclear(scelta, 3);
 
 			do{							//Continua a chiedere l'input fin quando non viene inserito si o no
 				gets(scelta);
@@ -750,7 +534,7 @@ void modifica_artista(int artisti_effettivi, char lista_generi[][LUNGHEZZA_MAX])
 int isControllo_Esistenza(int numero_presenze, char* campo, char* controllo)
 {
 	int i;
-	int presenza=0;		//0 elemento già presente - 1 elemento non presente
+	int presenza=0;		//0 elemento giï¿½ presente - 1 elemento non presente
 
 	if(strcmp(controllo,"nome_artista")==0)
 	{
@@ -817,7 +601,7 @@ int isControllo_Esistenza(int numero_presenze, char* campo, char* controllo)
 	}
 	else
 	{
-		return presenza;		//Ritorna 0 - elemento già presente
+		return presenza;		//Ritorna 0 - elemento giï¿½ presente
 	}
 
 }
@@ -825,7 +609,7 @@ int isControllo_Esistenza(int numero_presenze, char* campo, char* controllo)
 int elimina_artista(int artisti_effettivi)
 {
 	int i,j;
-	char scelta[LUNGHEZZA_INPUT]={"\0"};	//Variabile d'appoggio per l'input della scelta per il menù chiesto in input
+	char scelta[LUNGHEZZA_INPUT]={"\0"};	//Variabile d'appoggio per l'input della scelta per il menï¿½ chiesto in input
 	char artista[LUNGHEZZA_MAX]={"\0"};		//Variabile d'appoggio per l'artista chiesto in input
 	int posizione_artista=0;				//Contiene la posizone dell'artista trovato nel vettore
 	int artista_trovato=0;					//0 artista non trovato - 1 artista trovato
@@ -860,7 +644,7 @@ int elimina_artista(int artisti_effettivi)
 			printf("Artista non trovato!\a\n\n");
 			SetColor(15);
 			printf("Vuoi riprovare? Rispondi si o no\n");
-			stringclear(scelta);
+			stringclear(scelta,3);
 
 			do{							//Continua a chiedere l'input fin quando non viene inserito si o no
 				gets(scelta);
@@ -898,14 +682,14 @@ int elimina_artista(int artisti_effettivi)
 			}
 
 			//PULITURA ULTIMO POSZIONE ARTISTI
-			stringclear(ARTISTI[artisti_effettivi-1].codice);
-			stringclear(ARTISTI[artisti_effettivi-1].nome);
+			stringclear(ARTISTI[artisti_effettivi-1].codice,LUNGHEZZA_CODICE);
+			stringclear(ARTISTI[artisti_effettivi-1].nome,LUNGHEZZA_MAX);
 			for(j=0;j<GENERI_TOT;j++)
 			{
 				ARTISTI[artisti_effettivi-1].genere[j]=0;
 			}
-			stringclear(ARTISTI[artisti_effettivi-1].produttore);
-			stringclear(ARTISTI[artisti_effettivi-1].nazionalita);
+			stringclear(ARTISTI[artisti_effettivi-1].produttore,LUNGHEZZA_MAX);
+			stringclear(ARTISTI[artisti_effettivi-1].nazionalita,LUNGHEZZA_MAX);
 			ARTISTI[artisti_effettivi-1].anno_inizio=0;
 			ARTISTI[artisti_effettivi-1].ascolti=0;
 			ARTISTI[artisti_effettivi-1].preferenze=0;

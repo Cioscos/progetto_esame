@@ -12,7 +12,7 @@
 #define GENERI_TOT 10		//Numero generi esistenti
 #define LUNGHEZZA_CODICE 5	//Lunghezza massima del codice artista
 
-#define stringclear(s) memset(s, '\0', strlen(s));                   // Macro azzeramento stringa, ovvero riempie la stringa di caratteri terminatori
+#define stringclear(s, dim) memset(s, '\0', dim);                   // Macro azzeramento stringa, ovvero riempie la stringa di caratteri terminatori
 
 
 
