@@ -1,6 +1,7 @@
 #ifndef FUNZIONI_H_
 #define FUNZIONI_H_
 
+//DEFINIZIONE DI DEFINE ----------------------------------------------------------------------------------------------------------------------------------------------------
 #define UTENTI_MAX 100		//Numero massimo di utenti inseribili
 #define ARTISTI_MAX 100		//Numero massimo di artisti inseribili
 #define LUNGHEZZA_MAX 31 	//Numero massimo di caratteri(30) per nome, cognome, nickname, generi..
@@ -11,59 +12,68 @@
 #define MENU_UTENTE 2		//Menu utente
 #define GENERI_TOT 10		//Numero generi esistenti
 #define LUNGHEZZA_CODICE 5	//Lunghezza massima del codice artista
+#define ETA_MINIMA 16 		//Età minima per iscriversi
+#define PRIMO_MESE 1		//Numero mese di gennaio
+#define ULTIMO_MESE 12		//Numero mese di dicembre
+#define stringclear(s, dim) memset(s, '\0', dim);        // Macro azzeramento stringa, ovvero riempie la stringa di caratteri terminatori
 
-#define stringclear(s, dim) memset(s, '\0', dim);                   // Macro azzeramento stringa, ovvero riempie la stringa di caratteri terminatori
 
 
 
-struct DATA{		//Struttura utilizzata per la data
+//DEFINIZIONE DI STRUTTURE -------------------------------------------------------------------------------------------------------------------------------------------------
+struct DATA{
 	unsigned int giorno;
 	unsigned int mese;
 	unsigned int anno;
 };
 
+
 struct ARTISTA{
 	char codice[LUNGHEZZA_CODICE];
 	char nome[LUNGHEZZA_MAX];
-	int genere[GENERI_TOT];		//Gestiamo i generi come se fosse un vettore di zero e uno
+	int genere[GENERI_TOT];
 	char produttore[LUNGHEZZA_MAX];
 	char nazionalita[LUNGHEZZA_MAX];
 	int anno_inizio;
 	int ascolti;
 	int preferenze;
-};
+};	struct ARTISTA ARTISTI[ARTISTI_MAX];
 
-struct ARTISTA ARTISTI[ARTISTI_MAX];
-
-struct UTENTE {		//Struttura utilizzata per la gestione degli utenti
+struct UTENTE {
 	char nickname[LUNGHEZZA_MAX];
 	char password[LUNGHEZZA_PASS];
 	char nome[LUNGHEZZA_MAX];
 	char cognome[LUNGHEZZA_MAX];
 	struct DATA data_nascita;
 	struct DATA data_iscrizione;
-};	/*Bisogna ancora inserire le preferenze sugli artisti e sui generi*/
+};	struct UTENTE UTENTI[UTENTI_MAX];	/*Bisogna ancora inserire le preferenze sugli artisti e sui generi*/
 
-struct UTENTE UTENTI[UTENTI_MAX];
 
 unsigned int flag;		//Controllo sull'entrata nel do while | 0 Entrato almeno una volta nel do while - 1 Mai entrato nel do while
 
+
+
+//PROTOTIPI DI FUNZIONI ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 void SetColor(short Color);
 void logo();
 void stampa_menu_principale();
 void stampa_menu_artista();
 void stampa_menu_utente();
-
 void controllo_menu(char* input_utente, unsigned int menu);
-
 int isControllo_Numero(char appoggio[], int lunghezza_massima);		//Funzione booleana - Verifica se l'input in ingresso e' un numero
 int isControllo_Esistenza(int numero_presenze, char* campo, char* controllo);
+
+
 
 
 int inserimento_artista(char lista_generi[][LUNGHEZZA_MAX], int artisti_effettivi);
 void visualizzazione_artisti(char lista_generi[][LUNGHEZZA_MAX], int artisti_effettivi);
 void modifica_artista(int artisti_effettivi, char lista_generi[][LUNGHEZZA_MAX]);
 int elimina_artista(int artisti_effetivi);
+
+
+
+
 
 int inserimento_utente(int utenti_effettivi);
 
