@@ -44,10 +44,6 @@ void stampa_menu_principale()
 	SetColor(15);
 	printf("Gestione utenti\n");
 	SetColor(2);
-	printf("[3]");
-	SetColor(15);
-	printf("Gestione file\n");
-	SetColor(2);
 	printf("[0]");
 	SetColor(15);
 	printf("Termina programma\n\nInserisci comando: ");

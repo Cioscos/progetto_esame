@@ -161,16 +161,6 @@ int main(int argc, char *argv[]){
 					strcpy(input_utente,"1");//Permette di rientrare nel menu principale
 					break;
 
-
-
-
-			//-----------------------  GESTIONE FILE -------------------------------------------
-			case 3:	system("cls");
-					printf("Hai selezionato 3\n");
-					system("PAUSE");
-					break;
-
-
 			//---- Cattura gli errori dell'utente ----
 			default : 	system("cls");
 						logo();
