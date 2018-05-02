@@ -4,11 +4,26 @@
 #include <ctype.h>
 #include <windows.h>
 #include <conio.h>
+#include <time.h>
 #include "funzioni.h"
+
 
 
 int inserimento_utente(int utenti_effettivi)
 {
+	char giorno_corrente[3];
+	int mese_corrente;
+	char anno_corrente[5];
+	struct DATA DATA_CORRENTE;
+	time_t t      = time (NULL);
+    struct tm *tp = localtime (&t);
+    strftime (anno_corrente,5,"%Y", tp);
+    mese_corrente=tp->tm_mon+1;										//strftime (mese_corrente,10,"%b", tp);
+    strftime (giorno_corrente,3,"%d", tp);
+    DATA_CORRENTE.anno=atoi(anno_corrente);
+    DATA_CORRENTE.mese=mese_corrente;
+    DATA_CORRENTE.giorno=atoi(giorno_corrente);
+
 	//INSERIMENTO NOME NUOVO UTENTE
 	do{
 		system("cls");
@@ -404,7 +419,7 @@ int inserimento_utente(int utenti_effettivi)
 	system("pause");
 	fflush(stdin);
 
-	//INSERIMENTO DATA DI ISCRIZIONE		//idem con patate (bsta copiare)
+//INSERIMENTO DATA DI ISCRIZIONE
 
 	system("cls");
 	logo();
@@ -434,7 +449,7 @@ int inserimento_utente(int utenti_effettivi)
 
 			UTENTI[utenti_effettivi].data_iscrizione.anno=atoi(data_provvisoria);
 
-			if(UTENTI[utenti_effettivi].data_iscrizione.anno<1900 || UTENTI[utenti_effettivi].data_iscrizione.anno>2018)
+			if(UTENTI[utenti_effettivi].data_iscrizione.anno<1900 || UTENTI[utenti_effettivi].data_iscrizione.anno>DATA_CORRENTE.anno)
 			{
 				system("cls");
 				logo();
@@ -446,7 +461,7 @@ int inserimento_utente(int utenti_effettivi)
 				logo();
 				printf("Inserisci data di nascita:\n");
 			}
-	}while(UTENTI[utenti_effettivi].data_iscrizione.anno<1900 || UTENTI[utenti_effettivi].data_iscrizione.anno>2018);
+	}while(UTENTI[utenti_effettivi].data_iscrizione.anno<1900 || UTENTI[utenti_effettivi].data_iscrizione.anno>DATA_CORRENTE.anno);
 
 
 	do{
