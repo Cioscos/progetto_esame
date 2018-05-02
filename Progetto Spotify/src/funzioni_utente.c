@@ -443,7 +443,7 @@ int inserimento_utente(int utenti_effettivi)
 					system("pause");
 					system("cls");
 					logo();
-					printf("Inserisci data di nascita:\n");
+					printf("Inserisci data di iscrizione:\n");
 				}
 			}while(isControllo_Numero(data_provvisoria,LUNGHEZZA_MAX)!=1);
 
@@ -459,7 +459,7 @@ int inserimento_utente(int utenti_effettivi)
 				system("pause");
 				system("cls");
 				logo();
-				printf("Inserisci data di nascita:\n");
+				printf("Inserisci data di iscrizione:\n");
 			}
 	}while(UTENTI[utenti_effettivi].data_iscrizione.anno<1900 || UTENTI[utenti_effettivi].data_iscrizione.anno>DATA_CORRENTE.anno);
 
@@ -482,7 +482,7 @@ int inserimento_utente(int utenti_effettivi)
 				system("pause");
 				system("cls");
 				logo();
-				printf("Inserisci data di nascita:\n");
+				printf("Inserisci data di iscrizione:\n");
 			}
 		}while(isControllo_Numero(data_provvisoria,LUNGHEZZA_MAX)!=1);
 
@@ -498,7 +498,7 @@ int inserimento_utente(int utenti_effettivi)
 			system("pause");
 			system("cls");
 			logo();
-			printf("Inserisci data di nascita:\n");
+			printf("Inserisci data di iscrizione:\n");
 		}
 	}while(UTENTI[utenti_effettivi].data_iscrizione.mese<0 || UTENTI[utenti_effettivi].data_iscrizione.mese>12);
 
@@ -525,7 +525,7 @@ int inserimento_utente(int utenti_effettivi)
 						system("pause");
 						system("cls");
 						logo();
-						printf("Inserisci data di nascita:\n");
+						printf("Inserisci data di iscrizione:\n");
 					}
 				}while(isControllo_Numero(data_provvisoria,LUNGHEZZA_MAX)!=1);
 
@@ -541,7 +541,7 @@ int inserimento_utente(int utenti_effettivi)
 					system("pause");
 					system("cls");
 					logo();
-					printf("Inserisci data di nascita:\n");
+					printf("Inserisci data di iscrizione:\n");
 				}
 			}while(UTENTI[utenti_effettivi].data_iscrizione.giorno<=0 || UTENTI[utenti_effettivi].data_iscrizione.giorno>29);
 		}
@@ -564,7 +564,7 @@ int inserimento_utente(int utenti_effettivi)
 						system("pause");
 						system("cls");
 						logo();
-						printf("Inserisci data di nascita:\n");
+						printf("Inserisci data di iscrizione:\n");
 					}
 				}while(isControllo_Numero(data_provvisoria,LUNGHEZZA_MAX)!=1);
 
@@ -580,7 +580,7 @@ int inserimento_utente(int utenti_effettivi)
 					system("pause");
 					system("cls");
 					logo();
-					printf("Inserisci data di nascita:\n");
+					printf("Inserisci data di iscrizione:\n");
 				}
 			}while(UTENTI[utenti_effettivi].data_iscrizione.giorno<=0 || UTENTI[utenti_effettivi].data_iscrizione.giorno>28);
 		}
@@ -606,7 +606,7 @@ int inserimento_utente(int utenti_effettivi)
 						system("pause");
 						system("cls");
 						logo();
-						printf("Inserisci data di nascita:\n");
+						printf("Inserisci data di iscrizione:\n");
 					}
 				}while(isControllo_Numero(data_provvisoria,LUNGHEZZA_MAX)!=1);
 
@@ -622,7 +622,7 @@ int inserimento_utente(int utenti_effettivi)
 					system("pause");
 					system("cls");
 					logo();
-					printf("Inserisci data di nascita:\n");
+					printf("Inserisci data di iscrizione:\n");
 				}
 			}while(UTENTI[utenti_effettivi].data_iscrizione.giorno<=0 || UTENTI[utenti_effettivi].data_iscrizione.giorno>30);
 		}
@@ -645,7 +645,7 @@ int inserimento_utente(int utenti_effettivi)
 						system("pause");
 						system("cls");
 						logo();
-						printf("Inserisci data di nascita:\n");
+						printf("Inserisci data di iscrizione:\n");
 					}
 				}while(isControllo_Numero(data_provvisoria,LUNGHEZZA_MAX)!=1);
 
@@ -661,7 +661,7 @@ int inserimento_utente(int utenti_effettivi)
 					system("pause");
 					system("cls");
 					logo();
-					printf("Inserisci data di nascita:\n");
+					printf("Inserisci data di iscrizione:\n");
 				}
 			}while(UTENTI[utenti_effettivi].data_iscrizione.giorno<=0 || UTENTI[utenti_effettivi].data_iscrizione.giorno>31);
 		}
