@@ -17,7 +17,7 @@ int inserimento_artista(char lista_generi[][LUNGHEZZA_MAX], int artisti_effettiv
 			system("cls");
 			logo();
 			printf("Inserisci nome nuovo artista:");
-			gets(ARTISTI[artisti_effettivi].nome);
+			fgets(ARTISTI[artisti_effettivi].nome,LUNGHEZZA_MAX-1,stdin);
 			fflush(stdin);
 	}while((strlen(ARTISTI[artisti_effettivi].nome)<1) || (isControllo_Esistenza(artisti_effettivi, ARTISTI[artisti_effettivi].nome, "nome_artista")!=0));		//Controllo per evitare che non venga inserito nulla
 
@@ -113,7 +113,7 @@ int inserimento_artista(char lista_generi[][LUNGHEZZA_MAX], int artisti_effettiv
 		system("cls");
 		logo();
 		printf("Inserisci produttore:");
-		gets(ARTISTI[artisti_effettivi].produttore);
+		fgets(ARTISTI[artisti_effettivi].produttore,LUNGHEZZA_MAX-1,stdin);
 		fflush(stdin);
 	}while(strlen(ARTISTI[artisti_effettivi].produttore)<1);system("cls");		//Controllo per evitare che non venga inserito nulla
 
@@ -123,7 +123,7 @@ int inserimento_artista(char lista_generi[][LUNGHEZZA_MAX], int artisti_effettiv
 		system("cls");
 		logo();
 		printf("Inserisci nazionalit%c:", 133);
-		gets(ARTISTI[artisti_effettivi].nazionalita);
+		fgets(ARTISTI[artisti_effettivi].nazionalita,LUNGHEZZA_MAX-1,stdin);
 		fflush(stdin);
 	}while(strlen(ARTISTI[artisti_effettivi].nazionalita)<1);		//Controllo per evitare che non venga inserito nulla
 

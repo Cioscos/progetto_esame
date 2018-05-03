@@ -36,12 +36,11 @@ int inserimento_utente(int utenti_effettivi)
 //INSERIMENTO NOME UTENTE
 
 	do{		//Controllo fin quando non viene inserito almeno una lettera
-		stringclear(UTENTI[utenti_effettivi].nome,LUNGHEZZA_MAX);
 		system("cls");
 		logo();
 		printf("Inserisci nome nuovo utente: ");
 		SetColor(6);
-		gets(UTENTI[utenti_effettivi].nome);
+		fgets(UTENTI[utenti_effettivi].nome,LUNGHEZZA_MAX-1,stdin);
 		fflush(stdin);
 		SetColor(15);
 	}while((strlen(UTENTI[utenti_effettivi].nome)<1));
@@ -51,12 +50,11 @@ int inserimento_utente(int utenti_effettivi)
 //INSERIMENTO COGNOME UTENTE
 
 	do{			//Controllo fin quando non viene inserito almeno una lettera
-		stringclear(UTENTI[utenti_effettivi].cognome,LUNGHEZZA_MAX);
 		system("cls");
 		logo();
 		printf("Inserisci cognome nuovo utente: ");
 		SetColor(6);
-		gets(UTENTI[utenti_effettivi].cognome);
+		fgets(UTENTI[utenti_effettivi].cognome,LUNGHEZZA_MAX-1,stdin);
 		fflush(stdin);
 		SetColor(15);
 	}while((strlen(UTENTI[utenti_effettivi].cognome)<1));
@@ -66,12 +64,11 @@ int inserimento_utente(int utenti_effettivi)
 //INSERIMENTO NICKNAME UTENTE
 
 	do{		//Controllo fin quando non viene inserito almeno una lettera e il nickname non deve essere già presente
-		stringclear(UTENTI[utenti_effettivi].nickname,LUNGHEZZA_MAX);
 		system("cls");
 		logo();
 		printf("Inserisci Nickname nuovo utente: ");
 		SetColor(6);
-		gets(UTENTI[utenti_effettivi].nickname);
+		fgets(UTENTI[utenti_effettivi].nickname,LUNGHEZZA_MAX-1,stdin);
 		fflush(stdin);
 		SetColor(15);
 		if((isControllo_Esistenza(utenti_effettivi, UTENTI[utenti_effettivi].nickname, "nickname_utente")==1))
