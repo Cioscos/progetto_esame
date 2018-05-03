@@ -33,9 +33,10 @@ int inserimento_utente(int utenti_effettivi)
     DATA_CORRENTE.giorno=atoi(giorno_corrente);
 
 
-//INSERIMENTO NOME NUOVO UTENTE
+//INSERIMENTO NOME UTENTE
 
 	do{		//Controllo fin quando non viene inserito almeno una lettera
+		stringclear(UTENTI[utenti_effettivi].nome,LUNGHEZZA_MAX);
 		system("cls");
 		logo();
 		printf("Inserisci nome nuovo utente: ");
@@ -43,14 +44,14 @@ int inserimento_utente(int utenti_effettivi)
 		gets(UTENTI[utenti_effettivi].nome);
 		fflush(stdin);
 		SetColor(15);
-		fflush(stdin);
 	}while((strlen(UTENTI[utenti_effettivi].nome)<1));
 
 
 
-//INSERIMENTO NUOVA COGNOME UTENTE
+//INSERIMENTO COGNOME UTENTE
 
 	do{			//Controllo fin quando non viene inserito almeno una lettera
+		stringclear(UTENTI[utenti_effettivi].cognome,LUNGHEZZA_MAX);
 		system("cls");
 		logo();
 		printf("Inserisci cognome nuovo utente: ");
@@ -58,7 +59,6 @@ int inserimento_utente(int utenti_effettivi)
 		gets(UTENTI[utenti_effettivi].cognome);
 		fflush(stdin);
 		SetColor(15);
-		fflush(stdin);
 	}while((strlen(UTENTI[utenti_effettivi].cognome)<1));
 
 
@@ -66,6 +66,7 @@ int inserimento_utente(int utenti_effettivi)
 //INSERIMENTO NICKNAME UTENTE
 
 	do{		//Controllo fin quando non viene inserito almeno una lettera e il nickname non deve essere già presente
+		stringclear(UTENTI[utenti_effettivi].nickname,LUNGHEZZA_MAX);
 		system("cls");
 		logo();
 		printf("Inserisci Nickname nuovo utente: ");
@@ -73,7 +74,6 @@ int inserimento_utente(int utenti_effettivi)
 		gets(UTENTI[utenti_effettivi].nickname);
 		fflush(stdin);
 		SetColor(15);
-		fflush(stdin);
 		if((isControllo_Esistenza(utenti_effettivi, UTENTI[utenti_effettivi].nickname, "nickname_utente")==1))
 		{
 			SetColor(4);
@@ -89,6 +89,8 @@ int inserimento_utente(int utenti_effettivi)
 
 		system("cls");
 		logo();
+		stringclear(UTENTI[utenti_effettivi].password,LUNGHEZZA_PASS);
+		stringclear(controllo,LUNGHEZZA_MAX);
 
 		//PRIMO INSERIMENTO
 		do{		//Controllo fin quando la password e la conferma password non corrispondono
@@ -96,6 +98,7 @@ int inserimento_utente(int utenti_effettivi)
 			printf("Inserisci Password nuovo utente di 8 caratteri: ");
 			SetColor(6);
 			do{		//Controllo fin quando la password non raggiungerà gli 8 caratteri
+				fflush(stdin);
 				carattere_bf='\0';
 
 				if( (carattere_bf=getch() )!='\r' )		//Se premo "tasto invio" non devo fare nulla
@@ -112,16 +115,11 @@ int inserimento_utente(int utenti_effettivi)
 					}
 					else		//Se invece è un carattere allora lo inserisco nella variabile e incremento la i
 					{
-						fflush(stdin);
 						controllo[i]=carattere_bf;
 						printf("*");
 						i++;
 					}
-
 				}
-
-
-
 			}while(strlen(controllo)!=LUNGHEZZA_PASS-1);
 
 			SetColor(15);
@@ -131,6 +129,7 @@ int inserimento_utente(int utenti_effettivi)
 			//SECONDO INSERIMENTO
 			i=0;
 			do{		//Controllo fin quando la password e la conferma password non corrispondono
+				fflush(stdin);
 				carattere_bf='\0';
 				if( (carattere_bf=getch() )!='\r' )		//Se premo "tasto invio" non devo fare nulla
 				{
@@ -152,7 +151,6 @@ int inserimento_utente(int utenti_effettivi)
 						i++;
 					}
 				}
-
 
 			}while(strlen(UTENTI[utenti_effettivi].password)!=LUNGHEZZA_PASS-1);
 
@@ -459,4 +457,20 @@ int inserimento_utente(int utenti_effettivi)
 //INCREMENTO NUMERO UTENTI
 	utenti_effettivi++;
 	return(utenti_effettivi);
+}
+
+
+void visualizzazione_utenti(int utenti_effettivi)
+{
+	int i;
+
+	SetColor(11);
+	printf("NOME                            COGNOME                         NICKNAME                        DATA NASCITA        DATA ISCRIZIONE\n");
+	SetColor(15);
+
+	for(i=0;i<utenti_effettivi;i++)
+	{
+		printf("%-31s %-31s %-31s %d/%d/%d            %d/%d/%d\n",UTENTI[i].nome,UTENTI[i].cognome,UTENTI[i].nickname,UTENTI[i].data_nascita.giorno,UTENTI[i].data_nascita.mese,UTENTI[i].data_nascita.anno,UTENTI[i].data_iscrizione.giorno,UTENTI[i].data_iscrizione.mese,UTENTI[i].data_iscrizione.anno);
+	}
+	printf("\n");
 }

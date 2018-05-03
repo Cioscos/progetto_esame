@@ -106,7 +106,7 @@ int main(int argc, char *argv[]){
 							//---- Stampa tutti gli utenti ----
 							case 1:	system("cls");
 									logo();
-									printf("Caso 1 selezionato\n");
+									visualizzazione_utenti(utenti_effettivi);
 									system("PAUSE");
 									break;
 

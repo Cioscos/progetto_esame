@@ -76,6 +76,7 @@ int elimina_artista(int artisti_effetivi);
 
 
 int inserimento_utente(int utenti_effettivi);
+void visualizzazione_utenti(int utenti_effettivi);
 
 
 
