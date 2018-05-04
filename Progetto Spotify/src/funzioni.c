@@ -217,6 +217,9 @@ void controllo_menu(char* input_utente, unsigned int menu)
 void eliminazione_acapo(char *input)
 {
 	unsigned int lunghezza_stringa;
-	lunghezza_stringa=strlen(input);
-	input[lunghezza_stringa-1]='\0';
+	for(size_t i=0;i<LUNGHEZZA_MAX;i++)
+	{
+		if(input[i]=='\n')
+			input[i]='\0';
+	}
 }

@@ -17,7 +17,7 @@ int inserimento_artista(char lista_generi[][LUNGHEZZA_MAX], int artisti_effettiv
 			system("cls");
 			logo();
 			printf("Inserisci nome nuovo artista:");
-			fgets(ARTISTI[artisti_effettivi].nome,LUNGHEZZA_MAX-1,stdin);
+			fgets(ARTISTI[artisti_effettivi].nome,LUNGHEZZA_MAX,stdin);
 			eliminazione_acapo(ARTISTI[artisti_effettivi].nome);
 			fflush(stdin);
 	}while((strlen(ARTISTI[artisti_effettivi].nome)<1) || (isControllo_Esistenza(artisti_effettivi, ARTISTI[artisti_effettivi].nome, "nome_artista")!=0));		//Controllo per evitare che non venga inserito nulla
@@ -114,7 +114,7 @@ int inserimento_artista(char lista_generi[][LUNGHEZZA_MAX], int artisti_effettiv
 		system("cls");
 		logo();
 		printf("Inserisci produttore:");
-		fgets(ARTISTI[artisti_effettivi].produttore,LUNGHEZZA_MAX-1,stdin);
+		fgets(ARTISTI[artisti_effettivi].produttore,LUNGHEZZA_MAX,stdin);
 		eliminazione_acapo(ARTISTI[artisti_effettivi].produttore);
 		fflush(stdin);
 	}while(strlen(ARTISTI[artisti_effettivi].produttore)<1);system("cls");		//Controllo per evitare che non venga inserito nulla
@@ -125,7 +125,7 @@ int inserimento_artista(char lista_generi[][LUNGHEZZA_MAX], int artisti_effettiv
 		system("cls");
 		logo();
 		printf("Inserisci nazionalit%c:", 133);
-		fgets(ARTISTI[artisti_effettivi].nazionalita,LUNGHEZZA_MAX-1,stdin);
+		fgets(ARTISTI[artisti_effettivi].nazionalita,LUNGHEZZA_MAX,stdin);
 		eliminazione_acapo(ARTISTI[artisti_effettivi].nazionalita);
 		fflush(stdin);
 	}while(strlen(ARTISTI[artisti_effettivi].nazionalita)<1);		//Controllo per evitare che non venga inserito nulla
@@ -479,7 +479,7 @@ void modifica_artista(int artisti_effettivi, char lista_generi[][LUNGHEZZA_MAX])
 							printf("%s\n\n", ARTISTI[i].produttore);
 							SetColor(15);
 							printf("Inserisci nuovo produttore: ");
-							fgets(ARTISTI[i].produttore,LUNGHEZZA_MAX-1,stdin);
+							fgets(ARTISTI[i].produttore,LUNGHEZZA_MAX,stdin);
 							eliminazione_acapo(ARTISTI[i].produttore);
 							system("cls");
 							logo();
@@ -493,7 +493,7 @@ void modifica_artista(int artisti_effettivi, char lista_generi[][LUNGHEZZA_MAX])
 							printf("%s\n\n", ARTISTI[i].nazionalita);
 							SetColor(15);
 							printf("Inserisci nuova nazionalit%c: ",133);
-							fgets(ARTISTI[i].nazionalita,LUNGHEZZA_MAX-1,stdin);
+							fgets(ARTISTI[i].nazionalita,LUNGHEZZA_MAX,stdin);
 							eliminazione_acapo(ARTISTI[i].nazionalita);
 							fflush(stdin);
 							system("cls");

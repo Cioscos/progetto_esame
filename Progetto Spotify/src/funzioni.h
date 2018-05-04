@@ -4,7 +4,7 @@
 //DEFINIZIONE DI COSTANTI ----------------------------------------------------------------------------------------------------------------------------------------------------
 #define UTENTI_MAX 100		//Numero massimo di utenti inseribili
 #define ARTISTI_MAX 100		//Numero massimo di artisti inseribili
-#define LUNGHEZZA_MAX 31 	//Numero massimo di caratteri(30) per nome, cognome, nickname, generi..
+#define LUNGHEZZA_MAX 32 	//Numero massimo di caratteri(30) per nome, cognome, nickname, generi..
 #define LUNGHEZZA_PASS 9 	//Lunghezza della password fissa di 8 caratteri
 #define LUNGHEZZA_INPUT 3	//Lunghezza dell'input del menu utente
 #define MENU_PRINCIPALE 0	//Menu principale
@@ -46,7 +46,9 @@ struct UTENTE {
 	struct DATA data_nascita;
 	struct DATA data_iscrizione;
 };
-struct UTENTE UTENTI[UTENTI_MAX];	/*Bisogna ancora inserire le preferenze sugli artisti e sui generi*/
+struct UTENTE UTENTI[UTENTI_MAX];
+
+/*Bisogna ancora inserire le preferenze sugli artisti e sui generi*/
 
 
 unsigned int flag;		//Controllo sull'entrata nel do while | 0 Entrato almeno una volta nel do while - 1 Mai entrato nel do while
