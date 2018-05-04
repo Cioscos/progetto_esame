@@ -213,3 +213,10 @@ void controllo_menu(char* input_utente, unsigned int menu)
 		fflush(stdin);		//Svuota flusso in input
 	}
 }
+
+void eliminazione_acapo(char *input)
+{
+	unsigned int lunghezza_stringa;
+	lunghezza_stringa=strlen(input);
+	input[lunghezza_stringa-1]='\0';
+}

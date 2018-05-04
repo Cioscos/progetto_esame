@@ -1,7 +1,7 @@
 #ifndef FUNZIONI_H_
 #define FUNZIONI_H_
 
-//DEFINIZIONE DI DEFINE ----------------------------------------------------------------------------------------------------------------------------------------------------
+//DEFINIZIONE DI COSTANTI ----------------------------------------------------------------------------------------------------------------------------------------------------
 #define UTENTI_MAX 100		//Numero massimo di utenti inseribili
 #define ARTISTI_MAX 100		//Numero massimo di artisti inseribili
 #define LUNGHEZZA_MAX 31 	//Numero massimo di caratteri(30) per nome, cognome, nickname, generi..
@@ -16,8 +16,6 @@
 #define PRIMO_MESE 1		//Numero mese di gennaio
 #define ULTIMO_MESE 12		//Numero mese di dicembre
 #define stringclear(s, dim) memset(s, '\0', dim);        // Macro azzeramento stringa, ovvero riempie la stringa di caratteri terminatori
-
-
 
 
 //DEFINIZIONE DI STRUTTURE -------------------------------------------------------------------------------------------------------------------------------------------------
@@ -37,7 +35,8 @@ struct ARTISTA{
 	int anno_inizio;
 	int ascolti;
 	int preferenze;
-};	struct ARTISTA ARTISTI[ARTISTI_MAX];
+};
+struct ARTISTA ARTISTI[ARTISTI_MAX];
 
 struct UTENTE {
 	char nickname[LUNGHEZZA_MAX];
@@ -46,7 +45,8 @@ struct UTENTE {
 	char cognome[LUNGHEZZA_MAX];
 	struct DATA data_nascita;
 	struct DATA data_iscrizione;
-};	struct UTENTE UTENTI[UTENTI_MAX];	/*Bisogna ancora inserire le preferenze sugli artisti e sui generi*/
+};
+struct UTENTE UTENTI[UTENTI_MAX];	/*Bisogna ancora inserire le preferenze sugli artisti e sui generi*/
 
 
 unsigned int flag;		//Controllo sull'entrata nel do while | 0 Entrato almeno una volta nel do while - 1 Mai entrato nel do while
@@ -62,7 +62,7 @@ void stampa_menu_utente();
 void controllo_menu(char* input_utente, unsigned int menu);
 int isControllo_Numero(char appoggio[], int lunghezza_massima);		//Funzione booleana - Verifica se l'input in ingresso e' un numero
 int isControllo_Esistenza(int numero_presenze, char* campo, char* controllo);
-
+void eliminazione_acapo(char *input);
 
 
 

@@ -41,6 +41,7 @@ int inserimento_utente(int utenti_effettivi)
 		printf("Inserisci nome nuovo utente: ");
 		SetColor(6);
 		fgets(UTENTI[utenti_effettivi].nome,LUNGHEZZA_MAX-1,stdin);
+		eliminazione_acapo(UTENTI[utenti_effettivi].nome);
 		fflush(stdin);
 		SetColor(15);
 	}while((strlen(UTENTI[utenti_effettivi].nome)<1));
@@ -55,6 +56,7 @@ int inserimento_utente(int utenti_effettivi)
 		printf("Inserisci cognome nuovo utente: ");
 		SetColor(6);
 		fgets(UTENTI[utenti_effettivi].cognome,LUNGHEZZA_MAX-1,stdin);
+		eliminazione_acapo(UTENTI[utenti_effettivi].cognome);
 		fflush(stdin);
 		SetColor(15);
 	}while((strlen(UTENTI[utenti_effettivi].cognome)<1));
@@ -69,6 +71,7 @@ int inserimento_utente(int utenti_effettivi)
 		printf("Inserisci Nickname nuovo utente: ");
 		SetColor(6);
 		fgets(UTENTI[utenti_effettivi].nickname,LUNGHEZZA_MAX-1,stdin);
+		eliminazione_acapo(UTENTI[utenti_effettivi].nickname);
 		fflush(stdin);
 		SetColor(15);
 		if((isControllo_Esistenza(utenti_effettivi, UTENTI[utenti_effettivi].nickname, "nickname_utente")==1))
@@ -87,7 +90,7 @@ int inserimento_utente(int utenti_effettivi)
 		system("cls");
 		logo();
 		stringclear(UTENTI[utenti_effettivi].password,LUNGHEZZA_PASS);
-		stringclear(controllo,LUNGHEZZA_MAX);
+		stringclear(controllo,LUNGHEZZA_PASS);
 
 		//PRIMO INSERIMENTO
 		do{		//Controllo fin quando la password e la conferma password non corrispondono
@@ -471,3 +474,4 @@ void visualizzazione_utenti(int utenti_effettivi)
 	}
 	printf("\n");
 }
+

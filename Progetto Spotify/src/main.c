@@ -5,7 +5,6 @@
 
 int main(int argc, char *argv[]){
 
-
 	//DEFINIZIONE VARIABILI --------------------------------------------------------------------------------------------------------------------------------------------------
 	char input_utente[LUNGHEZZA_INPUT]={"1"};		//Variabile contenente l'input dell'utente
 	char lista_generi[GENERI_TOT][LUNGHEZZA_MAX]={"Electro","Pop","Techno","Rock","Jazz","Rap","Blues","Country","Britpop","Dubstep"};
