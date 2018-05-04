@@ -219,13 +219,13 @@ void modifica_artista(int artisti_effettivi, char lista_generi[][LUNGHEZZA_MAX])
 		{
 			printf("%s\t\t%s\n", ARTISTI[i].codice, ARTISTI[i].nome);
 		}
-		printf("Inserisci il nome dell'artista da modificare:");
+		printf("Inserisci il codice dell'artista da modificare:");
 		gets(artista);
 		fflush(stdin);
 
 		for(i=0;i<artisti_effettivi;i++)
 		{
-			if(strcmp(artista, ARTISTI[i].nome)==0)		//Controllo per individuare l'artista inserito in input
+			if(strcmp(artista, ARTISTI[i].codice)==0)		//Controllo per individuare l'artista inserito in input
 			{
 				printf("Artista trovato!\n");
 				artista_trovato=1;
@@ -266,8 +266,8 @@ void modifica_artista(int artisti_effettivi, char lista_generi[][LUNGHEZZA_MAX])
 								printf("%s\n\n", ARTISTI[i].nome);
 								SetColor(15);
 								printf("Con che nome vuoi sostituirlo?\n");
+								stringclear(artista,LUNGHEZZA_MAX);
 								gets(artista);
-
 							}while((strlen(artista)<1) || (isControllo_Esistenza(artisti_effettivi, artista, "nome_artista")!=0));
 
 							stringclear(ARTISTI[i].nome, LUNGHEZZA_MAX);
@@ -479,7 +479,8 @@ void modifica_artista(int artisti_effettivi, char lista_generi[][LUNGHEZZA_MAX])
 							printf("%s\n\n", ARTISTI[i].produttore);
 							SetColor(15);
 							printf("Inserisci nuovo produttore: ");
-							gets(ARTISTI[i].produttore);
+							fgets(ARTISTI[i].produttore,LUNGHEZZA_MAX-1,stdin);
+							eliminazione_acapo(ARTISTI[i].produttore);
 							system("cls");
 							logo();
 							printf("Nuovo produttore inserito!\n\n");
@@ -492,7 +493,8 @@ void modifica_artista(int artisti_effettivi, char lista_generi[][LUNGHEZZA_MAX])
 							printf("%s\n\n", ARTISTI[i].nazionalita);
 							SetColor(15);
 							printf("Inserisci nuova nazionalit%c: ",133);
-							gets(ARTISTI[i].nazionalita);
+							fgets(ARTISTI[i].nazionalita,LUNGHEZZA_MAX-1,stdin);
+							eliminazione_acapo(ARTISTI[i].nazionalita);
 							fflush(stdin);
 							system("cls");
 							logo();
@@ -628,13 +630,13 @@ int elimina_artista(int artisti_effettivi)
 		{
 			printf("%s\t\t%s\n", ARTISTI[i].codice, ARTISTI[i].nome);
 		}
-		printf("Inserisci il nome dell'artista da eliminare:");
+		printf("Inserisci il codice dell'artista da eliminare:");
 		gets(artista);
 		fflush(stdin);
 
 		for(i=0;i<artisti_effettivi;i++)
 		{
-			if(strcmp(artista, ARTISTI[i].nome)==0)		//Controllo per individuare l'artista inserito in input
+			if(strcmp(artista, ARTISTI[i].codice)==0)		//Controllo per individuare l'artista inserito in input
 			{
 				artista_trovato=1;
 				posizione_artista=i;
