@@ -8,8 +8,10 @@ int main(int argc, char *argv[]){
 	//DEFINIZIONE VARIABILI --------------------------------------------------------------------------------------------------------------------------------------------------
 	char input_utente[LUNGHEZZA_INPUT]={"1"};		//Variabile contenente l'input dell'utente
 	char lista_generi[GENERI_TOT][LUNGHEZZA_MAX]={"Electro","Pop","Techno","Rock","Jazz","Rap","Blues","Country","Britpop","Dubstep"};
+	int posizione_utente=-1;				//Variabile contenente la posizione nel vettore dell'utente loggato
 	int artisti_effettivi=0;
 	int utenti_effettivi=0;
+
 
 
 	//CODICE -----------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -92,7 +94,7 @@ int main(int argc, char *argv[]){
 					{
 						flag=1;
 						do{		//Controllo sull'input dell'utente fin quando non viene digitato una cifra
-							controllo_menu(input_utente,MENU_UTENTE);
+							controllo_menu(input_utente,MENU_SECONDARIO);
 						}while(isControllo_Numero(input_utente,LUNGHEZZA_INPUT)!=1);
 
 						switch(atoi(input_utente))
@@ -102,52 +104,78 @@ int main(int argc, char *argv[]){
 									logo();
 									break;
 
-							//---- Stampa tutti gli utenti ----
+							//---- Inserisci nuovo utente ----
 							case 1:	system("cls");
-									logo();
-									visualizzazione_utenti(utenti_effettivi);
-									system("PAUSE");
-									break;
-
-							//---- Stampa tutti gli artisti ----
-							case 2:	system("cls");
-									logo();
-									printf("Caso 2 selezionato\n");
-									system("PAUSE");
-									break;
-
-							case 3:	system("cls");
-									logo();
-									printf("Caso 3 selezionato\n");
-									system("PAUSE");
-									break;
-
-							case 4:	system("cls");
-									logo();
-									printf("Caso 4 selezionato\n");
-									system("PAUSE");
-									break;
-
-							case 5:	system("cls");
-									logo();
-									printf("Caso 5 selezionato\n");
-									system("PAUSE");
-									break;
-
-							case 6:	system("cls");
 									utenti_effettivi=inserimento_utente(utenti_effettivi);
 									break;
 
-							case 7:	system("cls");
-									logo();
-									printf("Caso 7 selezionato\n");
-									system("PAUSE");
-									break;
+							case 2:	system("cls");
+									posizione_utente=-1;		//Ripristino posizione dell'utente autenticato
+									if(isAutenticazione(utenti_effettivi,&posizione_utente)==1)		//Autenticazione effettuata correttamente
+									{
+										do{		//Permette di rimanere nel menu utente fin quando non si decide di disconnettersi
 
-							case 8:	system("cls");
-									logo();
-									printf("Caso 8 selezionato\n");
-									system("PAUSE");
+											flag=1;
+											do{		//Controllo sull'input dell'utente fin quando non viene digitato una cifra
+												controllo_menu(input_utente,MENU_UTENTE);
+											}while(isControllo_Numero(input_utente,LUNGHEZZA_INPUT)!=1);
+
+											switch(atoi(input_utente))
+											{
+												//---- Disconnessione ----
+												case 0:	system("cls");
+														logo();
+														printf("Sei stato disconnesso\n");
+														system("PAUSE");
+														break;
+
+												//---- Stampa profilo utente ----
+												case 1:	system("cls");
+														logo();
+														visualizzazione_utenti(utenti_effettivi);		//TODO non serve più una funzione che stampi tutti gli utenti, aggiustarla per far stampare solo l'utente in questione
+														system("PAUSE");
+														break;
+
+												//---- Aggiungi nuova preferenza ----
+												case 2:	system("cls");
+														logo();
+														printf("Caso 2 selezionato\n");
+														system("PAUSE");
+														break;
+
+												//---- Elimina preferenza ----
+												case 3:	system("cls");
+														logo();
+														printf("Caso 3 selezionato\n");
+														system("PAUSE");
+														break;
+
+												//---- Modifica utente ----
+												case 4:	system("cls");
+														logo();
+														printf("Caso 4 selezionato\n");
+														system("PAUSE");
+														break;
+
+												//---- Elimina utente ----
+												case 5:	system("cls");
+														logo();
+														printf("Caso 5 selezionato\n");
+														system("PAUSE");
+														break;
+
+												//---- Cattura gli errori dell'utente ----
+												default : 	system("cls");
+															logo();
+															printf("Comando errato, inserisci un valore corretto\a\n");
+															system("PAUSE");
+											}
+
+										}while(atoi(input_utente)!=0);
+
+										strcpy(input_utente,"1");//Permette di rientrare nel menu secondario
+
+									}
 									break;
 
 							//---- Cattura gli errori dell'utente ----

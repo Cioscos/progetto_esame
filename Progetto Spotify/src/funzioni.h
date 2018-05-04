@@ -10,6 +10,7 @@
 #define MENU_PRINCIPALE 0	//Menu principale
 #define MENU_ARTISTA 1		//Menu artista
 #define MENU_UTENTE 2		//Menu utente
+#define MENU_SECONDARIO 3	//Menu intermedio prima dell'utente
 #define GENERI_TOT 10		//Numero generi esistenti
 #define LUNGHEZZA_CODICE 5	//Lunghezza massima del codice artista
 #define ETA_MINIMA 16 		//Età minima per iscriversi
@@ -59,12 +60,14 @@ unsigned int flag;		//Controllo sull'entrata nel do while | 0 Entrato almeno una
 void SetColor(short Color);
 void logo();
 void stampa_menu_principale();
+void stampa_menu_secondario();
 void stampa_menu_artista();
 void stampa_menu_utente();
 void controllo_menu(char* input_utente, unsigned int menu);
 int isControllo_Numero(char appoggio[], int lunghezza_massima);		//Funzione booleana - Verifica se l'input in ingresso e' un numero
 int isControllo_Esistenza(int numero_presenze, char* campo, char* controllo);
-void eliminazione_acapo(char *input);
+void eliminazione_acapo(char* input);
+int isAutenticazione(int utenti_effettivi, int* posizione_utente);
 
 
 
@@ -79,7 +82,7 @@ int elimina_artista(int artisti_effetivi);
 
 int inserimento_utente(int utenti_effettivi);
 void visualizzazione_utenti(int utenti_effettivi);
-
+void modifica_utente(int utenti_effettivi);
 
 
 

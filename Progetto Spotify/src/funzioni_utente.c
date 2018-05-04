@@ -475,3 +475,91 @@ void visualizzazione_utenti(int utenti_effettivi)
 	printf("\n");
 }
 
+
+
+void modifica_utente(int utenti_effettivi)		//Da fare ancora
+{
+}
+
+int isAutenticazione(int utenti_effettivi, int* posizione_utente)
+{
+	int i,j;
+	int utente_trovato=0;					//0 Utente trovato - 1 Utente non trovato
+	int autenticazione=0;					//0 autenticazione non riuscita - 1 autenticazione effettuata
+	char utente[LUNGHEZZA_MAX];				//Variabile contenente il nome utente chiesto in input
+	char password[LUNGHEZZA_PASS]={'\0'};	//Variabile contenente la password chiesta in input
+	char carattere_bf;						//Variabile contenenete un solo carattere per la creazione della password
+
+	logo();
+	SetColor(15);
+	printf("Inserisci nickname:");
+	SetColor(6);
+	fgets(utente,LUNGHEZZA_MAX,stdin);
+
+	eliminazione_acapo(utente);
+
+	for(i=0;i<utenti_effettivi;i++)
+	{
+		if(strcmp(utente,UTENTI[i].nickname)==0)		//Controlla se l'utente inserito in input è presente
+		{
+			utente_trovato=1;
+			SetColor(15);
+			j=0;
+			printf("Inserisci password di 8 caratteri: ");
+			SetColor(6);
+
+			do{		//Controllo fin quando la password non raggiungerà gli 8 caratteri
+				fflush(stdin);
+				carattere_bf='\0';
+
+				if( (carattere_bf=getch() )!='\r' )		//Se premo "tasto invio" non devo fare nulla
+				{
+					if(carattere_bf=='\b')		//Se premo "cancella" elimino un elemento delle stringa e tolgo un * da schermo
+					{
+						if(j!=0)
+						{
+							printf("\b \b");
+							j--;
+							password[j]='\0';
+						}
+
+					}
+					else		//Se invece è un carattere allora lo inserisco nella variabile e incremento la i
+					{
+						password[j]=carattere_bf;
+						printf("*");
+						j++;
+					}
+				}
+			}while(strlen(password)!=LUNGHEZZA_PASS-1);
+
+			eliminazione_acapo(password);
+
+			if(strcmp(password,UTENTI[i].password)==0)		//Controlla se la password inserita in input è corretta
+			{
+				*posizione_utente=i;
+				SetColor(15);
+				printf("\n\nAutenticazione effettuata con successo, %d\n\n");
+				system("pause");
+				autenticazione=1;
+			}
+			else
+			{
+				SetColor(4);
+				printf("\nPassword errata\a\n");
+				SetColor(15);
+				system("pause");
+			}
+		}
+	}
+
+	if(utente_trovato==0)		//Stampa messaggio di errore quando l'utente non è stato trovato
+	{
+		SetColor(4);
+		printf("\nNickname errato\a\n");
+		SetColor(15);
+		system("pause");
+	}
+
+	return (autenticazione);
+}

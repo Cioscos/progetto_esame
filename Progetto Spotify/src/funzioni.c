@@ -73,45 +73,52 @@ void stampa_menu_artista()
 	printf("Torna al menu principale\n\nInserisci comando: ");
 }
 
-void stampa_menu_utente()
+
+void stampa_menu_secondario()
 {
 	SetColor(2);
 	printf("[1]");
 	SetColor(15);
-	printf("Visualizza utenti\n");
+	printf("Registra utente\n");
 	SetColor(2);
 	printf("[2]");
 	SetColor(15);
-	printf("Visualizza profilo utente\n");
-	SetColor(2);
-	printf("[3]");
-	SetColor(15);
-	printf("Aggiungi nuova preferenza\n");
-	SetColor(2);
-	printf("[4]");
-	SetColor(15);
-	printf("Modifica preferenza\n");
-	SetColor(2);
-	printf("[5]");
-	SetColor(15);
-	printf("Elimina preferenza\n");
-	SetColor(2);
-	printf("[6]");
-	SetColor(15);
-	printf("Aggiungi nuovo utente\n");
-	SetColor(2);
-	printf("[7]");
-	SetColor(15);
-	printf("Modifica utente\n");
-	SetColor(2);
-	printf("[8]");
-	SetColor(15);
-	printf("Elimina utente\n");
+	printf("Accedi al programma\n");
 	SetColor(2);
 	printf("[0]");
 	SetColor(15);
 	printf("Torna al menu principale\n\nInserisci comndo: ");
 }
+
+
+void stampa_menu_utente()
+{
+	SetColor(2);
+	printf("[1]");
+	SetColor(15);
+	printf("Visualizza profilo utente\n");
+	SetColor(2);
+	printf("[2]");
+	SetColor(15);
+	printf("Aggiungi nuova preferenza\n");
+	SetColor(2);
+	printf("[3]");
+	SetColor(15);
+	printf("Elimina preferenza\n");
+	SetColor(2);
+	printf("[4]");
+	SetColor(15);
+	printf("Modifica utente\n");
+	SetColor(2);
+	printf("[5]");
+	SetColor(15);
+	printf("Elimina utente\n");
+	SetColor(2);
+	printf("[0]");
+	SetColor(15);
+	printf("Disconnetti\n\nInserisci comando: ");
+}
+
 
 int isControllo_Numero(char appoggio[], int lunghezza_massima)
 {
@@ -181,6 +188,9 @@ void controllo_menu(char* input_utente, unsigned int menu)
 
 			case MENU_UTENTE:     stampa_menu_utente();
 							      break;
+
+			case MENU_SECONDARIO: stampa_menu_secondario();
+								  break;
 		}
 		stringclear(input_utente, LUNGHEZZA_INPUT);
 		scanf("%3s",input_utente);
@@ -207,6 +217,9 @@ void controllo_menu(char* input_utente, unsigned int menu)
 
 			case MENU_UTENTE:     stampa_menu_utente();
 							      break;
+
+			case MENU_SECONDARIO: stampa_menu_secondario();
+								  break;
 		}
 		stringclear(input_utente, LUNGHEZZA_INPUT);
 		scanf("%3s",input_utente);
@@ -216,7 +229,6 @@ void controllo_menu(char* input_utente, unsigned int menu)
 
 void eliminazione_acapo(char *input)
 {
-	unsigned int lunghezza_stringa;
 	for(size_t i=0;i<LUNGHEZZA_MAX;i++)
 	{
 		if(input[i]=='\n')
