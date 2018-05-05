@@ -73,7 +73,6 @@ void stampa_menu_artista()
 	printf("Torna al menu principale\n\nInserisci comando: ");
 }
 
-
 void stampa_menu_secondario()
 {
 	SetColor(2);
@@ -89,7 +88,6 @@ void stampa_menu_secondario()
 	SetColor(15);
 	printf("Torna al menu principale\n\nInserisci comndo: ");
 }
-
 
 void stampa_menu_utente()
 {
@@ -119,7 +117,6 @@ void stampa_menu_utente()
 	printf("Disconnetti\n\nInserisci comando: ");
 }
 
-
 int isControllo_Numero(char appoggio[], int lunghezza_massima)
 {
 	int i=0;
@@ -140,7 +137,7 @@ int isControllo_Numero(char appoggio[], int lunghezza_massima)
 	}
 	i = 0;
 
-	for(i=0;i<lughezza_effettiva;i++)		//Controllo se l'input � diverso da un numero
+	for(i=0;i<lughezza_effettiva;i++)		//Controllo se l'input ? diverso da un numero
 	{
 		if((isdigit(appoggio[i])!=0) || (appoggio[i]=='\0' ) )
 		{
@@ -229,9 +226,86 @@ void controllo_menu(char* input_utente, unsigned int menu)
 
 void eliminazione_acapo(char *input)
 {
-	for(size_t i=0;i<LUNGHEZZA_MAX;i++)
+	int i;
+	for(i=0;i<LUNGHEZZA_MAX;i++)
 	{
 		if(input[i]=='\n')
 			input[i]='\0';
 	}
 }
+
+int isControllo_Esistenza(int numero_presenze, char* campo, char* controllo)
+{
+	int i;
+	int presenza=0;		//0 elemento gi? presente - 1 elemento non presente
+
+	if(strcmp(controllo,"nome_artista")==0)
+	{
+		for(i=0;i<numero_presenze;i++)
+		{
+			if(strcmp(campo,ARTISTI[i].nome)==0)
+			{
+				presenza=1;
+			}
+		}
+	}
+
+
+	if(strcmp(controllo,"codice_artista")==0)
+	{
+		for(i=0;i<numero_presenze;i++)
+		{
+			if(strcmp(campo,ARTISTI[i].codice)==0)
+			{
+				presenza=1;
+			}
+		}
+	}
+
+
+	if(strcmp(controllo,"nickname_utente")==0)
+	{
+		for(i=0;i<numero_presenze;i++)
+		{
+			if(strcmp(campo,UTENTI[i].nickname)==0)
+			{
+				presenza=1;
+			}
+		}
+	}
+
+	if(strcmp(controllo,"nome_utente")==0)
+	{
+		for(i=0;i<numero_presenze;i++)
+		{
+			if(strcmp(campo,UTENTI[i].nome)==0)
+			{
+				presenza=1;
+			}
+		}
+	}
+
+	if(strcmp(controllo,"cognome_utente")==0)
+	{
+		for(i=0;i<numero_presenze;i++)
+		{
+			if(strcmp(campo,UTENTI[i].cognome)==0)
+			{
+				presenza=1;
+			}
+		}
+	}
+
+
+
+	if(presenza==1)
+	{
+		return presenza;		//Ritorna 1 - elemento non presente
+	}
+	else
+	{
+		return presenza;		//Ritorna 0 - elemento gi? presente
+	}
+
+}
+

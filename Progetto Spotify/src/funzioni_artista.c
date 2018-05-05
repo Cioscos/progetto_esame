@@ -202,7 +202,7 @@ void visualizzazione_artisti(char lista_generi[][LUNGHEZZA_MAX], int artisti_eff
 void modifica_artista(int artisti_effettivi, char lista_generi[][LUNGHEZZA_MAX])
 {
 	int i,j;
-	char scelta[LUNGHEZZA_INPUT]={"\0"};	//Variabile d'appoggio per l'input della scelta per il men� chiesto in input
+	char scelta[LUNGHEZZA_INPUT]={"\0"};	//Variabile d'appoggio per l'input della scelta per il men? chiesto in input
 	int numero_generi=0;					//Numero generi
 	int genere_trovato=0;					//0 genere non trovato - 1 genere trovato
 	char genere[LUNGHEZZA_MAX]={"\0"};		//Variabile d'appoggio per il genere chiesto in input
@@ -321,7 +321,7 @@ void modifica_artista(int artisti_effettivi, char lista_generi[][LUNGHEZZA_MAX])
 
 							if(strcmp(scelta,"1")==0)		//Elimina genere
 							{
-								if(numero_generi==1)		//Controllo per non far rimuovere il genere quando quando quest'ultimo � l'unico
+								if(numero_generi==1)		//Controllo per non far rimuovere il genere quando quando quest'ultimo ? l'unico
 								{
 									logo();
 									printf("Non %c possibile eliminare l'unico genere\n", 138);
@@ -358,7 +358,7 @@ void modifica_artista(int artisti_effettivi, char lista_generi[][LUNGHEZZA_MAX])
 										}
 									}
 
-									if(genere_trovato==0)		//Controllo se il genere inserito in input dall'utente � stato trovato
+									if(genere_trovato==0)		//Controllo se il genere inserito in input dall'utente ? stato trovato
 									{
 										system("cls");
 										logo();
@@ -442,7 +442,7 @@ void modifica_artista(int artisti_effettivi, char lista_generi[][LUNGHEZZA_MAX])
 							break;
 
 
-					case 3: system("cls");	//Cambio anno di inzio attivit�
+					case 3: system("cls");	//Cambio anno di inzio attivit?
 							char anno_provvisorio[LUNGHEZZA_MAX]={'\0'};
 
 							logo();
@@ -536,85 +536,10 @@ void modifica_artista(int artisti_effettivi, char lista_generi[][LUNGHEZZA_MAX])
 	}while(strcmp(scelta,"si")==0);		//Termina quando viene digitato si
 }
 
-int isControllo_Esistenza(int numero_presenze, char* campo, char* controllo)
-{
-	int i;
-	int presenza=0;		//0 elemento gi� presente - 1 elemento non presente
-
-	if(strcmp(controllo,"nome_artista")==0)
-	{
-		for(i=0;i<numero_presenze;i++)
-		{
-			if(strcmp(campo,ARTISTI[i].nome)==0)
-			{
-				presenza=1;
-			}
-		}
-	}
-
-
-	if(strcmp(controllo,"codice_artista")==0)
-	{
-		for(i=0;i<numero_presenze;i++)
-		{
-			if(strcmp(campo,ARTISTI[i].codice)==0)
-			{
-				presenza=1;
-			}
-		}
-	}
-
-
-	if(strcmp(controllo,"nickname_utente")==0)
-	{
-		for(i=0;i<numero_presenze;i++)
-		{
-			if(strcmp(campo,UTENTI[i].nickname)==0)
-			{
-				presenza=1;
-			}
-		}
-	}
-
-	if(strcmp(controllo,"nome_utente")==0)
-	{
-		for(i=0;i<numero_presenze;i++)
-		{
-			if(strcmp(campo,UTENTI[i].nome)==0)
-			{
-				presenza=1;
-			}
-		}
-	}
-
-	if(strcmp(controllo,"cognome_utente")==0)
-	{
-		for(i=0;i<numero_presenze;i++)
-		{
-			if(strcmp(campo,UTENTI[i].cognome)==0)
-			{
-				presenza=1;
-			}
-		}
-	}
-
-
-
-	if(presenza==1)
-	{
-		return presenza;		//Ritorna 1 - elemento non presente
-	}
-	else
-	{
-		return presenza;		//Ritorna 0 - elemento gi� presente
-	}
-
-}
-
 int elimina_artista(int artisti_effettivi)
 {
 	int i,j;
-	char scelta[LUNGHEZZA_INPUT]={"\0"};	//Variabile d'appoggio per l'input della scelta per il men� chiesto in input
+	char scelta[LUNGHEZZA_INPUT]={"\0"};	//Variabile d'appoggio per l'input della scelta per il men? chiesto in input
 	char artista[LUNGHEZZA_MAX]={"\0"};		//Variabile d'appoggio per l'artista chiesto in input
 	int posizione_artista=0;				//Contiene la posizone dell'artista trovato nel vettore
 	int artista_trovato=0;					//0 artista non trovato - 1 artista trovato
@@ -710,3 +635,4 @@ int elimina_artista(int artisti_effettivi)
 
 	return(artisti_effettivi);
 }
+

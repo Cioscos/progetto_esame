@@ -47,9 +47,7 @@ struct UTENTE {
 	struct DATA data_nascita;
 	struct DATA data_iscrizione;
 };
-struct UTENTE UTENTI[UTENTI_MAX];
-
-/*Bisogna ancora inserire le preferenze sugli artisti e sui generi*/
+struct UTENTE UTENTI[UTENTI_MAX];	/*Bisogna ancora inserire le preferenze sugli artisti e sui generi*/
 
 
 unsigned int flag;		//Controllo sull'entrata nel do while | 0 Entrato almeno una volta nel do while - 1 Mai entrato nel do while
@@ -82,7 +80,9 @@ int elimina_artista(int artisti_effetivi);
 
 int inserimento_utente(int utenti_effettivi);
 void visualizzazione_utenti(int utenti_effettivi);
-void modifica_utente(int utenti_effettivi);
+void stampa_profilo(int posizione_utente);
+void modifica_utente(int utenti_effettivi, int posizione_utente);
+
 
 
 
@@ -158,3 +158,4 @@ for(I=0;I<1;I++)
 
 
 #endif /* FUNZIONI_H_ */
+

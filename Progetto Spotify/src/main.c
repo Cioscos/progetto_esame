@@ -81,7 +81,6 @@ int main(int argc, char *argv[]){
 										system("PAUSE");
 						}
 					}
-
 					strcpy(input_utente,"1");//Permette di rientrare nel menu principale
 					break;
 
@@ -132,7 +131,7 @@ int main(int argc, char *argv[]){
 												//---- Stampa profilo utente ----
 												case 1:	system("cls");
 														logo();
-														visualizzazione_utenti(utenti_effettivi);		//TODO non serve più una funzione che stampi tutti gli utenti, aggiustarla per far stampare solo l'utente in questione
+														stampa_profilo(posizione_utente);		//TODO non serve più una funzione che stampi tutti gli utenti, aggiustarla per far stampare solo l'utente in questione
 														system("PAUSE");
 														break;
 
@@ -153,7 +152,7 @@ int main(int argc, char *argv[]){
 												//---- Modifica utente ----
 												case 4:	system("cls");
 														logo();
-														printf("Caso 4 selezionato\n");
+														modifica_utente(utenti_effettivi, posizione_utente);
 														system("PAUSE");
 														break;
 
@@ -200,5 +199,6 @@ int main(int argc, char *argv[]){
 system("PAUSE");
 return 0;
 }
+
 
 

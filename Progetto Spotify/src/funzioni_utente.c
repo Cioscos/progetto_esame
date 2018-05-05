@@ -459,6 +459,34 @@ int inserimento_utente(int utenti_effettivi)
 	return(utenti_effettivi);
 }
 
+void stampa_profilo(int posizione_utente)
+{
+	SetColor(3);
+	printf("NICKNAME:");
+	SetColor(15);
+	printf("%-31s", UTENTI[posizione_utente].nickname);
+	SetColor(3);
+	printf("PASSWORD:");
+	SetColor(15);
+	printf("%s\n", UTENTI[posizione_utente].password);
+	SetColor(3);
+	printf("NOME:");
+	SetColor(15);
+	printf("%-31s\t", UTENTI[posizione_utente].nome);
+	SetColor(3);
+	printf("COGNOME:");
+	SetColor(15);
+	printf("%s\n", UTENTI[posizione_utente].cognome);
+	SetColor(3);
+	printf("DATA DI NASCITA:");
+	SetColor(15);
+	printf("%d/%d/%d\t\t", UTENTI[posizione_utente].data_nascita.giorno,UTENTI[posizione_utente].data_nascita.mese,UTENTI[posizione_utente].data_nascita.anno);
+	SetColor(3);
+	printf("DATA DI ISCRIZIONE:");
+	SetColor(15);
+	printf("%d/%d/%d\n", UTENTI[posizione_utente].data_iscrizione.giorno,UTENTI[posizione_utente].data_iscrizione.mese,UTENTI[posizione_utente].data_iscrizione.anno);
+	SetColor(15);
+}
 
 void visualizzazione_utenti(int utenti_effettivi)
 {
@@ -473,12 +501,6 @@ void visualizzazione_utenti(int utenti_effettivi)
 		printf("%-31s %-31s %-31s %d/%d/%d            %d/%d/%d\n",UTENTI[i].nome,UTENTI[i].cognome,UTENTI[i].nickname,UTENTI[i].data_nascita.giorno,UTENTI[i].data_nascita.mese,UTENTI[i].data_nascita.anno,UTENTI[i].data_iscrizione.giorno,UTENTI[i].data_iscrizione.mese,UTENTI[i].data_iscrizione.anno);
 	}
 	printf("\n");
-}
-
-
-
-void modifica_utente(int utenti_effettivi)		//Da fare ancora
-{
 }
 
 int isAutenticazione(int utenti_effettivi, int* posizione_utente)
@@ -539,7 +561,7 @@ int isAutenticazione(int utenti_effettivi, int* posizione_utente)
 			{
 				*posizione_utente=i;
 				SetColor(15);
-				printf("\n\nAutenticazione effettuata con successo, %d\n\n");
+				printf("\n\nAutenticazione effettuata con successo, \n\n");
 				system("pause");
 				autenticazione=1;
 			}
@@ -562,4 +584,171 @@ int isAutenticazione(int utenti_effettivi, int* posizione_utente)
 	}
 
 	return (autenticazione);
+}
+
+
+
+void modifica_utente(int utenti_effettivi, int posizione_utente)
+{
+	int i;
+	char scelta[LUNGHEZZA_INPUT]={"\0"};	//Variabile d'appoggio per l'input della scelta per il men? chiesto in input
+	char utente[LUNGHEZZA_MAX];				//Variabile d'appoggio per nickname, nome e cognome chiesti in input
+	char controllo[LUNGHEZZA_PASS]={'\0'};		//Variabile utilizzata per effettuare un doppio controllo sulla password per verificare che corrisponda alla prima chiesta in input
+	char carattere_bf;		//Variabile contenenete un solo carattere per la creazione della password
+	int uguali;	//Variaibile utilizzata come flag    0=Controllo non superato | 1=Controllo superato
+
+	do{						//Controllo sull input fornito dall'utente fin quando non viene inserito un valore compreso tra 0 e 5 compresi
+		system("cls");
+		logo();
+		SetColor(2); printf("[1]"); SetColor(15); printf("Nickname\n");
+		SetColor(2); printf("[2]"); SetColor(15); printf("Password\n");
+		SetColor(2); printf("[3]"); SetColor(15); printf("Nome\n");
+		SetColor(2); printf("[4]"); SetColor(15); printf("Cognome\n");
+		SetColor(2); printf("[5]"); SetColor(15); printf("Data di nascita\n");
+		SetColor(2); printf("[0]"); SetColor(15); printf("Torna indietro\n\nInserisci comando: ");
+		fgets(scelta,LUNGHEZZA_INPUT,stdin);
+		fflush(stdin);
+
+		if((strcmp(scelta,"0")<0) || (strcmp(scelta,"6")>0))
+		{
+			system("cls");
+			logo();
+			SetColor(4);
+			printf("Inserire un campo valido!\a\n\n");
+			SetColor(15);
+			system("pause");
+		}
+	}while((strcmp(scelta,"0")<0) || (strcmp(scelta,"6")>0));
+
+	switch(atoi(scelta))
+	{
+		//Torna al menu principale
+		case 0: break;
+
+		//Nickname
+		case 1:
+				do{		//Controllo fin quando non viene inserito almeno una lettera e il nickname non deve essere già presente
+					system("cls");
+					logo();
+					printf("Inserisci nuovo Nickname: ");
+					SetColor(6);
+					fgets(utente,LUNGHEZZA_MAX,stdin);
+					eliminazione_acapo(utente);
+					fflush(stdin);
+					SetColor(15);
+					if((isControllo_Esistenza(utenti_effettivi, utente, "nickname_utente")==1))
+					{
+						SetColor(4);
+						printf("\nNickname gi%c utilizzato\n\a",133);
+						SetColor(15);
+						system("pause");
+					}
+				}while((strlen(utente)<1) || (isControllo_Esistenza(utenti_effettivi, utente, "nickname_utente")!=0));
+
+				printf("Nickname cambiato correttamente\n");
+				strcpy(UTENTI[posizione_utente].nickname,utente);
+				break;
+
+
+
+
+		//Password
+		case 2: system("cls");
+				logo();
+				stringclear(UTENTI[posizione_utente].password,LUNGHEZZA_PASS);
+				stringclear(controllo,LUNGHEZZA_PASS);
+
+				//PRIMO INSERIMENTO
+				do{		//Controllo fin quando la password e la conferma password non corrispondono
+					i=0;
+					printf("Inserisci nuova password di 8 caratteri: ");
+					SetColor(6);
+					do{		//Controllo fin quando la password non raggiungerà gli 8 caratteri
+						fflush(stdin);
+						carattere_bf='\0';
+
+						if( (carattere_bf=getch() )!='\r' )		//Se premo "tasto invio" non devo fare nulla
+						{
+							if(carattere_bf=='\b')		//Se premo "cancella" elimino un elemento delle stringa e tolgo un * da schermo
+							{
+								if(i!=0)
+								{
+									printf("\b \b");
+									i--;
+									controllo[i]='\0';
+								}
+
+							}
+							else		//Se invece è un carattere allora lo inserisco nella variabile e incremento la i
+							{
+								controllo[i]=carattere_bf;
+								printf("*");
+								i++;
+							}
+						}
+					}while(strlen(controllo)!=LUNGHEZZA_PASS-1);
+
+					SetColor(15);
+					printf("\nConferma password: ");
+					SetColor(6);
+
+					//SECONDO INSERIMENTO
+					i=0;
+					do{		//Controllo fin quando la password e la conferma password non corrispondono
+						fflush(stdin);
+						carattere_bf='\0';
+						if( (carattere_bf=getch() )!='\r' )		//Se premo "tasto invio" non devo fare nulla
+						{
+							if(carattere_bf=='\b')		//Se premo "cancella" elimino un elemento delle stringa e tolgo un * da schermo
+							{
+								if(i!=0)
+								{
+									printf("\b \b");
+									i--;
+									UTENTI[posizione_utente].password[i]='\0';
+								}
+
+							}
+							else		//Se invece è un carattere allora lo inserisco nella variabile e incremento la i
+							{
+								fflush(stdin);
+								UTENTI[posizione_utente].password[i]=carattere_bf;
+								printf("*");
+								i++;
+							}
+						}
+
+					}while(strlen(UTENTI[posizione_utente].password)!=LUNGHEZZA_PASS-1);
+
+
+
+					if(strcmp(controllo, UTENTI[posizione_utente].password)==0)		//Controllo se le due password sono uguali
+					{
+						uguali=1;
+					}
+					else
+					{
+						SetColor(4);
+						printf("\nLe password non corrispondono\n\a");
+						SetColor(15);
+						system("pause");
+						system("cls");
+						logo();
+						uguali=0;
+						//AZZERO I VETTORI DI CHAR PER PREPARARGLI AD UN NUOVO INSERIMENTO
+						stringclear(controllo, LUNGHEZZA_PASS);
+						stringclear(UTENTI[posizione_utente].password, LUNGHEZZA_PASS);
+					}
+				}while(uguali==0);
+
+				SetColor(15);
+				printf("\nPassword cambiata correttamente\n");
+				break;
+
+		case 3: break;
+
+		case 4: break;
+
+		case 5: break;
+	}
 }
