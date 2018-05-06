@@ -606,7 +606,7 @@ int elimina_artista(int artisti_effettivi)
 				}
 				strcpy(ARTISTI[i-1].produttore,ARTISTI[i].produttore);
 				strcpy(ARTISTI[i-1].nazionalita,ARTISTI[i].nazionalita);
-				ARTISTI[i-1].anno_inizio=ARTISTI[1].anno_inizio;
+				ARTISTI[i-1].anno_inizio=ARTISTI[i].anno_inizio;
 				ARTISTI[i-1].ascolti=ARTISTI[i].ascolti;
 				ARTISTI[i-1].preferenze=ARTISTI[i].preferenze;
 			}

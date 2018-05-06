@@ -112,7 +112,7 @@ int main(int argc, char *argv[]){
 									posizione_utente=-1;		//Ripristino posizione dell'utente autenticato
 									if(isAutenticazione(utenti_effettivi,&posizione_utente)==1)		//Autenticazione effettuata correttamente
 									{
-										do{		//Permette di rimanere nel menu utente fin quando non si decide di disconnettersi
+										do{		//Permette di rimanere nel menu utente fin quando non si decide di disconnettersi o fin quando non viene eliminato l'utente
 
 											flag=1;
 											do{		//Controllo sull'input dell'utente fin quando non viene digitato una cifra
@@ -159,7 +159,7 @@ int main(int argc, char *argv[]){
 												//---- Elimina utente ----
 												case 5:	system("cls");
 														logo();
-														printf("Caso 5 selezionato\n");
+														utenti_effettivi=elimina_utente(utenti_effettivi, posizione_utente);
 														system("PAUSE");
 														break;
 
@@ -170,7 +170,7 @@ int main(int argc, char *argv[]){
 															system("PAUSE");
 											}
 
-										}while(atoi(input_utente)!=0);
+										}while(atoi(input_utente)!=0 && atoi(input_utente)!=5);
 
 										strcpy(input_utente,"1");//Permette di rientrare nel menu secondario
 

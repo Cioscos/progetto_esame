@@ -81,6 +81,7 @@ int inserimento_utente(int utenti_effettivi);
 void visualizzazione_utenti(int utenti_effettivi);
 void stampa_profilo(int posizione_utente);
 void modifica_utente(int utenti_effettivi, int posizione_utente);
+int elimina_utente(int utenti_effettivi, int posizione_utente);
 
 
 
