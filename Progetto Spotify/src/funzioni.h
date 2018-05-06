@@ -18,12 +18,6 @@
 #define ULTIMO_MESE 12		//Numero mese di dicembre
 #define stringclear(s, dim) memset(s, '\0', dim);        // Macro azzeramento stringa, ovvero riempie la stringa di caratteri terminatori
 
-//INCLUSIONE LIBRERIE COMPILATORE-------------------------------------------------------------------------------------------------------------------------------------------
-#include <time.h>
-#include <ctype.h>
-#include <stdlib.h>
-#include <stdio.h>
-
 //DEFINIZIONE DI STRUTTURE -------------------------------------------------------------------------------------------------------------------------------------------------
 struct DATA{
 	unsigned int giorno;
