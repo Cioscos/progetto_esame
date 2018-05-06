@@ -488,7 +488,7 @@ void stampa_profilo(int posizione_utente)
 	SetColor(15);
 }
 
-void visualizzazione_utenti(int utenti_effettivi)
+void visualizzazione_utenti(int utenti_effettivi)	//Al momento non serve più
 {
 	int i;
 
@@ -586,16 +586,32 @@ int isAutenticazione(int utenti_effettivi, int* posizione_utente)
 	return (autenticazione);
 }
 
-
-
 void modifica_utente(int utenti_effettivi, int posizione_utente)
 {
+	char giorno_corrente[3];		//Variaible  momentanea contenente giorno corrente
+	int mese_corrente;				//Variaible  momentanea contenente mese corrente
+	char anno_corrente[5];			//Variaible  momentanea contenente anno corrente
+	struct DATA DATA_CORRENTE;			//Creazione variabile di tipo struct data
+	time_t t=time(NULL);		//Creazione di una veriabile di tipo "time_t" nella quale inserisco tutte le informazini del calendario di windows
+	struct tm *tp=localtime(&t);		    //Creo una variabile di tipo struct "tm" nella quale inserisco le informazioni contenute in "t"
+
+	//Inserisco nelle variabili momentanee elementi della variabile "tp"
+	strftime (anno_corrente,5,"%Y", tp);
+    mese_corrente=tp->tm_mon+1;
+    strftime (giorno_corrente,3,"%d", tp);
+    DATA_CORRENTE.anno=atoi(anno_corrente);
+    DATA_CORRENTE.mese=mese_corrente;
+    DATA_CORRENTE.giorno=atoi(giorno_corrente);
+
+
+
 	int i;
 	char scelta[LUNGHEZZA_INPUT]={"\0"};	//Variabile d'appoggio per l'input della scelta per il men? chiesto in input
 	char utente[LUNGHEZZA_MAX];				//Variabile d'appoggio per nickname, nome e cognome chiesti in input
 	char controllo[LUNGHEZZA_PASS]={'\0'};		//Variabile utilizzata per effettuare un doppio controllo sulla password per verificare che corrisponda alla prima chiesta in input
 	char carattere_bf;		//Variabile contenenete un solo carattere per la creazione della password
 	int uguali;	//Variaibile utilizzata come flag    0=Controllo non superato | 1=Controllo superato
+	char data_provvisoria[LUNGHEZZA_MAX]={'\0'};		//Variabile contenente la data di tipo char per effettuare i controlli
 
 	do{						//Controllo sull input fornito dall'utente fin quando non viene inserito un valore compreso tra 0 e 5 compresi
 		system("cls");
@@ -622,10 +638,10 @@ void modifica_utente(int utenti_effettivi, int posizione_utente)
 
 	switch(atoi(scelta))
 	{
-		//Torna al menu principale
+		//TORNA AL MENU PRINCIPALE
 		case 0: break;
 
-		//Nickname
+		//MODIFICA NICKNAME
 		case 1:
 				do{		//Controllo fin quando non viene inserito almeno una lettera e il nickname non deve essere già presente
 					system("cls");
@@ -652,7 +668,7 @@ void modifica_utente(int utenti_effettivi, int posizione_utente)
 
 
 
-		//Password
+		//MODIFICA PASSWORD
 		case 2: system("cls");
 				logo();
 				stringclear(UTENTI[posizione_utente].password,LUNGHEZZA_PASS);
@@ -745,10 +761,292 @@ void modifica_utente(int utenti_effettivi, int posizione_utente)
 				printf("\nPassword cambiata correttamente\n");
 				break;
 
-		case 3: break;
+		//MODIFICA NOME
+		case 3: stringclear(UTENTI[posizione_utente].nome,LUNGHEZZA_MAX);
+				do{		//Controllo fin quando non viene inserito almeno una lettera
+					system("cls");
+					logo();
+					printf("Inserisci nuovo nome: ");
+					SetColor(6);
+					fgets(UTENTI[posizione_utente].nome,LUNGHEZZA_MAX,stdin);
+					eliminazione_acapo(UTENTI[posizione_utente].nome);
+					fflush(stdin);
+					SetColor(15);
+				}while((strlen(UTENTI[posizione_utente].nome)<1));
+				break;
 
-		case 4: break;
+		//MODIFICA COGNOME
+		case 4: stringclear(UTENTI[posizione_utente].cognome,LUNGHEZZA_MAX);
+				do{			//Controllo fin quando non viene inserito almeno una lettera
+					system("cls");
+					logo();
+					printf("Inserisci cognome nuovo utente: ");
+					SetColor(6);
+					fgets(UTENTI[posizione_utente].cognome,LUNGHEZZA_MAX,stdin);
+					eliminazione_acapo(UTENTI[posizione_utente].cognome);
+					fflush(stdin);
+					SetColor(15);
+				}while((strlen(UTENTI[posizione_utente].cognome)<1));
+				break;
 
-		case 5: break;
+		//MODIFICA DATA DI NASCITA
+		case 5: system("cls");
+				logo();
+				printf("Inserisci nuova data di nascita\n");
+
+				do{		//Controllo fin quando l'anno non è compreso tra 1900 e 2001(anno per avere l'età minima di 16 anni)
+						do{		//Controllo fin quando l'input inserito non è un numero
+							printf("\nAnno: ");
+							SetColor(6);
+							gets(data_provvisoria);
+							fflush(stdin);
+							SetColor(15);
+							if(isControllo_Numero(data_provvisoria,LUNGHEZZA_MAX)!=1)
+							{
+								system("cls");
+								logo();
+								SetColor(4);
+								printf("Hai inserito un anno non corretto! Riprova\n\n\a");
+								SetColor(15);
+								system("pause");
+								system("cls");
+								logo();
+								printf("Inserisci nuova data di nascita:\n");
+							}
+						}while(isControllo_Numero(data_provvisoria,LUNGHEZZA_MAX)!=1);
+
+						UTENTI[posizione_utente].data_nascita.anno=atoi(data_provvisoria);
+
+						if(UTENTI[posizione_utente].data_nascita.anno<1900 || UTENTI[posizione_utente].data_nascita.anno>(DATA_CORRENTE.anno-ETA_MINIMA-1))
+						{
+							system("cls");
+							logo();
+							SetColor(4);
+							printf("Hai inserito un anno non corretto! Riprova\n\n\a");
+							SetColor(15);
+							system("pause");
+							system("cls");
+							logo();
+							printf("Inserisci nuova data di nascita:\n");
+						}
+				}while(UTENTI[posizione_utente].data_nascita.anno<1900 || UTENTI[posizione_utente].data_nascita.anno>(DATA_CORRENTE.anno-ETA_MINIMA-1));
+
+
+
+
+				//INSERIMENTO MESE DI NASCITA
+				do{		//Controllo fin quando il mese non è compreso tra 1 e 12
+					do{		//Controllo fin quando l'input inserito non è un numero
+						printf("\nMese: ");
+						SetColor(6);
+						stringclear(data_provvisoria,LUNGHEZZA_MAX);
+						gets(data_provvisoria);
+						SetColor(15);
+						if(isControllo_Numero(data_provvisoria,LUNGHEZZA_MAX)!=1)
+						{
+							system("cls");
+							logo();
+							SetColor(4);
+							printf("Hai inserito un mese non corretto! Riprova\n\n\a");
+							SetColor(15);
+							system("pause");
+							system("cls");
+							logo();
+							printf("Inserisci nuova data di nascita:\n");
+						}
+					}while(isControllo_Numero(data_provvisoria,LUNGHEZZA_MAX)!=1);
+
+					UTENTI[posizione_utente].data_nascita.mese=atoi(data_provvisoria);
+
+					if(UTENTI[posizione_utente].data_nascita.mese<PRIMO_MESE || UTENTI[posizione_utente].data_nascita.mese>ULTIMO_MESE)
+					{
+						system("cls");
+						logo();
+						SetColor(4);
+						printf("Hai inserito un mese non corretto! Riprova\n\n\a");
+						SetColor(15);
+						system("pause");
+						system("cls");
+						logo();
+						printf("Inserisci nuova data di nascita:\n");
+					}
+				}while(UTENTI[posizione_utente].data_nascita.mese<PRIMO_MESE || UTENTI[posizione_utente].data_nascita.mese>ULTIMO_MESE);
+
+
+				//INSERIMENTO GIORNO DI NASCITA
+
+				//CONTROLLO SUL GIORNO NELL'ANNO BISESTILE NEL MESE DI FEBBRAIO
+				if(UTENTI[posizione_utente].data_nascita.mese==2)
+				{
+					if(UTENTI[posizione_utente].data_nascita.anno % 4 == 0)		//Caso in cui l'anno è bisestile
+					{
+						do{		//Controllo fin quando il giorno non è compreso tra 1 e 29
+							do{		//Controllo fin quando l'input inserito non è un numero
+								printf("\nGiorno: ");
+								SetColor(6);
+								stringclear(data_provvisoria,LUNGHEZZA_MAX);
+								gets(data_provvisoria);
+								SetColor(15);
+
+									if(isControllo_Numero(data_provvisoria,LUNGHEZZA_MAX)!=1)
+									{
+										system("cls");
+										logo();
+										SetColor(4);
+										printf("Hai inserito un giorno non corretto! Riprova\n\n\a");
+										SetColor(15);
+										system("pause");
+										system("cls");
+										logo();
+										printf("Inserisci data di nascita:\n");
+									}
+							}while(isControllo_Numero(data_provvisoria,LUNGHEZZA_MAX)!=1);
+
+							UTENTI[posizione_utente].data_nascita.giorno=atoi(data_provvisoria);
+
+							if(UTENTI[posizione_utente].data_nascita.giorno<1 || UTENTI[posizione_utente].data_nascita.giorno>29)
+							{
+								system("cls");
+								logo();
+								SetColor(4);
+								printf("Hai inserito un giorno non corretto! Riprova\n\n\a");
+								SetColor(15);
+								system("pause");
+								system("cls");
+								logo();
+								printf("Inserisci nuova data di nascita:\n");
+							}
+						}while(UTENTI[posizione_utente].data_nascita.giorno<1 || UTENTI[posizione_utente].data_nascita.giorno>29);
+					}
+					else
+					{
+						//CONTROLLO SUL GIORNO DEL'ANNO NON BISESTILE NEL MESE DI FEBBRAIO
+						do{		//Controllo fin quando il giorno non è compreso tra 1 e 28
+							do{		//Controllo fin quando l'input inserito non è un numero
+								printf("\nGiorno: ");
+								SetColor(6);
+								stringclear(data_provvisoria,LUNGHEZZA_MAX);
+								gets(data_provvisoria);
+								SetColor(15);
+								if(isControllo_Numero(data_provvisoria,LUNGHEZZA_MAX)!=1)
+								{
+									system("cls");
+									logo();
+									SetColor(4);
+									printf("Hai inserito un giorno non corretto! Riprova\n\n\a");
+									SetColor(15);
+									system("pause");
+									system("cls");
+									logo();
+									printf("Inserisci nuova data di nascita:\n");
+								}
+							}while(isControllo_Numero(data_provvisoria,LUNGHEZZA_MAX)!=1);
+
+							UTENTI[posizione_utente].data_nascita.giorno=atoi(data_provvisoria);
+
+							if(UTENTI[posizione_utente].data_nascita.giorno<1 || UTENTI[posizione_utente].data_nascita.giorno>28)
+							{
+								system("cls");
+								logo();
+								SetColor(4);
+								printf("Hai inserito un giorno non corretto! Riprova\n\n\a");
+								SetColor(15);
+								system("pause");
+								system("cls");
+								logo();
+								printf("Inserisci nuova data di nascita:\n");
+							}
+						}while(UTENTI[posizione_utente].data_nascita.giorno<1 || UTENTI[posizione_utente].data_nascita.giorno>28);
+					}
+				}
+				else
+				{
+					//CONTROLLO MESI DA 30 GIORNI
+					if(UTENTI[posizione_utente].data_nascita.mese==4 || UTENTI[posizione_utente].data_nascita.mese==6 || UTENTI[posizione_utente].data_nascita.mese==9 || UTENTI[posizione_utente].data_nascita.mese==11)
+					{
+						do{		//Controllo fin quando il giorno non è compreso tra 1 e 30
+							do{		//Controllo fin quando l'input inserito non è un numero
+								printf("\nGiorno: ");
+								SetColor(6);
+								stringclear(data_provvisoria,LUNGHEZZA_MAX);
+								gets(data_provvisoria);
+								SetColor(15);
+								if(isControllo_Numero(data_provvisoria,LUNGHEZZA_MAX)!=1)
+								{
+									system("cls");
+									logo();
+									SetColor(4);
+									printf("Hai inserito un giorno non corretto! Riprova\n\n\a");
+									SetColor(15);
+									system("pause");
+									system("cls");
+									logo();
+									printf("Inserisci nuova data di nascita:\n");
+								}
+							}while(isControllo_Numero(data_provvisoria,LUNGHEZZA_MAX)!=1);
+
+							UTENTI[posizione_utente].data_nascita.giorno=atoi(data_provvisoria);
+
+							if(UTENTI[posizione_utente].data_nascita.giorno<=0 || UTENTI[posizione_utente].data_nascita.giorno>30)
+							{
+								system("cls");
+								logo();
+								SetColor(4);
+								printf("Hai inserito un giorno non corretto! Riprova\n\n\a");
+								SetColor(15);
+								system("pause");
+								system("cls");
+								logo();
+								printf("Inserisci nuova data di nascita:\n");
+							}
+						}while(UTENTI[posizione_utente].data_nascita.giorno<=0 || UTENTI[posizione_utente].data_nascita.giorno>30);
+					}
+					else
+					{
+						//CONTROLLO MESI DA 31 GIORNI
+						do{		//Controllo fin quando il giorno non è compreso tra 1 e 31
+							do{		//Controllo fin quando l'input inserito non è un numero
+								printf("\nGiorno: ");
+								SetColor(6);
+								stringclear(data_provvisoria,LUNGHEZZA_MAX);
+								gets(data_provvisoria);
+								SetColor(15);
+								if(isControllo_Numero(data_provvisoria,LUNGHEZZA_MAX)!=1)
+								{
+									system("cls");
+									logo();
+									SetColor(4);
+									printf("Hai inserito un giorno non corretto! Riprova\n\n\a");
+									SetColor(15);
+									system("pause");
+									system("cls");
+									logo();
+									printf("Inserisci nuova data di nascita:\n");
+								}
+							}while(isControllo_Numero(data_provvisoria,LUNGHEZZA_MAX)!=1);
+
+							UTENTI[posizione_utente].data_nascita.giorno=atoi(data_provvisoria);
+
+							if(UTENTI[posizione_utente].data_nascita.giorno<=0 || UTENTI[posizione_utente].data_nascita.giorno>31)
+							{
+								system("cls");
+								logo();
+								SetColor(4);
+								printf("Hai inserito un giorno non corretto! Riprova\n\n\a");
+								SetColor(15);
+								system("pause");
+								system("cls");
+								logo();
+								printf("Inserisci nuova data di nascita:\n");
+							}
+						}while(UTENTI[posizione_utente].data_nascita.giorno<=0 || UTENTI[posizione_utente].data_nascita.giorno>31);
+					}
+				}
+
+				system("cls");
+				logo();
+				printf("Data di nascita inserita correttamente!\n\n");
+				fflush(stdin);
+			break;
 	}
 }
