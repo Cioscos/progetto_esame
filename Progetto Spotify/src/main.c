@@ -5,6 +5,21 @@
 
 int main(int argc, char *argv[]){
 
+	//CREAZIONE DATA ATTUALE---------------------------------------------------------------------------------------------------------------------------------------------
+	time_t t=time(NULL);		//Creazione di una veriabile di tipo "time_t" nella quale inserisco tutte le informazini del calendario di windows
+	struct tm *tp=localtime(&t);		    //Creo una variabile di tipo struct "tm" nella quale inserisco le informazioni contenute in "t"
+
+	//Inserisco nelle variabili momentanee elementi della variabile "tp"
+	char giorno_corrente[3];		//Variaible  momentanea contenente giorno corrente
+	int mese_corrente;				//Variaible  momentanea contenente mese corrente
+	char anno_corrente[5];			//Variaible  momentanea contenente anno correntE
+	strftime (anno_corrente,5,"%Y", tp);
+    mese_corrente=tp->tm_mon+1;
+    strftime (giorno_corrente,3,"%d", tp);
+    DATA_CORRENTE.anno=atoi(anno_corrente);
+    DATA_CORRENTE.mese=mese_corrente;
+    DATA_CORRENTE.giorno=atoi(giorno_corrente);
+
 	//DEFINIZIONE VARIABILI --------------------------------------------------------------------------------------------------------------------------------------------------
 	char input_utente[LUNGHEZZA_INPUT]={"1"};		//Variabile contenente l'input dell'utente
 	char lista_generi[GENERI_TOT][LUNGHEZZA_MAX]={"Electro","Pop","Techno","Rock","Jazz","Rap","Blues","Country","Britpop","Dubstep"};

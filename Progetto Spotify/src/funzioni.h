@@ -18,6 +18,11 @@
 #define ULTIMO_MESE 12		//Numero mese di dicembre
 #define stringclear(s, dim) memset(s, '\0', dim);        // Macro azzeramento stringa, ovvero riempie la stringa di caratteri terminatori
 
+//INCLUSIONE LIBRERIE COMPILATORE-------------------------------------------------------------------------------------------------------------------------------------------
+#include <time.h>
+#include <ctype.h>
+#include <stdlib.h>
+#include <stdio.h>
 
 //DEFINIZIONE DI STRUTTURE -------------------------------------------------------------------------------------------------------------------------------------------------
 struct DATA{
@@ -25,7 +30,7 @@ struct DATA{
 	unsigned int mese;
 	unsigned int anno;
 };
-
+struct DATA DATA_CORRENTE;
 
 struct ARTISTA{
 	char codice[LUNGHEZZA_CODICE];
@@ -47,10 +52,9 @@ struct UTENTE {
 	struct DATA data_nascita;
 	struct DATA data_iscrizione;
 };
-struct UTENTE UTENTI[UTENTI_MAX];	/*Bisogna ancora inserire le preferenze sugli artisti e sui generi*/
+struct UTENTE UTENTI[UTENTI_MAX];	//Bisogna ancora inserire le preferenze sugli artisti e sui generi
 
 unsigned int flag;		//Controllo sull'entrata nel do while | 0 Entrato almeno una volta nel do while - 1 Mai entrato nel do while
-
 
 
 //PROTOTIPI DI FUNZIONI ---------------------------------------------------------------------------------------------------------------------------------------------------------------------

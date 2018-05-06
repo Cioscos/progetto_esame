@@ -3,11 +3,10 @@
 #include <string.h>
 #include <ctype.h>
 #include <windows.h>
-#include <conio.h>
+#include <time.h>
 #include "funzioni.h"
 
 //GESTIONE ARTISTI---------------------------------------------------------------------------------------------------------------------
-
 int inserimento_artista(char lista_generi[][LUNGHEZZA_MAX], int artisti_effettivi)
 {
 

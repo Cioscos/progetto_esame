@@ -17,21 +17,6 @@ int inserimento_utente(int utenti_effettivi)
 	char controllo[LUNGHEZZA_PASS]={'\0'};		//Variabile utilizzata per effettuare un doppio controllo sulla password per verificare che corrisponda alla prima chiesta in input
 	int uguali;	//Variaibile utilizzata come flag    0=Controllo non superato | 1=Controllo superato
 	char data_provvisoria[LUNGHEZZA_MAX]={'\0'};		//Variabile contenente la data di tipo char per effettuare i controlli
-	char giorno_corrente[3];		//Variaible  momentanea contenente giorno corrente
-	int mese_corrente;				//Variaible  momentanea contenente mese corrente
-	char anno_corrente[5];			//Variaible  momentanea contenente anno corrente
-	struct DATA DATA_CORRENTE;			//Creazione variabile di tipo struct data
-	time_t t=time(NULL);		//Creazione di una veriabile di tipo "time_t" nella quale inserisco tutte le informazini del calendario di windows
-	struct tm *tp=localtime(&t);		    //Creo una variabile di tipo struct "tm" nella quale inserisco le informazioni contenute in "t"
-
-	//Inserisco nelle variabili momentanee elementi della variabile "tp"
-	strftime (anno_corrente,5,"%Y", tp);
-    mese_corrente=tp->tm_mon+1;
-    strftime (giorno_corrente,3,"%d", tp);
-    DATA_CORRENTE.anno=atoi(anno_corrente);
-    DATA_CORRENTE.mese=mese_corrente;
-    DATA_CORRENTE.giorno=atoi(giorno_corrente);
-
 
 //INSERIMENTO NOME UTENTE
 
