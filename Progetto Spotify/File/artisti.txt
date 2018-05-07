@@ -1,2 +1,2 @@
-0001,Depeche Mode,Rock,Virgin Radio,Inglese,1980
-0002,Martin Garrix,Electro,Spinning Records,Olandese,2012
+0001,Depeche Mode,Virgin Radio,Inglese,1980,0,0,Electro,Pop,Techno,Rock,Jazz,Rap,Blues,Country,Britpop,Dubstep
+0002,Martin Garrix,Spinning Records,Olandese,2013,0,0,Electro,Pop,Techno,Rock,Jazz,Rap,Blues,Country,Britpop,Dubstep

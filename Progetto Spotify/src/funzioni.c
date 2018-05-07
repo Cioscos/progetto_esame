@@ -309,9 +309,9 @@ int isControllo_Esistenza(int numero_presenze, char* campo, char* controllo)
 
 }
 
-int gestione_file(char modalita, int tipo, int *nartisti, int *nutenti)                 //LETTURA FILE "r" | SCRITTURA FILE "w"  | AGGIUNTA ELEMENTO "a"   --   ARTISTA "0"  --  UTENTE "1"
+void gestione_file(char modalita, int tipo, int *nartisti, int *nutenti)                 //LETTURA FILE "r" | SCRITTURA FILE "w"  | AGGIUNTA ELEMENTO "a"   --   ARTISTA "0"  --  UTENTE "1"
 {
-	int i=0, j;
+	int i=0, j, k;
 	char buffer[101]={'\0'};
 	char *token;
 	char virgola[2]={","};
@@ -340,16 +340,6 @@ int gestione_file(char modalita, int tipo, int *nartisti, int *nutenti)         
 				strcpy(ARTISTI[i].nome, token);
 
 				token=strtok(NULL, virgola);
-
-				for(j=0;j<GENERI_TOT;j++)
-				{
-					if(strcmp(lista_generi[j], token)==0)
-					{
-						ARTISTI[i].genere[j]=1;
-					}
-				}
-
-				token=strtok(NULL, virgola);
 				strcpy(ARTISTI[i].produttore, token);
 
 				token=strtok(NULL, virgola);
@@ -358,14 +348,33 @@ int gestione_file(char modalita, int tipo, int *nartisti, int *nutenti)         
 				token=strtok(NULL, virgola);
 				ARTISTI[i].anno_inizio = atoi(token);
 
-				if( (token=strtok(NULL, virgola)) != NULL)
-				{
-					ARTISTI[i].ascolti = atoi(token);
-				}
+				token=strtok(NULL, virgola);
+				ARTISTI[i].ascolti = atoi(token);
 
-				if( (token=strtok(NULL, virgola)) != NULL)
+				token=strtok(NULL, virgola);
+				ARTISTI[i].preferenze = atoi(token);
+
+				token=strtok(NULL, virgola);
+				eliminazione_acapo(token);
+
+				for(k=0;k<GENERI_TOT;k++)   //TODO vito
 				{
-					ARTISTI[i].preferenze = atoi(token);
+					for(j=0;j<GENERI_TOT;j++)
+					{
+						if(strcmp(lista_generi[j], token)==0)
+						{
+							ARTISTI[i].genere[j]=1;
+							j=GENERI_TOT;
+							if( (token=strtok(NULL, virgola)) == NULL)
+							{
+								k=GENERI_TOT;
+							}
+							else
+							{
+								eliminazione_acapo(token);
+							}
+						}
+					}
 				}
 
 				i++;
@@ -380,7 +389,6 @@ int gestione_file(char modalita, int tipo, int *nartisti, int *nutenti)         
 			SetColor(15);
 			system("pause");
 			fclose(pf);
-			return 0;
 		}
 	}
 	else
@@ -393,7 +401,10 @@ int gestione_file(char modalita, int tipo, int *nartisti, int *nutenti)         
 
 			if(pf!=NULL)
 			{
-				strcpy(buffer, ARTISTI[*nartisti].codice);
+				*nartisti-=1;
+
+				strcpy(buffer,"\n");
+				strcat(buffer, ARTISTI[*nartisti].codice);
 				strcat(buffer,",");
 
 				strcat(buffer, ARTISTI[*nartisti].nome);
@@ -425,7 +436,8 @@ int gestione_file(char modalita, int tipo, int *nartisti, int *nutenti)         
 				itoa(ARTISTI[*nartisti].ascolti, itoa_bf, 10);
 				strcat(buffer, itoa_bf);
 
-				fputs(buffer, pf);
+				fprintf(pf, "%s", buffer);
+				*nartisti+=1;
 			}
 			else
 			{
@@ -434,7 +446,6 @@ int gestione_file(char modalita, int tipo, int *nartisti, int *nutenti)         
 				SetColor(15);
 				system("pause");
 				fclose(pf);
-				return 0;
 			}
 		}
 		else
@@ -455,11 +466,11 @@ int gestione_file(char modalita, int tipo, int *nartisti, int *nutenti)         
 						strcat(buffer, ARTISTI[j].nome);
 						strcat(buffer,",");
 
-						for(j=0;j<GENERI_TOT;j++)
+						for(i=0;i<GENERI_TOT;i++)
 						{
-							if(ARTISTI[j].genere[j]==1)
+							if(ARTISTI[j].genere[i]==1)
 							{
-								strcat(buffer, lista_generi[j]);
+								strcat(buffer, lista_generi[i]);
 								strcat(buffer,",");
 							}
 						}
@@ -483,7 +494,7 @@ int gestione_file(char modalita, int tipo, int *nartisti, int *nutenti)         
 
 						strcat(buffer, "\n");
 
-						fputs(buffer, pf);
+						fprintf(pf, "%s", buffer);
 					}
 				}
 				else
@@ -493,7 +504,6 @@ int gestione_file(char modalita, int tipo, int *nartisti, int *nutenti)         
 					SetColor(15);
 					system("pause");
 					fclose(pf);
-					return 0;
 				}
 			}
 			else
@@ -543,6 +553,7 @@ int gestione_file(char modalita, int tipo, int *nartisti, int *nutenti)         
 							UTENTI[i].data_iscrizione.anno=atoi(token);
 
 							i++;
+							*nutenti+=1;
 						}
 					}
 					else
@@ -552,7 +563,6 @@ int gestione_file(char modalita, int tipo, int *nartisti, int *nutenti)         
 						SetColor(15);
 						system("pause");
 						fclose(pf);
-						return 0;
 					}
 				}
 				else
@@ -565,7 +575,10 @@ int gestione_file(char modalita, int tipo, int *nartisti, int *nutenti)         
 
 						if(pf!=NULL)
 						{
-							strcpy(buffer, UTENTI[*nutenti].nickname);
+							*nutenti-=1;
+
+							strcpy(buffer,"\n");
+							strcat(buffer, UTENTI[*nutenti].nickname);
 							strcat(buffer,",");
 
 							strcat(buffer, UTENTI[*nutenti].password);
@@ -600,7 +613,9 @@ int gestione_file(char modalita, int tipo, int *nartisti, int *nutenti)         
 							itoa(UTENTI[*nutenti].data_iscrizione.anno, itoa_bf,10);
 							strcat(buffer, itoa_bf);
 
-							fputs(buffer, pf);
+							fprintf(pf,"%s", buffer);
+
+							*nutenti+=1;
 						}
 						else
 						{
@@ -609,7 +624,6 @@ int gestione_file(char modalita, int tipo, int *nartisti, int *nutenti)         
 							SetColor(15);
 							system("pause");
 							fclose(pf);
-							return 0;
 						}
 					}
 					else
@@ -660,7 +674,7 @@ int gestione_file(char modalita, int tipo, int *nartisti, int *nutenti)         
 								strcat(buffer, itoa_bf);
 								strcat(buffer, "\n");
 
-								fputs(buffer, pf);
+								fprintf(pf, "%s", buffer);
 
 								i++;
 							}
@@ -671,7 +685,6 @@ int gestione_file(char modalita, int tipo, int *nartisti, int *nutenti)         
 								SetColor(15);
 								system("pause");
 								fclose(pf);
-								return 0;
 							}
 						}
 					}
@@ -679,8 +692,5 @@ int gestione_file(char modalita, int tipo, int *nartisti, int *nutenti)         
 			}
 		}
 	}
-
-
-return 1;
 }
 

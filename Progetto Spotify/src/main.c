@@ -27,16 +27,9 @@ int main(int argc, char *argv[]){
 	int posizione_utente=-1;				//Variabile contenente la posizione nel vettore dell'utente loggato
 	int artisti_effettivi=0;
 	int utenti_effettivi=0;
-	int controllo_file=0;
 
 	//CARICO ARTISTI DA FILE
-	controllo_file=gestione_file('r', 0, &artisti_effettivi, &utenti_effettivi);
-	if(controllo_file==0)
-	{
-		printf("\n\aFile non trovato!\n");
-		system("pause");
-	}
-
+	gestione_file('r', 0, &artisti_effettivi, &utenti_effettivi);
 
 	//CODICE -----------------------------------------------------------------------------------------------------------------------------------------------------------------
 	while(strcmp(input_utente,"0")!=0)		//Permette di eseguire piu opreazioni fin quando non viene inserito 0, ovvero l'opzione termina programma
@@ -83,12 +76,14 @@ int main(int argc, char *argv[]){
 							case 2:	system("cls");
 									artisti_effettivi=inserimento_artista(lista_generi, artisti_effettivi);
 									system("PAUSE");
+									gestione_file('a', 0, &artisti_effettivi, &utenti_effettivi);
 									break;
 
 							//---- Modifica un artista ----
 							case 3:	system("cls");
 									logo();
 									modifica_artista(artisti_effettivi, lista_generi);
+									gestione_file('w', 0, &artisti_effettivi, &utenti_effettivi);
 									break;
 
 							//---- Elimina un artista ----
