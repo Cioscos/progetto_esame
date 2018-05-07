@@ -312,18 +312,17 @@ int isControllo_Esistenza(int numero_presenze, char* campo, char* controllo)
 void gestione_file(char modalita, int tipo, int *nartisti, int *nutenti)                 //LETTURA FILE "r" | SCRITTURA FILE "w"  | AGGIUNTA ELEMENTO "a"   --   ARTISTA "0"  --  UTENTE "1"
 {
 	int i=0, j, k;
-	char buffer[101]={'\0'};
+	char buffer[200]={'\0'};
 	char *token;
 	char virgola[2]={","};
 	char barra[2]={"/"};
 	char itoa_bf[5]={'\0'};
-	char lista_generi[GENERI_TOT][LUNGHEZZA_MAX]={"Electro","Pop","Techno","Rock","Jazz","Rap","Blues","Country","Britpop","Dubstep"};
-
+	char lista_generi[GENERI_TOT][LUNGHEZZA_MAX]={"N.A.","Electro","Pop","Techno","Rock","Jazz","Rap","Blues","Country","Britpop","Dubstep","EDM","Hip-Hop","House","Musica leggera","Trap","Trance","Disco","Dance"};
 	if(modalita=='r' && tipo==0)
 	{
 		FILE *pf;
 
-		pf = fopen("C:\\Users\\claud\\git\\progetto_esame\\Progetto Spotify\\File\\artisti.txt", "r");
+		pf = fopen("C:\\Users\\Mattia\\git\\progetto_esame\\Progetto Spotify\\File\\artisti.txt", "r");
 
 		if(pf!=NULL)
 		{
@@ -331,7 +330,7 @@ void gestione_file(char modalita, int tipo, int *nartisti, int *nutenti)        
 
 			while( !feof(pf) )
 			{
-				fgets(buffer, 101, pf);
+				fgets(buffer, 200, pf);
 
 				token=strtok(buffer, virgola);
 				strcpy(ARTISTI[i].codice, token);
@@ -397,7 +396,7 @@ void gestione_file(char modalita, int tipo, int *nartisti, int *nutenti)        
 		{
 			FILE *pf;
 
-			pf = fopen("C:\\Users\\claud\\git\\progetto_esame\\Progetto Spotify\\File\\artisti.txt", "a");
+			pf = fopen("C:\\Users\\Mattia\\git\\progetto_esame\\Progetto Spotify\\File\\artisti.txt", "a");
 
 			if(pf!=NULL)
 			{
@@ -454,7 +453,7 @@ void gestione_file(char modalita, int tipo, int *nartisti, int *nutenti)        
 			{
 				FILE *pf;
 
-				pf = fopen("C:\\Users\\claud\\git\\progetto_esame\\Progetto Spotify\\File\\artisti.txt", "w");
+				pf = fopen("C:\\Users\\Mattia\\git\\progetto_esame\\Progetto Spotify\\File\\artisti.txt", "w");
 
 				if(pf!=NULL)
 				{
@@ -512,7 +511,7 @@ void gestione_file(char modalita, int tipo, int *nartisti, int *nutenti)        
 				{
 					FILE *pf;
 
-					pf = fopen("C:\\Users\\claud\\git\\progetto_esame\\Progetto Spotify\\File\\utenti.txt", "r");
+					pf = fopen("C:\\Users\\Mattia\\git\\progetto_esame\\Progetto Spotify\\File\\utenti.txt", "r");
 
 					if(pf!=NULL)
 					{
@@ -571,7 +570,7 @@ void gestione_file(char modalita, int tipo, int *nartisti, int *nutenti)        
 					{
 						FILE *pf;
 
-						pf = fopen("C:\\Users\\claud\\git\\progetto_esame\\Progetto Spotify\\File\\utenti.txt", "a");
+						pf = fopen("C:\\Users\\Mattia\\git\\progetto_esame\\Progetto Spotify\\File\\utenti.txt", "a");
 
 						if(pf!=NULL)
 						{
@@ -632,7 +631,7 @@ void gestione_file(char modalita, int tipo, int *nartisti, int *nutenti)        
 						{
 							FILE *pf;
 
-							pf = fopen("C:\\Users\\claud\\git\\progetto_esame\\Progetto Spotify\\File\\utenti.txt", "w");
+							pf = fopen("C:\\Users\\Mattia\\git\\progetto_esame\\Progetto Spotify\\File\\utenti.txt", "w");
 
 							i=0;
 

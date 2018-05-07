@@ -23,7 +23,7 @@ int main(int argc, char *argv[]){
 
 	//DEFINIZIONE VARIABILI --------------------------------------------------------------------------------------------------------------------------------------------------
 	char input_utente[LUNGHEZZA_INPUT]={"1"};		//Variabile contenente l'input dell'utente
-	char lista_generi[GENERI_TOT][LUNGHEZZA_MAX]={"Electro","Pop","Techno","Rock","Jazz","Rap","Blues","Country","Britpop","Dubstep"};
+	char lista_generi[GENERI_TOT][LUNGHEZZA_MAX]={"N.A.","Electro","Pop","Techno","Rock","Jazz","Rap","Blues","Country","Britpop","Dubstep","EDM","Hip-Hop","House","Musica leggera","Trap","Trance","Disco","Dance"};
 	int posizione_utente=-1;				//Variabile contenente la posizione nel vettore dell'utente loggato
 	int artisti_effettivi=0;
 	int utenti_effettivi=0;

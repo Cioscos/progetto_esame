@@ -11,7 +11,7 @@
 #define MENU_ARTISTA 1		//Menu artista
 #define MENU_UTENTE 2		//Menu utente
 #define MENU_SECONDARIO 3	//Menu intermedio prima dell'utente
-#define GENERI_TOT 10		//Numero generi esistenti
+#define GENERI_TOT 19		//Numero generi esistenti
 #define LUNGHEZZA_CODICE 5	//Lunghezza massima del codice artista
 #define ETA_MINIMA 16 		//Età minima per iscriversi
 #define PRIMO_MESE 1		//Numero mese di gennaio
