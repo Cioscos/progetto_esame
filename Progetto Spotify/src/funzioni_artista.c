@@ -156,7 +156,7 @@ void visualizzazione_artisti(char lista_generi[][LUNGHEZZA_MAX], int artisti_eff
 //MOSTRO INFORMAZIONE ARTISTA-----------------------------
 	for(i=0;i<artisti_effettivi;i++)
 	{
-		printf("%d ",i+1);
+		printf("\n\n%d ",i+1);
 		SetColor(2);
 		printf("-------NOME:");
 		SetColor(11);
