@@ -63,16 +63,13 @@ int isControllo_Numero(char appoggio[], int lunghezza_massima);		//Funzione bool
 int isControllo_Esistenza(int numero_presenze, char* campo, char* controllo);
 void eliminazione_acapo(char* input);
 int isAutenticazione(int utenti_effettivi, int* posizione_utente);
-
+int gestione_file(char modalita, int tipo, int *nartisti, int *nutenti);
 
 
 int inserimento_artista(char lista_generi[][LUNGHEZZA_MAX], int artisti_effettivi);
 void visualizzazione_artisti(char lista_generi[][LUNGHEZZA_MAX], int artisti_effettivi);
 void modifica_artista(int artisti_effettivi, char lista_generi[][LUNGHEZZA_MAX]);
 int elimina_artista(int artisti_effetivi);
-
-
-
 
 
 int inserimento_utente(int utenti_effettivi);

@@ -309,3 +309,378 @@ int isControllo_Esistenza(int numero_presenze, char* campo, char* controllo)
 
 }
 
+int gestione_file(char modalita, int tipo, int *nartisti, int *nutenti)                 //LETTURA FILE "r" | SCRITTURA FILE "w"  | AGGIUNTA ELEMENTO "a"   --   ARTISTA "0"  --  UTENTE "1"
+{
+	int i=0, j;
+	char buffer[101]={'\0'};
+	char *token;
+	char virgola[2]={","};
+	char barra[2]={"/"};
+	char itoa_bf[5]={'\0'};
+	char lista_generi[GENERI_TOT][LUNGHEZZA_MAX]={"Electro","Pop","Techno","Rock","Jazz","Rap","Blues","Country","Britpop","Dubstep"};
+
+	if(modalita=='r' && tipo==0)
+	{
+		FILE *pf;
+
+		pf = fopen("C:\\Users\\claud\\git\\progetto_esame\\Progetto Spotify\\File\\artisti.txt", "r");
+
+		if(pf!=NULL)
+		{
+			i=0;
+
+			while( !feof(pf) )
+			{
+				fgets(buffer, 101, pf);
+
+				token=strtok(buffer, virgola);
+				strcpy(ARTISTI[i].codice, token);
+
+				token=strtok(NULL, virgola);
+				strcpy(ARTISTI[i].nome, token);
+
+				token=strtok(NULL, virgola);
+
+				for(j=0;j<GENERI_TOT;j++)
+				{
+					if(strcmp(lista_generi[j], token)==0)
+					{
+						ARTISTI[i].genere[j]=1;
+					}
+				}
+
+				token=strtok(NULL, virgola);
+				strcpy(ARTISTI[i].produttore, token);
+
+				token=strtok(NULL, virgola);
+				strcpy(ARTISTI[i].nazionalita, token);
+
+				token=strtok(NULL, virgola);
+				ARTISTI[i].anno_inizio = atoi(token);
+
+				if( (token=strtok(NULL, virgola)) != NULL)
+				{
+					ARTISTI[i].ascolti = atoi(token);
+				}
+
+				if( (token=strtok(NULL, virgola)) != NULL)
+				{
+					ARTISTI[i].preferenze = atoi(token);
+				}
+
+				i++;
+				*nartisti+=1;
+			}
+			fclose(pf);
+		}
+		else
+		{
+			SetColor(4);
+			printf("\n\aErrore nel caricamento del file\n");
+			SetColor(15);
+			system("pause");
+			fclose(pf);
+			return 0;
+		}
+	}
+	else
+	{
+		if(modalita=='a' && tipo==0)
+		{
+			FILE *pf;
+
+			pf = fopen("C:\\Users\\claud\\git\\progetto_esame\\Progetto Spotify\\File\\artisti.txt", "a");
+
+			if(pf!=NULL)
+			{
+				strcpy(buffer, ARTISTI[*nartisti].codice);
+				strcat(buffer,",");
+
+				strcat(buffer, ARTISTI[*nartisti].nome);
+				strcat(buffer,",");
+
+				for(j=0;j<GENERI_TOT;j++)
+				{
+					if(ARTISTI[*nartisti].genere[j]==1)
+					{
+						strcat(buffer, lista_generi[j]);
+						strcat(buffer,",");
+					}
+				}
+
+				strcat(buffer, ARTISTI[*nartisti].produttore);
+				strcat(buffer,",");
+
+				strcat(buffer, ARTISTI[*nartisti].nazionalita);
+				strcat(buffer,",");
+
+				itoa(ARTISTI[*nartisti].anno_inizio, itoa_bf, 10);
+				strcat(buffer, itoa_bf);
+				strcat(buffer,",");
+
+				itoa(ARTISTI[*nartisti].ascolti, itoa_bf, 10);
+				strcat(buffer, itoa_bf);
+				strcat(buffer,",");
+
+				itoa(ARTISTI[*nartisti].ascolti, itoa_bf, 10);
+				strcat(buffer, itoa_bf);
+
+				fputs(buffer, pf);
+			}
+			else
+			{
+				SetColor(4);
+				printf("\n\aErrore nel caricamento del file\n");
+				SetColor(15);
+				system("pause");
+				fclose(pf);
+				return 0;
+			}
+		}
+		else
+		{
+			if(modalita=='w' && tipo==0)
+			{
+				FILE *pf;
+
+				pf = fopen("C:\\Users\\claud\\git\\progetto_esame\\Progetto Spotify\\File\\artisti.txt", "w");
+
+				if(pf!=NULL)
+				{
+					for(j=0;j<*nartisti;j++)
+					{
+						strcpy(buffer, ARTISTI[j].codice);
+						strcat(buffer,",");
+
+						strcat(buffer, ARTISTI[j].nome);
+						strcat(buffer,",");
+
+						for(j=0;j<GENERI_TOT;j++)
+						{
+							if(ARTISTI[j].genere[j]==1)
+							{
+								strcat(buffer, lista_generi[j]);
+								strcat(buffer,",");
+							}
+						}
+
+						strcat(buffer, ARTISTI[j].produttore);
+						strcat(buffer,",");
+
+						strcat(buffer, ARTISTI[j].nazionalita);
+						strcat(buffer,",");
+
+						itoa(ARTISTI[j].anno_inizio, itoa_bf, 10);
+						strcat(buffer, itoa_bf);
+						strcat(buffer,",");
+
+						itoa(ARTISTI[j].ascolti, itoa_bf, 10);
+						strcat(buffer, itoa_bf);
+						strcat(buffer,",");
+
+						itoa(ARTISTI[j].ascolti, itoa_bf, 10);
+						strcat(buffer, itoa_bf);
+
+						strcat(buffer, "\n");
+
+						fputs(buffer, pf);
+					}
+				}
+				else
+				{
+					SetColor(4);
+					printf("\n\aErrore nel caricamento del file\n");
+					SetColor(15);
+					system("pause");
+					fclose(pf);
+					return 0;
+				}
+			}
+			else
+			{
+				if(modalita=='r' && tipo==1)
+				{
+					FILE *pf;
+
+					pf = fopen("C:\\Users\\claud\\git\\progetto_esame\\Progetto Spotify\\File\\utenti.txt", "r");
+
+					if(pf!=NULL)
+					{
+						i=0;
+
+						while(!feof(pf))
+						{
+							fgets(buffer, 101, pf);
+
+							token=strtok(buffer, virgola);
+							strcpy(UTENTI[i].nickname, token);
+
+							token=strtok(NULL, virgola);
+							strcpy(UTENTI[i].password, token);
+
+							token=strtok(NULL, virgola);
+							strcpy(UTENTI[i].nome, token);
+
+							token=strtok(NULL, virgola);
+							strcpy(UTENTI[i].cognome, token);
+
+							token=strtok(NULL, barra);
+							UTENTI[i].data_nascita.giorno=atoi(token);
+
+							token=strtok(NULL, barra);
+							UTENTI[i].data_nascita.mese=atoi(token);
+
+							token=strtok(NULL, virgola);
+							UTENTI[i].data_nascita.anno=atoi(token);
+
+							token=strtok(NULL, barra);
+							UTENTI[i].data_iscrizione.giorno=atoi(token);
+
+							token=strtok(NULL, barra);
+							UTENTI[i].data_iscrizione.mese=atoi(token);
+
+							token=strtok(NULL, barra);
+							UTENTI[i].data_iscrizione.anno=atoi(token);
+
+							i++;
+						}
+					}
+					else
+					{
+						SetColor(4);
+						printf("\n\aErrore nel caricamento del file\n");
+						SetColor(15);
+						system("pause");
+						fclose(pf);
+						return 0;
+					}
+				}
+				else
+				{
+					if(modalita=='a' && tipo==1)
+					{
+						FILE *pf;
+
+						pf = fopen("C:\\Users\\claud\\git\\progetto_esame\\Progetto Spotify\\File\\utenti.txt", "a");
+
+						if(pf!=NULL)
+						{
+							strcpy(buffer, UTENTI[*nutenti].nickname);
+							strcat(buffer,",");
+
+							strcat(buffer, UTENTI[*nutenti].password);
+							strcat(buffer, ",");
+
+							strcat(buffer, UTENTI[*nutenti].nome);
+							strcat(buffer, ",");
+
+							strcat(buffer, UTENTI[*nutenti].cognome);
+							strcat(buffer, ",");
+
+							itoa(UTENTI[*nutenti].data_nascita.giorno, itoa_bf,10);
+							strcat(buffer, itoa_bf);
+							strcat(buffer, "/");
+
+							itoa(UTENTI[*nutenti].data_nascita.mese, itoa_bf,10);
+							strcat(buffer, itoa_bf);
+							strcat(buffer, "/");
+
+							itoa(UTENTI[*nutenti].data_nascita.anno, itoa_bf,10);
+							strcat(buffer, itoa_bf);
+							strcat(buffer, "/,");
+
+							itoa(UTENTI[*nutenti].data_iscrizione.giorno, itoa_bf,10);
+							strcat(buffer, itoa_bf);
+							strcat(buffer, "/");
+
+							itoa(UTENTI[*nutenti].data_iscrizione.mese, itoa_bf,10);
+							strcat(buffer, itoa_bf);
+							strcat(buffer, "/");
+
+							itoa(UTENTI[*nutenti].data_iscrizione.anno, itoa_bf,10);
+							strcat(buffer, itoa_bf);
+
+							fputs(buffer, pf);
+						}
+						else
+						{
+							SetColor(4);
+							printf("\n\aErrore nel caricamento del file\n");
+							SetColor(15);
+							system("pause");
+							fclose(pf);
+							return 0;
+						}
+					}
+					else
+					{
+						if(modalita=='w' && tipo==1)
+						{
+							FILE *pf;
+
+							pf = fopen("C:\\Users\\claud\\git\\progetto_esame\\Progetto Spotify\\File\\utenti.txt", "w");
+
+							i=0;
+
+							if(pf!=NULL)
+							{
+								strcpy(buffer, UTENTI[i].nickname);
+								strcat(buffer,",");
+
+								strcat(buffer, UTENTI[i].password);
+								strcat(buffer, ",");
+
+								strcat(buffer, UTENTI[i].nome);
+								strcat(buffer, ",");
+
+								strcat(buffer, UTENTI[i].cognome);
+								strcat(buffer, ",");
+
+								itoa(UTENTI[i].data_nascita.giorno, itoa_bf,10);
+								strcat(buffer, itoa_bf);
+								strcat(buffer, "/");
+
+								itoa(UTENTI[i].data_nascita.mese, itoa_bf,10);
+								strcat(buffer, itoa_bf);
+								strcat(buffer, "/");
+
+								itoa(UTENTI[i].data_nascita.anno, itoa_bf,10);
+								strcat(buffer, itoa_bf);
+								strcat(buffer, "/,");
+
+								itoa(UTENTI[i].data_iscrizione.giorno, itoa_bf,10);
+								strcat(buffer, itoa_bf);
+								strcat(buffer, "/");
+
+								itoa(UTENTI[i].data_iscrizione.mese, itoa_bf,10);
+								strcat(buffer, itoa_bf);
+								strcat(buffer, "/");
+
+								itoa(UTENTI[i].data_iscrizione.anno, itoa_bf,10);
+								strcat(buffer, itoa_bf);
+								strcat(buffer, "\n");
+
+								fputs(buffer, pf);
+
+								i++;
+							}
+							else
+							{
+								SetColor(4);
+								printf("\n\aErrore nel caricamento del file\n");
+								SetColor(15);
+								system("pause");
+								fclose(pf);
+								return 0;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+
+return 1;
+}
+

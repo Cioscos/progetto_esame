@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 #include "funzioni.h"
 
 int main(int argc, char *argv[]){
@@ -26,7 +27,15 @@ int main(int argc, char *argv[]){
 	int posizione_utente=-1;				//Variabile contenente la posizione nel vettore dell'utente loggato
 	int artisti_effettivi=0;
 	int utenti_effettivi=0;
+	int controllo_file=0;
 
+	//CARICO ARTISTI DA FILE
+	controllo_file=gestione_file('r', 0, &artisti_effettivi, &utenti_effettivi);
+	if(controllo_file==0)
+	{
+		printf("\n\aFile non trovato!\n");
+		system("pause");
+	}
 
 
 	//CODICE -----------------------------------------------------------------------------------------------------------------------------------------------------------------
