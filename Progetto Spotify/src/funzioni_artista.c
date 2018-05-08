@@ -233,11 +233,11 @@ void modifica_artista(int artisti_effettivi, char lista_generi[][LUNGHEZZA_MAX])
 				do{						//Controllo sull input fornito dall'utente
 					system("cls");
 					logo();
-					printf("[1]Nome\n"
-							"[2]Genere\n"
-							"[3]Anno\n"
-							"[4]Produttore\n"
-							"[5]Nazionalit%c\nInserisci comando:",133);
+					SetColor(2); printf("[1]"); SetColor(15); printf("Nome\n");
+					SetColor(2); printf("[2]"); SetColor(15); printf("Genere\n");
+					SetColor(2); printf("[3]"); SetColor(15); printf("Anno\n");
+					SetColor(2); printf("[4]"); SetColor(15); printf("Produttore\n");
+					SetColor(2); printf("[5]"); SetColor(15); printf("Nazionalit%c\nInserisci comando:",133);
 					gets(scelta);
 
 					if((strcmp(scelta,"1")<0) || (strcmp(scelta,"5")>0))

@@ -356,7 +356,7 @@ void gestione_file(char modalita, int tipo, int *nartisti, int *nutenti)        
 				token=strtok(NULL, virgola);
 				eliminazione_acapo(token);
 
-				for(k=0;k<GENERI_TOT;k++)   //TODO vito
+				for(k=0;k<GENERI_TOT;k++)
 				{
 					for(j=0;j<GENERI_TOT;j++)
 					{
