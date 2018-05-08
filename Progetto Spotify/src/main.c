@@ -28,8 +28,9 @@ int main(int argc, char *argv[]){
 	int artisti_effettivi=0;
 	int utenti_effettivi=0;
 
-	//CARICO ARTISTI DA FILE
-	gestione_file('r', 0, &artisti_effettivi, &utenti_effettivi);
+	//CARICO ARTISTI E UTENTI DA FILE
+	gestione_file('r', 0, &artisti_effettivi);
+	gestione_file('r', 1, &utenti_effettivi);
 
 	//CODICE -----------------------------------------------------------------------------------------------------------------------------------------------------------------
 	while(strcmp(input_utente,"0")!=0)		//Permette di eseguire piu opreazioni fin quando non viene inserito 0, ovvero l'opzione termina programma
@@ -76,20 +77,21 @@ int main(int argc, char *argv[]){
 							case 2:	system("cls");
 									artisti_effettivi=inserimento_artista(lista_generi, artisti_effettivi);
 									system("PAUSE");
-									gestione_file('a', 0, &artisti_effettivi, &utenti_effettivi);
+									gestione_file('a', 0, &artisti_effettivi);
 									break;
 
 							//---- Modifica un artista ----
 							case 3:	system("cls");
 									logo();
 									modifica_artista(artisti_effettivi, lista_generi);
-									gestione_file('w', 0, &artisti_effettivi, &utenti_effettivi);
+									gestione_file('w', 0, &artisti_effettivi);
 									break;
 
 							//---- Elimina un artista ----
 							case 4:	system("cls");
 									logo();
 									artisti_effettivi=elimina_artista(artisti_effettivi);
+									gestione_file('w', 0, &artisti_effettivi);
 									system("PAUSE");
 									break;
 
@@ -125,6 +127,7 @@ int main(int argc, char *argv[]){
 							//---- Inserisci nuovo utente ----
 							case 1:	system("cls");
 									utenti_effettivi=inserimento_utente(utenti_effettivi);
+									gestione_file('a', 1, &utenti_effettivi);
 									break;
 
 							case 2:	system("cls");
@@ -172,6 +175,7 @@ int main(int argc, char *argv[]){
 												case 4:	system("cls");
 														logo();
 														modifica_utente(utenti_effettivi, posizione_utente);
+														gestione_file('w', 1, &utenti_effettivi);
 														system("PAUSE");
 														break;
 
@@ -179,6 +183,7 @@ int main(int argc, char *argv[]){
 												case 5:	system("cls");
 														logo();
 														utenti_effettivi=elimina_utente(utenti_effettivi, posizione_utente);
+														gestione_file('w', 1, &utenti_effettivi);
 														system("PAUSE");
 														break;
 

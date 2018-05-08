@@ -309,7 +309,7 @@ int isControllo_Esistenza(int numero_presenze, char* campo, char* controllo)
 
 }
 
-void gestione_file(char modalita, int tipo, int *nartisti, int *nutenti)                 //LETTURA FILE "r" | SCRITTURA FILE "w"  | AGGIUNTA ELEMENTO "a"   --   ARTISTA "0"  --  UTENTE "1"
+void gestione_file(char modalita, int tipo, int *numero)                 //LETTURA FILE "r" | SCRITTURA FILE "w"  | AGGIUNTA ELEMENTO "a"   --   ARTISTA "0"  --  UTENTE "1"
 {
 	int i=0, j, k;
 	char buffer[200]={'\0'};
@@ -322,7 +322,7 @@ void gestione_file(char modalita, int tipo, int *nartisti, int *nutenti)        
 	{
 		FILE *pf;
 
-		pf = fopen("C:\\Users\\Mattia\\git\\progetto_esame\\Progetto Spotify\\File\\artisti.txt", "r");
+		pf = fopen("C:\\Users\\claud\\git\\progetto_esame\\Progetto Spotify\\File\\artisti.txt", "r");
 
 		if(pf!=NULL)
 		{
@@ -377,7 +377,7 @@ void gestione_file(char modalita, int tipo, int *nartisti, int *nutenti)        
 				}
 
 				i++;
-				*nartisti+=1;
+				*numero+=1;
 			}
 			fclose(pf);
 		}
@@ -396,47 +396,51 @@ void gestione_file(char modalita, int tipo, int *nartisti, int *nutenti)        
 		{
 			FILE *pf;
 
-			pf = fopen("C:\\Users\\Mattia\\git\\progetto_esame\\Progetto Spotify\\File\\artisti.txt", "a");
+			pf = fopen("C:\\Users\\claud\\git\\progetto_esame\\Progetto Spotify\\File\\artisti.txt", "a");
 
 			if(pf!=NULL)
 			{
-				*nartisti-=1;
+				*numero-=1;
 
 				strcpy(buffer,"\n");
-				strcat(buffer, ARTISTI[*nartisti].codice);
+				strcat(buffer, ARTISTI[*numero].codice);
 				strcat(buffer,",");
 
-				strcat(buffer, ARTISTI[*nartisti].nome);
+				strcat(buffer, ARTISTI[*numero].nome);
 				strcat(buffer,",");
 
-				for(j=0;j<GENERI_TOT;j++)
+				strcat(buffer, ARTISTI[*numero].produttore);
+				strcat(buffer,",");
+
+				strcat(buffer, ARTISTI[*numero].nazionalita);
+				strcat(buffer,",");
+
+				itoa(ARTISTI[*numero].anno_inizio, itoa_bf, 10);
+				strcat(buffer, itoa_bf);
+				strcat(buffer,",");
+
+				itoa(ARTISTI[*numero].ascolti, itoa_bf, 10);
+				strcat(buffer, itoa_bf);
+				strcat(buffer,",");
+
+				itoa(ARTISTI[*numero].preferenze, itoa_bf, 10);
+				strcat(buffer, itoa_bf);
+				strcat(buffer,",");
+
+				for(i=0;i<GENERI_TOT;i++)
 				{
-					if(ARTISTI[*nartisti].genere[j]==1)
+					if(ARTISTI[*numero].genere[i]==1)
 					{
-						strcat(buffer, lista_generi[j]);
+						strcat(buffer, lista_generi[i]);
 						strcat(buffer,",");
 					}
 				}
 
-				strcat(buffer, ARTISTI[*nartisti].produttore);
-				strcat(buffer,",");
-
-				strcat(buffer, ARTISTI[*nartisti].nazionalita);
-				strcat(buffer,",");
-
-				itoa(ARTISTI[*nartisti].anno_inizio, itoa_bf, 10);
-				strcat(buffer, itoa_bf);
-				strcat(buffer,",");
-
-				itoa(ARTISTI[*nartisti].ascolti, itoa_bf, 10);
-				strcat(buffer, itoa_bf);
-				strcat(buffer,",");
-
-				itoa(ARTISTI[*nartisti].ascolti, itoa_bf, 10);
-				strcat(buffer, itoa_bf);
+				buffer[strlen(buffer)-1]='\0';
 
 				fprintf(pf, "%s", buffer);
-				*nartisti+=1;
+
+				*numero+=1;
 			}
 			else
 			{
@@ -453,26 +457,26 @@ void gestione_file(char modalita, int tipo, int *nartisti, int *nutenti)        
 			{
 				FILE *pf;
 
-				pf = fopen("C:\\Users\\Mattia\\git\\progetto_esame\\Progetto Spotify\\File\\artisti.txt", "w");
+				pf = fopen("C:\\Users\\claud\\git\\progetto_esame\\Progetto Spotify\\File\\artisti.txt", "w");
 
 				if(pf!=NULL)
 				{
-					for(j=0;j<*nartisti;j++)
+					for(j=0;j<*numero;j++)
 					{
-						strcpy(buffer, ARTISTI[j].codice);
-						strcat(buffer,",");
+						if(j>0)
+						{
+							strcpy(buffer,"\n");
+							strcat(buffer, ARTISTI[j].codice);
+							strcat(buffer,",");
+						}
+						else
+						{
+							strcpy(buffer, ARTISTI[j].codice);
+							strcat(buffer,",");
+						}
 
 						strcat(buffer, ARTISTI[j].nome);
 						strcat(buffer,",");
-
-						for(i=0;i<GENERI_TOT;i++)
-						{
-							if(ARTISTI[j].genere[i]==1)
-							{
-								strcat(buffer, lista_generi[i]);
-								strcat(buffer,",");
-							}
-						}
 
 						strcat(buffer, ARTISTI[j].produttore);
 						strcat(buffer,",");
@@ -488,10 +492,20 @@ void gestione_file(char modalita, int tipo, int *nartisti, int *nutenti)        
 						strcat(buffer, itoa_bf);
 						strcat(buffer,",");
 
-						itoa(ARTISTI[j].ascolti, itoa_bf, 10);
+						itoa(ARTISTI[j].preferenze, itoa_bf, 10);
 						strcat(buffer, itoa_bf);
+						strcat(buffer,",");
 
-						strcat(buffer, "\n");
+						for(i=0;i<GENERI_TOT;i++)
+						{
+							if(ARTISTI[j].genere[i]==1)
+							{
+								strcat(buffer, lista_generi[i]);
+								strcat(buffer,",");
+							}
+						}
+
+						buffer[strlen(buffer)-1]='\0';
 
 						fprintf(pf, "%s", buffer);
 					}
@@ -511,7 +525,7 @@ void gestione_file(char modalita, int tipo, int *nartisti, int *nutenti)        
 				{
 					FILE *pf;
 
-					pf = fopen("C:\\Users\\Mattia\\git\\progetto_esame\\Progetto Spotify\\File\\utenti.txt", "r");
+					pf = fopen("C:\\Users\\claud\\git\\progetto_esame\\Progetto Spotify\\File\\utenti.txt", "r");
 
 					if(pf!=NULL)
 					{
@@ -519,7 +533,7 @@ void gestione_file(char modalita, int tipo, int *nartisti, int *nutenti)        
 
 						while(!feof(pf))
 						{
-							fgets(buffer, 101, pf);
+							fgets(buffer, 150, pf);
 
 							token=strtok(buffer, virgola);
 							strcpy(UTENTI[i].nickname, token);
@@ -552,7 +566,7 @@ void gestione_file(char modalita, int tipo, int *nartisti, int *nutenti)        
 							UTENTI[i].data_iscrizione.anno=atoi(token);
 
 							i++;
-							*nutenti+=1;
+							*numero+=1;
 						}
 					}
 					else
@@ -570,51 +584,51 @@ void gestione_file(char modalita, int tipo, int *nartisti, int *nutenti)        
 					{
 						FILE *pf;
 
-						pf = fopen("C:\\Users\\Mattia\\git\\progetto_esame\\Progetto Spotify\\File\\utenti.txt", "a");
+						pf = fopen("C:\\Users\\claud\\git\\progetto_esame\\Progetto Spotify\\File\\utenti.txt", "a");
 
 						if(pf!=NULL)
 						{
-							*nutenti-=1;
+							*numero-=1;
 
 							strcpy(buffer,"\n");
-							strcat(buffer, UTENTI[*nutenti].nickname);
+							strcat(buffer, UTENTI[*numero].nickname);
 							strcat(buffer,",");
 
-							strcat(buffer, UTENTI[*nutenti].password);
+							strcat(buffer, UTENTI[*numero].password);
 							strcat(buffer, ",");
 
-							strcat(buffer, UTENTI[*nutenti].nome);
+							strcat(buffer, UTENTI[*numero].nome);
 							strcat(buffer, ",");
 
-							strcat(buffer, UTENTI[*nutenti].cognome);
+							strcat(buffer, UTENTI[*numero].cognome);
 							strcat(buffer, ",");
 
-							itoa(UTENTI[*nutenti].data_nascita.giorno, itoa_bf,10);
+							itoa(UTENTI[*numero].data_nascita.giorno, itoa_bf,10);
 							strcat(buffer, itoa_bf);
 							strcat(buffer, "/");
 
-							itoa(UTENTI[*nutenti].data_nascita.mese, itoa_bf,10);
+							itoa(UTENTI[*numero].data_nascita.mese, itoa_bf,10);
 							strcat(buffer, itoa_bf);
 							strcat(buffer, "/");
 
-							itoa(UTENTI[*nutenti].data_nascita.anno, itoa_bf,10);
+							itoa(UTENTI[*numero].data_nascita.anno, itoa_bf,10);
 							strcat(buffer, itoa_bf);
 							strcat(buffer, "/,");
 
-							itoa(UTENTI[*nutenti].data_iscrizione.giorno, itoa_bf,10);
+							itoa(UTENTI[*numero].data_iscrizione.giorno, itoa_bf,10);
 							strcat(buffer, itoa_bf);
 							strcat(buffer, "/");
 
-							itoa(UTENTI[*nutenti].data_iscrizione.mese, itoa_bf,10);
+							itoa(UTENTI[*numero].data_iscrizione.mese, itoa_bf,10);
 							strcat(buffer, itoa_bf);
 							strcat(buffer, "/");
 
-							itoa(UTENTI[*nutenti].data_iscrizione.anno, itoa_bf,10);
+							itoa(UTENTI[*numero].data_iscrizione.anno, itoa_bf,10);
 							strcat(buffer, itoa_bf);
 
 							fprintf(pf,"%s", buffer);
 
-							*nutenti+=1;
+							*numero+=1;
 						}
 						else
 						{
@@ -631,51 +645,62 @@ void gestione_file(char modalita, int tipo, int *nartisti, int *nutenti)        
 						{
 							FILE *pf;
 
-							pf = fopen("C:\\Users\\Mattia\\git\\progetto_esame\\Progetto Spotify\\File\\utenti.txt", "w");
+							pf = fopen("C:\\Users\\claud\\git\\progetto_esame\\Progetto Spotify\\File\\utenti.txt", "w");
 
 							i=0;
 
 							if(pf!=NULL)
 							{
-								strcpy(buffer, UTENTI[i].nickname);
-								strcat(buffer,",");
+								for(i=0;i<*numero;i++)
+								{
+									if(i>0)
+									{
+										strcpy(buffer, "\n");
+										strcat(buffer, UTENTI[i].nickname);
+										strcat(buffer,",");
+									}
+									else
+									{
+										strcpy(buffer, UTENTI[i].nickname);
+										strcat(buffer,",");
+									}
 
-								strcat(buffer, UTENTI[i].password);
-								strcat(buffer, ",");
+									strcat(buffer, UTENTI[i].password);
+									strcat(buffer, ",");
 
-								strcat(buffer, UTENTI[i].nome);
-								strcat(buffer, ",");
+									strcat(buffer, UTENTI[i].nome);
+									strcat(buffer, ",");
 
-								strcat(buffer, UTENTI[i].cognome);
-								strcat(buffer, ",");
+									strcat(buffer, UTENTI[i].cognome);
+									strcat(buffer, ",");
 
-								itoa(UTENTI[i].data_nascita.giorno, itoa_bf,10);
-								strcat(buffer, itoa_bf);
-								strcat(buffer, "/");
+									itoa(UTENTI[i].data_nascita.giorno, itoa_bf,10);
+									strcat(buffer, itoa_bf);
+									strcat(buffer, "/");
 
-								itoa(UTENTI[i].data_nascita.mese, itoa_bf,10);
-								strcat(buffer, itoa_bf);
-								strcat(buffer, "/");
+									itoa(UTENTI[i].data_nascita.mese, itoa_bf,10);
+									strcat(buffer, itoa_bf);
+									strcat(buffer, "/");
 
-								itoa(UTENTI[i].data_nascita.anno, itoa_bf,10);
-								strcat(buffer, itoa_bf);
-								strcat(buffer, "/,");
+									itoa(UTENTI[i].data_nascita.anno, itoa_bf,10);
+									strcat(buffer, itoa_bf);
+									strcat(buffer, "/,");
 
-								itoa(UTENTI[i].data_iscrizione.giorno, itoa_bf,10);
-								strcat(buffer, itoa_bf);
-								strcat(buffer, "/");
+									itoa(UTENTI[i].data_iscrizione.giorno, itoa_bf,10);
+									strcat(buffer, itoa_bf);
+									strcat(buffer, "/");
 
-								itoa(UTENTI[i].data_iscrizione.mese, itoa_bf,10);
-								strcat(buffer, itoa_bf);
-								strcat(buffer, "/");
+									itoa(UTENTI[i].data_iscrizione.mese, itoa_bf,10);
+									strcat(buffer, itoa_bf);
+									strcat(buffer, "/");
 
-								itoa(UTENTI[i].data_iscrizione.anno, itoa_bf,10);
-								strcat(buffer, itoa_bf);
-								strcat(buffer, "\n");
+									itoa(UTENTI[i].data_iscrizione.anno, itoa_bf,10);
+									strcat(buffer, itoa_bf);
 
-								fprintf(pf, "%s", buffer);
 
-								i++;
+									fprintf(pf, "%s", buffer);
+
+								}
 							}
 							else
 							{
