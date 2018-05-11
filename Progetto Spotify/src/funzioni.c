@@ -98,17 +98,13 @@ void stampa_menu_utente()
 	SetColor(2);
 	printf("[2]");
 	SetColor(15);
-	printf("Aggiungi nuova preferenza\n");
+	printf("Modifica preferenza\n");
 	SetColor(2);
 	printf("[3]");
 	SetColor(15);
-	printf("Elimina preferenza\n");
-	SetColor(2);
-	printf("[4]");
-	SetColor(15);
 	printf("Modifica utente\n");
 	SetColor(2);
-	printf("[5]");
+	printf("[4]");
 	SetColor(15);
 	printf("Elimina utente\n");
 	SetColor(2);
@@ -312,17 +308,19 @@ int isControllo_Esistenza(int numero_presenze, char* campo, char* controllo)
 void gestione_file(char modalita, int tipo, int *numero)                 //LETTURA FILE "r" | SCRITTURA FILE "w"  | AGGIUNTA ELEMENTO "a"   --   ARTISTA "0"  --  UTENTE "1"
 {
 	int i=0, j, k;
-	char buffer[200]={'\0'};
+	char buffer[LUNGHEZZA_BUFFER]={'\0'};
 	char *token;
 	char virgola[2]={","};
 	char barra[2]={"/"};
 	char itoa_bf[5]={'\0'};
 	char lista_generi[GENERI_TOT][LUNGHEZZA_MAX]={"N.A.","Electro","Pop","Techno","Rock","Jazz","Rap","Blues","Country","Britpop","Dubstep","EDM","Hip-Hop","House","Musica leggera","Trap","Trance","Disco","Dance"};
-	if(modalita=='r' && tipo==0)
+
+
+	if(modalita=='r' && tipo==0)		//Lettura artisti da file
 	{
 		FILE *pf;
 
-		pf = fopen("C:\\Users\\claud\\git\\progetto_esame\\Progetto Spotify\\File\\artisti.txt", "r");
+		pf = fopen("C:\\Users\\Mattia\\git\\progetto_esame\\Progetto Spotify\\File\\artisti.txt", "r");
 
 		if(pf!=NULL)
 		{
@@ -330,7 +328,7 @@ void gestione_file(char modalita, int tipo, int *numero)                 //LETTU
 
 			while( !feof(pf) )
 			{
-				fgets(buffer, 200, pf);
+				fgets(buffer, LUNGHEZZA_BUFFER, pf);
 
 				token=strtok(buffer, virgola);
 				strcpy(ARTISTI[i].codice, token);
@@ -384,7 +382,7 @@ void gestione_file(char modalita, int tipo, int *numero)                 //LETTU
 		else
 		{
 			SetColor(4);
-			printf("\n\aErrore nel caricamento del file\n");
+			printf("\n\aErrore nella lettura artisti da file\n");
 			SetColor(15);
 			system("pause");
 			fclose(pf);
@@ -392,11 +390,11 @@ void gestione_file(char modalita, int tipo, int *numero)                 //LETTU
 	}
 	else
 	{
-		if(modalita=='a' && tipo==0)
+		if(modalita=='a' && tipo==0)		//Inserimento di un artista su file
 		{
 			FILE *pf;
 
-			pf = fopen("C:\\Users\\claud\\git\\progetto_esame\\Progetto Spotify\\File\\artisti.txt", "a");
+			pf = fopen("C:\\Users\\Mattia\\git\\progetto_esame\\Progetto Spotify\\File\\artisti.txt", "a");
 
 			if(pf!=NULL)
 			{
@@ -404,35 +402,35 @@ void gestione_file(char modalita, int tipo, int *numero)                 //LETTU
 
 				strcpy(buffer,"\n");
 				strcat(buffer, ARTISTI[*numero].codice);
-				strcat(buffer,",");
+				strcat(buffer,virgola);
 
 				strcat(buffer, ARTISTI[*numero].nome);
-				strcat(buffer,",");
+				strcat(buffer,virgola);
 
 				strcat(buffer, ARTISTI[*numero].produttore);
-				strcat(buffer,",");
+				strcat(buffer,virgola);
 
 				strcat(buffer, ARTISTI[*numero].nazionalita);
-				strcat(buffer,",");
+				strcat(buffer,virgola);
 
 				itoa(ARTISTI[*numero].anno_inizio, itoa_bf, 10);
 				strcat(buffer, itoa_bf);
-				strcat(buffer,",");
+				strcat(buffer,virgola);
 
 				itoa(ARTISTI[*numero].ascolti, itoa_bf, 10);
 				strcat(buffer, itoa_bf);
-				strcat(buffer,",");
+				strcat(buffer,virgola);
 
 				itoa(ARTISTI[*numero].preferenze, itoa_bf, 10);
 				strcat(buffer, itoa_bf);
-				strcat(buffer,",");
+				strcat(buffer,virgola);
 
 				for(i=0;i<GENERI_TOT;i++)
 				{
 					if(ARTISTI[*numero].genere[i]==1)
 					{
 						strcat(buffer, lista_generi[i]);
-						strcat(buffer,",");
+						strcat(buffer,virgola);
 					}
 				}
 
@@ -445,7 +443,7 @@ void gestione_file(char modalita, int tipo, int *numero)                 //LETTU
 			else
 			{
 				SetColor(4);
-				printf("\n\aErrore nel caricamento del file\n");
+				printf("\n\aErrore nell'nserimento di un artista su file\n");
 				SetColor(15);
 				system("pause");
 				fclose(pf);
@@ -453,11 +451,11 @@ void gestione_file(char modalita, int tipo, int *numero)                 //LETTU
 		}
 		else
 		{
-			if(modalita=='w' && tipo==0)
+			if(modalita=='w' && tipo==0)		//Inserimento degli artisti su file
 			{
 				FILE *pf;
 
-				pf = fopen("C:\\Users\\claud\\git\\progetto_esame\\Progetto Spotify\\File\\artisti.txt", "w");
+				pf = fopen("C:\\Users\\Mattia\\git\\progetto_esame\\Progetto Spotify\\File\\artisti.txt", "w");
 
 				if(pf!=NULL)
 				{
@@ -467,41 +465,41 @@ void gestione_file(char modalita, int tipo, int *numero)                 //LETTU
 						{
 							strcpy(buffer,"\n");
 							strcat(buffer, ARTISTI[j].codice);
-							strcat(buffer,",");
+							strcat(buffer,virgola);
 						}
 						else
 						{
 							strcpy(buffer, ARTISTI[j].codice);
-							strcat(buffer,",");
+							strcat(buffer,virgola);
 						}
 
 						strcat(buffer, ARTISTI[j].nome);
-						strcat(buffer,",");
+						strcat(buffer,virgola);
 
 						strcat(buffer, ARTISTI[j].produttore);
-						strcat(buffer,",");
+						strcat(buffer,virgola);
 
 						strcat(buffer, ARTISTI[j].nazionalita);
-						strcat(buffer,",");
+						strcat(buffer,virgola);
 
 						itoa(ARTISTI[j].anno_inizio, itoa_bf, 10);
 						strcat(buffer, itoa_bf);
-						strcat(buffer,",");
+						strcat(buffer,virgola);
 
 						itoa(ARTISTI[j].ascolti, itoa_bf, 10);
 						strcat(buffer, itoa_bf);
-						strcat(buffer,",");
+						strcat(buffer,virgola);
 
 						itoa(ARTISTI[j].preferenze, itoa_bf, 10);
 						strcat(buffer, itoa_bf);
-						strcat(buffer,",");
+						strcat(buffer,virgola);
 
 						for(i=0;i<GENERI_TOT;i++)
 						{
 							if(ARTISTI[j].genere[i]==1)
 							{
 								strcat(buffer, lista_generi[i]);
-								strcat(buffer,",");
+								strcat(buffer,virgola);
 							}
 						}
 
@@ -513,7 +511,7 @@ void gestione_file(char modalita, int tipo, int *numero)                 //LETTU
 				else
 				{
 					SetColor(4);
-					printf("\n\aErrore nel caricamento del file\n");
+					printf("\n\aErrore nell'nserimento degli artisti su file\n");
 					SetColor(15);
 					system("pause");
 					fclose(pf);
@@ -521,11 +519,11 @@ void gestione_file(char modalita, int tipo, int *numero)                 //LETTU
 			}
 			else
 			{
-				if(modalita=='r' && tipo==1)
+				if(modalita=='r' && tipo==1)		//Lettura di utenti da file
 				{
 					FILE *pf;
 
-					pf = fopen("C:\\Users\\claud\\git\\progetto_esame\\Progetto Spotify\\File\\utenti.txt", "r");
+					pf = fopen("C:\\Users\\Mattia\\git\\progetto_esame\\Progetto Spotify\\File\\utenti.txt", "r");
 
 					if(pf!=NULL)
 					{
@@ -533,7 +531,7 @@ void gestione_file(char modalita, int tipo, int *numero)                 //LETTU
 
 						while(!feof(pf))
 						{
-							fgets(buffer, 150, pf);
+							fgets(buffer, LUNGHEZZA_BUFFER, pf);
 
 							token=strtok(buffer, virgola);
 							strcpy(UTENTI[i].nickname, token);
@@ -572,7 +570,7 @@ void gestione_file(char modalita, int tipo, int *numero)                 //LETTU
 					else
 					{
 						SetColor(4);
-						printf("\n\aErrore nel caricamento del file\n");
+						printf("\n\aErrore nella lettura di utenti da file\n");
 						SetColor(15);
 						system("pause");
 						fclose(pf);
@@ -580,11 +578,11 @@ void gestione_file(char modalita, int tipo, int *numero)                 //LETTU
 				}
 				else
 				{
-					if(modalita=='a' && tipo==1)
+					if(modalita=='a' && tipo==1)		//Inserimento di un utente su file
 					{
 						FILE *pf;
 
-						pf = fopen("C:\\Users\\claud\\git\\progetto_esame\\Progetto Spotify\\File\\utenti.txt", "a");
+						pf = fopen("C:\\Users\\Mattia\\git\\progetto_esame\\Progetto Spotify\\File\\utenti.txt", "a");
 
 						if(pf!=NULL)
 						{
@@ -592,36 +590,37 @@ void gestione_file(char modalita, int tipo, int *numero)                 //LETTU
 
 							strcpy(buffer,"\n");
 							strcat(buffer, UTENTI[*numero].nickname);
-							strcat(buffer,",");
+							strcat(buffer,virgola);
 
 							strcat(buffer, UTENTI[*numero].password);
-							strcat(buffer, ",");
+							strcat(buffer, virgola);
 
 							strcat(buffer, UTENTI[*numero].nome);
-							strcat(buffer, ",");
+							strcat(buffer, virgola);
 
 							strcat(buffer, UTENTI[*numero].cognome);
-							strcat(buffer, ",");
+							strcat(buffer, virgola);
 
 							itoa(UTENTI[*numero].data_nascita.giorno, itoa_bf,10);
 							strcat(buffer, itoa_bf);
-							strcat(buffer, "/");
+							strcat(buffer, barra);
 
 							itoa(UTENTI[*numero].data_nascita.mese, itoa_bf,10);
 							strcat(buffer, itoa_bf);
-							strcat(buffer, "/");
+							strcat(buffer, barra);
 
 							itoa(UTENTI[*numero].data_nascita.anno, itoa_bf,10);
 							strcat(buffer, itoa_bf);
-							strcat(buffer, "/,");
+							strcat(buffer, barra);
+							strcat(buffer,virgola);
 
 							itoa(UTENTI[*numero].data_iscrizione.giorno, itoa_bf,10);
 							strcat(buffer, itoa_bf);
-							strcat(buffer, "/");
+							strcat(buffer, barra);
 
 							itoa(UTENTI[*numero].data_iscrizione.mese, itoa_bf,10);
 							strcat(buffer, itoa_bf);
-							strcat(buffer, "/");
+							strcat(buffer, barra);
 
 							itoa(UTENTI[*numero].data_iscrizione.anno, itoa_bf,10);
 							strcat(buffer, itoa_bf);
@@ -633,7 +632,7 @@ void gestione_file(char modalita, int tipo, int *numero)                 //LETTU
 						else
 						{
 							SetColor(4);
-							printf("\n\aErrore nel caricamento del file\n");
+							printf("\n\aErrore nell'nserimento di un utente su file\n");
 							SetColor(15);
 							system("pause");
 							fclose(pf);
@@ -641,11 +640,11 @@ void gestione_file(char modalita, int tipo, int *numero)                 //LETTU
 					}
 					else
 					{
-						if(modalita=='w' && tipo==1)
+						if(modalita=='w' && tipo==1)		//Inserimento degli utenti su file
 						{
 							FILE *pf;
 
-							pf = fopen("C:\\Users\\claud\\git\\progetto_esame\\Progetto Spotify\\File\\utenti.txt", "w");
+							pf = fopen("C:\\Users\\Mattia\\git\\progetto_esame\\Progetto Spotify\\File\\utenti.txt", "w");
 
 							i=0;
 
@@ -657,42 +656,43 @@ void gestione_file(char modalita, int tipo, int *numero)                 //LETTU
 									{
 										strcpy(buffer, "\n");
 										strcat(buffer, UTENTI[i].nickname);
-										strcat(buffer,",");
+										strcat(buffer,virgola);
 									}
 									else
 									{
 										strcpy(buffer, UTENTI[i].nickname);
-										strcat(buffer,",");
+										strcat(buffer,virgola);
 									}
 
 									strcat(buffer, UTENTI[i].password);
-									strcat(buffer, ",");
+									strcat(buffer, virgola);
 
 									strcat(buffer, UTENTI[i].nome);
-									strcat(buffer, ",");
+									strcat(buffer, virgola);
 
 									strcat(buffer, UTENTI[i].cognome);
-									strcat(buffer, ",");
+									strcat(buffer, virgola);
 
 									itoa(UTENTI[i].data_nascita.giorno, itoa_bf,10);
 									strcat(buffer, itoa_bf);
-									strcat(buffer, "/");
+									strcat(buffer, barra);
 
 									itoa(UTENTI[i].data_nascita.mese, itoa_bf,10);
 									strcat(buffer, itoa_bf);
-									strcat(buffer, "/");
+									strcat(buffer, barra);
 
 									itoa(UTENTI[i].data_nascita.anno, itoa_bf,10);
 									strcat(buffer, itoa_bf);
-									strcat(buffer, "/,");
+									strcat(buffer, barra);
+									strcat(buffer, virgola);
 
 									itoa(UTENTI[i].data_iscrizione.giorno, itoa_bf,10);
 									strcat(buffer, itoa_bf);
-									strcat(buffer, "/");
+									strcat(buffer, barra);
 
 									itoa(UTENTI[i].data_iscrizione.mese, itoa_bf,10);
 									strcat(buffer, itoa_bf);
-									strcat(buffer, "/");
+									strcat(buffer, barra);
 
 									itoa(UTENTI[i].data_iscrizione.anno, itoa_bf,10);
 									strcat(buffer, itoa_bf);
@@ -705,7 +705,7 @@ void gestione_file(char modalita, int tipo, int *numero)                 //LETTU
 							else
 							{
 								SetColor(4);
-								printf("\n\aErrore nel caricamento del file\n");
+								printf("\n\aErrore nell'inserimento degli utenti su file\n");
 								SetColor(15);
 								system("pause");
 								fclose(pf);

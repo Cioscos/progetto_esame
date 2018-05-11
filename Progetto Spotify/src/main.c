@@ -13,7 +13,7 @@ int main(int argc, char *argv[]){
 	//Inserisco nelle variabili momentanee elementi della variabile "tp"
 	char giorno_corrente[3];		//Variaible  momentanea contenente giorno corrente
 	int mese_corrente;				//Variaible  momentanea contenente mese corrente
-	char anno_corrente[5];			//Variaible  momentanea contenente anno correntE
+	char anno_corrente[5];			//Variaible  momentanea contenente anno corrente
 	strftime (anno_corrente,5,"%Y", tp);
     mese_corrente=tp->tm_mon+1;
     strftime (giorno_corrente,3,"%d", tp);
@@ -22,9 +22,10 @@ int main(int argc, char *argv[]){
     DATA_CORRENTE.giorno=atoi(giorno_corrente);
 
 	//DEFINIZIONE VARIABILI --------------------------------------------------------------------------------------------------------------------------------------------------
-	char input_utente[LUNGHEZZA_INPUT]={"1"};		//Variabile contenente l'input dell'utente
 	char lista_generi[GENERI_TOT][LUNGHEZZA_MAX]={"N.A.","Electro","Pop","Techno","Rock","Jazz","Rap","Blues","Country","Britpop","Dubstep","EDM","Hip-Hop","House","Musica leggera","Trap","Trance","Disco","Dance"};
-	int posizione_utente=-1;				//Variabile contenente la posizione nel vettore dell'utente loggato
+	char input_utente[LUNGHEZZA_INPUT]={"1"};		//Variabile contenente l'input dell'utente
+	int posizione_utente=-1;						//Variabile contenente la posizione nel vettore dell'utente loggato
+	int flag_utente_eliminato=0;					//Flag utilizzata per controllare se un utente è stato eliminato   0 - Utente non eliminato | 1 - Utente eliminato
 	int artisti_effettivi=0;
 	int utenti_effettivi=0;
 
@@ -130,6 +131,7 @@ int main(int argc, char *argv[]){
 									gestione_file('a', 1, &utenti_effettivi);
 									break;
 
+							//---- Accedi al programma ----
 							case 2:	system("cls");
 									posizione_utente=-1;		//Ripristino posizione dell'utente autenticato
 									if(isAutenticazione(utenti_effettivi,&posizione_utente)==1)		//Autenticazione effettuata correttamente
@@ -153,26 +155,18 @@ int main(int argc, char *argv[]){
 												//---- Stampa profilo utente ----
 												case 1:	system("cls");
 														logo();
-														stampa_profilo(posizione_utente);		//TODO non serve più una funzione che stampi tutti gli utenti, aggiustarla per far stampare solo l'utente in questione
+														stampa_profilo(posizione_utente);
 														system("PAUSE");
 														break;
 
-												//---- Aggiungi nuova preferenza ----
+												//---- Modifica preferenze ----
 												case 2:	system("cls");
-														logo();
-														printf("Caso 2 selezionato\n");
-														system("PAUSE");
-														break;
-
-												//---- Elimina preferenza ----
-												case 3:	system("cls");
-														logo();
-														printf("Caso 3 selezionato\n");
+														modifica_preferenze(posizione_utente,artisti_effettivi);
 														system("PAUSE");
 														break;
 
 												//---- Modifica utente ----
-												case 4:	system("cls");
+												case 3:	system("cls");
 														logo();
 														modifica_utente(utenti_effettivi, posizione_utente);
 														gestione_file('w', 1, &utenti_effettivi);
@@ -180,9 +174,9 @@ int main(int argc, char *argv[]){
 														break;
 
 												//---- Elimina utente ----
-												case 5:	system("cls");
+												case 4:	system("cls");
 														logo();
-														utenti_effettivi=elimina_utente(utenti_effettivi, posizione_utente);
+														flag_utente_eliminato=elimina_utente(&utenti_effettivi, posizione_utente);
 														gestione_file('w', 1, &utenti_effettivi);
 														system("PAUSE");
 														break;
@@ -194,10 +188,10 @@ int main(int argc, char *argv[]){
 															system("PAUSE");
 											}
 
-										}while(atoi(input_utente)!=0 && atoi(input_utente)!=5);
+										}while(atoi(input_utente)!=0 && flag_utente_eliminato==0);
 
+										flag_utente_eliminato=0;//Riazzeramento del flag per controllare una nuova eliminazione
 										strcpy(input_utente,"1");//Permette di rientrare nel menu secondario
-
 									}
 									break;
 

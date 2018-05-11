@@ -438,6 +438,14 @@ int inserimento_utente(int utenti_effettivi)
 	UTENTI[utenti_effettivi].data_iscrizione.giorno=DATA_CORRENTE.giorno;
 
 
+//AZZZERAMENTO VETTORE PREFERENZE
+
+	for(i=0;i<ARTISTI_MAX;i++)
+	{
+		UTENTI[utenti_effettivi].preferenze[i]=0;
+	}
+
+
 
 //INCREMENTO NUMERO UTENTI
 	utenti_effettivi++;
@@ -1036,7 +1044,7 @@ void modifica_utente(int utenti_effettivi, int posizione_utente)
 	}
 }
 
-int elimina_utente(int utenti_effettivi, int posizione_utente)
+int elimina_utente(int* utenti_effettivi, int posizione_utente)
 {
 	int i;
 	char risposta[LUNGHEZZA_INPUT]={"si"};	//Risposta alla domanda 'Sei sicuro di voler eliminare l'artista?'
@@ -1051,7 +1059,7 @@ int elimina_utente(int utenti_effettivi, int posizione_utente)
 
 	if(strcmp(risposta,"si")==0)
 	{
-		for(i=posizione_utente+1;i<utenti_effettivi;i++)		//Spostamento degli artisti nella posizione precendete fino all'indice del artista da eliminare
+		for(i=posizione_utente+1;i<*utenti_effettivi;i++)		//Spostamento degli artisti nella posizione precendete fino all'indice del artista da eliminare
 		{
 			//COPIA DEL UTENTE IN POSIZIONE SUPERIORE IN QUELLO IN POSIZIONE INFERIORE
 			strcpy(UTENTI[i-1].nickname,UTENTI[i].nickname);
@@ -1066,25 +1074,120 @@ int elimina_utente(int utenti_effettivi, int posizione_utente)
 			UTENTI[i-1].data_iscrizione.giorno=UTENTI[i].data_iscrizione.giorno;
 		}
 
-		//PULITURA ULTIMO POSZIONE UTENTE
-		stringclear(UTENTI[utenti_effettivi-1].nickname,LUNGHEZZA_MAX);
-		stringclear(UTENTI[utenti_effettivi-1].password,LUNGHEZZA_PASS);
-		stringclear(UTENTI[utenti_effettivi-1].nome,LUNGHEZZA_MAX);
-		stringclear(UTENTI[utenti_effettivi-1].cognome,LUNGHEZZA_MAX);
-		UTENTI[utenti_effettivi-1].data_nascita.anno=0;
-		UTENTI[utenti_effettivi-1].data_nascita.mese=0;
-		UTENTI[utenti_effettivi-1].data_nascita.giorno=0;
-		UTENTI[utenti_effettivi-1].data_iscrizione.anno=0;
-		UTENTI[utenti_effettivi-1].data_iscrizione.mese=0;
-		UTENTI[utenti_effettivi-1].data_iscrizione.giorno=0;
+		//PULITURA ULTIMO POSZIONE UTENTEf
+		stringclear(UTENTI[*utenti_effettivi-1].nickname,LUNGHEZZA_MAX);
+		stringclear(UTENTI[*utenti_effettivi-1].password,LUNGHEZZA_PASS);
+		stringclear(UTENTI[*utenti_effettivi-1].nome,LUNGHEZZA_MAX);
+		stringclear(UTENTI[*utenti_effettivi-1].cognome,LUNGHEZZA_MAX);
+		UTENTI[*utenti_effettivi-1].data_nascita.anno=0;
+		UTENTI[*utenti_effettivi-1].data_nascita.mese=0;
+		UTENTI[*utenti_effettivi-1].data_nascita.giorno=0;
+		UTENTI[*utenti_effettivi-1].data_iscrizione.anno=0;
+		UTENTI[*utenti_effettivi-1].data_iscrizione.mese=0;
+		UTENTI[*utenti_effettivi-1].data_iscrizione.giorno=0;
 
-		utenti_effettivi--;		//Eliminazione di un utente
+		*utenti_effettivi-=1;		//Eliminazione di un utente
 		printf("\nUtente eliminato!\n");
+		return(1);
 	}
 	else
 	{
+		return(0);
 		printf("\nUtente non eliminato!\n");
 	}
+}
 
-	return(utenti_effettivi);
+void modifica_preferenze(int posizione_utente,int artisti_effettivi)
+{
+	char artista[LUNGHEZZA_MAX]={"\0"};		//Variabile d'appoggio per l'artista chiesto in input
+	int artista_trovato=0;					//0 artista non trovato - 1 artista trovato
+	int pos_artista;						//Contiene la posizione nel vettore dell'artista trovato
+	int i;
+
+
+	do{		//Controllo fin quando non viene digitato il codice dell'artista correttamente
+		system("cls");
+		logo();
+		SetColor(3);
+		printf("CODICE\t\tNOME\n");
+		SetColor(15);
+
+		for(i=0;i<artisti_effettivi;i++)		//Stampa artisti
+		{
+			printf("%s\t\t%s\n", ARTISTI[i].codice, ARTISTI[i].nome);
+		}
+		printf("Inserisci il codice dell'artista:");
+		fgets(artista,LUNGHEZZA_MAX,stdin);
+		eliminazione_acapo(artista);
+		fflush(stdin);
+
+		for(i=0;i<artisti_effettivi;i++)
+		{
+			if(strcmp(artista, ARTISTI[i].codice)==0)		//Controllo per individuare l'artista inserito in input
+			{
+				printf("Artista trovato!\n");
+				artista_trovato=1;
+				pos_artista=i;
+			}
+		}
+
+		if(artista_trovato==0)
+		{
+			system("cls");
+			logo();
+			SetColor(4);
+			printf("\nArtista non trovato\a\n");
+			SetColor(15);
+			system("PAUSE");
+		}
+	}while(artista_trovato==0);
+
+	do{		//Controllo fin quando non viene digitato 1 2 o 3
+		system("cls");
+		logo();
+		SetColor(2);
+		printf("[1]");
+		SetColor(15);
+		printf("Ascolta artista\n");
+		SetColor(2);
+		printf("[2]");
+		SetColor(15);
+		printf("Mi piace\n");
+		SetColor(2);
+		printf("[3]");
+		SetColor(15);
+		printf("Non mi piace\n");
+		SetColor(15);
+		printf("\nInserisci comando:");
+		fgets(artista,LUNGHEZZA_MAX,stdin);
+		eliminazione_acapo(artista);
+		fflush(stdin);
+
+		if(strcmp(artista,"1")!=0 && strcmp(artista,"2")!=0 && strcmp(artista,"3")!=0)
+		{
+			system("cls");
+			logo();
+			SetColor(4);
+			printf("\nComando errato\a\n");
+			SetColor(15);
+			system("PAUSE");
+		}
+	}while(strcmp(artista,"1")!=0 && strcmp(artista,"2")!=0 && strcmp(artista,"3")!=0);
+
+	switch(atoi(artista))
+	{
+		//Ascolta artista  //incrementare gli ascolti del artista
+		case 1: UTENTI[posizione_utente].preferenze[pos_artista]=1;
+				break;
+
+		//Mi piace
+		case 2: UTENTI[posizione_utente].preferenze[pos_artista]=2;
+				break;
+
+		//Non mi piace
+		case 3: UTENTI[posizione_utente].preferenze[pos_artista]=3;
+				break;
+	}
+
+
 }

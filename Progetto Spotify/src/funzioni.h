@@ -2,20 +2,21 @@
 #define FUNZIONI_H_
 
 //DEFINIZIONE DI COSTANTI ----------------------------------------------------------------------------------------------------------------------------------------------------
-#define UTENTI_MAX 100		//Numero massimo di utenti inseribili
-#define ARTISTI_MAX 100		//Numero massimo di artisti inseribili
-#define LUNGHEZZA_MAX 32 	//Numero massimo di caratteri(30) per nome, cognome, nickname, generi..
-#define LUNGHEZZA_PASS 9 	//Lunghezza della password fissa di 8 caratteri
-#define LUNGHEZZA_INPUT 3	//Lunghezza dell'input del menu utente
-#define MENU_PRINCIPALE 0	//Menu principale
-#define MENU_ARTISTA 1		//Menu artista
-#define MENU_UTENTE 2		//Menu utente
-#define MENU_SECONDARIO 3	//Menu intermedio prima dell'utente
-#define GENERI_TOT 19		//Numero generi esistenti
-#define LUNGHEZZA_CODICE 5	//Lunghezza massima del codice artista
-#define ETA_MINIMA 16 		//Età minima per iscriversi
-#define PRIMO_MESE 1		//Numero mese di gennaio
-#define ULTIMO_MESE 12		//Numero mese di dicembre
+#define UTENTI_MAX 100			//Numero massimo di utenti inseribili
+#define ARTISTI_MAX 100			//Numero massimo di artisti inseribili
+#define LUNGHEZZA_MAX 32 		//Numero massimo di caratteri(30) per nome, cognome, nickname, generi..
+#define LUNGHEZZA_PASS 9 		//Lunghezza della password fissa di 8 caratteri
+#define LUNGHEZZA_INPUT 3		//Lunghezza dell'input del menu utente
+#define LUNGHEZZA_BUFFER 200	//Lunghezza buffer file
+#define MENU_PRINCIPALE 0		//Menu principale
+#define MENU_ARTISTA 1			//Menu artista
+#define MENU_UTENTE 2			//Menu utente
+#define MENU_SECONDARIO 3		//Menu intermedio prima dell'utente
+#define GENERI_TOT 19			//Numero generi esistenti
+#define LUNGHEZZA_CODICE 5		//Lunghezza massima del codice artista
+#define ETA_MINIMA 16 			//Età minima per iscriversi
+#define PRIMO_MESE 1			//Numero mese di gennaio
+#define ULTIMO_MESE 12			//Numero mese di dicembre
 #define stringclear(s, dim) memset(s, '\0', dim);        // Macro azzeramento stringa, ovvero riempie la stringa di caratteri terminatori
 
 //DEFINIZIONE DI STRUTTURE -------------------------------------------------------------------------------------------------------------------------------------------------
@@ -45,7 +46,9 @@ struct UTENTE {
 	char cognome[LUNGHEZZA_MAX];
 	struct DATA data_nascita;
 	struct DATA data_iscrizione;
+	int preferenze[ARTISTI_MAX];		// 1-Ascoltato  2-Mi piace 	3-Non mi piace
 };
+
 struct UTENTE UTENTI[UTENTI_MAX];	//Bisogna ancora inserire le preferenze sugli artisti e sui generi
 
 unsigned int flag;		//Controllo sull'entrata nel do while | 0 Entrato almeno una volta nel do while - 1 Mai entrato nel do while
@@ -76,7 +79,8 @@ int inserimento_utente(int utenti_effettivi);
 void visualizzazione_utenti(int utenti_effettivi);
 void stampa_profilo(int posizione_utente);
 void modifica_utente(int utenti_effettivi, int posizione_utente);
-int elimina_utente(int utenti_effettivi, int posizione_utente);
+int elimina_utente(int* utenti_effettivi, int posizione_utente);
+void modifica_preferenze(int posizione_utente,int artisti_effettivi);
 
 
 
