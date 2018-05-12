@@ -60,9 +60,9 @@ int inserimento_artista(char lista_generi[][LUNGHEZZA_MAX], int artisti_effettiv
 			gets(genere_provvisorio);
 			fflush(stdin);
 
-			for(i=0;i<GENERI_TOT;i++) //Controlla se il genere è presente nella lista_generi
+			for(i=0;i<GENERI_TOT;i++) //Controlla se il genere Ã¨ presente nella lista_generi
 			{
-				if(strcmp(genere_provvisorio,lista_generi[i])==0)	//Quando non è presente (quindi 0) lo inserisce
+				if(strcmp(genere_provvisorio,lista_generi[i])==0)	//Quando non Ã¨ presente (quindi 0) lo inserisce
 				{
 					genere_esistente=1;
 					posizione_genere=i;
@@ -485,7 +485,7 @@ void modifica_artista(int artisti_effettivi, char lista_generi[][LUNGHEZZA_MAX])
 							printf("Nuovo produttore inserito!\n\n");
 							break;
 
-					case 5: system("cls");		//Cambio nazionalità
+					case 5: system("cls");		//Cambio nazionalitÃ 
 							logo();
 							printf("L'attuale nazionalit%c %c: ",133, 138);
 							SetColor(11);
@@ -634,4 +634,3 @@ int elimina_artista(int artisti_effettivi)
 
 	return(artisti_effettivi);
 }
-

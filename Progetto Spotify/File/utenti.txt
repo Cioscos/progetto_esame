@@ -7,5 +7,4 @@ DaftGot,militare,Davide,Nigri,10/8/1998/,15/5/2018
 Kxos,Kurosaki,Vito,Iannone,24/4/1998/,9/9/2017
 Serpeverde,vodemort,Stefano,Galasso,18/1/1999/,18/5/2018
 Peppe Bruno,mentana1,Giuseppe,Bruno,15/6/1989/,11/4/2018
-eppesuiG,m5s4ever,Giuseppe,Perulli,20/9/1998/,2/2/201818
 eppesuiG,m5s4ever,Giuseppe,Perulli,20/9/1998/,2/2/2018

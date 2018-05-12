@@ -716,5 +716,132 @@ void gestione_file(char modalita, int tipo, int *numero)                 //LETTU
 			}
 		}
 	}
-}
 
+	if(modalita=='w' && tipo==2)
+	{
+		FILE *pf;
+
+		pf = fopen("C:\\Users\\Mattia\\git\\progetto_esame\\Progetto Spotify\\File\\preferenze.txt", "w");
+
+		if(pf!=NULL)
+		{
+
+			int primo=0;
+			int nome_scritto=0;
+
+			if(pf!=NULL)
+			{
+				for(i=0;i<UTENTI_MAX;i++)
+				{
+					nome_scritto=0;
+					for(j=0;j<ARTISTI_MAX;j++)			//Inserisco anche la preferenza di un utente che Ã¨ stato eliminato
+					{
+						if(UTENTI[i].preferenze[j]!=0)
+						{
+
+							if(nome_scritto==0)
+							{
+								if(primo!=0)
+								{
+									strcpy(buffer, "\n");
+									strcat(buffer, UTENTI[i].nickname);
+									strcat(buffer,barra);
+								}
+								else
+								{
+									strcpy(buffer, UTENTI[i].nickname);
+									strcat(buffer,barra);
+									primo=1;
+								}
+								nome_scritto=1;
+							}
+
+								strcat(buffer, UTENTI[i].codice_artista[j]);
+								strcat(buffer, virgola);
+								itoa(UTENTI[i].preferenze[j], itoa_bf,10);
+								strcat(buffer, itoa_bf);
+								strcat(buffer, barra);
+						}
+					}
+					if(nome_scritto==1)
+					{
+						fprintf(pf,"%s", buffer);
+						}
+
+				}
+
+			}
+			fclose(pf);
+
+		}
+		else
+		{
+			SetColor(4);
+			printf("\n\aErrore nell'nserimento delle preferenze su file\n");
+			SetColor(15);
+			system("pause");
+			fclose(pf);
+		}
+	}
+
+	if(modalita=='r' && tipo==2)
+	{
+		FILE *pf;
+
+		pf = fopen("C:\\Users\\Mattia\\git\\progetto_esame\\Progetto Spotify\\File\\preferenze.txt", "r");
+
+		if(pf!=NULL)
+		{
+			i=0;
+
+
+			while(!feof(pf))
+			{
+				j=0;
+				fgets(buffer, LUNGHEZZA_BUFFER, pf);
+
+				token=strtok(buffer, barra);		//Contiene il nome
+
+				for(i=0;i<*numero;i++)
+				{
+					if(strcmp(UTENTI[i].nickname,token)==0)		//Individua la posizione dell'utente
+					{
+						for(k=0;k<ARTISTI_MAX;k++)
+						{
+							if( (token=strtok(NULL, virgola)) != NULL)	//Contiene il codice
+							{
+								for(j=0;j<ARTISTI_MAX;j++)
+								{
+									if(strcmp(ARTISTI[j].codice,token)==0)//Controllo se il codice Ã¨ ancora presente
+									{
+										strcpy(UTENTI[i].codice_artista[j],ARTISTI[j].codice);
+										token=strtok(NULL, barra);		//Contiene la barra
+										UTENTI[i].preferenze[j]=atoi(token);
+										j=ARTISTI_MAX;
+									}
+								}
+							}
+							else
+							{
+								i=*numero;
+								k=ARTISTI_MAX;
+							}
+
+
+						}
+					}
+				}
+
+				*numero+=1;
+			}
+		}
+		else
+		{
+			SetColor(4);
+			printf("\n\aErrore nella lettura delle preferenze da file\n");
+			SetColor(15);
+			system("pause");
+			fclose(pf);
+		}
+	}
+}

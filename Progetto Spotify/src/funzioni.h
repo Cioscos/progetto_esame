@@ -3,7 +3,7 @@
 
 //DEFINIZIONE DI COSTANTI ----------------------------------------------------------------------------------------------------------------------------------------------------
 #define UTENTI_MAX 100			//Numero massimo di utenti inseribili
-#define ARTISTI_MAX 100			//Numero massimo di artisti inseribili
+#define ARTISTI_MAX 100		//Numero massimo di artisti inseribili
 #define LUNGHEZZA_MAX 32 		//Numero massimo di caratteri(30) per nome, cognome, nickname, generi..
 #define LUNGHEZZA_PASS 9 		//Lunghezza della password fissa di 8 caratteri
 #define LUNGHEZZA_INPUT 3		//Lunghezza dell'input del menu utente
@@ -14,7 +14,7 @@
 #define MENU_SECONDARIO 3		//Menu intermedio prima dell'utente
 #define GENERI_TOT 19			//Numero generi esistenti
 #define LUNGHEZZA_CODICE 5		//Lunghezza massima del codice artista
-#define ETA_MINIMA 16 			//Età minima per iscriversi
+#define ETA_MINIMA 16 			//EtÃ  minima per iscriversi
 #define PRIMO_MESE 1			//Numero mese di gennaio
 #define ULTIMO_MESE 12			//Numero mese di dicembre
 #define stringclear(s, dim) memset(s, '\0', dim);        // Macro azzeramento stringa, ovvero riempie la stringa di caratteri terminatori
@@ -46,7 +46,8 @@ struct UTENTE {
 	char cognome[LUNGHEZZA_MAX];
 	struct DATA data_nascita;
 	struct DATA data_iscrizione;
-	int preferenze[ARTISTI_MAX];		// 1-Ascoltato  2-Mi piace 	3-Non mi piace
+	char codice_artista[ARTISTI_MAX][LUNGHEZZA_CODICE];		//Matrice con codice artista e 1-Ascoltato 2-Mi piace 3-Non mi piace
+	int preferenze[ARTISTI_MAX];
 };
 
 struct UTENTE UTENTI[UTENTI_MAX];	//Bisogna ancora inserire le preferenze sugli artisti e sui generi
@@ -157,4 +158,3 @@ for(I=0;I<1;I++)
 
 
 #endif /* FUNZIONI_H_ */
-

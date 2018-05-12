@@ -32,6 +32,7 @@ int main(int argc, char *argv[]){
 	//CARICO ARTISTI E UTENTI DA FILE
 	gestione_file('r', 0, &artisti_effettivi);
 	gestione_file('r', 1, &utenti_effettivi);
+	gestione_file('r', 2, &utenti_effettivi);
 
 	//CODICE -----------------------------------------------------------------------------------------------------------------------------------------------------------------
 	while(strcmp(input_utente,"0")!=0)		//Permette di eseguire piu opreazioni fin quando non viene inserito 0, ovvero l'opzione termina programma
@@ -154,6 +155,7 @@ int main(int argc, char *argv[]){
 
 												//---- Stampa profilo utente ----
 												case 1:	system("cls");
+														gestione_file('r', 2, &utenti_effettivi);
 														logo();
 														stampa_profilo(posizione_utente);
 														system("PAUSE");
@@ -162,6 +164,7 @@ int main(int argc, char *argv[]){
 												//---- Modifica preferenze ----
 												case 2:	system("cls");
 														modifica_preferenze(posizione_utente,artisti_effettivi);
+														gestione_file('w', 2, &utenti_effettivi);
 														system("PAUSE");
 														break;
 

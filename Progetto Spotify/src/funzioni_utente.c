@@ -50,7 +50,7 @@ int inserimento_utente(int utenti_effettivi)
 
 //INSERIMENTO NICKNAME UTENTE
 
-	do{		//Controllo fin quando non viene inserito almeno una lettera e il nickname non deve essere già presente
+	do{		//Controllo fin quando non viene inserito almeno una lettera e il nickname non deve essere giÃ  presente
 		system("cls");
 		logo();
 		printf("Inserisci Nickname nuovo utente: ");
@@ -82,7 +82,7 @@ int inserimento_utente(int utenti_effettivi)
 			i=0;
 			printf("Inserisci Password nuovo utente di 8 caratteri: ");
 			SetColor(6);
-			do{		//Controllo fin quando la password non raggiungerà gli 8 caratteri
+			do{		//Controllo fin quando la password non raggiungerÃ  gli 8 caratteri
 				fflush(stdin);
 				carattere_bf='\0';
 
@@ -98,7 +98,7 @@ int inserimento_utente(int utenti_effettivi)
 						}
 
 					}
-					else		//Se invece è un carattere allora lo inserisco nella variabile e incremento la i
+					else		//Se invece Ã¨ un carattere allora lo inserisco nella variabile e incremento la i
 					{
 						controllo[i]=carattere_bf;
 						printf("*");
@@ -128,7 +128,7 @@ int inserimento_utente(int utenti_effettivi)
 						}
 
 					}
-					else		//Se invece è un carattere allora lo inserisco nella variabile e incremento la i
+					else		//Se invece Ã¨ un carattere allora lo inserisco nella variabile e incremento la i
 					{
 						fflush(stdin);
 						UTENTI[utenti_effettivi].password[i]=carattere_bf;
@@ -173,8 +173,8 @@ int inserimento_utente(int utenti_effettivi)
 	printf("Inserisci data di nascita\n");
 
 	//INSERIMENTO ANNO DI NASCITA
-	do{		//Controllo fin quando l'anno non è compreso tra 1900 e 2001(anno per avere l'età minima di 16 anni)
-			do{		//Controllo fin quando l'input inserito non è un numero
+	do{		//Controllo fin quando l'anno non Ã¨ compreso tra 1900 e 2001(anno per avere l'etÃ  minima di 16 anni)
+			do{		//Controllo fin quando l'input inserito non Ã¨ un numero
 				printf("\nAnno: ");
 				SetColor(6);
 				gets(data_provvisoria);
@@ -214,8 +214,8 @@ int inserimento_utente(int utenti_effettivi)
 
 
 	//INSERIMENTO MESE DI NASCITA
-	do{		//Controllo fin quando il mese non è compreso tra 1 e 12
-		do{		//Controllo fin quando l'input inserito non è un numero
+	do{		//Controllo fin quando il mese non Ã¨ compreso tra 1 e 12
+		do{		//Controllo fin quando l'input inserito non Ã¨ un numero
 			printf("\nMese: ");
 			SetColor(6);
 			stringclear(data_provvisoria,LUNGHEZZA_MAX);
@@ -257,10 +257,10 @@ int inserimento_utente(int utenti_effettivi)
 	//CONTROLLO SUL GIORNO NELL'ANNO BISESTILE NEL MESE DI FEBBRAIO
 	if(UTENTI[utenti_effettivi].data_nascita.mese==2)
 	{
-		if(UTENTI[utenti_effettivi].data_nascita.anno % 4 == 0)		//Caso in cui l'anno è bisestile
+		if(UTENTI[utenti_effettivi].data_nascita.anno % 4 == 0)		//Caso in cui l'anno Ã¨ bisestile
 		{
-			do{		//Controllo fin quando il giorno non è compreso tra 1 e 29
-				do{		//Controllo fin quando l'input inserito non è un numero
+			do{		//Controllo fin quando il giorno non Ã¨ compreso tra 1 e 29
+				do{		//Controllo fin quando l'input inserito non Ã¨ un numero
 					printf("\nGiorno: ");
 					SetColor(6);
 					stringclear(data_provvisoria,LUNGHEZZA_MAX);
@@ -300,8 +300,8 @@ int inserimento_utente(int utenti_effettivi)
 		else
 		{
 			//CONTROLLO SUL GIORNO DEL'ANNO NON BISESTILE NEL MESE DI FEBBRAIO
-			do{		//Controllo fin quando il giorno non è compreso tra 1 e 28
-				do{		//Controllo fin quando l'input inserito non è un numero
+			do{		//Controllo fin quando il giorno non Ã¨ compreso tra 1 e 28
+				do{		//Controllo fin quando l'input inserito non Ã¨ un numero
 					printf("\nGiorno: ");
 					SetColor(6);
 					stringclear(data_provvisoria,LUNGHEZZA_MAX);
@@ -343,8 +343,8 @@ int inserimento_utente(int utenti_effettivi)
 		//CONTROLLO MESI DA 30 GIORNI
 		if(UTENTI[utenti_effettivi].data_nascita.mese==4 || UTENTI[utenti_effettivi].data_nascita.mese==6 || UTENTI[utenti_effettivi].data_nascita.mese==9 || UTENTI[utenti_effettivi].data_nascita.mese==11)
 		{
-			do{		//Controllo fin quando il giorno non è compreso tra 1 e 30
-				do{		//Controllo fin quando l'input inserito non è un numero
+			do{		//Controllo fin quando il giorno non Ã¨ compreso tra 1 e 30
+				do{		//Controllo fin quando l'input inserito non Ã¨ un numero
 					printf("\nGiorno: ");
 					SetColor(6);
 					stringclear(data_provvisoria,LUNGHEZZA_MAX);
@@ -383,8 +383,8 @@ int inserimento_utente(int utenti_effettivi)
 		else
 		{
 			//CONTROLLO MESI DA 31 GIORNI
-			do{		//Controllo fin quando il giorno non è compreso tra 1 e 31
-				do{		//Controllo fin quando l'input inserito non è un numero
+			do{		//Controllo fin quando il giorno non Ã¨ compreso tra 1 e 31
+				do{		//Controllo fin quando l'input inserito non Ã¨ un numero
 					printf("\nGiorno: ");
 					SetColor(6);
 					stringclear(data_provvisoria,LUNGHEZZA_MAX);
@@ -454,6 +454,7 @@ int inserimento_utente(int utenti_effettivi)
 
 void stampa_profilo(int posizione_utente)
 {
+	int i,j;
 	SetColor(3);
 	printf("NICKNAME:");
 	SetColor(15);
@@ -478,10 +479,39 @@ void stampa_profilo(int posizione_utente)
 	printf("DATA DI ISCRIZIONE:");
 	SetColor(15);
 	printf("%d/%d/%d\n", UTENTI[posizione_utente].data_iscrizione.giorno,UTENTI[posizione_utente].data_iscrizione.mese,UTENTI[posizione_utente].data_iscrizione.anno);
-	SetColor(15);
+	for(i=0;i<ARTISTI_MAX;i++)
+	{
+		if(UTENTI[posizione_utente].preferenze[i]!=0)
+		{
+			SetColor(3);
+			for(j=0;j<ARTISTI_MAX;j++)
+			{
+				if(strcmp(UTENTI[posizione_utente].codice_artista[i],ARTISTI[j].codice)==0)
+				{
+					printf("%s:",ARTISTI[j].nome);
+				}
+			}
+			SetColor(15);
+
+			if(UTENTI[posizione_utente].preferenze[i]==1)
+			{
+				printf("Ascoltato\n");
+			}
+
+			if(UTENTI[posizione_utente].preferenze[i]==2)
+			{
+				printf("Mi piace\n");
+			}
+
+			if(UTENTI[posizione_utente].preferenze[i]==3)
+			{
+				printf("Non mi piace\n");
+			}
+		}
+	}
 }
 
-void visualizzazione_utenti(int utenti_effettivi)	//Al momento non serve più
+void visualizzazione_utenti(int utenti_effettivi)	//Al momento non serve piÃ¹
 {
 	int i;
 
@@ -515,7 +545,7 @@ int isAutenticazione(int utenti_effettivi, int* posizione_utente)
 
 	for(i=0;i<utenti_effettivi;i++)
 	{
-		if(strcmp(utente,UTENTI[i].nickname)==0)		//Controlla se l'utente inserito in input è presente
+		if(strcmp(utente,UTENTI[i].nickname)==0)		//Controlla se l'utente inserito in input Ã¨ presente
 		{
 			utente_trovato=1;
 			SetColor(15);
@@ -523,7 +553,7 @@ int isAutenticazione(int utenti_effettivi, int* posizione_utente)
 			printf("Inserisci password di 8 caratteri: ");
 			SetColor(6);
 
-			do{		//Controllo fin quando la password non raggiungerà gli 8 caratteri
+			do{		//Controllo fin quando la password non raggiungerÃ  gli 8 caratteri
 				fflush(stdin);
 				carattere_bf='\0';
 
@@ -539,7 +569,7 @@ int isAutenticazione(int utenti_effettivi, int* posizione_utente)
 						}
 
 					}
-					else		//Se invece è un carattere allora lo inserisco nella variabile e incremento la i
+					else		//Se invece Ã¨ un carattere allora lo inserisco nella variabile e incremento la i
 					{
 						password[j]=carattere_bf;
 						printf("*");
@@ -550,7 +580,7 @@ int isAutenticazione(int utenti_effettivi, int* posizione_utente)
 
 			eliminazione_acapo(password);
 
-			if(strcmp(password,UTENTI[i].password)==0)		//Controlla se la password inserita in input è corretta
+			if(strcmp(password,UTENTI[i].password)==0)		//Controlla se la password inserita in input Ã¨ corretta
 			{
 				*posizione_utente=i;
 				SetColor(15);
@@ -568,7 +598,7 @@ int isAutenticazione(int utenti_effettivi, int* posizione_utente)
 		}
 	}
 
-	if(utente_trovato==0)		//Stampa messaggio di errore quando l'utente non è stato trovato
+	if(utente_trovato==0)		//Stampa messaggio di errore quando l'utente non Ã¨ stato trovato
 	{
 		SetColor(4);
 		printf("\nNickname errato\a\n");
@@ -636,7 +666,7 @@ void modifica_utente(int utenti_effettivi, int posizione_utente)
 
 		//MODIFICA NICKNAME
 		case 1:
-				do{		//Controllo fin quando non viene inserito almeno una lettera e il nickname non deve essere già presente
+				do{		//Controllo fin quando non viene inserito almeno una lettera e il nickname non deve essere giÃ  presente
 					system("cls");
 					logo();
 					printf("Inserisci nuovo Nickname: ");
@@ -672,7 +702,7 @@ void modifica_utente(int utenti_effettivi, int posizione_utente)
 					i=0;
 					printf("Inserisci nuova password di 8 caratteri: ");
 					SetColor(6);
-					do{		//Controllo fin quando la password non raggiungerà gli 8 caratteri
+					do{		//Controllo fin quando la password non raggiungerÃ  gli 8 caratteri
 						fflush(stdin);
 						carattere_bf='\0';
 
@@ -688,7 +718,7 @@ void modifica_utente(int utenti_effettivi, int posizione_utente)
 								}
 
 							}
-							else		//Se invece è un carattere allora lo inserisco nella variabile e incremento la i
+							else		//Se invece Ã¨ un carattere allora lo inserisco nella variabile e incremento la i
 							{
 								controllo[i]=carattere_bf;
 								printf("*");
@@ -718,7 +748,7 @@ void modifica_utente(int utenti_effettivi, int posizione_utente)
 								}
 
 							}
-							else		//Se invece è un carattere allora lo inserisco nella variabile e incremento la i
+							else		//Se invece Ã¨ un carattere allora lo inserisco nella variabile e incremento la i
 							{
 								fflush(stdin);
 								UTENTI[posizione_utente].password[i]=carattere_bf;
@@ -787,8 +817,8 @@ void modifica_utente(int utenti_effettivi, int posizione_utente)
 				logo();
 				printf("Inserisci nuova data di nascita\n");
 
-				do{		//Controllo fin quando l'anno non è compreso tra 1900 e 2001(anno per avere l'età minima di 16 anni)
-						do{		//Controllo fin quando l'input inserito non è un numero
+				do{		//Controllo fin quando l'anno non Ã¨ compreso tra 1900 e 2001(anno per avere l'etÃ  minima di 16 anni)
+						do{		//Controllo fin quando l'input inserito non Ã¨ un numero
 							printf("\nAnno: ");
 							SetColor(6);
 							gets(data_provvisoria);
@@ -828,8 +858,8 @@ void modifica_utente(int utenti_effettivi, int posizione_utente)
 
 
 				//INSERIMENTO MESE DI NASCITA
-				do{		//Controllo fin quando il mese non è compreso tra 1 e 12
-					do{		//Controllo fin quando l'input inserito non è un numero
+				do{		//Controllo fin quando il mese non Ã¨ compreso tra 1 e 12
+					do{		//Controllo fin quando l'input inserito non Ã¨ un numero
 						printf("\nMese: ");
 						SetColor(6);
 						stringclear(data_provvisoria,LUNGHEZZA_MAX);
@@ -871,10 +901,10 @@ void modifica_utente(int utenti_effettivi, int posizione_utente)
 				//CONTROLLO SUL GIORNO NELL'ANNO BISESTILE NEL MESE DI FEBBRAIO
 				if(UTENTI[posizione_utente].data_nascita.mese==2)
 				{
-					if(UTENTI[posizione_utente].data_nascita.anno % 4 == 0)		//Caso in cui l'anno è bisestile
+					if(UTENTI[posizione_utente].data_nascita.anno % 4 == 0)		//Caso in cui l'anno Ã¨ bisestile
 					{
-						do{		//Controllo fin quando il giorno non è compreso tra 1 e 29
-							do{		//Controllo fin quando l'input inserito non è un numero
+						do{		//Controllo fin quando il giorno non Ã¨ compreso tra 1 e 29
+							do{		//Controllo fin quando l'input inserito non Ã¨ un numero
 								printf("\nGiorno: ");
 								SetColor(6);
 								stringclear(data_provvisoria,LUNGHEZZA_MAX);
@@ -914,8 +944,8 @@ void modifica_utente(int utenti_effettivi, int posizione_utente)
 					else
 					{
 						//CONTROLLO SUL GIORNO DEL'ANNO NON BISESTILE NEL MESE DI FEBBRAIO
-						do{		//Controllo fin quando il giorno non è compreso tra 1 e 28
-							do{		//Controllo fin quando l'input inserito non è un numero
+						do{		//Controllo fin quando il giorno non Ã¨ compreso tra 1 e 28
+							do{		//Controllo fin quando l'input inserito non Ã¨ un numero
 								printf("\nGiorno: ");
 								SetColor(6);
 								stringclear(data_provvisoria,LUNGHEZZA_MAX);
@@ -957,8 +987,8 @@ void modifica_utente(int utenti_effettivi, int posizione_utente)
 					//CONTROLLO MESI DA 30 GIORNI
 					if(UTENTI[posizione_utente].data_nascita.mese==4 || UTENTI[posizione_utente].data_nascita.mese==6 || UTENTI[posizione_utente].data_nascita.mese==9 || UTENTI[posizione_utente].data_nascita.mese==11)
 					{
-						do{		//Controllo fin quando il giorno non è compreso tra 1 e 30
-							do{		//Controllo fin quando l'input inserito non è un numero
+						do{		//Controllo fin quando il giorno non Ã¨ compreso tra 1 e 30
+							do{		//Controllo fin quando l'input inserito non Ã¨ un numero
 								printf("\nGiorno: ");
 								SetColor(6);
 								stringclear(data_provvisoria,LUNGHEZZA_MAX);
@@ -997,8 +1027,8 @@ void modifica_utente(int utenti_effettivi, int posizione_utente)
 					else
 					{
 						//CONTROLLO MESI DA 31 GIORNI
-						do{		//Controllo fin quando il giorno non è compreso tra 1 e 31
-							do{		//Controllo fin quando l'input inserito non è un numero
+						do{		//Controllo fin quando il giorno non Ã¨ compreso tra 1 e 31
+							do{		//Controllo fin quando l'input inserito non Ã¨ un numero
 								printf("\nGiorno: ");
 								SetColor(6);
 								stringclear(data_provvisoria,LUNGHEZZA_MAX);
@@ -1174,20 +1204,91 @@ void modifica_preferenze(int posizione_utente,int artisti_effettivi)
 		}
 	}while(strcmp(artista,"1")!=0 && strcmp(artista,"2")!=0 && strcmp(artista,"3")!=0);
 
+
+	artista_trovato=0;
 	switch(atoi(artista))
 	{
-		//Ascolta artista  //incrementare gli ascolti del artista
-		case 1: UTENTI[posizione_utente].preferenze[pos_artista]=1;
+
+		//Ascolta artista
+		case 1:	for(i=0;i<ARTISTI_MAX;i++)		//Controllo se è già presente il codice dell'artista
+				{
+					if(strcmp(UTENTI[posizione_utente].codice_artista[i],ARTISTI[pos_artista].codice)==0)
+					{
+						UTENTI[posizione_utente].preferenze[i]=1;
+						artista_trovato=1;
+						i=ARTISTI_MAX;
+					}
+				}
+
+				if(artista_trovato==0)		//Se non è stato trovato lo inserisco nel primo spazio disponibile
+				{
+					for(i=0;i<ARTISTI_MAX;i++)
+					{
+						if(UTENTI[posizione_utente].preferenze[i]==0)
+						{
+							strcpy(UTENTI[posizione_utente].codice_artista[i],ARTISTI[pos_artista].codice);
+							UTENTI[posizione_utente].preferenze[i]=1;
+							i=ARTISTI_MAX;
+						}
+					}
+				}
+
+				ARTISTI[pos_artista].preferenze++;
+
+
+
+
 				break;
 
 		//Mi piace
-		case 2: UTENTI[posizione_utente].preferenze[pos_artista]=2;
+		case 2: for(i=0;i<ARTISTI_MAX;i++)		//Controllo se è già presente il codice dell'artista
+				{
+					if(strcmp(UTENTI[posizione_utente].codice_artista[i],ARTISTI[pos_artista].codice)==0)
+					{
+						UTENTI[posizione_utente].preferenze[i]=2;
+						artista_trovato=1;
+						i=ARTISTI_MAX;
+					}
+				}
+
+				if(artista_trovato==0)		//Se non è stato trovato lo inserisco nel primo spazio disponibile
+				{
+					for(i=0;i<ARTISTI_MAX;i++)
+					{
+						if(UTENTI[posizione_utente].preferenze[i]==0)
+						{
+							strcpy(UTENTI[posizione_utente].codice_artista[i],ARTISTI[pos_artista].codice);
+							UTENTI[posizione_utente].preferenze[i]=2;
+							i=ARTISTI_MAX;
+						}
+					}
+				}
 				break;
 
 		//Non mi piace
-		case 3: UTENTI[posizione_utente].preferenze[pos_artista]=3;
+		case 3:for(i=0;i<ARTISTI_MAX;i++)		//Controllo se è già presente il codice dell'artista
+				{
+					if(strcmp(UTENTI[posizione_utente].codice_artista[i],ARTISTI[pos_artista].codice)==0)
+					{
+						UTENTI[posizione_utente].preferenze[i]=3;
+						artista_trovato=1;
+						i=ARTISTI_MAX;
+					}
+				}
+
+				if(artista_trovato==0)		//Se non è stato trovato lo inserisco nel primo spazio disponibile
+				{
+					for(i=0;i<ARTISTI_MAX;i++)
+					{
+						if(UTENTI[posizione_utente].preferenze[i]==0)
+						{
+							strcpy(UTENTI[posizione_utente].codice_artista[i],ARTISTI[pos_artista].codice);
+							UTENTI[posizione_utente].preferenze[i]=3;
+							i=ARTISTI_MAX;
+						}
+					}
+				}
 				break;
 	}
-
 
 }
