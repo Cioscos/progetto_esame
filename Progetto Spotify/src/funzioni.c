@@ -320,7 +320,7 @@ void gestione_file(char modalita, int tipo, int *numero)                 //LETTU
 	{
 		FILE *pf;
 
-		pf = fopen("C:\\Users\\Mattia\\git\\progetto_esame\\Progetto Spotify\\File\\artisti.txt", "r");
+		pf = fopen("C:\\Users\\Claud\\git\\progetto_esame\\Progetto Spotify\\File\\artisti.txt", "r");
 
 		if(pf!=NULL)
 		{
@@ -394,7 +394,7 @@ void gestione_file(char modalita, int tipo, int *numero)                 //LETTU
 		{
 			FILE *pf;
 
-			pf = fopen("C:\\Users\\Mattia\\git\\progetto_esame\\Progetto Spotify\\File\\artisti.txt", "a");
+			pf = fopen("C:\\Users\\Claud\\git\\progetto_esame\\Progetto Spotify\\File\\artisti.txt", "a");
 
 			if(pf!=NULL)
 			{
@@ -413,15 +413,15 @@ void gestione_file(char modalita, int tipo, int *numero)                 //LETTU
 				strcat(buffer, ARTISTI[*numero].nazionalita);
 				strcat(buffer,virgola);
 
-				itoa(ARTISTI[*numero].anno_inizio, itoa_bf, 10);
+				sprintf(itoa_bf, "%d", ARTISTI[*numero].anno_inizio);
 				strcat(buffer, itoa_bf);
 				strcat(buffer,virgola);
 
-				itoa(ARTISTI[*numero].ascolti, itoa_bf, 10);
+				sprintf(itoa_bf, "%d", ARTISTI[*numero].ascolti);
 				strcat(buffer, itoa_bf);
 				strcat(buffer,virgola);
 
-				itoa(ARTISTI[*numero].preferenze, itoa_bf, 10);
+				sprintf(itoa_bf, "%d", ARTISTI[*numero].preferenze);
 				strcat(buffer, itoa_bf);
 				strcat(buffer,virgola);
 
@@ -455,7 +455,7 @@ void gestione_file(char modalita, int tipo, int *numero)                 //LETTU
 			{
 				FILE *pf;
 
-				pf = fopen("C:\\Users\\Mattia\\git\\progetto_esame\\Progetto Spotify\\File\\artisti.txt", "w");
+				pf = fopen("C:\\Users\\Claud\\git\\progetto_esame\\Progetto Spotify\\File\\artisti.txt", "w");
 
 				if(pf!=NULL)
 				{
@@ -482,15 +482,15 @@ void gestione_file(char modalita, int tipo, int *numero)                 //LETTU
 						strcat(buffer, ARTISTI[j].nazionalita);
 						strcat(buffer,virgola);
 
-						itoa(ARTISTI[j].anno_inizio, itoa_bf, 10);
+						sprintf(itoa_bf, "%d", ARTISTI[j].anno_inizio);
 						strcat(buffer, itoa_bf);
 						strcat(buffer,virgola);
 
-						itoa(ARTISTI[j].ascolti, itoa_bf, 10);
+						sprintf(itoa_bf, "%d", ARTISTI[j].ascolti);
 						strcat(buffer, itoa_bf);
 						strcat(buffer,virgola);
 
-						itoa(ARTISTI[j].preferenze, itoa_bf, 10);
+						sprintf(itoa_bf, "%d", ARTISTI[j].preferenze);
 						strcat(buffer, itoa_bf);
 						strcat(buffer,virgola);
 
@@ -523,7 +523,7 @@ void gestione_file(char modalita, int tipo, int *numero)                 //LETTU
 				{
 					FILE *pf;
 
-					pf = fopen("C:\\Users\\Mattia\\git\\progetto_esame\\Progetto Spotify\\File\\utenti.txt", "r");
+					pf = fopen("C:\\Users\\Claud\\git\\progetto_esame\\Progetto Spotify\\File\\utenti.txt", "r");
 
 					if(pf!=NULL)
 					{
@@ -582,7 +582,7 @@ void gestione_file(char modalita, int tipo, int *numero)                 //LETTU
 					{
 						FILE *pf;
 
-						pf = fopen("C:\\Users\\Mattia\\git\\progetto_esame\\Progetto Spotify\\File\\utenti.txt", "a");
+						pf = fopen("C:\\Users\\Claud\\git\\progetto_esame\\Progetto Spotify\\File\\utenti.txt", "a");
 
 						if(pf!=NULL)
 						{
@@ -601,28 +601,28 @@ void gestione_file(char modalita, int tipo, int *numero)                 //LETTU
 							strcat(buffer, UTENTI[*numero].cognome);
 							strcat(buffer, virgola);
 
-							itoa(UTENTI[*numero].data_nascita.giorno, itoa_bf,10);
+							sprintf(itoa_bf, "%d", UTENTI[*numero].data_nascita.giorno);
 							strcat(buffer, itoa_bf);
 							strcat(buffer, barra);
 
-							itoa(UTENTI[*numero].data_nascita.mese, itoa_bf,10);
+							sprintf(itoa_bf, "%d", UTENTI[*numero].data_nascita.mese);
 							strcat(buffer, itoa_bf);
 							strcat(buffer, barra);
 
-							itoa(UTENTI[*numero].data_nascita.anno, itoa_bf,10);
+							sprintf(itoa_bf, "%d", UTENTI[*numero].data_nascita.anno);
 							strcat(buffer, itoa_bf);
 							strcat(buffer, barra);
 							strcat(buffer,virgola);
 
-							itoa(UTENTI[*numero].data_iscrizione.giorno, itoa_bf,10);
+							sprintf(itoa_bf, "%d", UTENTI[*numero].data_iscrizione.giorno);
 							strcat(buffer, itoa_bf);
 							strcat(buffer, barra);
 
-							itoa(UTENTI[*numero].data_iscrizione.mese, itoa_bf,10);
+							sprintf(itoa_bf, "%d", UTENTI[*numero].data_iscrizione.mese);
 							strcat(buffer, itoa_bf);
 							strcat(buffer, barra);
 
-							itoa(UTENTI[*numero].data_iscrizione.anno, itoa_bf,10);
+							sprintf(itoa_bf, "%d", UTENTI[*numero].data_iscrizione.anno);
 							strcat(buffer, itoa_bf);
 
 							fprintf(pf,"%s", buffer);
@@ -644,7 +644,7 @@ void gestione_file(char modalita, int tipo, int *numero)                 //LETTU
 						{
 							FILE *pf;
 
-							pf = fopen("C:\\Users\\Mattia\\git\\progetto_esame\\Progetto Spotify\\File\\utenti.txt", "w");
+							pf = fopen("C:\\Users\\Claud\\git\\progetto_esame\\Progetto Spotify\\File\\utenti.txt", "w");
 
 							i=0;
 
@@ -673,28 +673,28 @@ void gestione_file(char modalita, int tipo, int *numero)                 //LETTU
 									strcat(buffer, UTENTI[i].cognome);
 									strcat(buffer, virgola);
 
-									itoa(UTENTI[i].data_nascita.giorno, itoa_bf,10);
+									sprintf(itoa_bf, "%d", UTENTI[*numero].data_nascita.giorno);
 									strcat(buffer, itoa_bf);
 									strcat(buffer, barra);
 
-									itoa(UTENTI[i].data_nascita.mese, itoa_bf,10);
+									sprintf(itoa_bf, "%d", UTENTI[*numero].data_nascita.mese);
 									strcat(buffer, itoa_bf);
 									strcat(buffer, barra);
 
-									itoa(UTENTI[i].data_nascita.anno, itoa_bf,10);
+									sprintf(itoa_bf, "%d", UTENTI[*numero].data_nascita.anno);
 									strcat(buffer, itoa_bf);
 									strcat(buffer, barra);
 									strcat(buffer, virgola);
 
-									itoa(UTENTI[i].data_iscrizione.giorno, itoa_bf,10);
+									sprintf(itoa_bf, "%d", UTENTI[*numero].data_iscrizione.giorno);
 									strcat(buffer, itoa_bf);
 									strcat(buffer, barra);
 
-									itoa(UTENTI[i].data_iscrizione.mese, itoa_bf,10);
+									sprintf(itoa_bf, "%d", UTENTI[*numero].data_iscrizione.mese);
 									strcat(buffer, itoa_bf);
 									strcat(buffer, barra);
 
-									itoa(UTENTI[i].data_iscrizione.anno, itoa_bf,10);
+									sprintf(itoa_bf, "%d", UTENTI[*numero].data_iscrizione.anno);
 									strcat(buffer, itoa_bf);
 
 
@@ -721,7 +721,7 @@ void gestione_file(char modalita, int tipo, int *numero)                 //LETTU
 	{
 		FILE *pf;
 
-		pf = fopen("C:\\Users\\Mattia\\git\\progetto_esame\\Progetto Spotify\\File\\preferenze.txt", "w");
+		pf = fopen("C:\\Users\\Claud\\git\\progetto_esame\\Progetto Spotify\\File\\preferenze.txt", "w");
 
 		if(pf!=NULL)
 		{
@@ -758,7 +758,7 @@ void gestione_file(char modalita, int tipo, int *numero)                 //LETTU
 
 								strcat(buffer, UTENTI[i].codice_artista[j]);
 								strcat(buffer, virgola);
-								itoa(UTENTI[i].preferenze[j], itoa_bf,10);
+								sprintf(itoa_bf, "%d", UTENTI[i].preferenze[j]);
 								strcat(buffer, itoa_bf);
 								strcat(buffer, barra);
 						}
@@ -788,7 +788,7 @@ void gestione_file(char modalita, int tipo, int *numero)                 //LETTU
 	{
 		FILE *pf;
 
-		pf = fopen("C:\\Users\\Mattia\\git\\progetto_esame\\Progetto Spotify\\File\\preferenze.txt", "r");
+		pf = fopen("C:\\Users\\Claud\\git\\progetto_esame\\Progetto Spotify\\File\\preferenze.txt", "r");
 
 		if(pf!=NULL)
 		{
