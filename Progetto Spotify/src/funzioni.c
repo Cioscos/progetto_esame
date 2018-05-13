@@ -320,7 +320,7 @@ void gestione_file(char modalita, int tipo, int *numero)                 //LETTU
 	{
 		FILE *pf;
 
-		pf = fopen("C:\\Users\\Claud\\git\\progetto_esame\\Progetto Spotify\\File\\artisti.txt", "r");
+		pf = fopen("C:\\Users\\Mattia\\git\\progetto_esame\\Progetto Spotify\\File\\artisti.txt", "r");
 
 		if(pf!=NULL)
 		{
@@ -394,7 +394,7 @@ void gestione_file(char modalita, int tipo, int *numero)                 //LETTU
 		{
 			FILE *pf;
 
-			pf = fopen("C:\\Users\\Claud\\git\\progetto_esame\\Progetto Spotify\\File\\artisti.txt", "a");
+			pf = fopen("C:\\Users\\Mattia\\git\\progetto_esame\\Progetto Spotify\\File\\artisti.txt", "a");
 
 			if(pf!=NULL)
 			{
@@ -455,7 +455,7 @@ void gestione_file(char modalita, int tipo, int *numero)                 //LETTU
 			{
 				FILE *pf;
 
-				pf = fopen("C:\\Users\\Claud\\git\\progetto_esame\\Progetto Spotify\\File\\artisti.txt", "w");
+				pf = fopen("C:\\Users\\Mattia\\git\\progetto_esame\\Progetto Spotify\\File\\artisti.txt", "w");
 
 				if(pf!=NULL)
 				{
@@ -523,7 +523,7 @@ void gestione_file(char modalita, int tipo, int *numero)                 //LETTU
 				{
 					FILE *pf;
 
-					pf = fopen("C:\\Users\\Claud\\git\\progetto_esame\\Progetto Spotify\\File\\utenti.txt", "r");
+					pf = fopen("C:\\Users\\Mattia\\git\\progetto_esame\\Progetto Spotify\\File\\utenti.txt", "r");
 
 					if(pf!=NULL)
 					{
@@ -582,7 +582,7 @@ void gestione_file(char modalita, int tipo, int *numero)                 //LETTU
 					{
 						FILE *pf;
 
-						pf = fopen("C:\\Users\\Claud\\git\\progetto_esame\\Progetto Spotify\\File\\utenti.txt", "a");
+						pf = fopen("C:\\Users\\Mattia\\git\\progetto_esame\\Progetto Spotify\\File\\utenti.txt", "a");
 
 						if(pf!=NULL)
 						{
@@ -644,7 +644,7 @@ void gestione_file(char modalita, int tipo, int *numero)                 //LETTU
 						{
 							FILE *pf;
 
-							pf = fopen("C:\\Users\\Claud\\git\\progetto_esame\\Progetto Spotify\\File\\utenti.txt", "w");
+							pf = fopen("C:\\Users\\Mattia\\git\\progetto_esame\\Progetto Spotify\\File\\utenti.txt", "w");
 
 							i=0;
 
@@ -721,7 +721,7 @@ void gestione_file(char modalita, int tipo, int *numero)                 //LETTU
 	{
 		FILE *pf;
 
-		pf = fopen("C:\\Users\\Claud\\git\\progetto_esame\\Progetto Spotify\\File\\preferenze.txt", "w");
+		pf = fopen("C:\\Users\\Mattia\\git\\progetto_esame\\Progetto Spotify\\File\\preferenze.txt", "w");
 
 		if(pf!=NULL)
 		{
@@ -738,7 +738,6 @@ void gestione_file(char modalita, int tipo, int *numero)                 //LETTU
 					{
 						if(UTENTI[i].preferenze[j]!=0)
 						{
-
 							if(nome_scritto==0)
 							{
 								if(primo!=0)
@@ -766,7 +765,7 @@ void gestione_file(char modalita, int tipo, int *numero)                 //LETTU
 					if(nome_scritto==1)
 					{
 						fprintf(pf,"%s", buffer);
-						}
+					}
 
 				}
 
@@ -788,7 +787,7 @@ void gestione_file(char modalita, int tipo, int *numero)                 //LETTU
 	{
 		FILE *pf;
 
-		pf = fopen("C:\\Users\\Claud\\git\\progetto_esame\\Progetto Spotify\\File\\preferenze.txt", "r");
+		pf = fopen("C:\\Users\\Mattia\\git\\progetto_esame\\Progetto Spotify\\File\\preferenze.txt", "r");
 
 		if(pf!=NULL)
 		{
@@ -814,9 +813,9 @@ void gestione_file(char modalita, int tipo, int *numero)                 //LETTU
 								{
 									if(strcmp(ARTISTI[j].codice,token)==0)//Controllo se il codice Ã¨ ancora presente
 									{
-										strcpy(UTENTI[i].codice_artista[j],ARTISTI[j].codice);
+										strcpy(UTENTI[i].codice_artista[k],ARTISTI[j].codice);
 										token=strtok(NULL, barra);		//Contiene la barra
-										UTENTI[i].preferenze[j]=atoi(token);
+										UTENTI[i].preferenze[k]=atoi(token);
 										j=ARTISTI_MAX;
 									}
 								}
