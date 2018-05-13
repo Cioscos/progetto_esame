@@ -3,7 +3,7 @@
 
 //DEFINIZIONE DI COSTANTI ----------------------------------------------------------------------------------------------------------------------------------------------------
 #define UTENTI_MAX 100			//Numero massimo di utenti inseribili
-#define ARTISTI_MAX 100		//Numero massimo di artisti inseribili
+#define ARTISTI_MAX 22		//Numero massimo di artisti inseribili
 #define LUNGHEZZA_MAX 32 		//Numero massimo di caratteri(30) per nome, cognome, nickname, generi..
 #define LUNGHEZZA_PASS 9 		//Lunghezza della password fissa di 8 caratteri
 #define LUNGHEZZA_INPUT 3		//Lunghezza dell'input del menu utente
