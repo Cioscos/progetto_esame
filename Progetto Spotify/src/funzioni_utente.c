@@ -1233,7 +1233,8 @@ void modifica_preferenze(int posizione_utente,int artisti_effettivi)
 					}
 				}
 
-				ARTISTI[pos_artista].preferenze++;
+				ARTISTI[pos_artista].ascolti++;
+
 
 
 
@@ -1245,6 +1246,17 @@ void modifica_preferenze(int posizione_utente,int artisti_effettivi)
 				{
 					if(strcmp(UTENTI[posizione_utente].codice_artista[i],ARTISTI[pos_artista].codice)==0)
 					{
+						if(UTENTI[posizione_utente].preferenze[i]==3)
+						{
+							ARTISTI[pos_artista].preferenze++;
+						}
+						else
+						{
+							if(UTENTI[posizione_utente].preferenze[i]==1)
+							{
+								ARTISTI[pos_artista].preferenze++;
+							}
+						}
 						UTENTI[posizione_utente].preferenze[i]=2;
 						artista_trovato=1;
 						i=ARTISTI_MAX;
@@ -1260,9 +1272,12 @@ void modifica_preferenze(int posizione_utente,int artisti_effettivi)
 							strcpy(UTENTI[posizione_utente].codice_artista[i],ARTISTI[pos_artista].codice);
 							UTENTI[posizione_utente].preferenze[i]=2;
 							i=ARTISTI_MAX;
+							ARTISTI[pos_artista].preferenze++;
 						}
 					}
 				}
+
+
 				break;
 
 		//Non mi piace
@@ -1270,6 +1285,10 @@ void modifica_preferenze(int posizione_utente,int artisti_effettivi)
 				{
 					if(strcmp(UTENTI[posizione_utente].codice_artista[i],ARTISTI[pos_artista].codice)==0)
 					{
+						if(UTENTI[posizione_utente].preferenze[i]==2)
+						{
+							ARTISTI[pos_artista].preferenze--;
+						}
 						UTENTI[posizione_utente].preferenze[i]=3;
 						artista_trovato=1;
 						i=ARTISTI_MAX;
@@ -1288,6 +1307,8 @@ void modifica_preferenze(int posizione_utente,int artisti_effettivi)
 						}
 					}
 				}
+
+
 				break;
 	}
 
