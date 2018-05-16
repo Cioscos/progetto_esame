@@ -307,7 +307,7 @@ int isControllo_Esistenza(int numero_presenze, char* campo, char* controllo)
 
 }
 
-void gestione_file(char modalita, int tipo, int *numero)                 //LETTURA FILE "r" | SCRITTURA FILE "w"  | AGGIUNTA ELEMENTO "a"   --   ARTISTA "0"  --  UTENTE "1"
+void gestione_file(char modalita, int tipo, int *numero, char relative_path[])                 //LETTURA FILE "r" | SCRITTURA FILE "w"  | AGGIUNTA ELEMENTO "a"   --   ARTISTA "0"  --  UTENTE "1"
 {
 	int i=0, j, k;
 	char buffer[LUNGHEZZA_BUFFER]={'\0'};
@@ -316,13 +316,27 @@ void gestione_file(char modalita, int tipo, int *numero)                 //LETTU
 	char barra[2]={"/"};
 	char itoa_bf[5]={'\0'};
 	char lista_generi[GENERI_TOT][LUNGHEZZA_MAX]={"N.A.","Electro","Pop","Techno","Rock","Jazz","Rap","Blues","Country","Britpop","Dubstep","EDM","Hip-Hop","House","Musica leggera","Trap","Trance","Disco","Dance"};
+	char artisti_path[LUNGHEZZA_PATH]={'\0'};
+	char preferenze_path[LUNGHEZZA_PATH]={'\0'};
+	char utenti_path[LUNGHEZZA_PATH]={'\0'};
 
+	//CREO PATH ARTISTI
+	strcpy(artisti_path, relative_path);
+	strcat(artisti_path, "artisti.txt");
+
+	//CREO PATH PREFERENZE
+	strcpy(preferenze_path, relative_path);
+	strcat(preferenze_path, "preferenze.txt");
+
+	//CREO PATH UTENTI
+	strcpy(utenti_path, relative_path);
+	strcat(utenti_path, "utenti.txt");
 
 	if(modalita=='r' && tipo==0)		//Lettura artisti da file
 	{
 		FILE *pf;
 
-		pf = fopen("C:\\Users\\Claudio\\git\\progetto_esame\\Progetto Spotify\\File\\artisti.txt", "r");
+		pf = fopen(artisti_path, "r");
 
 		if(pf!=NULL)
 		{
@@ -396,7 +410,7 @@ void gestione_file(char modalita, int tipo, int *numero)                 //LETTU
 		{
 			FILE *pf;
 
-			pf = fopen("C:\\Users\\Claudio\\git\\progetto_esame\\Progetto Spotify\\File\\artisti.txt", "a");
+			pf = fopen(artisti_path, "a");
 
 			if(pf!=NULL)
 			{
@@ -458,7 +472,7 @@ void gestione_file(char modalita, int tipo, int *numero)                 //LETTU
 			{
 				FILE *pf;
 
-				pf = fopen("C:\\Users\\Claudio\\git\\progetto_esame\\Progetto Spotify\\File\\artisti.txt", "w");
+				pf = fopen(artisti_path, "w");
 
 				if(pf!=NULL)
 				{
@@ -527,7 +541,7 @@ void gestione_file(char modalita, int tipo, int *numero)                 //LETTU
 				{
 					FILE *pf;
 
-					pf = fopen("C:\\Users\\Claudio\\git\\progetto_esame\\Progetto Spotify\\File\\utenti.txt", "r");
+					pf = fopen(utenti_path, "r");
 
 					if(pf!=NULL)
 					{
@@ -587,7 +601,7 @@ void gestione_file(char modalita, int tipo, int *numero)                 //LETTU
 					{
 						FILE *pf;
 
-						pf = fopen("C:\\Users\\Claudio\\git\\progetto_esame\\Progetto Spotify\\File\\utenti.txt", "a");
+						pf = fopen(utenti_path, "a");
 
 						if(pf!=NULL)
 						{
@@ -650,7 +664,7 @@ void gestione_file(char modalita, int tipo, int *numero)                 //LETTU
 						{
 							FILE *pf;
 
-							pf = fopen("C:\\Users\\Claudio\\git\\progetto_esame\\Progetto Spotify\\File\\utenti.txt", "w");
+							pf = fopen(utenti_path, "w");
 
 							i=0;
 
@@ -728,7 +742,7 @@ void gestione_file(char modalita, int tipo, int *numero)                 //LETTU
 	{
 		FILE *pf;
 
-		pf = fopen("C:\\Users\\Claudio\\git\\progetto_esame\\Progetto Spotify\\File\\preferenze.txt", "w");
+		pf = fopen(preferenze_path, "w");
 
 		if(pf!=NULL)
 		{
@@ -794,7 +808,7 @@ void gestione_file(char modalita, int tipo, int *numero)                 //LETTU
 	{
 		FILE *pf;
 
-		pf = fopen("C:\\Users\\Claudio\\git\\progetto_esame\\Progetto Spotify\\File\\preferenze.txt", "r");
+		pf = fopen(preferenze_path, "r");
 
 		if(pf!=NULL)
 		{

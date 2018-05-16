@@ -8,6 +8,7 @@
 #define LUNGHEZZA_PASS 9 		//Lunghezza della password fissa di 8 caratteri
 #define LUNGHEZZA_INPUT 3		//Lunghezza dell'input del menu utente
 #define LUNGHEZZA_BUFFER 200	//Lunghezza buffer file
+#define LUNGHEZZA_PATH 100
 #define MENU_PRINCIPALE 0		//Menu principale
 #define MENU_ARTISTA 1			//Menu artista
 #define MENU_UTENTE 2			//Menu utente
@@ -67,7 +68,7 @@ int isControllo_Numero(char appoggio[], int lunghezza_massima);		//Funzione bool
 int isControllo_Esistenza(int numero_presenze, char* campo, char* controllo);
 void eliminazione_acapo(char* input);
 int isAutenticazione(int utenti_effettivi, int* posizione_utente);
-void gestione_file(char modalita, int tipo, int *numero);
+void gestione_file(char modalita, int tipo, int *numero, char relative_path[]);
 
 
 int inserimento_artista(char lista_generi[][LUNGHEZZA_MAX], int artisti_effettivi);

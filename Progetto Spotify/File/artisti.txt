@@ -18,4 +18,4 @@
 0018,Lil Pump,Warner Bros. Records,Statunitense,2016,0,0,Trap
 0019,Will.i.am,Interscope,Statunitense,1992,0,0,Pop,Dance
 0020,Fergie Duhamel,Interscope,Statunitense,1996,0,0,Pop
-0021,Hardwell,Revealed Recordings,Olandese,2006,0,0,Electro,EDM,House
+0021,Hardwell,Revealed Recordings,Olandese,2006,0,1,Electro,EDM,House

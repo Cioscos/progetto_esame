@@ -28,16 +28,47 @@ int main(int argc, char *argv[]){
 	int flag_utente_eliminato=0;					//Flag utilizzata per controllare se un utente è stato eliminato   0 - Utente non eliminato | 1 - Utente eliminato
 	int artisti_effettivi=0;
 	int utenti_effettivi=0;
+	char relative_path[LUNGHEZZA_PATH]={'\0'};
+	char token_buffer[LUNGHEZZA_PATH]={'\0'};
+	char *token={'\0'};
+
+
+	//GENERO LA PATH DEI FILE
+	int i=0;  										//Permette di gestire l'if nel while
+	int k=1;                                        //Permette di entrare nel while
+
+	strcpy(token_buffer, argv[0]);
+
+	while( (strcmp("Progetto Spotify", token)!=0 ) || (k==1) )
+	{
+		if(i==0)
+		{
+			token=strtok(token_buffer, "\\");
+			strcpy(relative_path, token);
+			strcat(relative_path,"\\");
+		}
+		else
+		{
+			token=strtok(NULL, "\\");
+			strcat(relative_path, token);
+			strcat(relative_path,"\\");
+		}
+		i++;
+		k++;
+	}
+
+	strcat(relative_path, "File\\");
 
 	//CARICO ARTISTI E UTENTI DA FILE
-	gestione_file('r', 0, &artisti_effettivi);
-	gestione_file('r', 1, &utenti_effettivi);
-	gestione_file('r', 2, &utenti_effettivi);
+	gestione_file('r', 0, &artisti_effettivi, relative_path);
+	gestione_file('r', 1, &utenti_effettivi, relative_path);
+	gestione_file('r', 2, &utenti_effettivi, relative_path);
 
 	//CODICE -----------------------------------------------------------------------------------------------------------------------------------------------------------------
 	while(strcmp(input_utente,"0")!=0)		//Permette di eseguire piu opreazioni fin quando non viene inserito 0, ovvero l'opzione termina programma
 	{
 		flag=1;
+
 
 		do{//Controllo sull'input dell'utente fin quando non viene digitato una cifra
 			controllo_menu(input_utente,MENU_PRINCIPALE);
@@ -79,21 +110,21 @@ int main(int argc, char *argv[]){
 							case 2:	system("cls");
 									artisti_effettivi=inserimento_artista(lista_generi, artisti_effettivi);
 									system("PAUSE");
-									gestione_file('a', 0, &artisti_effettivi);
+									gestione_file('a', 0, &artisti_effettivi, relative_path);
 									break;
 
 							//---- Modifica un artista ----
 							case 3:	system("cls");
 									logo();
 									modifica_artista(artisti_effettivi, lista_generi);
-									gestione_file('w', 0, &artisti_effettivi);
+									gestione_file('w', 0, &artisti_effettivi, relative_path);
 									break;
 
 							//---- Elimina un artista ----
 							case 4:	system("cls");
 									logo();
 									artisti_effettivi=elimina_artista(artisti_effettivi);
-									gestione_file('w', 0, &artisti_effettivi);
+									gestione_file('w', 0, &artisti_effettivi, relative_path);
 									system("PAUSE");
 									break;
 
@@ -129,7 +160,7 @@ int main(int argc, char *argv[]){
 							//---- Inserisci nuovo utente ----
 							case 1:	system("cls");
 									utenti_effettivi=inserimento_utente(utenti_effettivi);
-									gestione_file('a', 1, &utenti_effettivi);
+									gestione_file('a', 1, &utenti_effettivi, relative_path);
 									break;
 
 							//---- Accedi al programma ----
@@ -155,7 +186,7 @@ int main(int argc, char *argv[]){
 
 												//---- Stampa profilo utente ----
 												case 1:	system("cls");
-														gestione_file('r', 2, &utenti_effettivi);
+														gestione_file('r', 2, &utenti_effettivi, relative_path);
 														logo();
 														stampa_profilo(posizione_utente);
 														system("PAUSE");
@@ -164,8 +195,8 @@ int main(int argc, char *argv[]){
 												//---- Modifica preferenze ----
 												case 2:	system("cls");
 														modifica_preferenze(posizione_utente,artisti_effettivi);
-														gestione_file('w', 2, &utenti_effettivi);		// TODO IL PROBLEMA è QUI CHE SPUTTANA LA STRUCT
-														gestione_file('w', 0, &artisti_effettivi);
+														gestione_file('w', 2, &utenti_effettivi, relative_path);		// TODO IL PROBLEMA è QUI CHE SPUTTANA LA STRUCT
+														gestione_file('w', 0, &artisti_effettivi, relative_path);
 														system("PAUSE");
 														break;
 
@@ -173,7 +204,7 @@ int main(int argc, char *argv[]){
 												case 3:	system("cls");
 														logo();
 														modifica_utente(utenti_effettivi, posizione_utente);
-														gestione_file('w', 1, &utenti_effettivi);
+														gestione_file('w', 1, &utenti_effettivi, relative_path);
 														system("PAUSE");
 														break;
 
@@ -181,7 +212,7 @@ int main(int argc, char *argv[]){
 												case 4:	system("cls");
 														logo();
 														flag_utente_eliminato=elimina_utente(&utenti_effettivi, posizione_utente);
-														gestione_file('w', 1, &utenti_effettivi);
+														gestione_file('w', 1, &utenti_effettivi, relative_path);
 														system("PAUSE");
 														break;
 
