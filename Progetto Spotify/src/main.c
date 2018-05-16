@@ -39,6 +39,9 @@ int main(int argc, char *argv[]){
 
 	strcpy(token_buffer, argv[0]);
 
+	printf("%s\n", token_buffer);
+	system("pause");
+
 	while( (strcmp("Progetto Spotify", token)!=0 ) || (k==1) )
 	{
 		if(i==0)
@@ -58,6 +61,9 @@ int main(int argc, char *argv[]){
 	}
 
 	strcat(relative_path, "File\\");
+
+	printf("%s\n", relative_path);
+	system("pause");
 
 	//CARICO ARTISTI E UTENTI DA FILE
 	gestione_file('r', 0, &artisti_effettivi, relative_path);
