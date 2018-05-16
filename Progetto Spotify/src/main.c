@@ -39,9 +39,6 @@ int main(int argc, char *argv[]){
 
 	strcpy(token_buffer, argv[0]);
 
-	printf("%s\n", token_buffer);
-	system("pause");
-
 	while( (strcmp("Progetto Spotify", token)!=0 ) || (k==1) )
 	{
 		if(i==0)
