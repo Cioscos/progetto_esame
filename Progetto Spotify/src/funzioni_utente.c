@@ -1140,6 +1140,9 @@ void modifica_preferenze(int posizione_utente,int artisti_effettivi)
 	int pos_artista;						//Contiene la posizione nel vettore dell'artista trovato
 	char metodo[LUNGHEZZA_INPUT]={'\0'};
 	char lista_generi[GENERI_TOT][LUNGHEZZA_MAX]={"N.A.","Electro","Pop","Techno","Rock","Jazz","Rap","Blues","Country","Britpop","Dubstep","EDM","Hip-Hop","House","Musica leggera","Trap","Trance","Disco","Dance"};
+	int posizione_genere=0;					//pozione del genere nel vettore lista_generi
+	int genere_esistente=0;		//0 genere non esistente | 1 genere esistente
+	char genere_provvisorio[LUNGHEZZA_MAX];	//Contiene l'input inserito dall'utente
 	int i;
 
 	do{
@@ -1149,7 +1152,7 @@ void modifica_preferenze(int posizione_utente,int artisti_effettivi)
 		SetColor(2);
 		printf("[1]");
 		SetColor(15);
-		printf(" Categoria preferita\n");
+		printf("Categoria preferita\n");
 		SetColor(2);
 		printf("[2]");
 		SetColor(15);
@@ -1157,11 +1160,11 @@ void modifica_preferenze(int posizione_utente,int artisti_effettivi)
 		SetColor(2);
 		printf("[3]");
 		SetColor(15);
-		printf(" Top 10 %cMi piace%c\n",34,34);
+		printf("Top 10 %cMi piace%c\n",34,34);
 		SetColor(2);
 		printf("[4]");
 		SetColor(15);
-		printf("Top 10 %cAscolti%c\nChe metodo preferisci? :",34,34);
+		printf("Top 10 %cAscolti%c\n\nChe metodo preferisci? :",34,34);
 		fgets(metodo, LUNGHEZZA_INPUT, stdin);
 		eliminazione_acapo(metodo);
 		fflush(stdin);
@@ -1170,53 +1173,300 @@ void modifica_preferenze(int posizione_utente,int artisti_effettivi)
 
 	switch(atoi(metodo)){
 
+	//Categoria preferita
 	case 1:
-		system("cls");
-		logo();
-		printf("Selezionare genere: ");
-		SetColor(6);
-		for(i=0;i<GENERI_TOT;i++)
-		{
-			printf("%s ", lista_generi[i]);
-		}
-
-	}
-
-	do{		//Controllo fin quando non viene digitato il codice dell'artista correttamente
-		system("cls");
-		logo();
-		SetColor(3);
-		printf("CODICE\t\tNOME\n");
-		SetColor(15);
-
-		for(i=0;i<artisti_effettivi;i++)		//Stampa artisti
-		{
-			printf("%s\t\t%s\n", ARTISTI[i].codice, ARTISTI[i].nome);
-		}
-		printf("Inserisci il codice dell'artista:");
-		fgets(artista,LUNGHEZZA_MAX,stdin);
-		eliminazione_acapo(artista);
-		fflush(stdin);
-
-		for(i=0;i<artisti_effettivi;i++)
-		{
-			if(strcmp(artista, ARTISTI[i].codice)==0)		//Controllo per individuare l'artista inserito in input
-			{
-				printf("Artista trovato!\n");
-				artista_trovato=1;
-				pos_artista=i;
-			}
-		}
-
-		if(artista_trovato==0)
-		{
+		do{
 			system("cls");
 			logo();
-			SetColor(4);
-			printf("\nArtista non trovato\a\n");
+			printf("Lista generi:");
+			SetColor(6);
+			for(i=0;i<GENERI_TOT;i++) //Stampa generi su schermo
+			{
+				printf("%s	",lista_generi[i]);
+			}
 			SetColor(15);
-			system("PAUSE");
+			printf("\nInserisci il tuo genere preferito:");
+			fgets(genere_provvisorio, LUNGHEZZA_MAX, stdin);
+			eliminazione_acapo(genere_provvisorio);
+			fflush(stdin);
+
+			for(i=0;i<GENERI_TOT;i++) //Controlla se il genere Ã¨ presente nella lista_generi
+			{
+				if(strcmp(genere_provvisorio,lista_generi[i])==0)
+				{
+					genere_esistente=1;
+					posizione_genere=i;
+					i=GENERI_TOT;
+				}
+			}
+
+			if(genere_esistente==0)
+			{
+				system("cls");
+				logo();
+				SetColor(4);
+				printf("Genere non esistente\n");
+				SetColor(15);
+				system("PAUSE");
+			}
+		}while(genere_esistente!=1);
+
+		genere_esistente=0;
+
+			system("cls");
+			logo();
+			printf("\nI/Il cantante che corrisponde al tuo genere preferito %c:\n", 138);
+			SetColor(3);
+			printf("CODICE\t\tNOME\n");
+			SetColor(15);
+			for(i=0;i<artisti_effettivi;i++)
+			{
+				if(ARTISTI[i].genere[posizione_genere]==1)
+				{
+					printf("%s\t\t%s\n", ARTISTI[i].codice, ARTISTI[i].nome);
+					genere_esistente=1;
+				}
+			}
+
+			if(genere_esistente == 0)
+			{
+				system("cls");
+				logo();
+				SetColor(4);
+				printf("Nessun cantante con questo genere trovato!\n");
+				SetColor(15);
+				system("pause");
+			}
+			else
+			{
+				printf("Inserisci il codice dell'artista:");
+				fgets(artista,LUNGHEZZA_MAX,stdin);
+				eliminazione_acapo(artista);
+				fflush(stdin);
+
+				for(i=0;i<artisti_effettivi;i++)
+				{
+					if(strcmp(artista, ARTISTI[i].codice)==0)		//Controllo per individuare l'artista inserito in input
+					{
+						printf("Artista trovato!\n");
+						artista_trovato=1;
+						pos_artista=i;
+						i=artisti_effettivi;
+					}
+				}
+
+				if(artista_trovato==0)
+				{
+					system("cls");
+					logo();
+					SetColor(4);
+					printf("\nArtista non trovato\a\n");
+					SetColor(15);
+					system("PAUSE");
+				}
+
+			}while(artista_trovato==0);
+
+			do{		//Controllo fin quando non viene digitato 1 2 o 3
+			system("cls");
+			logo();
+			SetColor(2);
+			printf("[1]");
+			SetColor(15);
+			printf("Ascolta artista\n");
+			SetColor(2);
+			printf("[2]");
+			SetColor(15);
+			printf("Mi piace\n");
+			SetColor(2);
+			printf("[3]");
+			SetColor(15);
+			printf("Non mi piace\n");
+			SetColor(15);
+			printf("\nInserisci comando:");
+			fgets(artista,LUNGHEZZA_MAX,stdin);
+			eliminazione_acapo(artista);
+			fflush(stdin);
+
+			if(strcmp(artista,"1")!=0 && strcmp(artista,"2")!=0 && strcmp(artista,"3")!=0)
+			{
+				system("cls");
+				logo();
+				SetColor(4);
+				printf("\nComando errato\a\n");
+				SetColor(15);
+				system("PAUSE");
+			}
+		}while(strcmp(artista,"1")!=0 && strcmp(artista,"2")!=0 && strcmp(artista,"3")!=0);
+
+
+		artista_trovato=0;
+		switch(atoi(artista))
+		{
+
+			case 1:	for(i=0;i<ARTISTI_MAX;i++)		//Controllo se è già presente il codice dell'artista
+					{
+						if(strcmp(UTENTI[posizione_utente].codice_artista[i],ARTISTI[pos_artista].codice)==0)
+						{
+							if(UTENTI[posizione_utente].preferenze[i]==2)	//Stava un mi piace
+							{
+								UTENTI[posizione_utente].preferenze[i]=1;
+								ARTISTI[pos_artista].preferenze--;		//Tolgo un mi piace
+								artista_trovato=1;
+								i=ARTISTI_MAX;
+							}
+
+							if(UTENTI[posizione_utente].preferenze[i]==3)	//Stava un non mi piace
+							{
+								UTENTI[posizione_utente].preferenze[i]=1;
+								ARTISTI[pos_artista].preferenze++;		//Aggiungo un mi piace
+								artista_trovato=1;
+								i=ARTISTI_MAX;
+							}
+
+						}
+					}
+
+					if(artista_trovato==0)		//Se non è stato trovato lo inserisco nel primo spazio disponibile
+					{
+						for(i=0;i<ARTISTI_MAX;i++)
+						{
+							if(UTENTI[posizione_utente].preferenze[i]==0)
+							{
+								strcpy(UTENTI[posizione_utente].codice_artista[i],ARTISTI[pos_artista].codice);
+								UTENTI[posizione_utente].preferenze[i]=1;
+								i=ARTISTI_MAX;
+							}
+						}
+					}
+
+					ARTISTI[pos_artista].ascolti++;
+					break;
+
+			//Mi piace
+			case 2: for(i=0;i<ARTISTI_MAX;i++)		//Controllo se è già presente il codice dell'artista
+					{
+						if(strcmp(UTENTI[posizione_utente].codice_artista[i],ARTISTI[pos_artista].codice)==0)
+						{
+							//---
+							if(UTENTI[posizione_utente].preferenze[i]==1)	//Stava un ascolto
+							{
+								UTENTI[posizione_utente].preferenze[i]=2;
+								ARTISTI[pos_artista].preferenze++;		//Aggiungo un mi piace
+								ARTISTI[pos_artista].ascolti++;		//Aumento gli ascolti
+								artista_trovato=1;
+								i=ARTISTI_MAX;
+							}
+
+							if(UTENTI[posizione_utente].preferenze[i]==3)	//Stava un non mi piace
+							{
+								UTENTI[posizione_utente].preferenze[i]=1;
+								ARTISTI[pos_artista].preferenze++;		//Aggiungo un mi piace
+								ARTISTI[pos_artista].ascolti++;		//Aumento gli ascolti
+								artista_trovato=1;
+								i=ARTISTI_MAX;
+							}
+						}
+					}
+
+					if(artista_trovato==0)		//Se non è stato trovato lo inserisco nel primo spazio disponibile
+					{
+						for(i=0;i<ARTISTI_MAX;i++)
+						{
+							if(UTENTI[posizione_utente].preferenze[i]==0)
+							{
+								strcpy(UTENTI[posizione_utente].codice_artista[i],ARTISTI[pos_artista].codice);
+								UTENTI[posizione_utente].preferenze[i]=2;
+								i=ARTISTI_MAX;
+								ARTISTI[pos_artista].preferenze++;
+								ARTISTI[pos_artista].ascolti++;
+							}
+						}
+					}
+
+					break;
+
+			//Non mi piace
+			case 3:for(i=0;i<ARTISTI_MAX;i++)		//Controllo se è già presente il codice dell'artista
+					{
+						if(strcmp(UTENTI[posizione_utente].codice_artista[i],ARTISTI[pos_artista].codice)==0)
+						{
+							if(UTENTI[posizione_utente].preferenze[i]==1)	//Stava un ascolto
+							{
+								UTENTI[posizione_utente].preferenze[i]=2;
+								ARTISTI[pos_artista].ascolti++;		//Aumento gli ascolti
+								artista_trovato=1;
+								i=ARTISTI_MAX;
+							}
+
+							if(UTENTI[posizione_utente].preferenze[i]==2)	//Stava un ascolto e mi piace
+							{
+								UTENTI[posizione_utente].preferenze[i]=1;
+								ARTISTI[pos_artista].preferenze--;		//Tolgo un mi piace
+								ARTISTI[pos_artista].ascolti++;		//Aumento gli ascolti
+								artista_trovato=1;
+								i=ARTISTI_MAX;
+							}
+						}
+					}
+
+					if(artista_trovato==0)		//Se non è stato trovato lo inserisco nel primo spazio disponibile
+					{
+						for(i=0;i<ARTISTI_MAX;i++)
+						{
+							if(UTENTI[posizione_utente].preferenze[i]==0)
+							{
+								strcpy(UTENTI[posizione_utente].codice_artista[i],ARTISTI[pos_artista].codice);
+								UTENTI[posizione_utente].preferenze[i]=3;
+								ARTISTI[pos_artista].ascolti++;
+								i=ARTISTI_MAX;
+							}
+						}
+					}
+
+
+			break;
 		}
+
+	break;
+
+	case 2:
+		do{		//Controllo fin quando non viene digitato il codice dell'artista correttamente
+			system("cls");
+			logo();
+			SetColor(3);
+			printf("CODICE\t\tNOME\n");
+			SetColor(15);
+
+			for(i=0;i<artisti_effettivi;i++)		//Stampa artisti
+			{
+				printf("%s\t\t%s\n", ARTISTI[i].codice, ARTISTI[i].nome);
+			}
+			printf("Inserisci il codice dell'artista:");
+			fgets(artista,LUNGHEZZA_MAX,stdin);
+			eliminazione_acapo(artista);
+			fflush(stdin);
+
+			for(i=0;i<artisti_effettivi;i++)
+			{
+				if(strcmp(artista, ARTISTI[i].codice)==0)		//Controllo per individuare l'artista inserito in input
+				{
+					printf("Artista trovato!\n");
+					artista_trovato=1;
+					pos_artista=i;
+				}
+			}
+
+			if(artista_trovato==0)
+			{
+				system("cls");
+				logo();
+				SetColor(4);
+				printf("\nArtista non trovato\a\n");
+				SetColor(15);
+				system("PAUSE");
+			}
+
 	}while(artista_trovato==0);
 
 	do{		//Controllo fin quando non viene digitato 1 2 o 3
@@ -1379,5 +1629,28 @@ void modifica_preferenze(int posizione_utente,int artisti_effettivi)
 
 				break;
 	}
+	break;
 
+	case 3:
+		system("cls");
+		logo();
+		printf("Top 10 mi piace selezionata\n");
+		system("pause");
+	break;
+
+	case 4:
+		system("cls");
+		logo();
+		printf("Top 10 mi piace selezionata\n");
+		system("pause");
+	break;
+
+	default:
+		system("cls");
+		logo();
+		printf("THai sbagliato tasto\n");
+		system("pause");
+	break;
+
+	}
 }
