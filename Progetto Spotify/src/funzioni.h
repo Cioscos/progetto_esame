@@ -86,7 +86,7 @@ void menu_preferenze(int posizione_utente,int artisti_effettivi);
 void modifica_preferenze(int posizione_utente, int pos_artista);
 
 int categoria_artisti(int artisti_effettivi);
-
+int totale_artisti(int artisti_effettivi);
 
 
 /*

@@ -498,12 +498,12 @@ void stampa_profilo(int posizione_utente)
 
 					if(UTENTI[posizione_utente].preferenze[i]==2)
 					{
-						printf("Mi piace\n");
+						printf("Ascoltato e Mi piace\n");
 					}
 
 					if(UTENTI[posizione_utente].preferenze[i]==3)
 					{
-						printf("Non mi piace\n");
+						printf("Ascoltato e Non mi piace\n");
 					}
 
 				}
@@ -1183,42 +1183,11 @@ void menu_preferenze(int posizione_utente,int artisti_effettivi)
 				break;
 
 		//Tutti gli artisti
-		case 2: do{		//Controllo fin quando non viene digitato il codice dell'artista correttamente
-					system("cls");
-					logo();
-					SetColor(3);
-					printf("CODICE\t\tNOME\n");
-					SetColor(15);
-
-					for(i=0;i<artisti_effettivi;i++)		//Stampa artisti
-					{
-						printf("%s\t\t%s\n", ARTISTI[i].codice, ARTISTI[i].nome);
-					}
-					printf("Inserisci il codice dell'artista:");
-					fgets(artista,LUNGHEZZA_MAX,stdin);
-					eliminazione_acapo(artista);
-					fflush(stdin);
-
-					for(i=0;i<artisti_effettivi;i++)
-					{
-						if(strcmp(artista, ARTISTI[i].codice)==0)		//Controllo per individuare l'artista inserito in input
-						{
-							printf("Artista trovato!\n");
-							artista_trovato=1;
-							pos_artista=i;
-						}
-					}
-
-					if(artista_trovato==0)
-					{
-						system("cls");
-						logo();
-						SetColor(4);
-						printf("\nArtista non trovato\a\n");
-						SetColor(15);
-						system("PAUSE");
-					}
-				}while(artista_trovato==0);
+		case 2: pos_artista=totale_artisti(artisti_effettivi);
+				if(pos_artista!=-1)
+				{
+					modifica_preferenze(posizione_utente,  pos_artista);
+				}
 
 				break;
 
@@ -1347,6 +1316,51 @@ int categoria_artisti(int artisti_effettivi)
 
 }
 
+int totale_artisti(int artisti_effettivi)
+{
+	char artista[LUNGHEZZA_MAX]={"\0"};		//Variabile d'appoggio per l'artista chiesto in input
+	int artista_trovato=0;					//0 artista non trovato | 1 artista trovato
+	int pos_artista=-1;						//Contiene la posizione nel vettore dell'artista trovato
+	int i;
+	do{		//Controllo fin quando non viene digitato il codice dell'artista correttamente
+		system("cls");
+		logo();
+		SetColor(3);
+		printf("CODICE\t\tNOME\n");
+		SetColor(15);
+
+		for (i = 0; i < artisti_effettivi; i++)		//Stampa artisti
+		{
+			printf("%s\t\t%s\n", ARTISTI[i].codice, ARTISTI[i].nome);
+		}
+		printf("Inserisci il codice dell'artista:");
+		fgets(artista, LUNGHEZZA_MAX, stdin);
+		eliminazione_acapo(artista);
+		fflush(stdin);
+
+		for (i = 0; i < artisti_effettivi; i++)
+		{
+			if (strcmp(artista, ARTISTI[i].codice) == 0)//Controllo per individuare l'artista inserito in input
+			{
+				printf("Artista trovato!\n");
+				artista_trovato = 1;
+				pos_artista = i;
+			}
+		}
+
+		if (artista_trovato == 0)
+		{
+			system("cls");
+			logo();
+			SetColor(4);
+			printf("\nArtista non trovato\a\n");
+			SetColor(15);
+			system("PAUSE");
+		}
+	}while(artista_trovato==0);
+
+	return(pos_artista);
+}
 
 void modifica_preferenze(int posizione_utente, int pos_artista)
 {
