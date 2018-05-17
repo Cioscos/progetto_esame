@@ -30,7 +30,7 @@ int main(int argc, char *argv[]){
 	int utenti_effettivi=0;
 	char relative_path[LUNGHEZZA_PATH]={'\0'};
 	char token_buffer[LUNGHEZZA_PATH]={'\0'};
-	char *token;
+	char token[LUNGHEZZA_PATH]={'\0'};
 
 
 	//GENERO LA PATH DEI FILE
@@ -43,13 +43,13 @@ int main(int argc, char *argv[]){
 	{
 		if(i==0)
 		{
-			token=strtok(token_buffer, "\\");
+			strcpy(token, strtok(token_buffer, "\\") );
 			strcpy(relative_path, token);
 			strcat(relative_path,"\\");
 		}
 		else
 		{
-			token=strtok(NULL, "\\");
+			strcpy(token, strtok(NULL, "\\") );
 			strcat(relative_path, token);
 			strcat(relative_path,"\\");
 		}

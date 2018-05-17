@@ -1209,8 +1209,6 @@ void menu_preferenze(int posizione_utente,int artisti_effettivi)
 	}
 }
 
-
-
 int categoria_artisti(int artisti_effettivi)
 {
 	char lista_generi[GENERI_TOT][LUNGHEZZA_MAX]={"N.A.","Electro","Pop","Techno","Rock","Jazz","Rap","Blues","Country","Britpop","Dubstep","EDM","Hip-Hop","House","Musica leggera","Trap","Trance","Disco","Dance"};
@@ -1404,7 +1402,7 @@ void modifica_preferenze(int posizione_utente, int pos_artista)
 	artista_trovato=0;
 	switch(atoi(artista))
 	{
-
+		//Ascoltato
 		case 1:	for(i=0;i<ARTISTI_MAX;i++)		//Controllo se Ã¨ giÃ  presente il codice dell'artista
 				{
 					if(strcmp(UTENTI[posizione_utente].codice_artista[i],ARTISTI[pos_artista].codice)==0)
@@ -1423,7 +1421,7 @@ void modifica_preferenze(int posizione_utente, int pos_artista)
 							artista_trovato=1;
 							i=ARTISTI_MAX;
 						}
-
+						i=ARTISTI_MAX;
 					}
 				}
 
