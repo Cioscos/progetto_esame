@@ -489,24 +489,26 @@ void stampa_profilo(int posizione_utente)
 				if(strcmp(UTENTI[posizione_utente].codice_artista[i],ARTISTI[j].codice)==0)
 				{
 					printf("%s:",ARTISTI[j].nome);
+
+					SetColor(15);
+					if(UTENTI[posizione_utente].preferenze[i]==1)
+					{
+						printf("Ascoltato\n");
+					}
+
+					if(UTENTI[posizione_utente].preferenze[i]==2)
+					{
+						printf("Mi piace\n");
+					}
+
+					if(UTENTI[posizione_utente].preferenze[i]==3)
+					{
+						printf("Non mi piace\n");
+					}
+
 				}
 			}
-			SetColor(15);
 
-			if(UTENTI[posizione_utente].preferenze[i]==1)
-			{
-				printf("Ascoltato\n");
-			}
-
-			if(UTENTI[posizione_utente].preferenze[i]==2)
-			{
-				printf("Mi piace\n");
-			}
-
-			if(UTENTI[posizione_utente].preferenze[i]==3)
-			{
-				printf("Non mi piace\n");
-			}
 		}
 	}
 }
@@ -534,14 +536,16 @@ int isAutenticazione(int utenti_effettivi, int* posizione_utente)
 	char utente[LUNGHEZZA_MAX];				//Variabile contenente il nome utente chiesto in input
 	char password[LUNGHEZZA_PASS]={'\0'};	//Variabile contenente la password chiesta in input
 	char carattere_bf;						//Variabile contenenete un solo carattere per la creazione della password
-
-	logo();
-	SetColor(15);
-	printf("Inserisci nickname:");
-	SetColor(6);
-	fgets(utente,LUNGHEZZA_MAX,stdin);
-
-	eliminazione_acapo(utente);
+	do{
+		system("cls");
+		logo();
+		SetColor(15);
+		printf("Inserisci nickname:");
+		SetColor(6);
+		fgets(utente,LUNGHEZZA_MAX,stdin);
+		fflush(stdin);
+		eliminazione_acapo(utente);
+	}while(strlen(utente)<1);
 
 	for(i=0;i<utenti_effettivi;i++)
 	{
@@ -577,6 +581,8 @@ int isAutenticazione(int utenti_effettivi, int* posizione_utente)
 					}
 				}
 			}while(strlen(password)!=LUNGHEZZA_PASS-1);
+
+			fflush(stdin);
 
 			eliminazione_acapo(password);
 
@@ -1209,14 +1215,26 @@ void modifica_preferenze(int posizione_utente,int artisti_effettivi)
 	switch(atoi(artista))
 	{
 
-		//Ascolta artista
 		case 1:	for(i=0;i<ARTISTI_MAX;i++)		//Controllo se è già presente il codice dell'artista
 				{
 					if(strcmp(UTENTI[posizione_utente].codice_artista[i],ARTISTI[pos_artista].codice)==0)
 					{
-						UTENTI[posizione_utente].preferenze[i]=1;
-						artista_trovato=1;
-						i=ARTISTI_MAX;
+						if(UTENTI[posizione_utente].preferenze[i]==2)	//Stava un mi piace
+						{
+							UTENTI[posizione_utente].preferenze[i]=1;
+							ARTISTI[pos_artista].preferenze--;		//Tolgo un mi piace
+							artista_trovato=1;
+							i=ARTISTI_MAX;
+						}
+
+						if(UTENTI[posizione_utente].preferenze[i]==3)	//Stava un non mi piace
+						{
+							UTENTI[posizione_utente].preferenze[i]=1;
+							ARTISTI[pos_artista].preferenze++;		//Aggiungo un mi piace
+							artista_trovato=1;
+							i=ARTISTI_MAX;
+						}
+
 					}
 				}
 
@@ -1234,11 +1252,6 @@ void modifica_preferenze(int posizione_utente,int artisti_effettivi)
 				}
 
 				ARTISTI[pos_artista].ascolti++;
-
-
-
-
-
 				break;
 
 		//Mi piace
@@ -1246,20 +1259,24 @@ void modifica_preferenze(int posizione_utente,int artisti_effettivi)
 				{
 					if(strcmp(UTENTI[posizione_utente].codice_artista[i],ARTISTI[pos_artista].codice)==0)
 					{
-						if(UTENTI[posizione_utente].preferenze[i]==3)
+						//---
+						if(UTENTI[posizione_utente].preferenze[i]==1)	//Stava un ascolto
 						{
-							ARTISTI[pos_artista].preferenze++;
+							UTENTI[posizione_utente].preferenze[i]=2;
+							ARTISTI[pos_artista].preferenze++;		//Aggiungo un mi piace
+							ARTISTI[pos_artista].ascolti++;		//Aumento gli ascolti
+							artista_trovato=1;
+							i=ARTISTI_MAX;
 						}
-						else
+
+						if(UTENTI[posizione_utente].preferenze[i]==3)	//Stava un non mi piace
 						{
-							if(UTENTI[posizione_utente].preferenze[i]==1)
-							{
-								ARTISTI[pos_artista].preferenze++;
-							}
+							UTENTI[posizione_utente].preferenze[i]=1;
+							ARTISTI[pos_artista].preferenze++;		//Aggiungo un mi piace
+							ARTISTI[pos_artista].ascolti++;		//Aumento gli ascolti
+							artista_trovato=1;
+							i=ARTISTI_MAX;
 						}
-						UTENTI[posizione_utente].preferenze[i]=2;
-						artista_trovato=1;
-						i=ARTISTI_MAX;
 					}
 				}
 
@@ -1273,10 +1290,10 @@ void modifica_preferenze(int posizione_utente,int artisti_effettivi)
 							UTENTI[posizione_utente].preferenze[i]=2;
 							i=ARTISTI_MAX;
 							ARTISTI[pos_artista].preferenze++;
+							ARTISTI[pos_artista].ascolti++;
 						}
 					}
 				}
-
 
 				break;
 
@@ -1285,13 +1302,22 @@ void modifica_preferenze(int posizione_utente,int artisti_effettivi)
 				{
 					if(strcmp(UTENTI[posizione_utente].codice_artista[i],ARTISTI[pos_artista].codice)==0)
 					{
-						if(UTENTI[posizione_utente].preferenze[i]==2)
+						if(UTENTI[posizione_utente].preferenze[i]==1)	//Stava un ascolto
 						{
-							ARTISTI[pos_artista].preferenze--;
+							UTENTI[posizione_utente].preferenze[i]=2;
+							ARTISTI[pos_artista].ascolti++;		//Aumento gli ascolti
+							artista_trovato=1;
+							i=ARTISTI_MAX;
 						}
-						UTENTI[posizione_utente].preferenze[i]=3;
-						artista_trovato=1;
-						i=ARTISTI_MAX;
+
+						if(UTENTI[posizione_utente].preferenze[i]==2)	//Stava un ascolto e mi piace
+						{
+							UTENTI[posizione_utente].preferenze[i]=1;
+							ARTISTI[pos_artista].preferenze--;		//Tolgo un mi piace
+							ARTISTI[pos_artista].ascolti++;		//Aumento gli ascolti
+							artista_trovato=1;
+							i=ARTISTI_MAX;
+						}
 					}
 				}
 
@@ -1303,6 +1329,7 @@ void modifica_preferenze(int posizione_utente,int artisti_effettivi)
 						{
 							strcpy(UTENTI[posizione_utente].codice_artista[i],ARTISTI[pos_artista].codice);
 							UTENTI[posizione_utente].preferenze[i]=3;
+							ARTISTI[pos_artista].ascolti++;
 							i=ARTISTI_MAX;
 						}
 					}

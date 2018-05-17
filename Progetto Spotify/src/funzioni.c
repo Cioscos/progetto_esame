@@ -752,35 +752,47 @@ void gestione_file(char modalita, int tipo, int *numero, char relative_path[])  
 
 			if(pf!=NULL)
 			{
-				for(i=0;i<UTENTI_MAX;i++)
+				for(i=0;i<UTENTI_MAX;i++)		//Effettuo l'inserimento delle preferenze per tutti gli utenti
 				{
 					nome_scritto=0;
 					for(j=0;j<ARTISTI_MAX;j++)			//Inserisco anche la preferenza di un utente che Ã¨ stato eliminato
 					{
-						if(UTENTI[i].preferenze[j]!=0)
+						if(UTENTI[i].preferenze[j]!=0)		//Controllo se l'utente ha espresso una preferenza
 						{
-							if(nome_scritto==0)
+							for(k=0;k<ARTISTI_MAX;k++)
 							{
-								if(primo!=0)
+
+								if(strcmp(UTENTI[i].codice_artista[j],ARTISTI[k].codice)==0)//Controllo se l'artista è ancora presente
 								{
-									strcpy(buffer, "\n");
-									strcat(buffer, UTENTI[i].nickname);
-									strcat(buffer,barra);
+									if(nome_scritto==0)
+									{
+										if(primo!=0)
+										{
+											strcpy(buffer, "\n");
+											strcat(buffer, UTENTI[i].nickname);
+											strcat(buffer,barra);
+										}
+										else
+										{
+											strcpy(buffer, UTENTI[i].nickname);
+											strcat(buffer,barra);
+											primo=1;
+										}
+										nome_scritto=1;
+									}
+
+									strcat(buffer, UTENTI[i].codice_artista[j]);
+									strcat(buffer, virgola);
+									sprintf(itoa_bf, "%d", UTENTI[i].preferenze[j]);
+									strcat(buffer, itoa_bf);
+									strcat(buffer, barra);
+
+									k=ARTISTI_MAX;
 								}
-								else
-								{
-									strcpy(buffer, UTENTI[i].nickname);
-									strcat(buffer,barra);
-									primo=1;
-								}
-								nome_scritto=1;
 							}
 
-								strcat(buffer, UTENTI[i].codice_artista[j]);
-								strcat(buffer, virgola);
-								sprintf(itoa_bf, "%d", UTENTI[i].preferenze[j]);
-								strcat(buffer, itoa_bf);
-								strcat(buffer, barra);
+
+
 						}
 					}
 					if(nome_scritto==1)
@@ -814,7 +826,6 @@ void gestione_file(char modalita, int tipo, int *numero, char relative_path[])  
 		{
 			i=0;
 
-
 			while(!feof(pf))
 			{
 				j=0;
@@ -826,13 +837,19 @@ void gestione_file(char modalita, int tipo, int *numero, char relative_path[])  
 				{
 					if(strcmp(UTENTI[i].nickname,token)==0)		//Individua la posizione dell'utente
 					{
+						for(j=0;j<ARTISTI_MAX;j++)		//Azzeramento Vettore preferenze e codici_artisti
+						{
+							UTENTI[i].preferenze[j]=0;
+							strcpy(UTENTI[i].codice_artista[j],"");
+						}
+
 						for(k=0;k<ARTISTI_MAX;k++)
 						{
 							if( (token=strtok(NULL, virgola)) != NULL)	//Contiene il codice
 							{
 								for(j=0;j<ARTISTI_MAX;j++)
 								{
-									if(strcmp(ARTISTI[j].codice,token)==0)//Controllo se il codice Ã¨ ancora presente
+									if(strcmp(ARTISTI[j].codice,token)==0)	//Controllo se il codice Ã¨ ancora presente
 									{
 										strcpy(UTENTI[i].codice_artista[k],ARTISTI[j].codice);
 										token=strtok(NULL, barra);		//Contiene la barra

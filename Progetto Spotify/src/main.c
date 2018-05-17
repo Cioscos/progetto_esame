@@ -30,7 +30,7 @@ int main(int argc, char *argv[]){
 	int utenti_effettivi=0;
 	char relative_path[LUNGHEZZA_PATH]={'\0'};
 	char token_buffer[LUNGHEZZA_PATH]={'\0'};
-	char *token={'\0'};
+	char token[LUNGHEZZA_PATH]={'\0'};
 
 
 	//GENERO LA PATH DEI FILE
@@ -43,13 +43,13 @@ int main(int argc, char *argv[]){
 	{
 		if(i==0)
 		{
-			token=strtok(token_buffer, "\\");
+			strcpy(token, strtok(token_buffer, "\\") );
 			strcpy(relative_path, token);
 			strcat(relative_path,"\\");
 		}
 		else
 		{
-			token=strtok(NULL, "\\");
+			strcpy(token, strtok(NULL, "\\") );
 			strcat(relative_path, token);
 			strcat(relative_path,"\\");
 		}
@@ -58,9 +58,6 @@ int main(int argc, char *argv[]){
 	}
 
 	strcat(relative_path, "File\\");
-
-	printf("%s\n", relative_path);
-	system("pause");
 
 	//CARICO ARTISTI E UTENTI DA FILE
 	gestione_file('r', 0, &artisti_effettivi, relative_path);
@@ -128,6 +125,7 @@ int main(int argc, char *argv[]){
 									logo();
 									artisti_effettivi=elimina_artista(artisti_effettivi);
 									gestione_file('w', 0, &artisti_effettivi, relative_path);
+									gestione_file('w', 2, &utenti_effettivi, relative_path);
 									system("PAUSE");
 									break;
 
@@ -255,6 +253,10 @@ int main(int argc, char *argv[]){
 system("PAUSE");
 return 0;
 }
+
+
+
+
 
 
 
