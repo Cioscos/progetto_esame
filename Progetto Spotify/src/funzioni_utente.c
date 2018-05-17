@@ -1136,10 +1136,51 @@ int elimina_utente(int* utenti_effettivi, int posizione_utente)
 void modifica_preferenze(int posizione_utente,int artisti_effettivi)
 {
 	char artista[LUNGHEZZA_MAX]={"\0"};		//Variabile d'appoggio per l'artista chiesto in input
-	int artista_trovato=0;					//0 artista non trovato - 1 artista trovato
+	int artista_trovato=0;					//0 artista non trovato | 1 artista trovato
 	int pos_artista;						//Contiene la posizione nel vettore dell'artista trovato
+	char metodo[LUNGHEZZA_INPUT]={'\0'};
+	char lista_generi[GENERI_TOT][LUNGHEZZA_MAX]={"N.A.","Electro","Pop","Techno","Rock","Jazz","Rap","Blues","Country","Britpop","Dubstep","EDM","Hip-Hop","House","Musica leggera","Trap","Trance","Disco","Dance"};
 	int i;
 
+	do{
+
+		logo();
+		printf("Scegli gli artisti che ti piacciono!\nPuoi scegliere se visualizzarli per:\n");
+		SetColor(2);
+		printf("[1]");
+		SetColor(15);
+		printf(" Categoria preferita\n");
+		SetColor(2);
+		printf("[2]");
+		SetColor(15);
+		printf("Tutti gli artisti\n");
+		SetColor(2);
+		printf("[3]");
+		SetColor(15);
+		printf(" Top 10 %cMi piace%c\n",34,34);
+		SetColor(2);
+		printf("[4]");
+		SetColor(15);
+		printf("Top 10 %cAscolti%c\nChe metodo preferisci? :",34,34);
+		fgets(metodo, LUNGHEZZA_INPUT, stdin);
+		eliminazione_acapo(metodo);
+		fflush(stdin);
+
+	}while((strcmp(metodo, "1"))<0 || (strcmp(metodo, "4")>0) );
+
+	switch(atoi(metodo)){
+
+	case 1:
+		system("cls");
+		logo();
+		printf("Selezionare genere: ");
+		SetColor(6);
+		for(i=0;i<GENERI_TOT;i++)
+		{
+			printf("%s ", lista_generi[i]);
+		}
+
+	}
 
 	do{		//Controllo fin quando non viene digitato il codice dell'artista correttamente
 		system("cls");
