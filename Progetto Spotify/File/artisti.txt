@@ -1,6 +1,6 @@
 0001,Depeche Mode,Virgin Radio,Inglese,1980,2,0,Rock,Britpop
 0002,Martin Garrix,Spinning Records,Olandese,2013,1,1,EDM
-0003,Eminem,Interscope,Statunitense,1992,0,0,Pop,Rap
+0003,Eminem,Interscope,Statunitense,1992,1,1,Pop,Rap
 0004,ACDC,Atlantic Records,Australiana,1973,0,0,Rock,Britpop
 0005,Kanye West,GOOD Music,Statunitense,1996,0,0,Pop
 0006,Daft Punk,Virgin Records,Francese,1992,0,0,House

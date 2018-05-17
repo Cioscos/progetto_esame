@@ -82,8 +82,10 @@ void visualizzazione_utenti(int utenti_effettivi);
 void stampa_profilo(int posizione_utente);
 void modifica_utente(int utenti_effettivi, int posizione_utente);
 int elimina_utente(int* utenti_effettivi, int posizione_utente);
-void modifica_preferenze(int posizione_utente,int artisti_effettivi);
+void menu_preferenze(int posizione_utente,int artisti_effettivi);
+void modifica_preferenze(int posizione_utente, int pos_artista);
 
+int categoria_artisti(int artisti_effettivi);
 
 
 

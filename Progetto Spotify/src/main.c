@@ -195,7 +195,7 @@ int main(int argc, char *argv[]){
 
 												//---- Modifica preferenze ----
 												case 2:	system("cls");
-														modifica_preferenze(posizione_utente,artisti_effettivi);
+														menu_preferenze(posizione_utente,artisti_effettivi);
 														gestione_file('w', 2, &utenti_effettivi, relative_path);		// TODO IL PROBLEMA è QUI CHE SPUTTANA LA STRUCT
 														gestione_file('w', 0, &artisti_effettivi, relative_path);
 														system("PAUSE");
