@@ -1407,10 +1407,16 @@ void modifica_preferenze(int posizione_utente, int pos_artista)
 				{
 					if(strcmp(UTENTI[posizione_utente].codice_artista[i],ARTISTI[pos_artista].codice)==0)
 					{
+						if(UTENTI[posizione_utente].preferenze[i]==1)	//Stava un ascoltato
+						{
+							artista_trovato=1;
+							i=ARTISTI_MAX;
+						}
+
 						if(UTENTI[posizione_utente].preferenze[i]==2)	//Stava un mi piace
 						{
 							UTENTI[posizione_utente].preferenze[i]=1;
-							ARTISTI[pos_artista].preferenze--;		//Tolgo un mi piace
+							ARTISTI[pos_artista].preferenze--;//Tolgo un mi piace
 							artista_trovato=1;
 							i=ARTISTI_MAX;
 						}
@@ -1424,6 +1430,7 @@ void modifica_preferenze(int posizione_utente, int pos_artista)
 						i=ARTISTI_MAX;
 					}
 				}
+
 
 				if(artista_trovato==0)		//Se non Ã¨ stato trovato lo inserisco nel primo spazio disponibile
 				{
@@ -1451,6 +1458,12 @@ void modifica_preferenze(int posizione_utente, int pos_artista)
 						{
 							UTENTI[posizione_utente].preferenze[i]=2;
 							ARTISTI[pos_artista].preferenze++;		//Aggiungo un mi piace
+							artista_trovato=1;
+							i=ARTISTI_MAX;
+						}
+
+						if(UTENTI[posizione_utente].preferenze[i]==2)	//Stava un mi piace
+						{
 							artista_trovato=1;
 							i=ARTISTI_MAX;
 						}
@@ -1498,6 +1511,12 @@ void modifica_preferenze(int posizione_utente, int pos_artista)
 						{
 							UTENTI[posizione_utente].preferenze[i]=3;
 							ARTISTI[pos_artista].preferenze--;		//Tolgo un mi piace
+							artista_trovato=1;
+							i=ARTISTI_MAX;
+						}
+
+						if(UTENTI[posizione_utente].preferenze[i]==3)	//Stava un non mi piace
+						{
 							artista_trovato=1;
 							i=ARTISTI_MAX;
 						}
