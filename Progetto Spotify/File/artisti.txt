@@ -1,9 +1,9 @@
-0001,Depeche Mode,Virgin Radio,Inglese,1980,0,0,Rock,Britpop
+0001,Depeche Mode,Virgin Radio,Inglese,1980,16,3,Rock,Britpop
 0002,Martin Garrix,Spinning Records,Olandese,2013,0,0,EDM
-0003,Eminem,Interscope,Statunitense,1992,10,0,Pop,Rap
+0003,Eminem,Interscope,Statunitense,1992,11,0,Pop,Rap
 0004,ACDC,Atlantic Records,Australiana,1973,0,0,Rock,Britpop
 0005,Kanye West,GOOD Music,Statunitense,1996,0,0,Pop
-0006,Daft Punk,Virgin Records,Francese,1992,0,0,House
+0006,Daft Punk,Virgin Records,Francese,1992,2,2,House
 0007,Michael Jackson,Universal,Statunitense,1964,0,0,Pop
 0008,Cladio Baglioni,19,Italiana,1968,0,0,Musica leggera
 0009,Vasco Rossi,EMI Italia,Italiana,1977,0,0,Pop,Rock
@@ -14,8 +14,8 @@
 0014,Britney Spears,Jiva Records,Statunitense,1992,0,0,Pop,Disco
 0015,Kool & the Gang,N.A.,Statunitense,1964,0,0,Disco
 0016,Fabrizio De André,Karim Musa,Italiana,1961,0,0,Musica leggera
-0017,Rolling Stone,Wenner Media LLC,Statunitense,1967,0,0,Rock
-0018,Lil Pump,Warner Bros. Records,Statunitense,2016,0,0,Trap
+0017,Rolling Stone,Wenner Media LLC,Statunitense,1967,1,0,Rock
+0018,Lil Pump,Warner Bros. Records,Statunitense,2016,1,0,Trap
 0019,Will.i.am,Interscope,Statunitense,1992,0,0,Pop,Dance
 0020,Fergie Duhamel,Interscope,Statunitense,1996,0,0,Pop
 0021,Hardwell,Revealed Recordings,Olandese,2006,0,0,Electro,EDM,House

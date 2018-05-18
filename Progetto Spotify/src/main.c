@@ -29,8 +29,9 @@ int main(int argc, char *argv[]){
 	int artisti_effettivi=0;
 	int utenti_effettivi=0;
 	char relative_path[LUNGHEZZA_PATH]={'\0'};
+	char unita_path[LUNGHEZZA_PATH]={'\0'};
 	char token_buffer[LUNGHEZZA_PATH]={'\0'};
-	char token[LUNGHEZZA_PATH]={'\0'};
+	char *token;
 
 
 	//GENERO LA PATH DEI FILE
@@ -39,18 +40,20 @@ int main(int argc, char *argv[]){
 
 	strcpy(token_buffer, argv[0]);
 
-	while( (strcmp("Progetto Spotify", token)!=0 ) || (k==1) )
+	while( (k==1) || (strcmp("Progetto Spotify", unita_path)!=0 ) )
 	{
 		if(i==0)
 		{
-			strcpy(token, strtok(token_buffer, "\\") );
-			strcpy(relative_path, token);
+			token=strtok(token_buffer, "\\");
+			strcpy(unita_path, token);
+			strcpy(relative_path, unita_path);
 			strcat(relative_path,"\\");
 		}
 		else
 		{
-			strcpy(token, strtok(NULL, "\\") );
-			strcat(relative_path, token);
+			token = strtok(NULL, "\\");
+			strcpy(unita_path, token);
+			strcat(relative_path, unita_path);
 			strcat(relative_path,"\\");
 		}
 		i++;

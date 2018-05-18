@@ -1470,7 +1470,7 @@ void modifica_preferenze(int posizione_utente, int pos_artista)
 
 						if(UTENTI[posizione_utente].preferenze[i]==3)	//Stava un non mi piace
 						{
-							UTENTI[posizione_utente].preferenze[i]=1;
+							UTENTI[posizione_utente].preferenze[i]=2;
 							ARTISTI[pos_artista].preferenze++;		//Aggiungo un mi piace
 							artista_trovato=1;
 							i=ARTISTI_MAX;

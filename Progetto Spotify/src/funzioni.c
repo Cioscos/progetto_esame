@@ -831,37 +831,38 @@ void gestione_file(char modalita, int tipo, int *numero, char relative_path[])  
 				j=0;
 				fgets(buffer, LUNGHEZZA_BUFFER, pf);
 
-				token=strtok(buffer, barra);		//Contiene il nome
-
-				for(i=0;i<*numero;i++)
+				if((token=strtok(buffer, barra)) != NULL)		//Contiene il nome
 				{
-					if(strcmp(UTENTI[i].nickname,token)==0)		//Individua la posizione dell'utente
+					for(i=0;i<*numero;i++)
 					{
-						for(j=0;j<ARTISTI_MAX;j++)		//Azzeramento Vettore preferenze e codici_artisti
+						if(strcmp(UTENTI[i].nickname,token)==0)		//Individua la posizione dell'utente
 						{
-							UTENTI[i].preferenze[j]=0;
-							strcpy(UTENTI[i].codice_artista[j],"");
-						}
-
-						for(k=0;k<ARTISTI_MAX;k++)
-						{
-							if( (token=strtok(NULL, virgola)) != NULL)	//Contiene il codice
+							for(j=0;j<ARTISTI_MAX;j++)		//Azzeramento Vettore preferenze e codici_artisti
 							{
-								for(j=0;j<ARTISTI_MAX;j++)
+								UTENTI[i].preferenze[j]=0;
+								strcpy(UTENTI[i].codice_artista[j],"");
+							}
+
+							for(k=0;k<ARTISTI_MAX;k++)
+							{
+								if( (token=strtok(NULL, virgola)) != NULL)	//Contiene il codice
 								{
-									if(strcmp(ARTISTI[j].codice,token)==0)	//Controllo se il codice Ã¨ ancora presente
+									for(j=0;j<ARTISTI_MAX;j++)
 									{
-										strcpy(UTENTI[i].codice_artista[k],ARTISTI[j].codice);
-										token=strtok(NULL, barra);		//Contiene la barra
-										UTENTI[i].preferenze[k]=atoi(token);
-										j=ARTISTI_MAX;
+										if(strcmp(ARTISTI[j].codice,token)==0)	//Controllo se il codice Ã¨ ancora presente
+										{
+											strcpy(UTENTI[i].codice_artista[k],ARTISTI[j].codice);
+											token=strtok(NULL, barra);		//Contiene la barra
+											UTENTI[i].preferenze[k]=atoi(token);
+											j=ARTISTI_MAX;
+										}
 									}
 								}
-							}
-							else
-							{
-								i=*numero;
-								k=ARTISTI_MAX;
+								else
+								{
+									i=*numero;
+									k=ARTISTI_MAX;
+								}
 							}
 						}
 					}
