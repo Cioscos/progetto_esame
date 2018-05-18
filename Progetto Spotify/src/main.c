@@ -199,7 +199,7 @@ int main(int argc, char *argv[]){
 												//---- Modifica preferenze ----
 												case 2:	system("cls");
 														menu_preferenze(posizione_utente,artisti_effettivi);
-														gestione_file('w', 2, &utenti_effettivi, relative_path);		// TODO IL PROBLEMA è QUI CHE SPUTTANA LA STRUCT
+														gestione_file('w', 2, &utenti_effettivi, relative_path);
 														gestione_file('w', 0, &artisti_effettivi, relative_path);
 														system("PAUSE");
 														break;
@@ -217,6 +217,7 @@ int main(int argc, char *argv[]){
 														logo();
 														flag_utente_eliminato=elimina_utente(&utenti_effettivi, posizione_utente);
 														gestione_file('w', 1, &utenti_effettivi, relative_path);
+														gestione_file('w', 2, &utenti_effettivi, relative_path);
 														system("PAUSE");
 														break;
 

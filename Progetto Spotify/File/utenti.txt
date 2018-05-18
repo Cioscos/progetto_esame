@@ -8,3 +8,4 @@ Kxos,Kurosaki,Vito,Iannone,24/4/1998/,9/9/2017
 Serpeverde,vodemort,Stefano,Galasso,18/1/1999/,18/5/2018
 Peppe Bruno,mentana1,Giuseppe,Bruno,15/6/1989/,11/4/2018
 eppesuiG,m5s4ever,Giuseppe,Perulli,20/9/1998/,2/2/2018
+Foyer,12345678,Davide,De Leonardis,7/7/1996/,15/5/2018

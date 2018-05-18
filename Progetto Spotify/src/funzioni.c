@@ -693,28 +693,28 @@ void gestione_file(char modalita, int tipo, int *numero, char relative_path[])  
 									strcat(buffer, UTENTI[i].cognome);
 									strcat(buffer, virgola);
 
-									sprintf(itoa_bf, "%d", UTENTI[*numero].data_nascita.giorno);
+									sprintf(itoa_bf, "%d", UTENTI[i].data_nascita.giorno);
 									strcat(buffer, itoa_bf);
 									strcat(buffer, barra);
 
-									sprintf(itoa_bf, "%d", UTENTI[*numero].data_nascita.mese);
+									sprintf(itoa_bf, "%d", UTENTI[i].data_nascita.mese);
 									strcat(buffer, itoa_bf);
 									strcat(buffer, barra);
 
-									sprintf(itoa_bf, "%d", UTENTI[*numero].data_nascita.anno);
+									sprintf(itoa_bf, "%d", UTENTI[i].data_nascita.anno);
 									strcat(buffer, itoa_bf);
 									strcat(buffer, barra);
 									strcat(buffer, virgola);
 
-									sprintf(itoa_bf, "%d", UTENTI[*numero].data_iscrizione.giorno);
+									sprintf(itoa_bf, "%d", UTENTI[i].data_iscrizione.giorno);
 									strcat(buffer, itoa_bf);
 									strcat(buffer, barra);
 
-									sprintf(itoa_bf, "%d", UTENTI[*numero].data_iscrizione.mese);
+									sprintf(itoa_bf, "%d", UTENTI[i].data_iscrizione.mese);
 									strcat(buffer, itoa_bf);
 									strcat(buffer, barra);
 
-									sprintf(itoa_bf, "%d", UTENTI[*numero].data_iscrizione.anno);
+									sprintf(itoa_bf, "%d", UTENTI[i].data_iscrizione.anno);
 									strcat(buffer, itoa_bf);
 
 
@@ -867,8 +867,6 @@ void gestione_file(char modalita, int tipo, int *numero, char relative_path[])  
 						}
 					}
 				}
-
-				*numero+=1;
 			}
 			fclose(pf);
 		}

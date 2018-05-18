@@ -1082,7 +1082,7 @@ void modifica_utente(int utenti_effettivi, int posizione_utente)
 
 int elimina_utente(int* utenti_effettivi, int posizione_utente)
 {
-	int i;
+	int i,j;
 	char risposta[LUNGHEZZA_INPUT]={"si"};	//Risposta alla domanda 'Sei sicuro di voler eliminare l'artista?'
 
 	do{
@@ -1108,6 +1108,12 @@ int elimina_utente(int* utenti_effettivi, int posizione_utente)
 			UTENTI[i-1].data_iscrizione.anno=UTENTI[i].data_iscrizione.anno;
 			UTENTI[i-1].data_iscrizione.mese=UTENTI[i].data_iscrizione.mese;
 			UTENTI[i-1].data_iscrizione.giorno=UTENTI[i].data_iscrizione.giorno;
+			/*for(j=0;j<ARTISTI_MAX;j++)
+			{
+				strcpy(UTENTI[i-1].codice_artista[j],UTENTI[i].codice_artista[j]);
+				UTENTI[i-1].preferenze[j]=UTENTI[i].preferenze[j];
+			}	*/
+
 		}
 
 		//PULITURA ULTIMO POSZIONE UTENTEf
@@ -1121,6 +1127,11 @@ int elimina_utente(int* utenti_effettivi, int posizione_utente)
 		UTENTI[*utenti_effettivi-1].data_iscrizione.anno=0;
 		UTENTI[*utenti_effettivi-1].data_iscrizione.mese=0;
 		UTENTI[*utenti_effettivi-1].data_iscrizione.giorno=0;
+		/*for(j=0;j<ARTISTI_MAX;j++)
+		{
+			strcpy(UTENTI[*utenti_effettivi-1].codice_artista[j],"");
+			UTENTI[*utenti_effettivi-1].preferenze[j]=0;
+		}*/
 
 		*utenti_effettivi-=1;		//Eliminazione di un utente
 		printf("\nUtente eliminato!\n");
