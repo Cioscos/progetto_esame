@@ -822,12 +822,15 @@ void gestione_file(char modalita, int tipo, int *numero, char relative_path[])  
 
 		pf = fopen(preferenze_path, "r");
 
+		int utente_presente;
+		int pos_utenti_con_preferenze=0;
 		if(pf!=NULL)
 		{
 			i=0;
 
 			while(!feof(pf))
 			{
+				utente_presente=0;
 				j=0;
 				fgets(buffer, LUNGHEZZA_BUFFER, pf);
 
@@ -837,6 +840,8 @@ void gestione_file(char modalita, int tipo, int *numero, char relative_path[])  
 					{
 						if(strcmp(UTENTI[i].nickname,token)==0)		//Individua la posizione dell'utente
 						{
+							pos_utenti_con_preferenze=i;
+							utente_presente=1;
 							for(j=0;j<ARTISTI_MAX;j++)		//Azzeramento Vettore preferenze e codici_artisti
 							{
 								UTENTI[i].preferenze[j]=0;
@@ -865,7 +870,10 @@ void gestione_file(char modalita, int tipo, int *numero, char relative_path[])  
 								}
 							}
 						}
-						else
+					}
+					if(utente_presente==0)
+					{
+						for(i=pos_utenti_con_preferenze;i<UTENTI_MAX;i++)
 						{
 							for(j=0;j<ARTISTI_MAX;j++)		//Azzeramento Vettore preferenze e codici_artisti
 							{
