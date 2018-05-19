@@ -1686,7 +1686,7 @@ int top_10(int artisti_effettivi, char* input) {
 }
 
 void ordinamento(char* input) {
-	int top = 0;
+	unsigned int top = 0;
 	unsigned int i;
 	unsigned int min = 4294967295;		//valore massimo per l'int (2^32)-1
 	unsigned int p = 0;
@@ -1771,7 +1771,7 @@ void ordinamento(char* input) {
 
 	if (strcmp(input, "mi piace") == 0)
 	{
-		for (i = 0; i < 10; i++)		//Trovo il min
+		for (i = 0; i < TOP; i++)		//Trovo il min
 		{
 			if (min > tmp_mi_piace[i])
 			{
@@ -1791,7 +1791,7 @@ void ordinamento(char* input) {
 
 			top++;
 
-			if (top >= 10)
+			if (top >= TOP)
 			{
 				if (min != tmp_mi_piace[i + 1])
 				{
@@ -1803,7 +1803,7 @@ void ordinamento(char* input) {
 
 	if (strcmp(input, "ascolti") == 0)
 	{
-		for (i = 0; i < 10; i++)		//Trovo il min
+		for (i = 0; i < TOP; i++)		//Trovo il min
 		{
 			if (min > tmp_ascolti[i])
 			{
@@ -1823,7 +1823,7 @@ void ordinamento(char* input) {
 
 			top++;
 
-			if (top >= 10)
+			if (top >= TOP)
 			{
 				if (min != tmp_ascolti[i + 1])
 				{

@@ -18,6 +18,7 @@
 #define ETA_MINIMA 16 			//EtÃ  minima per iscriversi
 #define PRIMO_MESE 1			//Numero mese di gennaio
 #define ULTIMO_MESE 12			//Numero mese di dicembre
+#define TOP 10					//Grandezza della Top classifiche
 #define stringclear(s, dim) memset(s, '\0', dim);        // Macro azzeramento stringa, ovvero riempie la stringa di caratteri terminatori
 
 //DEFINIZIONE DI STRUTTURE -------------------------------------------------------------------------------------------------------------------------------------------------
