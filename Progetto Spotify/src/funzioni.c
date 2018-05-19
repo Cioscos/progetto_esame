@@ -840,7 +840,7 @@ void gestione_file(char modalita, int tipo, int *numero, char relative_path[])  
 							for(j=0;j<ARTISTI_MAX;j++)		//Azzeramento Vettore preferenze e codici_artisti
 							{
 								UTENTI[i].preferenze[j]=0;
-								strcpy(UTENTI[i].codice_artista[j],"");
+								strcpy(UTENTI[i].codice_artista[j],"0000");
 							}
 
 							for(k=0;k<ARTISTI_MAX;k++)
@@ -863,6 +863,14 @@ void gestione_file(char modalita, int tipo, int *numero, char relative_path[])  
 									i=*numero;
 									k=ARTISTI_MAX;
 								}
+							}
+						}
+						else
+						{
+							for(j=0;j<ARTISTI_MAX;j++)		//Azzeramento Vettore preferenze e codici_artisti
+							{
+								UTENTI[i].preferenze[j]=0;
+								strcpy(UTENTI[i].codice_artista[j],"0000");
 							}
 						}
 					}

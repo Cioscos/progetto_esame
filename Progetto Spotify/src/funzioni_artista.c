@@ -29,7 +29,17 @@ int inserimento_artista(char lista_generi[][LUNGHEZZA_MAX], int artisti_effettiv
 		printf("Inserisci codice artista di lunghezza 4:");
 		gets(ARTISTI[artisti_effettivi].codice);
 		fflush(stdin);
-	}while(strlen(ARTISTI[artisti_effettivi].codice)!=LUNGHEZZA_CODICE-1 || (isControllo_Esistenza(artisti_effettivi, ARTISTI[artisti_effettivi].codice, "codice_artista")!=0));
+
+		if(strcmp(ARTISTI[artisti_effettivi].codice, "0000")==0)
+		{
+			system("cls");
+			logo();
+			SetColor(4);
+			printf("\aNon puoi inserire un codice vuoto!\n");
+			SetColor(15);
+			system("pause");
+		}
+	}while(strlen(ARTISTI[artisti_effettivi].codice)!=LUNGHEZZA_CODICE-1 || (isControllo_Esistenza(artisti_effettivi, ARTISTI[artisti_effettivi].codice, "codice_artista")!=0) || strcmp(ARTISTI[artisti_effettivi].codice, "0000")==0);
 
 
 
