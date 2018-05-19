@@ -1426,8 +1426,7 @@ void modifica_preferenze(int posizione_utente, int pos_artista)
 
 						if(UTENTI[posizione_utente].preferenze[i]==2)	//Stava un mi piace
 						{
-							UTENTI[posizione_utente].preferenze[i]=1;
-							ARTISTI[pos_artista].preferenze--;//Tolgo un mi piace
+							UTENTI[posizione_utente].preferenze[i]=2;
 							artista_trovato=1;
 							i=ARTISTI_MAX;
 						}

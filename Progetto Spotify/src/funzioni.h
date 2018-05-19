@@ -8,7 +8,7 @@
 #define LUNGHEZZA_PASS 9 		//Lunghezza della password fissa di 8 caratteri
 #define LUNGHEZZA_INPUT 3		//Lunghezza dell'input del menu utente
 #define LUNGHEZZA_BUFFER 200	//Lunghezza buffer file
-#define LUNGHEZZA_PATH 100
+#define LUNGHEZZA_PATH 300
 #define MENU_PRINCIPALE 0		//Menu principale
 #define MENU_ARTISTA 1			//Menu artista
 #define MENU_UTENTE 2			//Menu utente
