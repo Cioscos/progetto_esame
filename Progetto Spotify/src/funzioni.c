@@ -896,3 +896,39 @@ void gestione_file(char modalita, int tipo, int *numero, char relative_path[])  
 		}
 	}
 }
+
+
+void creazione_path(char* token_buffer)
+{
+	char relative_path[LUNGHEZZA_PATH]={'\0'};
+	char unita_path[LUNGHEZZA_PATH]={'\0'};
+	char *token;
+	int i=0;  										//Permette di gestire l'if nel while
+	int k=1;                                        //Permette di entrare nel while
+
+
+	while( (k==1) || (strcmp("Progetto Spotify", unita_path)!=0 ) )
+	{
+		if(i==0)
+		{
+			token=strtok(token_buffer, "\\");
+			strcpy(unita_path, token);
+			strcpy(relative_path, unita_path);
+			strcat(relative_path,"\\");
+		}
+		else
+		{
+			token = strtok(NULL, "\\");
+			strcpy(unita_path, token);
+			strcat(relative_path, unita_path);
+			strcat(relative_path,"\\");
+		}
+		i++;
+		k++;
+	}
+
+	strcat(relative_path, "File\\");
+
+
+
+}

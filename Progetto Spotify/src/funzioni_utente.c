@@ -1116,7 +1116,7 @@ int elimina_utente(int* utenti_effettivi, int posizione_utente)
 
 		}
 
-		//PULITURA ULTIMO POSZIONE UTENTEf
+		//PULITURA ULTIMO POSZIONE UTENTE
 		stringclear(UTENTI[*utenti_effettivi-1].nickname,LUNGHEZZA_MAX);
 		stringclear(UTENTI[*utenti_effettivi-1].password,LUNGHEZZA_PASS);
 		stringclear(UTENTI[*utenti_effettivi-1].nome,LUNGHEZZA_MAX);
@@ -1146,15 +1146,8 @@ int elimina_utente(int* utenti_effettivi, int posizione_utente)
 
 void menu_preferenze(int posizione_utente,int artisti_effettivi)
 {
-	char artista[LUNGHEZZA_MAX]={"\0"};		//Variabile d'appoggio per l'artista chiesto in input
-	int artista_trovato=0;					//0 artista non trovato | 1 artista trovato
 	int pos_artista;						//Contiene la posizione nel vettore dell'artista trovato
 	char metodo[LUNGHEZZA_INPUT]={'\0'};
-	char lista_generi[GENERI_TOT][LUNGHEZZA_MAX]={"N.A.","Electro","Pop","Techno","Rock","Jazz","Rap","Blues","Country","Britpop","Dubstep","EDM","Hip-Hop","House","Musica leggera","Trap","Trance","Disco","Dance"};
-	int posizione_genere=0;					//pozione del genere nel vettore lista_generi
-	int genere_esistente=0;		//0 genere non esistente | 1 genere esistente
-	char genere_provvisorio[LUNGHEZZA_MAX];	//Contiene l'input inserito dall'utente
-	int i;
 
 	do{		//Controllo fin quando non viene inserito il giusto comando
 		system("cls");
@@ -1203,17 +1196,21 @@ void menu_preferenze(int posizione_utente,int artisti_effettivi)
 				break;
 
 //TODO DA FARE----------
-		case 3:	system("cls");
-				logo();
-				printf("Top 10 mi piace selezionata\n");
-				system("pause");
+
+		case 3: pos_artista=top_10(artisti_effettivi,"mi piace");
+				if(pos_artista!=-1)
+				{
+					modifica_preferenze(posizione_utente,  pos_artista);
+				}
+
 				break;
 
 
-		case 4:	system("cls");
-				logo();
-				printf("Top 10 mi piace selezionata\n");
-				system("pause");
+		case 4:	pos_artista=top_10(artisti_effettivi,"ascolti");
+				if(pos_artista!=-1)
+				{
+					modifica_preferenze(posizione_utente,  pos_artista);
+				}
 				break;
 
 
@@ -1234,13 +1231,21 @@ int categoria_artisti(int artisti_effettivi)
 	do{			//Controlla fin quando il genere inserito esiste
 		system("cls");
 		logo();
-		printf("Lista generi:");
+		printf("Lista generi:\n");
+
 		SetColor(6);
-		for(i=0;i<GENERI_TOT;i++) //Stampa generi su schermo
+		for(i=1;i<=GENERI_TOT;i++) //Stampa generi su schermo
 		{
-			printf("%s	",lista_generi[i]);
+			printf("%-31s",lista_generi[i-1]);
+
+			if((i%2)==0)
+			{
+				printf("\n");
+			}
+
 		}
 		SetColor(15);
+
 		printf("\nInserisci il tuo genere preferito:");
 		fgets(genere_provvisorio, LUNGHEZZA_MAX, stdin);
 		eliminazione_acapo(genere_provvisorio);
@@ -1548,4 +1553,208 @@ void modifica_preferenze(int posizione_utente, int pos_artista)
 				ARTISTI[pos_artista].ascolti++;
 				break;
 	}
+}
+
+
+int top_10(int artisti_effettivi,char* input)
+{
+	char artista[LUNGHEZZA_MAX]={"\0"};		//Variabile d'appoggio per l'artista chiesto in input
+	int artista_trovato=0;					//0 artista non trovato | 1 artista trovato
+	int pos_artista=-1;						//Contiene la posizione nel vettore dell'artista trovato
+	int i;
+	do{		//Controllo fin quando non viene digitato il codice dell'artista correttamente
+
+		ordinamento(input);
+
+		printf("\nInserisci il codice dell'artista:");
+		fgets(artista, LUNGHEZZA_MAX, stdin);
+		eliminazione_acapo(artista);
+		fflush(stdin);
+
+		for (i = 0; i < artisti_effettivi; i++)
+		{
+			if (strcmp(artista, ARTISTI[i].codice) == 0)//Controllo per individuare l'artista inserito in input
+			{
+				printf("Artista trovato!\n");
+				artista_trovato = 1;
+				pos_artista = i;
+			}
+		}
+
+		if (artista_trovato == 0)
+		{
+			system("cls");
+			logo();
+			SetColor(4);
+			printf("\nArtista non trovato\a\n");
+			SetColor(15);
+			system("PAUSE");
+		}
+	}while(artista_trovato==0);
+
+	return(pos_artista);
+}
+
+
+void ordinamento(char* input)
+{
+	int top=0;
+	unsigned int i;
+	unsigned int min= 4294967295;		//valore massimo per l'int (2^32)-1
+	unsigned int p=0;
+	unsigned int flag=0;
+	unsigned int appoggio_int;
+	char appoggio_char[LUNGHEZZA_MAX];
+	unsigned int tmp_mi_piace[ARTISTI_MAX];
+	unsigned int tmp_ascolti[ARTISTI_MAX];
+	char tmp_codice_artista[ARTISTI_MAX][LUNGHEZZA_CODICE];
+	char tmp_nome_artista[ARTISTI_MAX][LUNGHEZZA_MAX];
+
+	//Copia dei vettori  codice_artista e nome_artista
+	for(i=0;i<ARTISTI_MAX;i++)
+	{
+		strcpy(tmp_codice_artista[i],ARTISTI[i].codice);
+		strcpy(tmp_nome_artista[i],ARTISTI[i].nome);
+		tmp_mi_piace[i]=ARTISTI[i].preferenze;
+		tmp_ascolti[i]=ARTISTI[i].ascolti;
+	}
+
+
+
+	if(strcmp(input,"mi piace")==0)
+	{
+		while(p<ARTISTI_MAX-1 && flag!=1)
+		{
+			p++;
+			flag=1;
+
+			for(i=ARTISTI_MAX-1;i>=p;i--)
+			{
+				if(tmp_mi_piace[i]>tmp_mi_piace[i-1])
+				{
+
+					strcpy(appoggio_char,tmp_codice_artista[i]);
+					strcpy(tmp_codice_artista[i],tmp_codice_artista[i-1]);
+					strcpy(tmp_codice_artista[i-1],appoggio_char);
+
+					strcpy(appoggio_char,tmp_nome_artista[i]);
+					strcpy(tmp_nome_artista[i],tmp_nome_artista[i-1]);
+					strcpy(tmp_nome_artista[i-1],appoggio_char);
+
+					appoggio_int=tmp_mi_piace[i];
+					tmp_mi_piace[i]=tmp_mi_piace[i-1];
+					tmp_mi_piace[i-1]=appoggio_int;
+
+
+					flag=0;
+
+				}
+			}
+		}
+
+	}
+
+	if(strcmp(input,"ascolti")==0)
+	{
+		while(p<ARTISTI_MAX-1 && flag!=1)
+		{
+			p++;
+			flag=1;
+
+			for(i=ARTISTI_MAX-1;i>=p;i--)
+			{
+				if(tmp_ascolti[i]>tmp_ascolti[i-1])
+				{
+					strcpy(appoggio_char,tmp_codice_artista[i]);
+					strcpy(tmp_codice_artista[i],tmp_codice_artista[i-1]);
+					strcpy(tmp_codice_artista[i-1],appoggio_char);
+
+					strcpy(appoggio_char,tmp_nome_artista[i]);
+					strcpy(tmp_nome_artista[i],tmp_nome_artista[i-1]);
+					strcpy(tmp_nome_artista[i-1],appoggio_char);
+
+					appoggio_int=tmp_ascolti[i];
+					tmp_ascolti[i]=tmp_ascolti[i-1];
+					tmp_ascolti[i-1]=appoggio_int;
+
+					flag=0;
+				}
+			}
+		}
+
+	}
+
+
+
+	if(strcmp(input,"mi piace")==0)
+	{
+		for(i=0;i<10;i++)		//Trovo il min
+		{
+			if(min>tmp_mi_piace[i])
+			{
+				min=tmp_mi_piace[i];
+			}
+		}
+
+		system("cls");
+		logo();
+		SetColor(3);
+		printf("POSIZIONE    CODICE\tNOME                          MI PIACE\n");
+		SetColor(15);
+
+		for(i=0;i<ARTISTI_MAX;i++)
+		{
+			printf("    %-8d %s\t%-32s%d\n",i+1,tmp_codice_artista[i],tmp_nome_artista[i],tmp_mi_piace[i]);
+
+			top++;
+
+			if(top>=10)
+			{
+				if(min!=tmp_mi_piace[i+1])
+				{
+					i=ARTISTI_MAX;
+				}
+
+			}
+
+		}
+	}
+
+	if(strcmp(input,"ascolti")==0)
+	{
+		for(i=0;i<10;i++)		//Trovo il min
+		{
+			if(min>tmp_ascolti[i])
+			{
+				min=tmp_ascolti[i];
+			}
+		}
+
+		system("cls");
+		logo();
+		SetColor(3);
+		printf("POSIZIONE    CODICE\tNOME                          ASCOLTI\n");
+		SetColor(15);
+
+		for(i=0;i<ARTISTI_MAX;i++)
+		{
+			printf("    %-8d %s\t%-32s%d\n",i+1,tmp_codice_artista[i],tmp_nome_artista[i],tmp_ascolti[i]);
+
+			top++;
+
+			if(top>=10)
+			{
+				if(min!=tmp_ascolti[i+1])
+				{
+					i=ARTISTI_MAX;
+				}
+
+			}
+
+		}
+	}
+
+
+
+
 }

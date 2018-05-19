@@ -69,6 +69,7 @@ int isControllo_Esistenza(int numero_presenze, char* campo, char* controllo);
 void eliminazione_acapo(char* input);
 int isAutenticazione(int utenti_effettivi, int* posizione_utente);
 void gestione_file(char modalita, int tipo, int *numero, char relative_path[]);
+void creazione_path(char* token_buffer);
 
 
 int inserimento_artista(char lista_generi[][LUNGHEZZA_MAX], int artisti_effettivi);
@@ -87,5 +88,7 @@ void modifica_preferenze(int posizione_utente, int pos_artista);
 
 int categoria_artisti(int artisti_effettivi);
 int totale_artisti(int artisti_effettivi);
+void ordinamento(char* input);		//Mi piace    -     Ascolti
+int top_10(int artisti_effettivi,char* input);
 
 #endif /* FUNZIONI_H_ */

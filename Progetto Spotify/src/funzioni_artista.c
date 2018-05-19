@@ -57,16 +57,22 @@ int inserimento_artista(char lista_generi[][LUNGHEZZA_MAX], int artisti_effettiv
 		do{
 			system("cls");
 			logo();
-			printf("Lista generi:");
+			printf("Lista generi:\n");
 
-			for(i=0;i<GENERI_TOT;i++) //Stampa generi su schermo
+			SetColor(6);
+			for(i=1;i<=GENERI_TOT;i++) //Stampa generi su schermo
 			{
-				printf("%s	",lista_generi[i]);
+				printf("%-31s",lista_generi[i-1]);
+
+				if((i%2)==0)
+				{
+					printf("\n");
+				}
+
 			}
+			SetColor(15);
 
-			printf("\n");
-
-			printf("Inserisci genere artista:");
+			printf("\nInserisci genere artista:");
 			gets(genere_provvisorio);
 			fflush(stdin);
 

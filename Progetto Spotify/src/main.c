@@ -29,38 +29,17 @@ int main(int argc, char *argv[]){
 	int artisti_effettivi=0;
 	int utenti_effettivi=0;
 	char relative_path[LUNGHEZZA_PATH]={'\0'};
-	char unita_path[LUNGHEZZA_PATH]={'\0'};
-	char token_buffer[LUNGHEZZA_PATH]={'\0'};
-	char *token;
+//	char token_buffer[LUNGHEZZA_PATH]={'\0'};
 
-
-	//GENERO LA PATH DEI FILE
-	int i=0;  										//Permette di gestire l'if nel while
-	int k=1;                                        //Permette di entrare nel while
-
-	strcpy(token_buffer, argv[0]);
-
-	while( (k==1) || (strcmp("Progetto Spotify", unita_path)!=0 ) )
+	creazione_path(argv[0]);
+	/*if(creazione_path(token_buffer)==0)
 	{
-		if(i==0)
-		{
-			token=strtok(token_buffer, "\\");
-			strcpy(unita_path, token);
-			strcpy(relative_path, unita_path);
-			strcat(relative_path,"\\");
-		}
-		else
-		{
-			token = strtok(NULL, "\\");
-			strcpy(unita_path, token);
-			strcat(relative_path, unita_path);
-			strcat(relative_path,"\\");
-		}
-		i++;
-		k++;
-	}
+		logo();
+		SetColor(4);
+		printf("Impossibile trovare i file\a\n");
+		system("PAUSE");
+	}*/
 
-	strcat(relative_path, "File\\");
 
 	//CARICO ARTISTI E UTENTI DA FILE
 	gestione_file('r', 0, &artisti_effettivi, relative_path);
