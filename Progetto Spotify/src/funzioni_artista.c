@@ -6,11 +6,17 @@
 #include <time.h>
 #include "funzioni.h"
 
-//GESTIONE ARTISTI---------------------------------------------------------------------------------------------------------------------
+
 int inserimento_artista(char lista_generi[][LUNGHEZZA_MAX], int artisti_effettivi) {
 
-//NOME ARTISTA-----------------------
+	int posizione_genere = 0;							//pozione del genere nel vettore lista_generi
+	char genere_provvisorio[LUNGHEZZA_MAX];				//Contiene l'input inserito dall'utente
+	int genere_esistente = GENERI_TOT;					//0 genere non esistente | 1 genere esistente
+	char risposta[LUNGHEZZA_INPUT] = { "si" };			//Risposta alla domanda 'Vuoi inserire un'altra preferenza?'
+	char anno_provvisorio[LUNGHEZZA_MAX] = { '\0' };	//Contiene l'anno in formato stringa per poter effettuare controlli
+	int i = 0;
 
+//NOME ARTISTA-----------------------
 	do
 	{
 		system("cls");
@@ -47,14 +53,9 @@ int inserimento_artista(char lista_generi[][LUNGHEZZA_MAX], int artisti_effettiv
 	                != 0)
 	        || strcmp(ARTISTI[artisti_effettivi].codice, "0000") == 0);
 
-	int posizione_genere = 0;	//pozione del genere nel vettore lista_generi
-	char genere_provvisorio[LUNGHEZZA_MAX];	//Contiene l'input inserito dall'utente
-	int genere_esistente = GENERI_TOT;//0 genere non esistente | 1 genere esistente
-	char risposta[LUNGHEZZA_INPUT] = { "si" };//Risposta alla domanda 'Vuoi inserire un'altra preferenza?'
-	int i = 0;
+
 
 //Inserimento generi fin quando non viene digitato no-----------------
-
 	do
 	{
 		genere_esistente = GENERI_TOT;
@@ -131,8 +132,8 @@ int inserimento_artista(char lista_generi[][LUNGHEZZA_MAX], int artisti_effettiv
 
 	}while (strcmp(risposta, "si") == 0);
 
-//INSERIMENTO PRODUTTORE------------------
 
+//INSERIMENTO PRODUTTORE------------------
 	do
 	{
 		system("cls");
@@ -143,6 +144,7 @@ int inserimento_artista(char lista_generi[][LUNGHEZZA_MAX], int artisti_effettiv
 		fflush(stdin);
 	}while (strlen(ARTISTI[artisti_effettivi].produttore) < 1);
 	system("cls");		//Controllo per evitare che non venga inserito nulla
+
 
 //INSERIEMNTO NAZIONALITA'----------------
 	do
@@ -155,9 +157,8 @@ int inserimento_artista(char lista_generi[][LUNGHEZZA_MAX], int artisti_effettiv
 		fflush(stdin);
 	}while (strlen(ARTISTI[artisti_effettivi].nazionalita) < 1);//Controllo per evitare che non venga inserito nulla
 
-//INSERIMENTO ANNO NASCITA GRUPPO---------
-	char anno_provvisorio[LUNGHEZZA_MAX] = { '\0' };
 
+//INSERIMENTO ANNO NASCITA GRUPPO---------
 	do
 	{
 		system("cls");
@@ -177,6 +178,7 @@ int inserimento_artista(char lista_generi[][LUNGHEZZA_MAX], int artisti_effettiv
 
 void visualizzazione_artisti(char lista_generi[][LUNGHEZZA_MAX], int artisti_effettivi) {
 	int i = 0, j;
+
 	logo();
 
 //MOSTRO INFORMAZIONE ARTISTA-----------------------------
@@ -226,12 +228,12 @@ void visualizzazione_artisti(char lista_generi[][LUNGHEZZA_MAX], int artisti_eff
 
 void modifica_artista(int artisti_effettivi, char lista_generi[][LUNGHEZZA_MAX]) {
 	int i, j;
-	char scelta[LUNGHEZZA_INPUT] = { "\0" };//Variabile d'appoggio per l'input della scelta per il men? chiesto in input
-	int numero_generi = 0;					//Numero generi
-	int genere_trovato = 0;			//0 genere non trovato - 1 genere trovato
-	char genere[LUNGHEZZA_MAX] = { "\0" };//Variabile d'appoggio per il genere chiesto in input
-	int artista_trovato = 0;		//0 artista non trovato - 1 artista trovato
-	char artista[LUNGHEZZA_MAX] = { "\0" };	//Variabile d'appoggio per l'artista chiesto in input
+	char scelta[LUNGHEZZA_INPUT] = { "\0" };	//Variabile d'appoggio per l'input della scelta per il men? chiesto in input
+	int numero_generi = 0;						//Numero generi
+	int genere_trovato = 0;						//0 genere non trovato - 1 genere trovato
+	char genere[LUNGHEZZA_MAX] = { "\0" };		//Variabile d'appoggio per il genere chiesto in input
+	int artista_trovato = 0;					//0 artista non trovato - 1 artista trovato
+	char artista[LUNGHEZZA_MAX] = { "\0" };	 	//Variabile d'appoggio per l'artista chiesto in input
 
 	do
 	{
@@ -307,8 +309,10 @@ void modifica_artista(int artisti_effettivi, char lista_generi[][LUNGHEZZA_MAX])
 						printf("%s\n\n", ARTISTI[i].nome);
 						SetColor(15);
 						printf("Con che nome vuoi sostituirlo?\n");
-						stringclear(artista, LUNGHEZZA_MAX);
-						gets(artista);
+
+						fgets(artista, LUNGHEZZA_MAX, stdin);
+						eliminazione_acapo(artista);
+						fflush(stdin);
 					}while ((strlen(artista) < 1)
 					        || (isControllo_Esistenza(artisti_effettivi, artista, "nome_artista")
 					                != 0));
@@ -347,7 +351,8 @@ void modifica_artista(int artisti_effettivi, char lista_generi[][LUNGHEZZA_MAX])
 								"[1]Elimina genere\n"
 								"[2]Aggiungere genere\n\n"
 								"Inserisci l'opzione: ");
-						scanf("%s", scelta);
+						fgets(scelta, LUNGHEZZA_INPUT, stdin);
+						eliminazione_acapo(scelta);
 						fflush(stdin);
 
 						if ((strcmp(scelta, "1") < 0)
@@ -387,7 +392,8 @@ void modifica_artista(int artisti_effettivi, char lista_generi[][LUNGHEZZA_MAX])
 
 							SetColor(15);
 							printf("\nInserire genere da eliminare: ");
-							gets(genere);
+							fgets(genere, LUNGHEZZA_MAX, stdin);
+							eliminazione_acapo(genere);
 							fflush(stdin);
 
 							for (j = 0; j < GENERI_TOT; j++)
@@ -443,8 +449,10 @@ void modifica_artista(int artisti_effettivi, char lista_generi[][LUNGHEZZA_MAX])
 						}
 
 						printf("\n\nInserire genere da aggiungere: ");
-						gets(genere);
+						fgets(genere, LUNGHEZZA_MAX, stdin);
+						eliminazione_acapo(genere);
 						fflush(stdin);
+
 
 						for (j = 0; j < GENERI_TOT; j++)
 						{
@@ -500,13 +508,13 @@ void modifica_artista(int artisti_effettivi, char lista_generi[][LUNGHEZZA_MAX])
 						SetColor(11);
 						printf("%d\n\n", ARTISTI[i].anno_inizio);
 						SetColor(15);
-
 						printf("Inserisci nuovo anno: ");
-						gets(anno_provvisorio);
+						fgets(anno_provvisorio, LUNGHEZZA_MAX, stdin);
+						eliminazione_acapo(anno_provvisorio);
 						fflush(stdin);
 
 					}while (isControllo_Numero(anno_provvisorio, LUNGHEZZA_MAX)
-					        != 1 || atoi(anno_provvisorio) >= 10000);
+					        != 1 || atoi(anno_provvisorio)>DATA_CORRENTE.anno);
 
 					ARTISTI[i].anno_inizio = atoi(anno_provvisorio);
 
@@ -601,7 +609,8 @@ int elimina_artista(int artisti_effettivi) {
 			printf("%s\t\t%s\n", ARTISTI[i].codice, ARTISTI[i].nome);
 		}
 		printf("Inserisci il codice dell'artista da eliminare:");
-		gets(artista);
+		fgets(artista,LUNGHEZZA_CODICE, stdin);
+		eliminazione_acapo(artista);
 		fflush(stdin);
 
 		for (i = 0; i < artisti_effettivi; i++)

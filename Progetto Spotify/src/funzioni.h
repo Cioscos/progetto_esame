@@ -32,12 +32,12 @@ struct DATA DATA_CORRENTE;
 struct ARTISTA {
 	char codice[LUNGHEZZA_CODICE];
 	char nome[LUNGHEZZA_MAX];
-	int genere[GENERI_TOT];
+	unsigned int genere[GENERI_TOT];
 	char produttore[LUNGHEZZA_MAX];
 	char nazionalita[LUNGHEZZA_MAX];
-	int anno_inizio;
-	int ascolti;
-	int preferenze;
+	unsigned int anno_inizio;
+	unsigned int ascolti;
+	unsigned int preferenze;
 };
 struct ARTISTA ARTISTI[ARTISTI_MAX];
 
@@ -69,7 +69,7 @@ int isControllo_Esistenza(int numero_presenze, char* campo, char* controllo);
 void eliminazione_acapo(char* input);
 int isAutenticazione(int utenti_effettivi, int* posizione_utente);
 void gestione_file(char modalita, int tipo, int *numero, char relative_path[]);
-void creazione_path(char* token_buffer);
+void creazione_path(char* token_buffer, char* relative_path);
 
 int inserimento_artista(char lista_generi[][LUNGHEZZA_MAX], int artisti_effettivi);
 void visualizzazione_artisti(char lista_generi[][LUNGHEZZA_MAX], int artisti_effettivi);

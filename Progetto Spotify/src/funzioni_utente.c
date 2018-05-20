@@ -174,7 +174,8 @@ int inserimento_utente(int utenti_effettivi) {
 		{		//Controllo fin quando l'input inserito non Ã¨ un numero
 			printf("\nAnno: ");
 			SetColor(6);
-			gets(data_provvisoria);
+			fgets(data_provvisoria,LUNGHEZZA_MAX,stdin);
+			eliminazione_acapo(data_provvisoria);
 			fflush(stdin);
 			SetColor(15);
 			if (isControllo_Numero(data_provvisoria, LUNGHEZZA_MAX) != 1)
@@ -219,7 +220,9 @@ int inserimento_utente(int utenti_effettivi) {
 			printf("\nMese: ");
 			SetColor(6);
 			stringclear(data_provvisoria, LUNGHEZZA_MAX);
-			gets(data_provvisoria);
+			fgets(data_provvisoria,LUNGHEZZA_MAX,stdin);
+			eliminazione_acapo(data_provvisoria);
+			fflush(stdin);
 			SetColor(15);
 			if (isControllo_Numero(data_provvisoria, LUNGHEZZA_MAX) != 1)
 			{
@@ -267,7 +270,9 @@ int inserimento_utente(int utenti_effettivi) {
 					printf("\nGiorno: ");
 					SetColor(6);
 					stringclear(data_provvisoria, LUNGHEZZA_MAX);
-					gets(data_provvisoria);
+					fgets(data_provvisoria,LUNGHEZZA_MAX,stdin);
+					eliminazione_acapo(data_provvisoria);
+					fflush(stdin);
 					SetColor(15);
 
 					if (isControllo_Numero(data_provvisoria, LUNGHEZZA_MAX)
@@ -313,7 +318,9 @@ int inserimento_utente(int utenti_effettivi) {
 					printf("\nGiorno: ");
 					SetColor(6);
 					stringclear(data_provvisoria, LUNGHEZZA_MAX);
-					gets(data_provvisoria);
+					fgets(data_provvisoria,LUNGHEZZA_MAX,stdin);
+					eliminazione_acapo(data_provvisoria);
+					fflush(stdin);
 					SetColor(15);
 					if (isControllo_Numero(data_provvisoria, LUNGHEZZA_MAX)
 					        != 1)
@@ -364,7 +371,9 @@ int inserimento_utente(int utenti_effettivi) {
 					printf("\nGiorno: ");
 					SetColor(6);
 					stringclear(data_provvisoria, LUNGHEZZA_MAX);
-					gets(data_provvisoria);
+					fgets(data_provvisoria,LUNGHEZZA_MAX,stdin);
+					eliminazione_acapo(data_provvisoria);
+					fflush(stdin);
 					SetColor(15);
 					if (isControllo_Numero(data_provvisoria, LUNGHEZZA_MAX)
 					        != 1)
@@ -409,7 +418,9 @@ int inserimento_utente(int utenti_effettivi) {
 					printf("\nGiorno: ");
 					SetColor(6);
 					stringclear(data_provvisoria, LUNGHEZZA_MAX);
-					gets(data_provvisoria);
+					fgets(data_provvisoria,LUNGHEZZA_MAX,stdin);
+					eliminazione_acapo(data_provvisoria);
+					fflush(stdin);
 					SetColor(15);
 					if (isControllo_Numero(data_provvisoria, LUNGHEZZA_MAX)
 					        != 1)
@@ -874,7 +885,9 @@ void modifica_utente(int utenti_effettivi, int posizione_utente) {
 			{		//Controllo fin quando l'input inserito non Ã¨ un numero
 				printf("\nAnno: ");
 				SetColor(6);
-				gets(data_provvisoria);
+				fgets(data_provvisoria,LUNGHEZZA_MAX,stdin);
+				eliminazione_acapo(data_provvisoria);
+				fflush(stdin);
 				fflush(stdin);
 				SetColor(15);
 				if (isControllo_Numero(data_provvisoria, LUNGHEZZA_MAX) != 1)
@@ -919,7 +932,9 @@ void modifica_utente(int utenti_effettivi, int posizione_utente) {
 				printf("\nMese: ");
 				SetColor(6);
 				stringclear(data_provvisoria, LUNGHEZZA_MAX);
-				gets(data_provvisoria);
+				fgets(data_provvisoria,LUNGHEZZA_MAX,stdin);
+				eliminazione_acapo(data_provvisoria);
+				fflush(stdin);
 				SetColor(15);
 				if (isControllo_Numero(data_provvisoria, LUNGHEZZA_MAX) != 1)
 				{
@@ -967,7 +982,9 @@ void modifica_utente(int utenti_effettivi, int posizione_utente) {
 						printf("\nGiorno: ");
 						SetColor(6);
 						stringclear(data_provvisoria, LUNGHEZZA_MAX);
-						gets(data_provvisoria);
+						fgets(data_provvisoria,LUNGHEZZA_MAX,stdin);
+						eliminazione_acapo(data_provvisoria);
+						fflush(stdin);
 						SetColor(15);
 
 						if (isControllo_Numero(data_provvisoria, LUNGHEZZA_MAX)
@@ -1015,7 +1032,9 @@ void modifica_utente(int utenti_effettivi, int posizione_utente) {
 						printf("\nGiorno: ");
 						SetColor(6);
 						stringclear(data_provvisoria, LUNGHEZZA_MAX);
-						gets(data_provvisoria);
+						fgets(data_provvisoria,LUNGHEZZA_MAX,stdin);
+						eliminazione_acapo(data_provvisoria);
+						fflush(stdin);
 						SetColor(15);
 						if (isControllo_Numero(data_provvisoria, LUNGHEZZA_MAX)
 						        != 1)
@@ -1068,7 +1087,9 @@ void modifica_utente(int utenti_effettivi, int posizione_utente) {
 						printf("\nGiorno: ");
 						SetColor(6);
 						stringclear(data_provvisoria, LUNGHEZZA_MAX);
-						gets(data_provvisoria);
+						fgets(data_provvisoria,LUNGHEZZA_MAX,stdin);
+						eliminazione_acapo(data_provvisoria);
+						fflush(stdin);
 						SetColor(15);
 						if (isControllo_Numero(data_provvisoria, LUNGHEZZA_MAX)
 						        != 1)
@@ -1115,7 +1136,9 @@ void modifica_utente(int utenti_effettivi, int posizione_utente) {
 						printf("\nGiorno: ");
 						SetColor(6);
 						stringclear(data_provvisoria, LUNGHEZZA_MAX);
-						gets(data_provvisoria);
+						fgets(data_provvisoria,LUNGHEZZA_MAX,stdin);
+						eliminazione_acapo(data_provvisoria);
+						fflush(stdin);
 						SetColor(15);
 						if (isControllo_Numero(data_provvisoria, LUNGHEZZA_MAX)
 						        != 1)
@@ -1279,7 +1302,6 @@ void menu_preferenze(int posizione_utente, int artisti_effettivi) {
 
 		break;
 
-//TODO DA FARE----------
 
 	case 3:
 		pos_artista = top_10(artisti_effettivi, "mi piace");

@@ -874,8 +874,7 @@ void gestione_file(char modalita, int tipo, int *numero, char relative_path[]) /
 	}
 }
 
-void creazione_path(char* token_buffer) {
-	char relative_path[LUNGHEZZA_PATH] = { '\0' };
+void creazione_path(char* token_buffer, char* relative_path) {
 	char unita_path[LUNGHEZZA_PATH] = { '\0' };
 	char *token;
 	int i = 0;  							//Permette di gestire l'if nel while
@@ -901,5 +900,6 @@ void creazione_path(char* token_buffer) {
 	}
 
 	strcat(relative_path, "File\\");
+
 
 }

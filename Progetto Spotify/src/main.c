@@ -31,7 +31,7 @@ int main(int argc, char *argv[]){
 	char relative_path[LUNGHEZZA_PATH]={'\0'};
 //	char token_buffer[LUNGHEZZA_PATH]={'\0'};
 
-	creazione_path(argv[0]);
+	creazione_path(argv[0],relative_path);
 	/*if(creazione_path(token_buffer)==0)
 	{
 		logo();
