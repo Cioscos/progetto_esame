@@ -12,7 +12,6 @@
 #include <time.h>
 #include "funzioni.h"
 
-//INSERIMENTO NUOVO UTENTE----------------------------------------------------------------------------------------------------------------------------
 
 int inserimento_utente(int utenti_effettivi) {
 	//DEFINZIONE VARIABILI

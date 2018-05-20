@@ -1,6 +1,6 @@
 /*!
  * @file funzioni.c
- * @brief File contenente le funzioni generali usate da tutti gli altri source file
+ * @brief File contenente i prototipi di funzioni generali usate da tutti gli altri source file
  */
 
 #include <stdlib.h>
@@ -333,11 +333,8 @@ int isControllo_Esistenza(int numero_presenze, char* campo, char* controllo) {
  * 	1. 0 = Artista
  * 	2. 1 = Utente
  * 	3. 2 = Preferenze
- * 	@warning Il non passaggio di uno dei parametri indicati nelle precondizioni potrebbe comportare un comportamento inatteso della funzione
- * 	\todo In miglioria (leggere l'avvertimento)
  */
-void gestione_file(char modalita, int tipo, int *numero, char relative_path[])
-{
+void gestione_file(char modalita, int tipo, int *numero, char relative_path[]) {
 	int i = 0, j, k;
 	char buffer[LUNGHEZZA_BUFFER] = { '\0' };
 	char *token;
@@ -351,6 +348,7 @@ void gestione_file(char modalita, int tipo, int *numero, char relative_path[])
 	char artisti_path[LUNGHEZZA_PATH] = { '\0' };
 	char preferenze_path[LUNGHEZZA_PATH] = { '\0' };
 	char utenti_path[LUNGHEZZA_PATH] = { '\0' };
+	int controllo_parametri=0;	//Controllo sui parametri d'ingresso  0 paramentri non corretti | 1 parametri corretti
 
 	//CREO PATH ARTISTI
 	strcpy(artisti_path, relative_path);
@@ -366,6 +364,7 @@ void gestione_file(char modalita, int tipo, int *numero, char relative_path[])
 
 	if (modalita == 'r' && tipo == 0)		//Lettura artisti da file
 	{
+		controllo_parametri=1;
 		FILE *pf;
 
 		pf = fopen(artisti_path, "r");
@@ -433,46 +432,115 @@ void gestione_file(char modalita, int tipo, int *numero, char relative_path[])
 			system("pause");
 			fclose(pf);
 		}
-	}else
+	}
+
+	if (modalita == 'a' && tipo == 0)		//Inserimento di un artista su file
 	{
-		if (modalita == 'a' && tipo == 0)	//Inserimento di un artista su file
+		controllo_parametri=1;
+		FILE *pf;
+
+		pf = fopen(artisti_path, "a");
+
+		if (pf != NULL)
 		{
-			FILE *pf;
+			*numero -= 1;
 
-			pf = fopen(artisti_path, "a");
+			strcpy(buffer, "\n");
+			strcat(buffer, ARTISTI[*numero].codice);
+			strcat(buffer, virgola);
 
-			if (pf != NULL)
+			strcat(buffer, ARTISTI[*numero].nome);
+			strcat(buffer, virgola);
+
+			strcat(buffer, ARTISTI[*numero].produttore);
+			strcat(buffer, virgola);
+
+			strcat(buffer, ARTISTI[*numero].nazionalita);
+			strcat(buffer, virgola);
+
+			sprintf(itoa_bf, "%d", ARTISTI[*numero].anno_inizio);
+			strcat(buffer, itoa_bf);
+			strcat(buffer, virgola);
+
+			sprintf(itoa_bf, "%d", ARTISTI[*numero].ascolti);
+			strcat(buffer, itoa_bf);
+			strcat(buffer, virgola);
+
+			sprintf(itoa_bf, "%d", ARTISTI[*numero].preferenze);
+			strcat(buffer, itoa_bf);
+			strcat(buffer, virgola);
+
+			for (i = 0; i < GENERI_TOT; i++)
 			{
-				*numero -= 1;
+				if (ARTISTI[*numero].genere[i] == 1)
+				{
+					strcat(buffer, lista_generi[i]);
+					strcat(buffer, virgola);
+				}
+			}
 
-				strcpy(buffer, "\n");
-				strcat(buffer, ARTISTI[*numero].codice);
+			buffer[strlen(buffer) - 1] = '\0';
+
+			fprintf(pf, "%s", buffer);
+
+			*numero += 1;
+			fclose(pf);
+		}else
+		{
+			SetColor(4);
+			printf("\n\aErrore nell'nserimento di un artista su file\n");
+			SetColor(15);
+			system("pause");
+			fclose(pf);
+		}
+	}
+
+	if (modalita == 'w' && tipo == 0)		//Inserimento degli artisti su file
+	{
+		controllo_parametri=1;
+		FILE *pf;
+
+		pf = fopen(artisti_path, "w");
+
+		if (pf != NULL)
+		{
+			for (j = 0; j < *numero; j++)
+			{
+				if (j > 0)
+				{
+					strcpy(buffer, "\n");
+					strcat(buffer, ARTISTI[j].codice);
+					strcat(buffer, virgola);
+				}else
+				{
+					strcpy(buffer, ARTISTI[j].codice);
+					strcat(buffer, virgola);
+				}
+
+				strcat(buffer, ARTISTI[j].nome);
 				strcat(buffer, virgola);
 
-				strcat(buffer, ARTISTI[*numero].nome);
+				strcat(buffer, ARTISTI[j].produttore);
 				strcat(buffer, virgola);
 
-				strcat(buffer, ARTISTI[*numero].produttore);
+				strcat(buffer, ARTISTI[j].nazionalita);
 				strcat(buffer, virgola);
 
-				strcat(buffer, ARTISTI[*numero].nazionalita);
-				strcat(buffer, virgola);
-
-				sprintf(itoa_bf, "%d", ARTISTI[*numero].anno_inizio);
+				sprintf(itoa_bf, "%d", ARTISTI[j].anno_inizio);
 				strcat(buffer, itoa_bf);
 				strcat(buffer, virgola);
 
-				sprintf(itoa_bf, "%d", ARTISTI[*numero].ascolti);
+				sprintf(itoa_bf, "%d", ARTISTI[j].ascolti);
 				strcat(buffer, itoa_bf);
 				strcat(buffer, virgola);
 
-				sprintf(itoa_bf, "%d", ARTISTI[*numero].preferenze);
+				sprintf(itoa_bf, "%d", ARTISTI[j].preferenze);
 				strcat(buffer, itoa_bf);
 				strcat(buffer, virgola);
 
 				for (i = 0; i < GENERI_TOT; i++)
 				{
-					if (ARTISTI[*numero].genere[i] == 1)
+					if (ARTISTI[j].genere[i] == 1)
 					{
 						strcat(buffer, lista_generi[i]);
 						strcat(buffer, virgola);
@@ -482,281 +550,213 @@ void gestione_file(char modalita, int tipo, int *numero, char relative_path[])
 				buffer[strlen(buffer) - 1] = '\0';
 
 				fprintf(pf, "%s", buffer);
-
-				*numero += 1;
-				fclose(pf);
-			}else
-			{
-				SetColor(4);
-				printf("\n\aErrore nell'nserimento di un artista su file\n");
-				SetColor(15);
-				system("pause");
-				fclose(pf);
 			}
+			fclose(pf);
 		}else
 		{
-			if (modalita == 'w' && tipo == 0)//Inserimento degli artisti su file
+			SetColor(4);
+			printf("\n\aErrore nell'nserimento degli artisti su file\n");
+			SetColor(15);
+			system("pause");
+			fclose(pf);
+		}
+	}
+
+	if (modalita == 'r' && tipo == 1)		//Lettura di utenti da file
+	{
+		controllo_parametri=1;
+		FILE *pf;
+
+		pf = fopen(utenti_path, "r");
+
+		if (pf != NULL)
+		{
+			i = 0;
+
+			while (!feof(pf))
 			{
-				FILE *pf;
+				fgets(buffer, LUNGHEZZA_BUFFER, pf);
 
-				pf = fopen(artisti_path, "w");
+				token = strtok(buffer, virgola);
+				strcpy(UTENTI[i].nickname, token);
 
-				if (pf != NULL)
-				{
-					for (j = 0; j < *numero; j++)
-					{
-						if (j > 0)
-						{
-							strcpy(buffer, "\n");
-							strcat(buffer, ARTISTI[j].codice);
-							strcat(buffer, virgola);
-						}else
-						{
-							strcpy(buffer, ARTISTI[j].codice);
-							strcat(buffer, virgola);
-						}
+				token = strtok(NULL, virgola);
+				strcpy(UTENTI[i].password, token);
 
-						strcat(buffer, ARTISTI[j].nome);
-						strcat(buffer, virgola);
+				token = strtok(NULL, virgola);
+				strcpy(UTENTI[i].nome, token);
 
-						strcat(buffer, ARTISTI[j].produttore);
-						strcat(buffer, virgola);
+				token = strtok(NULL, virgola);
+				strcpy(UTENTI[i].cognome, token);
 
-						strcat(buffer, ARTISTI[j].nazionalita);
-						strcat(buffer, virgola);
+				token = strtok(NULL, barra);
+				UTENTI[i].data_nascita.giorno = atoi(token);
 
-						sprintf(itoa_bf, "%d", ARTISTI[j].anno_inizio);
-						strcat(buffer, itoa_bf);
-						strcat(buffer, virgola);
+				token = strtok(NULL, barra);
+				UTENTI[i].data_nascita.mese = atoi(token);
 
-						sprintf(itoa_bf, "%d", ARTISTI[j].ascolti);
-						strcat(buffer, itoa_bf);
-						strcat(buffer, virgola);
+				token = strtok(NULL, virgola);
+				UTENTI[i].data_nascita.anno = atoi(token);
 
-						sprintf(itoa_bf, "%d", ARTISTI[j].preferenze);
-						strcat(buffer, itoa_bf);
-						strcat(buffer, virgola);
+				token = strtok(NULL, barra);
+				UTENTI[i].data_iscrizione.giorno = atoi(token);
 
-						for (i = 0; i < GENERI_TOT; i++)
-						{
-							if (ARTISTI[j].genere[i] == 1)
-							{
-								strcat(buffer, lista_generi[i]);
-								strcat(buffer, virgola);
-							}
-						}
+				token = strtok(NULL, barra);
+				UTENTI[i].data_iscrizione.mese = atoi(token);
 
-						buffer[strlen(buffer) - 1] = '\0';
+				token = strtok(NULL, barra);
+				UTENTI[i].data_iscrizione.anno = atoi(token);
 
-						fprintf(pf, "%s", buffer);
-					}
-					fclose(pf);
-				}else
-				{
-					SetColor(4);
-					printf("\n\aErrore nell'nserimento degli artisti su file\n");
-					SetColor(15);
-					system("pause");
-					fclose(pf);
-				}
-			}else
-			{
-				if (modalita == 'r' && tipo == 1)	//Lettura di utenti da file
-				{
-					FILE *pf;
-
-					pf = fopen(utenti_path, "r");
-
-					if (pf != NULL)
-					{
-						i = 0;
-
-						while (!feof(pf))
-						{
-							fgets(buffer, LUNGHEZZA_BUFFER, pf);
-
-							token = strtok(buffer, virgola);
-							strcpy(UTENTI[i].nickname, token);
-
-							token = strtok(NULL, virgola);
-							strcpy(UTENTI[i].password, token);
-
-							token = strtok(NULL, virgola);
-							strcpy(UTENTI[i].nome, token);
-
-							token = strtok(NULL, virgola);
-							strcpy(UTENTI[i].cognome, token);
-
-							token = strtok(NULL, barra);
-							UTENTI[i].data_nascita.giorno = atoi(token);
-
-							token = strtok(NULL, barra);
-							UTENTI[i].data_nascita.mese = atoi(token);
-
-							token = strtok(NULL, virgola);
-							UTENTI[i].data_nascita.anno = atoi(token);
-
-							token = strtok(NULL, barra);
-							UTENTI[i].data_iscrizione.giorno = atoi(token);
-
-							token = strtok(NULL, barra);
-							UTENTI[i].data_iscrizione.mese = atoi(token);
-
-							token = strtok(NULL, barra);
-							UTENTI[i].data_iscrizione.anno = atoi(token);
-
-							i++;
-							*numero += 1;
-						}
-						fclose(pf);
-					}else
-					{
-						SetColor(4);
-						printf("\n\aErrore nella lettura di utenti da file\n");
-						SetColor(15);
-						system("pause");
-						fclose(pf);
-					}
-				}else
-				{
-					if (modalita == 'a' && tipo == 1)//Inserimento di un utente su file
-					{
-						FILE *pf;
-
-						pf = fopen(utenti_path, "a");
-
-						if (pf != NULL)
-						{
-							*numero -= 1;
-
-							strcpy(buffer, "\n");
-							strcat(buffer, UTENTI[*numero].nickname);
-							strcat(buffer, virgola);
-
-							strcat(buffer, UTENTI[*numero].password);
-							strcat(buffer, virgola);
-
-							strcat(buffer, UTENTI[*numero].nome);
-							strcat(buffer, virgola);
-
-							strcat(buffer, UTENTI[*numero].cognome);
-							strcat(buffer, virgola);
-
-							sprintf(itoa_bf, "%d", UTENTI[*numero].data_nascita.giorno);
-							strcat(buffer, itoa_bf);
-							strcat(buffer, barra);
-
-							sprintf(itoa_bf, "%d", UTENTI[*numero].data_nascita.mese);
-							strcat(buffer, itoa_bf);
-							strcat(buffer, barra);
-
-							sprintf(itoa_bf, "%d", UTENTI[*numero].data_nascita.anno);
-							strcat(buffer, itoa_bf);
-							strcat(buffer, barra);
-							strcat(buffer, virgola);
-
-							sprintf(itoa_bf, "%d", UTENTI[*numero].data_iscrizione.giorno);
-							strcat(buffer, itoa_bf);
-							strcat(buffer, barra);
-
-							sprintf(itoa_bf, "%d", UTENTI[*numero].data_iscrizione.mese);
-							strcat(buffer, itoa_bf);
-							strcat(buffer, barra);
-
-							sprintf(itoa_bf, "%d", UTENTI[*numero].data_iscrizione.anno);
-							strcat(buffer, itoa_bf);
-
-							fprintf(pf, "%s", buffer);
-
-							*numero += 1;
-							fclose(pf);
-						}else
-						{
-							SetColor(4);
-							printf("\n\aErrore nell'nserimento di un utente su file\n");
-							SetColor(15);
-							system("pause");
-							fclose(pf);
-						}
-					}else
-					{
-						if (modalita == 'w' && tipo == 1)//Inserimento degli utenti su file
-						{
-							FILE *pf;
-
-							pf = fopen(utenti_path, "w");
-
-							i = 0;
-
-							if (pf != NULL)
-							{
-								for (i = 0; i < *numero; i++)
-								{
-									if (i > 0)
-									{
-										strcpy(buffer, "\n");
-										strcat(buffer, UTENTI[i].nickname);
-										strcat(buffer, virgola);
-									}else
-									{
-										strcpy(buffer, UTENTI[i].nickname);
-										strcat(buffer, virgola);
-									}
-
-									strcat(buffer, UTENTI[i].password);
-									strcat(buffer, virgola);
-
-									strcat(buffer, UTENTI[i].nome);
-									strcat(buffer, virgola);
-
-									strcat(buffer, UTENTI[i].cognome);
-									strcat(buffer, virgola);
-
-									sprintf(itoa_bf, "%d", UTENTI[i].data_nascita.giorno);
-									strcat(buffer, itoa_bf);
-									strcat(buffer, barra);
-
-									sprintf(itoa_bf, "%d", UTENTI[i].data_nascita.mese);
-									strcat(buffer, itoa_bf);
-									strcat(buffer, barra);
-
-									sprintf(itoa_bf, "%d", UTENTI[i].data_nascita.anno);
-									strcat(buffer, itoa_bf);
-									strcat(buffer, barra);
-									strcat(buffer, virgola);
-
-									sprintf(itoa_bf, "%d", UTENTI[i].data_iscrizione.giorno);
-									strcat(buffer, itoa_bf);
-									strcat(buffer, barra);
-
-									sprintf(itoa_bf, "%d", UTENTI[i].data_iscrizione.mese);
-									strcat(buffer, itoa_bf);
-									strcat(buffer, barra);
-
-									sprintf(itoa_bf, "%d", UTENTI[i].data_iscrizione.anno);
-									strcat(buffer, itoa_bf);
-
-									fprintf(pf, "%s", buffer);
-
-								}
-								fclose(pf);
-							}else
-							{
-								SetColor(4);
-								printf("\n\aErrore nell'inserimento degli utenti su file\n");
-								SetColor(15);
-								system("pause");
-								fclose(pf);
-							}
-						}
-					}
-				}
+				i++;
+				*numero += 1;
 			}
+			fclose(pf);
+		}else
+		{
+			SetColor(4);
+			printf("\n\aErrore nella lettura di utenti da file\n");
+			SetColor(15);
+			system("pause");
+			fclose(pf);
+		}
+	}
+
+	if (modalita == 'a' && tipo == 1)		//Inserimento di un utente su file
+	{
+		controllo_parametri=1;
+		FILE *pf;
+
+		pf = fopen(utenti_path, "a");
+
+		if (pf != NULL)
+		{
+			*numero -= 1;
+
+			strcpy(buffer, "\n");
+			strcat(buffer, UTENTI[*numero].nickname);
+			strcat(buffer, virgola);
+
+			strcat(buffer, UTENTI[*numero].password);
+			strcat(buffer, virgola);
+
+			strcat(buffer, UTENTI[*numero].nome);
+			strcat(buffer, virgola);
+
+			strcat(buffer, UTENTI[*numero].cognome);
+			strcat(buffer, virgola);
+
+			sprintf(itoa_bf, "%d", UTENTI[*numero].data_nascita.giorno);
+			strcat(buffer, itoa_bf);
+			strcat(buffer, barra);
+
+			sprintf(itoa_bf, "%d", UTENTI[*numero].data_nascita.mese);
+			strcat(buffer, itoa_bf);
+			strcat(buffer, barra);
+
+			sprintf(itoa_bf, "%d", UTENTI[*numero].data_nascita.anno);
+			strcat(buffer, itoa_bf);
+			strcat(buffer, barra);
+			strcat(buffer, virgola);
+
+			sprintf(itoa_bf, "%d", UTENTI[*numero].data_iscrizione.giorno);
+			strcat(buffer, itoa_bf);
+			strcat(buffer, barra);
+
+			sprintf(itoa_bf, "%d", UTENTI[*numero].data_iscrizione.mese);
+			strcat(buffer, itoa_bf);
+			strcat(buffer, barra);
+
+			sprintf(itoa_bf, "%d", UTENTI[*numero].data_iscrizione.anno);
+			strcat(buffer, itoa_bf);
+
+			fprintf(pf, "%s", buffer);
+
+			*numero += 1;
+			fclose(pf);
+		}else
+		{
+			SetColor(4);
+			printf("\n\aErrore nell'nserimento di un utente su file\n");
+			SetColor(15);
+			system("pause");
+			fclose(pf);
+		}
+	}
+
+	if (modalita == 'w' && tipo == 1)		//Inserimento degli utenti su file
+	{
+		controllo_parametri=1;
+		FILE *pf;
+
+		pf = fopen(utenti_path, "w");
+
+		i = 0;
+
+		if (pf != NULL)
+		{
+			for (i = 0; i < *numero; i++)
+			{
+				if (i > 0)
+				{
+					strcpy(buffer, "\n");
+					strcat(buffer, UTENTI[i].nickname);
+					strcat(buffer, virgola);
+				}else
+				{
+					strcpy(buffer, UTENTI[i].nickname);
+					strcat(buffer, virgola);
+				}
+
+				strcat(buffer, UTENTI[i].password);
+				strcat(buffer, virgola);
+
+				strcat(buffer, UTENTI[i].nome);
+				strcat(buffer, virgola);
+
+				strcat(buffer, UTENTI[i].cognome);
+				strcat(buffer, virgola);
+
+				sprintf(itoa_bf, "%d", UTENTI[i].data_nascita.giorno);
+				strcat(buffer, itoa_bf);
+				strcat(buffer, barra);
+
+				sprintf(itoa_bf, "%d", UTENTI[i].data_nascita.mese);
+				strcat(buffer, itoa_bf);
+				strcat(buffer, barra);
+
+				sprintf(itoa_bf, "%d", UTENTI[i].data_nascita.anno);
+				strcat(buffer, itoa_bf);
+				strcat(buffer, barra);
+				strcat(buffer, virgola);
+
+				sprintf(itoa_bf, "%d", UTENTI[i].data_iscrizione.giorno);
+				strcat(buffer, itoa_bf);
+				strcat(buffer, barra);
+
+				sprintf(itoa_bf, "%d", UTENTI[i].data_iscrizione.mese);
+				strcat(buffer, itoa_bf);
+				strcat(buffer, barra);
+
+				sprintf(itoa_bf, "%d", UTENTI[i].data_iscrizione.anno);
+				strcat(buffer, itoa_bf);
+
+				fprintf(pf, "%s", buffer);
+
+			}
+			fclose(pf);
+		}else
+		{
+			SetColor(4);
+			printf("\n\aErrore nell'inserimento degli utenti su file\n");
+			SetColor(15);
+			system("pause");
+			fclose(pf);
 		}
 	}
 
 	if (modalita == 'w' && tipo == 2)
 	{
+		controllo_parametri=1;
 		FILE *pf;
 
 		pf = fopen(preferenze_path, "w");
@@ -830,8 +830,9 @@ void gestione_file(char modalita, int tipo, int *numero, char relative_path[])
 		}
 	}
 
-	if (modalita == 'r' && tipo == 2)     //Legge preferenze da file
+	if (modalita == 'r' && tipo == 2) //Legge preferenze da file
 	{
+		controllo_parametri=1;
 		FILE *pf;
 
 		pf = fopen(preferenze_path, "r");
@@ -848,15 +849,15 @@ void gestione_file(char modalita, int tipo, int *numero, char relative_path[])
 				j = 0;
 				fgets(buffer, LUNGHEZZA_BUFFER, pf);
 
-				if ((token = strtok(buffer, barra)) != NULL)//Contiene il nome
+				if ((token = strtok(buffer, barra)) != NULL)  //Contiene il nome
 				{
 					for (i = 0; i < *numero; i++)
 					{
-						if (strcmp(UTENTI[i].nickname, token) == 0)	//Individua la posizione dell'utente
+						if (strcmp(UTENTI[i].nickname, token) == 0) //Individua la posizione dell'utente
 						{
 							pos_utenti_con_preferenze = i;
 							utente_presente = 1;
-							for (j = 0; j < ARTISTI_MAX; j++)//Azzeramento Vettore preferenze e codici_artisti
+							for (j = 0; j < ARTISTI_MAX; j++) //Azzeramento Vettore preferenze e codici_artisti
 							{
 								UTENTI[i].preferenze[j] = 0;
 								strcpy(UTENTI[i].codice_artista[j], "0000");
@@ -864,18 +865,19 @@ void gestione_file(char modalita, int tipo, int *numero, char relative_path[])
 
 							for (k = 0; k < ARTISTI_MAX; k++)
 							{
-								if ((token = strtok(NULL, virgola)) != NULL)//Contiene il codice
+								if ((token = strtok(NULL, virgola)) != NULL) //Contiene il codice
 								{
 									for (j = 0; j < ARTISTI_MAX; j++)
 									{
 										if (strcmp(ARTISTI[j].codice, token)
-										        == 0)//Controllo se il codice Ã¨ ancora presente
+										        == 0) //Controllo se il codice Ã¨ ancora presente
 										{
 											strcpy(UTENTI[i].codice_artista[k], ARTISTI[j].codice);
-											token = strtok(NULL, barra);//Contiene la barra
+											token = strtok(NULL, barra); //Contiene la barra
 											UTENTI[i].preferenze[k] =
 											        atoi(token);
-											j = ARTISTI_MAX;
+											j =
+											ARTISTI_MAX;
 										}
 									}
 								}else
@@ -890,7 +892,7 @@ void gestione_file(char modalita, int tipo, int *numero, char relative_path[])
 					{
 						for (i = pos_utenti_con_preferenze; i < UTENTI_MAX; i++)
 						{
-							for (j = 0; j < ARTISTI_MAX; j++)//Azzeramento Vettore preferenze e codici_artisti
+							for (j = 0; j < ARTISTI_MAX; j++) //Azzeramento Vettore preferenze e codici_artisti
 							{
 								UTENTI[i].preferenze[j] = 0;
 								strcpy(UTENTI[i].codice_artista[j], "0000");
@@ -903,39 +905,48 @@ void gestione_file(char modalita, int tipo, int *numero, char relative_path[])
 		}else
 		{
 			SetColor(4);
-			printf("\n\aErrore nella lettura delle preferenze da file\n");
+			printf("\n\aErrore nel passaggio dei parametri\n");
 			SetColor(15);
 			system("pause");
 			fclose(pf);
 		}
 	}
+
+	if(controllo_parametri==0)		//Stampa messaggio di errore quando i parametri non sono corretti
+	{
+		SetColor(4);
+		printf("\n\aErrore nella lettura delle preferenze da file\n");
+		SetColor(15);
+		system("pause");
+	}
+
 }
 
 void creazione_path(char* token_buffer, char* relative_path) {
 	char unita_path[LUNGHEZZA_PATH] = { '\0' };
 	char *token;
-	int i = 0;  							//Permette di gestire l'if nel while
-	int k = 1;                                   //Permette di entrare nel while
+	int i = 0;  	//Permette di gestire l'if nel while
+	int k = 1;           //Permette di entrare nel while
 
 	while ((k == 1) || (strcmp("Progetto Spotify", unita_path) != 0))
 	{
 		if (i == 0)
 		{
-			token = strtok(token_buffer, "/");
+			token = strtok(token_buffer, "\\");
 			strcpy(unita_path, token);
 			strcpy(relative_path, unita_path);
-			strcat(relative_path, "/");
+			strcat(relative_path, "\\");
 		}else
 		{
-			token = strtok(NULL, "/");
+			token = strtok(NULL, "\\");
 			strcpy(unita_path, token);
 			strcat(relative_path, unita_path);
-			strcat(relative_path, "/");
+			strcat(relative_path, "\\");
 		}
 		i++;
 		k++;
 	}
 
-	strcat(relative_path, "File/");
+	strcat(relative_path, "File\\");
 
 }

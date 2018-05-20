@@ -110,16 +110,8 @@ int main(int argc, char *argv[]){
 	int artisti_effettivi=0;
 	int utenti_effettivi=0;
 	char relative_path[LUNGHEZZA_PATH]={'\0'};
-//	char token_buffer[LUNGHEZZA_PATH]={'\0'};
 
 	creazione_path(argv[0],relative_path);
-	/*if(creazione_path(token_buffer)==0)
-	{
-		logo();
-		SetColor(4);
-		printf("Impossibile trovare i file\a\n");
-		system("PAUSE");
-	}*/
 
 
 	//CARICO ARTISTI E UTENTI DA FILE
