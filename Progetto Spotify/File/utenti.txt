@@ -1,6 +1,6 @@
 Cioscos,Creative,Claudio,Ciccarone,29/5/1998/,8/5/2018
 Trimone,Umbrella,Richard,Giannelli,22/11/1998/,8/5/2018
-ilMatty98,vitovito,Mattia,De Donatis,31/3/1998/,4/5/2018
+ilMatty98,vitovito,Mattia,De Donatis,31/3/1998,4/5/2018
 Slab98,12345678,Sabino,Lorusso,30/3/1998/,2/3/2018
 Loreloc,f87dsfsf,Lorenzo,Loconte,19/10/1998/,8/5/2018
 DaftGot,militare,Davide,Nigri,10/8/1998/,15/5/2018
@@ -8,4 +8,3 @@ Kxos,Kurosaki,Vito,Iannone,24/4/1998/,9/9/2017
 Serpeverde,vodemort,Stefano,Galasso,18/1/1999/,18/5/2018
 Peppe Bruno,mentana1,Giuseppe,Bruno,15/6/1989/,11/4/2018
 eppesuiG,m5s4ever,Giuseppe,Perulli,20/9/1998/,2/2/2018
-Foyer,12345678,Davide,De Leonardis,7/7/1996/,15/5/2018

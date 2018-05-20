@@ -1,0 +1,8 @@
+var searchData=
+[
+  ['inserimento_5fartista',['inserimento_artista',['../funzioni_8h.html#abf5be917c5d6727009f9281135ec60d1',1,'inserimento_artista(char lista_generi[][LUNGHEZZA_MAX], int artisti_effettivi):&#160;funzioni_artista.c'],['../funzioni__artista_8c.html#abf5be917c5d6727009f9281135ec60d1',1,'inserimento_artista(char lista_generi[][LUNGHEZZA_MAX], int artisti_effettivi):&#160;funzioni_artista.c']]],
+  ['inserimento_5futente',['inserimento_utente',['../funzioni_8h.html#ae929275a755518f1e0b9af97f9dcad43',1,'inserimento_utente(int utenti_effettivi):&#160;funzioni_utente.c'],['../funzioni__utente_8c.html#ae929275a755518f1e0b9af97f9dcad43',1,'inserimento_utente(int utenti_effettivi):&#160;funzioni_utente.c']]],
+  ['isautenticazione',['isAutenticazione',['../funzioni_8h.html#a472e5deb6426ce44db6be33176b28a0c',1,'isAutenticazione(int utenti_effettivi, int *posizione_utente):&#160;funzioni_utente.c'],['../funzioni__utente_8c.html#a472e5deb6426ce44db6be33176b28a0c',1,'isAutenticazione(int utenti_effettivi, int *posizione_utente):&#160;funzioni_utente.c']]],
+  ['iscontrollo_5fesistenza',['isControllo_Esistenza',['../funzioni_8c.html#a74d908c25aec8025e5f0fa195db52610',1,'isControllo_Esistenza(int numero_presenze, char *campo, char *controllo):&#160;funzioni.c'],['../funzioni_8h.html#a74d908c25aec8025e5f0fa195db52610',1,'isControllo_Esistenza(int numero_presenze, char *campo, char *controllo):&#160;funzioni.c']]],
+  ['iscontrollo_5fnumero',['isControllo_Numero',['../funzioni_8c.html#a35fe1564c40f38c91cf0d82c458063ee',1,'isControllo_Numero(char appoggio[], int lunghezza_massima):&#160;funzioni.c'],['../funzioni_8h.html#a35fe1564c40f38c91cf0d82c458063ee',1,'isControllo_Numero(char appoggio[], int lunghezza_massima):&#160;funzioni.c']]]
+];

@@ -1,3 +1,8 @@
+/*!
+ * @file funzioni_utente.c
+ * @brief File contenente tutte le funzioni che riguardano la gestione degli utenti
+ */
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -559,6 +564,14 @@ void visualizzazione_utenti(int utenti_effettivi)	//Al momento non serve piÃ¹
 	printf("\n");
 }
 
+/**
+ * Questa funzione permette di autenticare l'accesso dell'utente.\n
+ * Per fare ciò, controlla prima se l'utente inserito in input è presente. Se l'utente è presente, egli potrà continuare con l'inserimento della password che avverrà\n
+ * facendo apparire a schermo un "*" per ogni tasto premuto. Eventualmente l'utente avrà la possibilità anche di cancellare la password per un eventuale errore di battitura.
+ *
+ * @post Il ritorno sarà un intero
+ *
+ */
 int isAutenticazione(int utenti_effettivi, int* posizione_utente) {
 	int i, j;
 	int utente_trovato = 0;			//0 Utente trovato - 1 Utente non trovato
@@ -580,7 +593,7 @@ int isAutenticazione(int utenti_effettivi, int* posizione_utente) {
 
 	for (i = 0; i < utenti_effettivi; i++)
 	{
-		if (strcmp(utente, UTENTI[i].nickname) == 0)//Controlla se l'utente inserito in input Ã¨ presente
+		if (strcmp(utente, UTENTI[i].nickname) == 0)//Controlla se l'utente inserito in input è presente
 		{
 			utente_trovato = 1;
 			SetColor(15);
@@ -589,7 +602,7 @@ int isAutenticazione(int utenti_effettivi, int* posizione_utente) {
 			SetColor(6);
 
 			do
-			{//Controllo fin quando la password non raggiungerÃ  gli 8 caratteri
+			{//Controllo fin quando la password non raggiungerà gli 8 caratteri
 				fflush(stdin);
 				carattere_bf = '\0';
 
@@ -604,7 +617,7 @@ int isAutenticazione(int utenti_effettivi, int* posizione_utente) {
 							password[j] = '\0';
 						}
 
-					}else//Se invece Ã¨ un carattere allora lo inserisco nella variabile e incremento la i
+					}else//Se invece è un carattere allora lo inserisco nella variabile e incremento la i
 					{
 						password[j] = carattere_bf;
 						printf("*");
@@ -617,7 +630,7 @@ int isAutenticazione(int utenti_effettivi, int* posizione_utente) {
 
 			eliminazione_acapo(password);
 
-			if (strcmp(password, UTENTI[i].password) == 0)//Controlla se la password inserita in input Ã¨ corretta
+			if (strcmp(password, UTENTI[i].password) == 0)//Controlla se la password inserita in input è corretta
 			{
 				*posizione_utente = i;
 				SetColor(15);
@@ -1574,7 +1587,7 @@ void modifica_preferenze(int posizione_utente, int pos_artista) {
 
 		//Mi piace
 	case 2:
-		for (i = 0; i < ARTISTI_MAX; i++)//Controllo se Ã¨ giÃ  presente il codice dell'artista
+		for (i = 0; i < ARTISTI_MAX; i++)//Controllo se è già presente il codice dell'artista
 		{
 			if (strcmp(UTENTI[posizione_utente].codice_artista[i], ARTISTI[pos_artista].codice)
 			        == 0)
@@ -1604,7 +1617,7 @@ void modifica_preferenze(int posizione_utente, int pos_artista) {
 			}
 		}
 
-		if (artista_trovato == 0)//Se non Ã¨ stato trovato lo inserisco nel primo spazio disponibile
+		if (artista_trovato == 0)//Se non è stato trovato lo inserisco nel primo spazio disponibile
 		{
 			for (i = 0; i < ARTISTI_MAX; i++)
 			{

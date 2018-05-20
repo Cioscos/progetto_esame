@@ -1,3 +1,8 @@
+/*!
+ * @file funzioni.c
+ * @brief File contenente le funzioni generali usate da tutti gli altri source file
+ */
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -53,7 +58,7 @@ void stampa_menu_artista() {
 	SetColor(2);
 	printf("[1]");
 	SetColor(15);
-	printf("Viualizza artisti\n");
+	printf("Visualizza artisti\n");
 	SetColor(2);
 	printf("[2]");
 	SetColor(15);
@@ -110,6 +115,15 @@ void stampa_menu_utente() {
 	printf("Disconnetti\n\nInserisci comando: ");
 }
 
+/**
+ * -La funzione effettua diversi controlli
+ * 		1. Controlla prima la lunghezza effettiva dell'input
+ * 		2. Controlla se l'input è diverso da un numero
+ * 		3. Controllo i casi limite 01-10-00-0'\0'
+ *
+ * @pre appoggio deve essere di massimo 3 caratteri ma vengono effettuati dei controlli per verificare se sono stati scritti dei numeri o l'input è più lungo di LUNGHEZZA_INPUT.
+ * @post Il ritorno sarà un intero
+ */
 int isControllo_Numero(char appoggio[], int lunghezza_massima) {
 	int i = 0;
 	int input_valido = 1;			//1 Input valido - 0 Input non valido
@@ -128,7 +142,7 @@ int isControllo_Numero(char appoggio[], int lunghezza_massima) {
 	}
 	i = 0;
 
-	for (i = 0; i < lughezza_effettiva; i++)//Controllo se l'input ? diverso da un numero
+	for (i = 0; i < lughezza_effettiva; i++)//Controllo se l'input è diverso da un numero
 	{
 		if ((isdigit(appoggio[i]) != 0) || (appoggio[i] == '\0'))
 		{
@@ -139,7 +153,7 @@ int isControllo_Numero(char appoggio[], int lunghezza_massima) {
 		}
 	}
 
-	if (lunghezza_massima == 3)	//Ulteriore controllo su i casi limiti di 01-10-00-0'\0'
+	if (lunghezza_massima == 3)	//Ulteriore controllo su i casi limite di 01-10-00-0'\0'
 	{
 		if ((appoggio[0] == '0' && appoggio[1] != '0')
 		        || (appoggio[0] != '0' && appoggio[1] == '0')
@@ -230,9 +244,19 @@ void eliminazione_acapo(char *input) {
 	}
 }
 
+/**
+ * @pre La stringa passata a come terzo argomento (char* controllo) deve corrispondere a uno dei seguenti elementi:
+ * 1. nome_artista
+ * 2. codice_artista
+ * 3. nickname_utente
+ * 4. nome_utente
+ * 5. cognome_utente
+ * @post Il ritorno sarà un intero (0 o 1).
+ * @warning Se non si inserisce un argomento \e char* \e controllo fra quelli elencati sopra, il ritorno sarà 0 ovvero "elemento già presente".
+ */
 int isControllo_Esistenza(int numero_presenze, char* campo, char* controllo) {
 	int i;
-	int presenza = 0;		//0 elemento gi? presente - 1 elemento non presente
+	int presenza = 0;		//0 elemento già presente - 1 elemento non presente
 
 	if (strcmp(controllo, "nome_artista") == 0)
 	{
@@ -294,12 +318,25 @@ int isControllo_Esistenza(int numero_presenze, char* campo, char* controllo) {
 		return presenza;		//Ritorna 1 - elemento non presente
 	}else
 	{
-		return presenza;		//Ritorna 0 - elemento gi? presente
+		return presenza;		//Ritorna 0 - elemento già presente
 	}
 
 }
 
-void gestione_file(char modalita, int tipo, int *numero, char relative_path[]) //LETTURA FILE "r" | SCRITTURA FILE "w"  | AGGIUNTA ELEMENTO "a"   --   ARTISTA "0"  --  UTENTE "1"
+/**
+ *
+ * @pre Alla funzione bisogna passare come primo parametro (\e char \e modalità ) per forza uno di questi paramtri
+ * 	1. r = lettura
+ * 	2. w = scrittura
+ * 	3. a = aggiunta
+ * @pre Alla funzione bisogna passare come secodno parametro (\e int \e tipo ) per forza uno di questi parametri
+ * 	1. 0 = Artista
+ * 	2. 1 = Utente
+ * 	3. 2 = Preferenze
+ * 	@warning Il non passaggio di uno dei parametri indicati nelle precondizioni potrebbe comportare un comportamento inatteso della funzione
+ * 	\todo In miglioria (leggere l'avvertimento)
+ */
+void gestione_file(char modalita, int tipo, int *numero, char relative_path[])
 {
 	int i = 0, j, k;
 	char buffer[LUNGHEZZA_BUFFER] = { '\0' };
@@ -884,22 +921,21 @@ void creazione_path(char* token_buffer, char* relative_path) {
 	{
 		if (i == 0)
 		{
-			token = strtok(token_buffer, "\\");
+			token = strtok(token_buffer, "/");
 			strcpy(unita_path, token);
 			strcpy(relative_path, unita_path);
-			strcat(relative_path, "\\");
+			strcat(relative_path, "/");
 		}else
 		{
-			token = strtok(NULL, "\\");
+			token = strtok(NULL, "/");
 			strcpy(unita_path, token);
 			strcat(relative_path, unita_path);
-			strcat(relative_path, "\\");
+			strcat(relative_path, "/");
 		}
 		i++;
 		k++;
 	}
 
-	strcat(relative_path, "File\\");
-
+	strcat(relative_path, "File/");
 
 }

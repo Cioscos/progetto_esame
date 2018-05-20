@@ -1,3 +1,10 @@
+/**
+ * @file funzioni_artista.c
+ * @brief File contenente tutte le funzioni che riguardano la gestione degli artisti.
+ *
+ * Questo file permette di gestire la lista degli utenti, andandola a modificare.
+ */
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -6,7 +13,15 @@
 #include <time.h>
 #include "funzioni.h"
 
-
+ /**
+ * Inserimento nuovo artista
+ *
+ * Questa funzione permette di inserire un nuovo cantante nella lista degli artisti.
+ * Prima di terminare aggiorna la lista dei cantanti chiamando la funzione gestione_file presente nel file funzioni.c
+ * @param lista_generi Vettore bidimensionale di caratteri contenente i generi disponibili nel programma
+ * @param artisti_effettivi Numero degli artisti effettivamente memorizzati nel programma
+ * @return Il numero degli artisti effettivi aggiornato
+ */
 int inserimento_artista(char lista_generi[][LUNGHEZZA_MAX], int artisti_effettivi) {
 
 	int posizione_genere = 0;							//pozione del genere nel vettore lista_generi

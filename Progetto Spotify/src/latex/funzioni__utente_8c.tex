@@ -1,0 +1,269 @@
+\hypertarget{funzioni__utente_8c}{}\section{Riferimenti per il file funzioni\+\_\+utente.\+c}
+\label{funzioni__utente_8c}\index{funzioni\+\_\+utente.\+c@{funzioni\+\_\+utente.\+c}}
+
+
+File contenente tutte le funzioni che riguardano la gestione degli utenti.  
+
+
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$ctype.\+h$>$}\newline
+{\ttfamily \#include $<$windows.\+h$>$}\newline
+{\ttfamily \#include $<$conio.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}funzioni.\+h\char`\"{}}\newline
+\subsection*{Funzioni}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{funzioni__utente_8c_ae929275a755518f1e0b9af97f9dcad43}{inserimento\+\_\+utente} (int utenti\+\_\+effettivi)
+\item 
+void \hyperlink{funzioni__utente_8c_a7c30d3f2a34deae6753ff0752f6ecea5}{stampa\+\_\+profilo} (int posizione\+\_\+utente)
+\item 
+void \hyperlink{funzioni__utente_8c_aca207af74a653992748011688d2bdbca}{visualizzazione\+\_\+utenti} (int utenti\+\_\+effettivi)
+\item 
+int \hyperlink{funzioni__utente_8c_a472e5deb6426ce44db6be33176b28a0c}{is\+Autenticazione} (int utenti\+\_\+effettivi, int $\ast$posizione\+\_\+utente)
+\item 
+void \hyperlink{funzioni__utente_8c_a3681991241900aa7a4bc7344fd691901}{modifica\+\_\+utente} (int utenti\+\_\+effettivi, int posizione\+\_\+utente)
+\item 
+int \hyperlink{funzioni__utente_8c_a2c46db008d024c7fea410472d6ef75c4}{elimina\+\_\+utente} (int $\ast$utenti\+\_\+effettivi, int posizione\+\_\+utente)
+\item 
+void \hyperlink{funzioni__utente_8c_a7665672f273b357976bb4e8b7ab44f67}{menu\+\_\+preferenze} (int posizione\+\_\+utente, int artisti\+\_\+effettivi)
+\item 
+int \hyperlink{funzioni__utente_8c_a0c4dc83be03f64b3ee1c46a7977b84a9}{categoria\+\_\+artisti} (int artisti\+\_\+effettivi)
+\item 
+int \hyperlink{funzioni__utente_8c_ac18b91b3134734c44ed4c8488725cf00}{totale\+\_\+artisti} (int artisti\+\_\+effettivi)
+\item 
+void \hyperlink{funzioni__utente_8c_ace8cfde669d8a64f5e57713bb6d0636f}{modifica\+\_\+preferenze} (int posizione\+\_\+utente, int pos\+\_\+artista)
+\item 
+int \hyperlink{funzioni__utente_8c_a1b64a9be7f1ef215216e96b661378e0e}{top\+\_\+10} (int artisti\+\_\+effettivi, char $\ast$input)
+\item 
+void \hyperlink{funzioni__utente_8c_a2374c7b1f4e688404f31018a52571966}{ordinamento} (char $\ast$input)
+\end{DoxyCompactItemize}
+
+
+\subsection{Descrizione dettagliata}
+File contenente tutte le funzioni che riguardano la gestione degli utenti. 
+
+
+
+\subsection{Documentazione delle funzioni}
+\mbox{\Hypertarget{funzioni__utente_8c_a0c4dc83be03f64b3ee1c46a7977b84a9}\label{funzioni__utente_8c_a0c4dc83be03f64b3ee1c46a7977b84a9}} 
+\index{funzioni\+\_\+utente.\+c@{funzioni\+\_\+utente.\+c}!categoria\+\_\+artisti@{categoria\+\_\+artisti}}
+\index{categoria\+\_\+artisti@{categoria\+\_\+artisti}!funzioni\+\_\+utente.\+c@{funzioni\+\_\+utente.\+c}}
+\subsubsection{\texorpdfstring{categoria\+\_\+artisti()}{categoria\_artisti()}}
+{\footnotesize\ttfamily int categoria\+\_\+artisti (\begin{DoxyParamCaption}\item[{int}]{artisti\+\_\+effettivi }\end{DoxyParamCaption})}
+
+
+
+Definizione alla linea 1339 del file funzioni\+\_\+utente.\+c.
+
+
+
+Referenzia A\+R\+T\+I\+S\+TI, eliminazione\+\_\+acapo(), G\+E\+N\+E\+R\+I\+\_\+\+T\+OT, logo(), L\+U\+N\+G\+H\+E\+Z\+Z\+A\+\_\+\+M\+AX, e Set\+Color().
+
+
+
+Referenziato da menu\+\_\+preferenze().
+
+\mbox{\Hypertarget{funzioni__utente_8c_a2c46db008d024c7fea410472d6ef75c4}\label{funzioni__utente_8c_a2c46db008d024c7fea410472d6ef75c4}} 
+\index{funzioni\+\_\+utente.\+c@{funzioni\+\_\+utente.\+c}!elimina\+\_\+utente@{elimina\+\_\+utente}}
+\index{elimina\+\_\+utente@{elimina\+\_\+utente}!funzioni\+\_\+utente.\+c@{funzioni\+\_\+utente.\+c}}
+\subsubsection{\texorpdfstring{elimina\+\_\+utente()}{elimina\_utente()}}
+{\footnotesize\ttfamily int elimina\+\_\+utente (\begin{DoxyParamCaption}\item[{int $\ast$}]{utenti\+\_\+effettivi,  }\item[{int}]{posizione\+\_\+utente }\end{DoxyParamCaption})}
+
+
+
+Definizione alla linea 1202 del file funzioni\+\_\+utente.\+c.
+
+
+
+Referenzia D\+A\+T\+A\+::anno, A\+R\+T\+I\+S\+T\+I\+\_\+\+M\+AX, U\+T\+E\+N\+T\+E\+::data\+\_\+iscrizione, U\+T\+E\+N\+T\+E\+::data\+\_\+nascita, D\+A\+T\+A\+::giorno, logo(), L\+U\+N\+G\+H\+E\+Z\+Z\+A\+\_\+\+I\+N\+P\+UT, L\+U\+N\+G\+H\+E\+Z\+Z\+A\+\_\+\+M\+AX, L\+U\+N\+G\+H\+E\+Z\+Z\+A\+\_\+\+P\+A\+SS, D\+A\+T\+A\+::mese, U\+T\+E\+N\+T\+E\+::preferenze, stringclear, e U\+T\+E\+N\+TI.
+
+
+
+Referenziato da main().
+
+\mbox{\Hypertarget{funzioni__utente_8c_ae929275a755518f1e0b9af97f9dcad43}\label{funzioni__utente_8c_ae929275a755518f1e0b9af97f9dcad43}} 
+\index{funzioni\+\_\+utente.\+c@{funzioni\+\_\+utente.\+c}!inserimento\+\_\+utente@{inserimento\+\_\+utente}}
+\index{inserimento\+\_\+utente@{inserimento\+\_\+utente}!funzioni\+\_\+utente.\+c@{funzioni\+\_\+utente.\+c}}
+\subsubsection{\texorpdfstring{inserimento\+\_\+utente()}{inserimento\_utente()}}
+{\footnotesize\ttfamily int inserimento\+\_\+utente (\begin{DoxyParamCaption}\item[{int}]{utenti\+\_\+effettivi }\end{DoxyParamCaption})}
+
+
+
+Definizione alla linea 17 del file funzioni\+\_\+utente.\+c.
+
+
+
+Referenzia D\+A\+T\+A\+::anno, A\+R\+T\+I\+S\+T\+I\+\_\+\+M\+AX, U\+T\+E\+N\+T\+E\+::cognome, D\+A\+T\+A\+\_\+\+C\+O\+R\+R\+E\+N\+TE, U\+T\+E\+N\+T\+E\+::data\+\_\+iscrizione, U\+T\+E\+N\+T\+E\+::data\+\_\+nascita, eliminazione\+\_\+acapo(), E\+T\+A\+\_\+\+M\+I\+N\+I\+MA, D\+A\+T\+A\+::giorno, is\+Controllo\+\_\+\+Esistenza(), is\+Controllo\+\_\+\+Numero(), logo(), L\+U\+N\+G\+H\+E\+Z\+Z\+A\+\_\+\+M\+AX, L\+U\+N\+G\+H\+E\+Z\+Z\+A\+\_\+\+P\+A\+SS, D\+A\+T\+A\+::mese, U\+T\+E\+N\+T\+E\+::nickname, U\+T\+E\+N\+T\+E\+::nome, U\+T\+E\+N\+T\+E\+::password, U\+T\+E\+N\+T\+E\+::preferenze, P\+R\+I\+M\+O\+\_\+\+M\+E\+SE, Set\+Color(), stringclear, U\+L\+T\+I\+M\+O\+\_\+\+M\+E\+SE, e U\+T\+E\+N\+TI.
+
+
+
+Referenziato da main().
+
+\mbox{\Hypertarget{funzioni__utente_8c_a472e5deb6426ce44db6be33176b28a0c}\label{funzioni__utente_8c_a472e5deb6426ce44db6be33176b28a0c}} 
+\index{funzioni\+\_\+utente.\+c@{funzioni\+\_\+utente.\+c}!is\+Autenticazione@{is\+Autenticazione}}
+\index{is\+Autenticazione@{is\+Autenticazione}!funzioni\+\_\+utente.\+c@{funzioni\+\_\+utente.\+c}}
+\subsubsection{\texorpdfstring{is\+Autenticazione()}{isAutenticazione()}}
+{\footnotesize\ttfamily int is\+Autenticazione (\begin{DoxyParamCaption}\item[{int}]{utenti\+\_\+effettivi,  }\item[{int $\ast$}]{posizione\+\_\+utente }\end{DoxyParamCaption})}
+
+Questa funzione permette di autenticare l\textquotesingle{}accesso dell\textquotesingle{}utente.~\newline
+Per fare ciò, controlla prima se l\textquotesingle{}utente inserito in input è presente. Se l\textquotesingle{}utente è presente, egli potrà continuare con l\textquotesingle{}inserimento della password che avverrà~\newline
+facendo apparire a schermo un \char`\"{}$\ast$\char`\"{} per ogni tasto premuto. Eventualmente l\textquotesingle{}utente avrà la possibilità anche di cancellare la password per un eventuale errore di battitura.
+
+\begin{DoxyPostcond}{Postcondizione}
+Il ritorno sarà un intero 
+\end{DoxyPostcond}
+
+
+Definizione alla linea 575 del file funzioni\+\_\+utente.\+c.
+
+
+
+Referenzia eliminazione\+\_\+acapo(), logo(), L\+U\+N\+G\+H\+E\+Z\+Z\+A\+\_\+\+M\+AX, L\+U\+N\+G\+H\+E\+Z\+Z\+A\+\_\+\+P\+A\+SS, U\+T\+E\+N\+T\+E\+::nickname, U\+T\+E\+N\+T\+E\+::password, Set\+Color(), e U\+T\+E\+N\+TI.
+
+
+
+Referenziato da main().
+
+\mbox{\Hypertarget{funzioni__utente_8c_a7665672f273b357976bb4e8b7ab44f67}\label{funzioni__utente_8c_a7665672f273b357976bb4e8b7ab44f67}} 
+\index{funzioni\+\_\+utente.\+c@{funzioni\+\_\+utente.\+c}!menu\+\_\+preferenze@{menu\+\_\+preferenze}}
+\index{menu\+\_\+preferenze@{menu\+\_\+preferenze}!funzioni\+\_\+utente.\+c@{funzioni\+\_\+utente.\+c}}
+\subsubsection{\texorpdfstring{menu\+\_\+preferenze()}{menu\_preferenze()}}
+{\footnotesize\ttfamily void menu\+\_\+preferenze (\begin{DoxyParamCaption}\item[{int}]{posizione\+\_\+utente,  }\item[{int}]{artisti\+\_\+effettivi }\end{DoxyParamCaption})}
+
+
+
+Definizione alla linea 1266 del file funzioni\+\_\+utente.\+c.
+
+
+
+Referenzia categoria\+\_\+artisti(), eliminazione\+\_\+acapo(), logo(), L\+U\+N\+G\+H\+E\+Z\+Z\+A\+\_\+\+I\+N\+P\+UT, modifica\+\_\+preferenze(), Set\+Color(), top\+\_\+10(), e totale\+\_\+artisti().
+
+
+
+Referenziato da main().
+
+\mbox{\Hypertarget{funzioni__utente_8c_ace8cfde669d8a64f5e57713bb6d0636f}\label{funzioni__utente_8c_ace8cfde669d8a64f5e57713bb6d0636f}} 
+\index{funzioni\+\_\+utente.\+c@{funzioni\+\_\+utente.\+c}!modifica\+\_\+preferenze@{modifica\+\_\+preferenze}}
+\index{modifica\+\_\+preferenze@{modifica\+\_\+preferenze}!funzioni\+\_\+utente.\+c@{funzioni\+\_\+utente.\+c}}
+\subsubsection{\texorpdfstring{modifica\+\_\+preferenze()}{modifica\_preferenze()}}
+{\footnotesize\ttfamily void modifica\+\_\+preferenze (\begin{DoxyParamCaption}\item[{int}]{posizione\+\_\+utente,  }\item[{int}]{pos\+\_\+artista }\end{DoxyParamCaption})}
+
+
+
+Definizione alla linea 1500 del file funzioni\+\_\+utente.\+c.
+
+
+
+Referenzia A\+R\+T\+I\+S\+TI, A\+R\+T\+I\+S\+T\+I\+\_\+\+M\+AX, A\+R\+T\+I\+S\+T\+A\+::ascolti, eliminazione\+\_\+acapo(), logo(), L\+U\+N\+G\+H\+E\+Z\+Z\+A\+\_\+\+M\+AX, A\+R\+T\+I\+S\+T\+A\+::preferenze, U\+T\+E\+N\+T\+E\+::preferenze, Set\+Color(), e U\+T\+E\+N\+TI.
+
+
+
+Referenziato da menu\+\_\+preferenze().
+
+\mbox{\Hypertarget{funzioni__utente_8c_a3681991241900aa7a4bc7344fd691901}\label{funzioni__utente_8c_a3681991241900aa7a4bc7344fd691901}} 
+\index{funzioni\+\_\+utente.\+c@{funzioni\+\_\+utente.\+c}!modifica\+\_\+utente@{modifica\+\_\+utente}}
+\index{modifica\+\_\+utente@{modifica\+\_\+utente}!funzioni\+\_\+utente.\+c@{funzioni\+\_\+utente.\+c}}
+\subsubsection{\texorpdfstring{modifica\+\_\+utente()}{modifica\_utente()}}
+{\footnotesize\ttfamily void modifica\+\_\+utente (\begin{DoxyParamCaption}\item[{int}]{utenti\+\_\+effettivi,  }\item[{int}]{posizione\+\_\+utente }\end{DoxyParamCaption})}
+
+
+
+Definizione alla linea 661 del file funzioni\+\_\+utente.\+c.
+
+
+
+Referenzia D\+A\+T\+A\+::anno, U\+T\+E\+N\+T\+E\+::data\+\_\+nascita, eliminazione\+\_\+acapo(), E\+T\+A\+\_\+\+M\+I\+N\+I\+MA, D\+A\+T\+A\+::giorno, is\+Controllo\+\_\+\+Esistenza(), is\+Controllo\+\_\+\+Numero(), logo(), L\+U\+N\+G\+H\+E\+Z\+Z\+A\+\_\+\+I\+N\+P\+UT, L\+U\+N\+G\+H\+E\+Z\+Z\+A\+\_\+\+M\+AX, L\+U\+N\+G\+H\+E\+Z\+Z\+A\+\_\+\+P\+A\+SS, D\+A\+T\+A\+::mese, U\+T\+E\+N\+T\+E\+::password, P\+R\+I\+M\+O\+\_\+\+M\+E\+SE, Set\+Color(), stringclear, U\+L\+T\+I\+M\+O\+\_\+\+M\+E\+SE, e U\+T\+E\+N\+TI.
+
+
+
+Referenziato da main().
+
+\mbox{\Hypertarget{funzioni__utente_8c_a2374c7b1f4e688404f31018a52571966}\label{funzioni__utente_8c_a2374c7b1f4e688404f31018a52571966}} 
+\index{funzioni\+\_\+utente.\+c@{funzioni\+\_\+utente.\+c}!ordinamento@{ordinamento}}
+\index{ordinamento@{ordinamento}!funzioni\+\_\+utente.\+c@{funzioni\+\_\+utente.\+c}}
+\subsubsection{\texorpdfstring{ordinamento()}{ordinamento()}}
+{\footnotesize\ttfamily void ordinamento (\begin{DoxyParamCaption}\item[{char $\ast$}]{input }\end{DoxyParamCaption})}
+
+
+
+Definizione alla linea 1723 del file funzioni\+\_\+utente.\+c.
+
+
+
+Referenzia A\+R\+T\+I\+S\+TI, A\+R\+T\+I\+S\+T\+I\+\_\+\+M\+AX, A\+R\+T\+I\+S\+T\+A\+::ascolti, flag, logo(), L\+U\+N\+G\+H\+E\+Z\+Z\+A\+\_\+\+C\+O\+D\+I\+CE, L\+U\+N\+G\+H\+E\+Z\+Z\+A\+\_\+\+M\+AX, A\+R\+T\+I\+S\+T\+A\+::preferenze, Set\+Color(), e T\+OP.
+
+
+
+Referenziato da top\+\_\+10().
+
+\mbox{\Hypertarget{funzioni__utente_8c_a7c30d3f2a34deae6753ff0752f6ecea5}\label{funzioni__utente_8c_a7c30d3f2a34deae6753ff0752f6ecea5}} 
+\index{funzioni\+\_\+utente.\+c@{funzioni\+\_\+utente.\+c}!stampa\+\_\+profilo@{stampa\+\_\+profilo}}
+\index{stampa\+\_\+profilo@{stampa\+\_\+profilo}!funzioni\+\_\+utente.\+c@{funzioni\+\_\+utente.\+c}}
+\subsubsection{\texorpdfstring{stampa\+\_\+profilo()}{stampa\_profilo()}}
+{\footnotesize\ttfamily void stampa\+\_\+profilo (\begin{DoxyParamCaption}\item[{int}]{posizione\+\_\+utente }\end{DoxyParamCaption})}
+
+
+
+Definizione alla linea 491 del file funzioni\+\_\+utente.\+c.
+
+
+
+Referenzia D\+A\+T\+A\+::anno, A\+R\+T\+I\+S\+TI, A\+R\+T\+I\+S\+T\+I\+\_\+\+M\+AX, U\+T\+E\+N\+T\+E\+::codice\+\_\+artista, U\+T\+E\+N\+T\+E\+::cognome, U\+T\+E\+N\+T\+E\+::data\+\_\+iscrizione, U\+T\+E\+N\+T\+E\+::data\+\_\+nascita, D\+A\+T\+A\+::giorno, D\+A\+T\+A\+::mese, U\+T\+E\+N\+T\+E\+::nickname, U\+T\+E\+N\+T\+E\+::nome, U\+T\+E\+N\+T\+E\+::password, U\+T\+E\+N\+T\+E\+::preferenze, Set\+Color(), e U\+T\+E\+N\+TI.
+
+
+
+Referenziato da main().
+
+\mbox{\Hypertarget{funzioni__utente_8c_a1b64a9be7f1ef215216e96b661378e0e}\label{funzioni__utente_8c_a1b64a9be7f1ef215216e96b661378e0e}} 
+\index{funzioni\+\_\+utente.\+c@{funzioni\+\_\+utente.\+c}!top\+\_\+10@{top\+\_\+10}}
+\index{top\+\_\+10@{top\+\_\+10}!funzioni\+\_\+utente.\+c@{funzioni\+\_\+utente.\+c}}
+\subsubsection{\texorpdfstring{top\+\_\+10()}{top\_10()}}
+{\footnotesize\ttfamily int top\+\_\+10 (\begin{DoxyParamCaption}\item[{int}]{artisti\+\_\+effettivi,  }\item[{char $\ast$}]{input }\end{DoxyParamCaption})}
+
+
+
+Definizione alla linea 1684 del file funzioni\+\_\+utente.\+c.
+
+
+
+Referenzia A\+R\+T\+I\+S\+TI, eliminazione\+\_\+acapo(), logo(), L\+U\+N\+G\+H\+E\+Z\+Z\+A\+\_\+\+M\+AX, ordinamento(), e Set\+Color().
+
+
+
+Referenziato da menu\+\_\+preferenze().
+
+\mbox{\Hypertarget{funzioni__utente_8c_ac18b91b3134734c44ed4c8488725cf00}\label{funzioni__utente_8c_ac18b91b3134734c44ed4c8488725cf00}} 
+\index{funzioni\+\_\+utente.\+c@{funzioni\+\_\+utente.\+c}!totale\+\_\+artisti@{totale\+\_\+artisti}}
+\index{totale\+\_\+artisti@{totale\+\_\+artisti}!funzioni\+\_\+utente.\+c@{funzioni\+\_\+utente.\+c}}
+\subsubsection{\texorpdfstring{totale\+\_\+artisti()}{totale\_artisti()}}
+{\footnotesize\ttfamily int totale\+\_\+artisti (\begin{DoxyParamCaption}\item[{int}]{artisti\+\_\+effettivi }\end{DoxyParamCaption})}
+
+
+
+Definizione alla linea 1454 del file funzioni\+\_\+utente.\+c.
+
+
+
+Referenzia A\+R\+T\+I\+S\+TI, eliminazione\+\_\+acapo(), logo(), L\+U\+N\+G\+H\+E\+Z\+Z\+A\+\_\+\+M\+AX, e Set\+Color().
+
+
+
+Referenziato da menu\+\_\+preferenze().
+
+\mbox{\Hypertarget{funzioni__utente_8c_aca207af74a653992748011688d2bdbca}\label{funzioni__utente_8c_aca207af74a653992748011688d2bdbca}} 
+\index{funzioni\+\_\+utente.\+c@{funzioni\+\_\+utente.\+c}!visualizzazione\+\_\+utenti@{visualizzazione\+\_\+utenti}}
+\index{visualizzazione\+\_\+utenti@{visualizzazione\+\_\+utenti}!funzioni\+\_\+utente.\+c@{funzioni\+\_\+utente.\+c}}
+\subsubsection{\texorpdfstring{visualizzazione\+\_\+utenti()}{visualizzazione\_utenti()}}
+{\footnotesize\ttfamily void visualizzazione\+\_\+utenti (\begin{DoxyParamCaption}\item[{int}]{utenti\+\_\+effettivi }\end{DoxyParamCaption})}
+
+
+
+Definizione alla linea 552 del file funzioni\+\_\+utente.\+c.
+
+
+
+Referenzia D\+A\+T\+A\+::anno, U\+T\+E\+N\+T\+E\+::cognome, U\+T\+E\+N\+T\+E\+::data\+\_\+iscrizione, U\+T\+E\+N\+T\+E\+::data\+\_\+nascita, D\+A\+T\+A\+::giorno, D\+A\+T\+A\+::mese, U\+T\+E\+N\+T\+E\+::nickname, U\+T\+E\+N\+T\+E\+::nome, Set\+Color(), e U\+T\+E\+N\+TI.
+

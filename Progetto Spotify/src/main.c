@@ -1,9 +1,90 @@
+/*!
+ * @file main.c
+ *
+ * @brief File contenente il menù principale e tutte le chiamate delle funzioni presenti in funzioni.c, funzioni_artista.c e funzioni_utente.c
+ * \mainpage Progetto Universitario Spotify
+ * \authors Claudio Ciccarone, Mattia De Donatis (in ordine alfabetico)
+ * \version 1.0.3
+ * \date 19/05/2018
+ * \copyright GNU Pubblic license
+ *
+ * \section intro_sec Introduzione
+ * Questo codice è stato scritto per un progetto scolastico in C.\n
+ * Il programma imita la gestione utenti e artisti della famosa piattaforma di streaming audio Spotify.\n
+ * -Il programma è stato implementato inserendo un menù principale dal quale si possono accedere a due sottomenù:
+ * 		1. Gestione artisti: Permette di gestire gli artisti. Più nello specifico permette di:
+ * 			-# Visualizzare tutte le informazioni sugli artisti
+ * 			-# Aggiungere un nuovo artista
+ * 			-# Modificare il profilo dell'artista
+ * 			-# Eliminare il profilo dell'artista
+ * 		2. Gestire gli utenti: Permette di interfacciare l'utente al programma; da qui l'utente può:
+ * 			-# Registrarsi e quindi creare un nuovo profilo utente
+ * 			-# Accedere al programma inserendo Nickname e password; effettuato l'accesso, l'utente potrà:
+ * 				-# Visualizzare il suo profilo
+ * 				-# Modificare le sue preferenze ascoltando gli artisti o inserendo "Mi piace" o "Non mi piace"
+ * 				-# Modificare il suo profilo
+ * 				-# Disiscriversi
+ * 				-# Effettuare il Log-Out
+ * 		3. Chiudere Spotify\n
+ *
+ * Per ulteriori informazioni riguardo le funzioni del programma leggere la documentazione.
+ *
+ * \section comp_sec Compilazione
+ * Il codice per essere compilato a bisogno di un qualsiasi compilatore C e necessita di includere la libreria funzioni.h in questo modo: include "funzioni.h"
+ * \warning Eseguire il programma solo su Windows e inserire l'eseguibile in una cartella chiamata "Progetto Spotify".\n
+ * I file si devono trovare in una sottocartella di "Progetto Spotify" chiamata "File".
+ * \section file_sec File
+ * I file usati nel progetto sono:
+ * \subsection file1 Source principale
+ * Formato da main.c
+ * \subsection file2 Source funzioni
+ * Formato da funzioni.c - funzioni_artista.c - funzioni_utente.c
+ * \subsection file3 File Header
+ * Formato da funzioni.h
+ * \subsection file4-5-6 File dati
+ * \subsubsection artisti Artisti
+ * Il file artisti.txt contiene tutti gli artisti memorizzati nel Database.\n
+ * -I dati sono memorizzati nel seguente ordine (separati da una virgola):
+ * 			1. Codice artista: Es.0001 Codice formato da 4 cifre che identifica univocamente un artista. Non può esistere un codice 0000.
+ * 			2. Nome artista: Es. Depeche Mode Indica il nome dell'artista o del gruppo.
+ * 			3. Nome casa discografica: Es. Virgin Radio Indica il nome della casa discografica dell'artista.
+ * 			4. Nazionalità: Es. Inglese Indica la nazionalità dell'artista o del gruppo.
+ * 			5. Anno: Es.1980 Indica l'anno di inizio attività dell'artista o del gruppo.
+ * 			6. Numero Ascolti: Indica il numero degli ascolti complessivi dell'artista.
+ * 			7. Numero "Mi piace": Indica il numero di "Mi piace" complessivi ricevuti dagli utenti, dell'artista.
+ * 			8. Genereri: Es. Rock Indica i/il genere/i dell'artista. Questi possono essere anche più di uno e saranno separati da una virgola.
+ *\subsubsection utenti Utenti
+ * Il file utenti.txt contiene tutti gli utenti memorizzati nel database.\n
+ * -I dati sono memorizzati nel seguente ordine (separati da una virgola):
+ * 		1. Nickname: Es. Cioscos Nome utilizzato dall'utente per accedere al programma.
+ * 		2. Password: Utilizzata per accedere al programma dall'utente. \warning La password non potrà mai essere visualizzata dal programma ma potrà esserlo, invece, dal file utenti.txt
+ * 		3. Nome: Nome dell'utente
+ * 		4. Cognome: Cognome dell'utente
+ * 		5. Data di nascita: Data di nascita memorizzata nell'ordine GG/MM/AAAA
+ * 		6. Data di iscrizione: Data di iscrizione memorizzata nell'ordine GG/MM/AAAA.
+ * 	\subsubsection preferenze Preferenze
+ * 	Il file preferenze.txt contiene tutte le preferenze degli utenti.\n
+ * 	-I dati sono memorizzati nel seguente ordine (separati da uno slash):
+ * 		1. Nickname: Nickname utente che ha inserito la preferenza
+ * 		2. Codice Artista: Codice dell'artista al quale è stata inserita la preferenza.\n
+ * 		Dopo questo codice è presente una virgola seguita da un numero che può indicare:\n
+ * 			-# 1: Indica che l'artista è stato solamente ascoltato dall'utente.
+ * 			-# 2: Indica che l'artista è stato ascoltato dall'utente e che quest'ultimo ha gradito l'ascolto (incremento del numero di "Mi piace")
+ * 			-# 3: Indica che l'artista è stato ascoltato dall'utente e che quest'ultimo non ha gradito l'ascolto.
+ *
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
 #include "funzioni.h"
 
+ /**
+ * @param argc Parametro standard passato dal sistema operativo all'eseguibile
+ * @param argv Parametro standard passato dal sistema operativo all'eseguibile
+ * @return 0 se la funzione viene terminata correttamente
+ */
 int main(int argc, char *argv[]){
 
 	//CREAZIONE DATA ATTUALE---------------------------------------------------------------------------------------------------------------------------------------------
