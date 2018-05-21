@@ -324,7 +324,7 @@ void creazione_path(char* token_buffer, char* relative_path);
 /**
  *
  * @param[in] lista_generi Viene passata la lista dei generi disponibii
- * @param[in] artisti_effettivi Viene passato per valore in numero di utenti effetivamente memorizzati
+ * @param[in] artisti_effettivi Viene passato per valore il numero di utenti effetivamente memorizzati
  * @return Numero utenti effettivi
  */
 int inserimento_artista(char lista_generi[][LUNGHEZZA_MAX], int artisti_effettivi);
@@ -333,46 +333,104 @@ int inserimento_artista(char lista_generi[][LUNGHEZZA_MAX], int artisti_effettiv
  * Questa funzione visualizza gli artisti memorizzati
  *
  * @param[in] lista_generi Viene passata la lista dei generi disponibii
- * @param[in] artisti_effettivi Viene passato per valore in numero di utenti effetivamente memorizzati
+ * @param[in] artisti_effettivi Viene passato per valore il numero di utenti effetivamente memorizzati
  */
 void visualizzazione_artisti(char lista_generi[][LUNGHEZZA_MAX], int artisti_effettivi);
 
 /**
  * Questa funzione modifica gli attributi dell'artista o del gruppo
  *
- * @param[in] artisti_effettivi Viene passato per valore in numero di utenti effetivamente memorizzati
+ * @param[in] artisti_effettivi Viene passato per valore il numero di utenti effetivamente memorizzati
  * @param[in] lista_generi Viene passata la lista dei generi disponibii
  */
 void modifica_artista(int artisti_effettivi, char lista_generi[][LUNGHEZZA_MAX]);
 
 /**
  * Questa funzione elimina un artista dalla lista degli artisti memorizzati
- * @param[in] artisti_effettivi Viene passato per valore in numero di artisti effetivamente memorizzati
+ * @param[in] artisti_effettivi Viene passato per valore il numero di artisti effetivamente memorizzati
  * @return Il numero degli artisti memorizzati dopo l'eliminazione
  */
 int elimina_artista(int artisti_effetivi);
 
 /**
  *
- * @param[in] utenti_effettivi Viene passato per valore in numero di utenti effetivamente memorizzati
+ * @param[in] utenti_effettivi Viene passato per valore il numero di utenti effetivamente memorizzati
  * @return Il numero degli utenti memorizzati dopo l'eliminazione
  */
 int inserimento_utente(int utenti_effettivi);
 
+void visualizzazione_utenti(int utenti_effettivi); //FUNZIONE DEBUG
+
 /**
+ * Questa funzione permette di stampare il profilo dell'utente
  *
- * @param[in] utenti_effettivi Viene passato per valore in numero di utenti effetivamente memorizzati
+ * @param[in] posizione_utente Viene passato per valore l'indice dell'utente che ha fatto accesso al programma
  */
-void visualizzazione_utenti(int utenti_effettivi);
 void stampa_profilo(int posizione_utente);
+
+/**
+ * Questa funzione permette di modificare gli attributi dell'utente
+ *
+ * @param[in] utenti_effettivi Viene passato per valore il numero di utenti effetivamente memorizzati
+ * @param[in] posizione_utente Viene passato per valore l'indice dell'utente che ha fatto accesso al programma
+ */
 void modifica_utente(int utenti_effettivi, int posizione_utente);
+
+/**
+ * Questa funzione permette di eliminare un utente registrato
+ *
+ * @param[in, out] utenti_effettivi Viene passato per riferimento il numero di utenti effetivamente memorizzati
+ * @param[in] posizione_utente Viene passato per valore l'indice dell'utente che ha fatto accesso al programma
+ * @return 1 = Utente eliminato     0 = Utente non eliminato
+ */
 int elimina_utente(int* utenti_effettivi, int posizione_utente);
+
+/**
+ * Questa funzione mostra il menù dal quale l'utente può decidere di ascoltare un cantante e modficiare le preferenze
+ *
+ * @param[in] posizione_utente Viene passato per valore l'indice dell'utente che ha fatto accesso al programma
+ * @param[in] artisti_effettivi Viene passato per valore il numero di utenti effetivamente memorizzati
+ */
 void menu_preferenze(int posizione_utente, int artisti_effettivi);
+
+/**
+ * Questa funzione serve per modificare gli ascolti e le preferenze dell'utente
+ *
+ * @param[in] posizione_utente Viene passato per valore l'indice dell'utente che ha fatto accesso al programma
+ * @param[in] pos_artista Viene passato per valore l'indice dell'artista selezionato (Ritorno per le funzioni ::categoria_artisti, ::totale_artisti e ::top_10)
+ */
 void modifica_preferenze(int posizione_utente, int pos_artista);
 
+/**
+ * Questa funzione stampa tutti i generi disponibili
+ *
+ * @param[in] artisti_effettivi Viene passato per valore il numero di utenti effetivamente memorizzati
+ * @return Ritorna ::pos_artista ovvero la posizione dell'artista all'interno dell'indice.
+ */
 int categoria_artisti(int artisti_effettivi);
+
+/**
+ * Questa funzione mostra la lista degli artisti
+ *
+ * @param[in] artisti_effettivi Viene passato per valore il numero di utenti effetivamente memorizzati
+ * @return Ritorna ::pos_artista ovvero la posizione dell'artista all'interno dell'indice.
+ */
 int totale_artisti(int artisti_effettivi);
-void ordinamento(char* input);		//Mi piace    -     Ascolti
+
+/**
+ * Questa funzione ordina gli artisti per  "Mi piace" o "Ascolti"
+ *
+ * @param[in] input Viene passata una stringa (saranno accettate solo le stringhe "Mi piace" e "Ascolti"
+ */
+void ordinamento(char* input);
+
+/**
+ * Questa funzione farà visualizzare gli Artisti TOP 10
+ *
+ * @param[in] artisti_effettivi Viene passato per valore il numero di utenti effetivamente memorizzati
+ * @param[in] input Viene passata una stringa (saranno accettate solo le stringhe "Mi piace" e "Ascolti"
+ * @return
+ */
 int top_10(int artisti_effettivi, char* input);
 
 #endif /* FUNZIONI_H_ */

@@ -681,29 +681,30 @@ int isAutenticazione(int utenti_effettivi, int* posizione_utente) {
 	return (autenticazione);
 }
 
-void modifica_utente(int utenti_effettivi, int posizione_utente) {
-	char giorno_corrente[3];//Variaible  momentanea contenente giorno corrente
-	int mese_corrente;			//Variaible  momentanea contenente mese corrente
-	char anno_corrente[5];		//Variaible  momentanea contenente anno corrente
-	struct DATA DATA_CORRENTE;		//Creazione variabile di tipo struct data
-	time_t t = time(NULL);//Creazione di una veriabile di tipo "time_t" nella quale inserisco tutte le informazini del calendario di windows
-	struct tm *tp = localtime(&t);//Creo una variabile di tipo struct "tm" nella quale inserisco le informazioni contenute in "t"
+/**
+ * L'utente potrà scegliere fra 6 possibili scelte:
+ * 	1. Modificare il nickname
+ * 	2. Modificare la password
+ * 	3. Modificare il nome
+ * 	4. Modificare il cognome
+ * 	5. Modificare la data di nascita
+ * 	6. Tornare indietro
+ *
+ * Tutte le opzioni effettueranno dei controlli sui dati in input
+ * 	-# Non possono essere inseriti dei dati numerici
+ * 	-# Non può essere inseriti lo stesso nickname o il nickname di un altro utente
+ * 	-# Doppio controllo sull'inserimento password
+ */
 
-	//Inserisco nelle variabili momentanee elementi della variabile "tp"
-	strftime(anno_corrente, 5, "%Y", tp);
-	mese_corrente = tp->tm_mon + 1;
-	strftime(giorno_corrente, 3, "%d", tp);
-	DATA_CORRENTE.anno = atoi(anno_corrente);
-	DATA_CORRENTE.mese = mese_corrente;
-	DATA_CORRENTE.giorno = atoi(giorno_corrente);
+void modifica_utente(int utenti_effettivi, int posizione_utente) {
 
 	int i;
-	char scelta[LUNGHEZZA_INPUT] = { "\0" };//Variabile d'appoggio per l'input della scelta per il men? chiesto in input
-	char utente[LUNGHEZZA_MAX];	//Variabile d'appoggio per nickname, nome e cognome chiesti in input
-	char controllo[LUNGHEZZA_PASS] = { '\0' };//Variabile utilizzata per effettuare un doppio controllo sulla password per verificare che corrisponda alla prima chiesta in input
-	char carattere_bf;//Variabile contenenete un solo carattere per la creazione della password
-	int uguali;	//Variaibile utilizzata come flag    0=Controllo non superato | 1=Controllo superato
-	char data_provvisoria[LUNGHEZZA_MAX] = { '\0' };//Variabile contenente la data di tipo char per effettuare i controlli
+	char scelta[LUNGHEZZA_INPUT] = { "\0" };			//Variabile d'appoggio per l'input della scelta per il men? chiesto in input
+	char utente[LUNGHEZZA_MAX];							//Variabile d'appoggio per nickname, nome e cognome chiesti in input
+	char controllo[LUNGHEZZA_PASS] = { '\0' };			//Variabile utilizzata per effettuare un doppio controllo sulla password per verificare che corrisponda alla prima chiesta in input
+	char carattere_bf;									//Variabile contenenete un solo carattere per la creazione della password
+	int uguali;											//Variaibile utilizzata come flag    0=Controllo non superato | 1=Controllo superato
+	char data_provvisoria[LUNGHEZZA_MAX] = { '\0' };	//Variabile contenente la data di tipo char per effettuare i controlli
 
 	do
 	{//Controllo sull input fornito dall'utente fin quando non viene inserito un valore compreso tra 0 e 5 compresi
@@ -755,7 +756,7 @@ void modifica_utente(int utenti_effettivi, int posizione_utente) {
 		//MODIFICA NICKNAME
 	case 1:
 		do
-		{//Controllo fin quando non viene inserito almeno una lettera e il nickname non deve essere giÃ  presente
+		{//Controllo fin quando non viene inserito almeno una lettera e il nickname non deve essere già  presente
 			system("cls");
 			logo();
 			printf("Inserisci nuovo Nickname: ");
@@ -796,7 +797,7 @@ void modifica_utente(int utenti_effettivi, int posizione_utente) {
 			printf("Inserisci nuova password di 8 caratteri: ");
 			SetColor(6);
 			do
-			{//Controllo fin quando la password non raggiungerÃ  gli 8 caratteri
+			{//Controllo fin quando la password non raggiungerà  gli 8 caratteri
 				fflush(stdin);
 				carattere_bf = '\0';
 
@@ -811,7 +812,7 @@ void modifica_utente(int utenti_effettivi, int posizione_utente) {
 							controllo[i] = '\0';
 						}
 
-					}else//Se invece Ã¨ un carattere allora lo inserisco nella variabile e incremento la i
+					}else//Se invece è un carattere allora lo inserisco nella variabile e incremento la i
 					{
 						controllo[i] = carattere_bf;
 						printf("*");
@@ -1222,6 +1223,10 @@ void modifica_utente(int utenti_effettivi, int posizione_utente) {
 	}
 }
 
+/**
+ * La funzione chiede la conferma di eliminazione all'utente prima di procedere.\n
+ * Essa procede agendo sull'array di struct ::UTENTE, ::UTENTI scalando le informazioni degli utenti di una posizione in modo da eliminare le informazioni dell'utente desiderato.
+ */
 int elimina_utente(int* utenti_effettivi, int posizione_utente) {
 	int i, j;
 	char risposta[LUNGHEZZA_INPUT] = { "si" };//Risposta alla domanda 'Sei sicuro di voler eliminare l'artista?'
@@ -1286,6 +1291,15 @@ int elimina_utente(int* utenti_effettivi, int posizione_utente) {
 	}
 }
 
+/**
+ * L'utente potrà scegliere se:
+ *  1. Scegliere l'artista sfogliando tutti i generi (referenziando ::categoria_artisti)
+ *  2. Scegliere direttamente l'artista, dopo aver consultato la lista degli artisti (referenziando ::totale_artisti)
+ *  3. Visualizzare la TOP 10 degli artisti con più "Mi piace" (referenziando ::top_10)
+ *  4. Visualizzare la TOP 10 degli artisti con più "Ascolti" (referenziando ::top_10)
+ *
+ * Questa funzione referenzia le sopra elencate funzioni.
+ */
 void menu_preferenze(int posizione_utente, int artisti_effettivi) {
 	int pos_artista;	//Contiene la posizione nel vettore dell'artista trovato
 	char metodo[LUNGHEZZA_INPUT] = { '\0' };
@@ -1359,6 +1373,12 @@ void menu_preferenze(int posizione_utente, int artisti_effettivi) {
 	}
 }
 
+/**
+ * Quando l'utente inserisce il genere, viene effettuato un controllo per verificare che il genere effettivamente esista.\n
+ * Se il genere sarà trovato, saranno visualizzati tutti i nomi degli artisti o gruppi. Se non esistono artisti o gruppi di quel genere, sarà notificato.
+ * \pre Deve esistere la funzione ::menu_preferenze
+ * \warning La funzione controlla l'esistenza del genere carattere per carattere, quindi vanno inserite anche le lettere maiuscole
+ */
 int categoria_artisti(int artisti_effettivi) {
 	char lista_generi[GENERI_TOT][LUNGHEZZA_MAX] = { "N.A.", "Electro", "Pop",
 	        "Techno", "Rock", "Jazz", "Rap", "Blues", "Country", "Britpop",
@@ -1396,7 +1416,7 @@ int categoria_artisti(int artisti_effettivi) {
 		eliminazione_acapo(genere_provvisorio);
 		fflush(stdin);
 
-		for (i = 0; i < GENERI_TOT; i++) //Controlla se il genere Ã¨ presente nella lista_generi
+		for (i = 0; i < GENERI_TOT; i++) //Controlla se il genere è presente nella lista_generi
 		{
 			if (strcmp(genere_provvisorio, lista_generi[i]) == 0)
 			{
@@ -1474,6 +1494,10 @@ int categoria_artisti(int artisti_effettivi) {
 
 }
 
+/**
+ * L'utente inserirà il codice dell'artista e se il codice e disponibile l'artista sarà selezionato.
+ * \pre Deve esistere la funzione ::menu_preferenze
+ */
 int totale_artisti(int artisti_effettivi) {
 	char artista[LUNGHEZZA_MAX] = { "\0" };	//Variabile d'appoggio per l'artista chiesto in input
 	int artista_trovato = 0;		//0 artista non trovato | 1 artista trovato
@@ -1520,7 +1544,20 @@ int totale_artisti(int artisti_effettivi) {
 	return (pos_artista);
 }
 
-void modifica_preferenze(int posizione_utente, int pos_artista) {
+/**
+ * Questa funzione viene chiamata da ::menu_preferenze e permette di far scegliere all'utente cosa fare per ogni signolo artista.\n
+ * Le opzioni sono:
+ * 	1. Ascoltare cantante
+ * 	2. Ascoltare e mettere mi piace
+ * 	3. Ascoltare e mettere non mi piace.
+ *
+ * Nell'utilizzo della funzione si tenga presente che:
+ * 	-# Ogni "Ascoltare cantante" aumenta di 1 gli ascolti
+ * 	-# Ogni "Ascoltare e mettere mi piace" aumenterà di 1 gli ascolti ma il "Mi piace" sarà incrementato solo la prima volta.
+ * 	-# Ogni "Ascoltare e mettere non mi piace" aumenterà di 1 gli ascolti e toglierà il "Mi piace" solamente se il "Mi piace" era già presente.
+ *
+ */
+void modifica_preferenze(int posizione_utente, int pos_artista) { //TODO Cambiare ascotlare soltando con Ascolta <nome_cantante>
 	char artista[LUNGHEZZA_MAX] = { "\0" };	//Variabile d'appoggio per l'artista chiesto in input
 	int artista_trovato = 0;//0 artista non trovato | 1 artista trovato					//Contiene la posizione nel vettore dell'artista trovato
 	int i;
@@ -1564,7 +1601,7 @@ void modifica_preferenze(int posizione_utente, int pos_artista) {
 	switch (atoi(artista)) {
 	//Ascoltato
 	case 1:
-		for (i = 0; i < ARTISTI_MAX; i++)//Controllo se Ã¨ giÃ  presente il codice dell'artista
+		for (i = 0; i < ARTISTI_MAX; i++)//Controllo se è già  presente il codice dell'artista
 		{
 			if (strcmp(UTENTI[posizione_utente].codice_artista[i], ARTISTI[pos_artista].codice)
 			        == 0)
@@ -1592,7 +1629,7 @@ void modifica_preferenze(int posizione_utente, int pos_artista) {
 			}
 		}
 
-		if (artista_trovato == 0)//Se non Ã¨ stato trovato lo inserisco nel primo spazio disponibile
+		if (artista_trovato == 0)//Se non è stato trovato lo inserisco nel primo spazio disponibile
 		{
 			for (i = 0; i < ARTISTI_MAX; i++)
 			{
@@ -1704,6 +1741,9 @@ void modifica_preferenze(int posizione_utente, int pos_artista) {
 	}
 }
 
+/**
+ * L'utente dovrà inserire il codice dell'artista desiderato. Sarà effettuato un controllo per verificare l'esistenza dell'artista
+ */
 int top_10(int artisti_effettivi, char* input) {
 	char artista[LUNGHEZZA_MAX] = { "\0" };	//Variabile d'appoggio per l'artista chiesto in input
 	int artista_trovato = 0;		//0 artista non trovato | 1 artista trovato
@@ -1743,6 +1783,12 @@ int top_10(int artisti_effettivi, char* input) {
 	return (pos_artista);
 }
 
+/**
+ * La funzione a seconda dell'input che riceverà andrà a ordinare gli artisti.\n
+ * Per fare ciò saranno utilizzate delle variabili temporane rinominate con il nome del campo della struct preceduto da "tmp_".\n
+ * Se il numero di "Mi piace" o "Ascolti" eccede il numero di massimo di TOP, saranno visualizzati comunque gli artisti con lo stesso numero di "Mi piace" o "Ascolti" in eccesso.
+ * \pre Questa funzione deve essere chiamata da ::top_10
+ */
 void ordinamento(char* input) {
 	unsigned int top = 0;
 	unsigned int i;
