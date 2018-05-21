@@ -20,7 +20,22 @@
  * e di numeri giorni dei mesi.
  * La data di iscrizione sarà inserita automaticamente.
  *
- * @
+ * @pre La variabile di tipo struct DATA, ::DATA_CORRENTE deve essere riempita in uno qualsiasi dei source file\n
+ * possibilmente con la libreria time.h. Un esempio è quello presente nel file main.c riportato qui sotto:\n
+ * \code{.c}
+ * time_t t=time(NULL);
+ * struct tm *tp=localtime(&t);
+ *
+ * char giorno_corrente[3];    //Variaible  momentanea contenente giorno corrente
+ * int mese_corrente;			//Variaible  momentanea contenente mese corrente
+ * char anno_corrente[5];		//Variaible  momentanea contenente anno corrente
+ * strftime (anno_corrente,5,"%Y", tp);
+ * mese_corrente=tp->tm_mon+1;
+ * strftime (giorno_corrente,3,"%d", tp);
+ * DATA_CORRENTE.anno=atoi(anno_corrente);
+ * DATA_CORRENTE.mese=mese_corrente;
+ * DATA_CORRENTE.giorno=atoi(giorno_corrente);
+ * \endcode
  */
 int inserimento_utente(int utenti_effettivi) {
 	//DEFINZIONE VARIABILI
@@ -557,7 +572,7 @@ void stampa_profilo(int posizione_utente) {
 	}
 }
 
-void visualizzazione_utenti(int utenti_effettivi)	//Al momento non serve piÃ¹
+void visualizzazione_utenti(int utenti_effettivi)	//Al momento non serve più
 {
 	int i;
 

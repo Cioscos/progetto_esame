@@ -358,6 +358,11 @@ int elimina_artista(int artisti_effetivi);
  * @return Il numero degli utenti memorizzati dopo l'eliminazione
  */
 int inserimento_utente(int utenti_effettivi);
+
+/**
+ *
+ * @param[in] utenti_effettivi Viene passato per valore in numero di utenti effetivamente memorizzati
+ */
 void visualizzazione_utenti(int utenti_effettivi);
 void stampa_profilo(int posizione_utente);
 void modifica_utente(int utenti_effettivi, int posizione_utente);

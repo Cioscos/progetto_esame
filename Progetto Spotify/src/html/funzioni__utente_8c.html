@@ -130,11 +130,11 @@ Funzioni</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definizione alla linea <a class="el" href="funzioni__utente_8c_source.html#l01338">1338</a> del file <a class="el" href="funzioni__utente_8c_source.html">funzioni_utente.c</a>.</p>
+<p class="definition">Definizione alla linea <a class="el" href="funzioni__utente_8c_source.html#l01362">1362</a> del file <a class="el" href="funzioni__utente_8c_source.html">funzioni_utente.c</a>.</p>
 
 <p class="reference">Referenzia <a class="el" href="funzioni_8h_source.html#l00155">ARTISTI</a>, <a class="el" href="funzioni_8c_source.html#l00238">eliminazione_acapo()</a>, <a class="el" href="funzioni_8h_source.html#l00074">GENERI_TOT</a>, <a class="el" href="funzioni_8c_source.html#l00026">logo()</a>, <a class="el" href="funzioni_8h_source.html#l00024">LUNGHEZZA_MAX</a>, e <a class="el" href="funzioni_8c_source.html#l00014">SetColor()</a>.</p>
 
-<p class="reference">Referenziato da <a class="el" href="funzioni__utente_8c_source.html#l01265">menu_preferenze()</a>.</p>
+<p class="reference">Referenziato da <a class="el" href="funzioni__utente_8c_source.html#l01289">menu_preferenze()</a>.</p>
 
 </div>
 </div>
@@ -164,7 +164,7 @@ Funzioni</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definizione alla linea <a class="el" href="funzioni__utente_8c_source.html#l01201">1201</a> del file <a class="el" href="funzioni__utente_8c_source.html">funzioni_utente.c</a>.</p>
+<p class="definition">Definizione alla linea <a class="el" href="funzioni__utente_8c_source.html#l01225">1225</a> del file <a class="el" href="funzioni__utente_8c_source.html">funzioni_utente.c</a>.</p>
 
 <p class="reference">Referenzia <a class="el" href="funzioni_8h_source.html#l00119">DATA::anno</a>, <a class="el" href="funzioni_8h_source.html#l00019">ARTISTI_MAX</a>, <a class="el" href="funzioni_8h_source.html#l00183">UTENTE::data_iscrizione</a>, <a class="el" href="funzioni_8h_source.html#l00177">UTENTE::data_nascita</a>, <a class="el" href="funzioni_8h_source.html#l00115">DATA::giorno</a>, <a class="el" href="funzioni_8c_source.html#l00026">logo()</a>, <a class="el" href="funzioni_8h_source.html#l00036">LUNGHEZZA_INPUT</a>, <a class="el" href="funzioni_8h_source.html#l00024">LUNGHEZZA_MAX</a>, <a class="el" href="funzioni_8h_source.html#l00029">LUNGHEZZA_PASS</a>, <a class="el" href="funzioni_8h_source.html#l00117">DATA::mese</a>, <a class="el" href="funzioni_8h_source.html#l00192">UTENTE::preferenze</a>, <a class="el" href="funzioni_8h_source.html#l00106">stringclear</a>, e <a class="el" href="funzioni_8h_source.html#l00198">UTENTI</a>.</p>
 
@@ -187,8 +187,16 @@ Funzioni</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Questa funzione permette di inserire un nuovo utente nella lista utenti memorizzata.<br />
+Prima di tutto devono essere inseriti nome, cognome e nickname; su questo sarà effettuato il controllo per far si che il nome sia almeno di una lettera.<br />
+Successivaente l'utente dovrà inserire la sua password. La funzione prevede un doppio controllo per la password.<br />
+Successivamente l'utente dovrà inserire la sua data di nascita nell'ordine AAAA/MM/GG a causa dei controlli di bisestilità<br />
+e di numeri giorni dei mesi. La data di iscrizione sarà inserita automaticamente.</p>
+<dl class="section pre"><dt>Precondizione</dt><dd>La variabile di tipo struct <a class="el" href="struct_d_a_t_a.html" title="Struttura usata per creare variabili di tipo data. ">DATA</a>, <a class="el" href="funzioni_8h.html#a048c30f5edda591c124e5297e9c1100e">DATA_CORRENTE</a> deve essere riempita in uno qualsiasi dei source file<br />
+possibilmente con la libreria time.h. Un esempio è quello presente nel file <a class="el" href="main_8c.html" title="File contenente il menù principale e tutte le chiamate delle funzioni presenti in funzioni...">main.c</a> riportato qui sotto:<br />
+<div class="fragment"><div class="line">time_t t=time(NULL);</div><div class="line"><span class="keyword">struct </span>tm *tp=localtime(&amp;t);</div><div class="line"></div><div class="line"><span class="keywordtype">char</span> giorno_corrente[3];    <span class="comment">//Variaible  momentanea contenente giorno corrente</span></div><div class="line"><span class="keywordtype">int</span> mese_corrente;          <span class="comment">//Variaible  momentanea contenente mese corrente</span></div><div class="line"><span class="keywordtype">char</span> anno_corrente[5];      <span class="comment">//Variaible  momentanea contenente anno corrente</span></div><div class="line">strftime (anno_corrente,5,<span class="stringliteral">&quot;%Y&quot;</span>, tp);</div><div class="line">mese_corrente=tp-&gt;tm_mon+1;</div><div class="line">strftime (giorno_corrente,3,<span class="stringliteral">&quot;%d&quot;</span>, tp);</div><div class="line"><a class="code" href="funzioni_8h.html#a048c30f5edda591c124e5297e9c1100e">DATA_CORRENTE</a>.<a class="code" href="struct_d_a_t_a.html#a51652b7ccc3b63d704943414ded3c38a">anno</a>=atoi(anno_corrente);</div><div class="line"><a class="code" href="funzioni_8h.html#a048c30f5edda591c124e5297e9c1100e">DATA_CORRENTE</a>.<a class="code" href="struct_d_a_t_a.html#a01ae59e2eaf050acfab59d94732ab535">mese</a>=mese_corrente;</div><div class="line"><a class="code" href="funzioni_8h.html#a048c30f5edda591c124e5297e9c1100e">DATA_CORRENTE</a>.<a class="code" href="struct_d_a_t_a.html#a5b7ee538f851d6654690c7abd5a73e95">giorno</a>=atoi(giorno_corrente);</div></div><!-- fragment --> </dd></dl>
 
-<p class="definition">Definizione alla linea <a class="el" href="funzioni__utente_8c_source.html#l00016">16</a> del file <a class="el" href="funzioni__utente_8c_source.html">funzioni_utente.c</a>.</p>
+<p class="definition">Definizione alla linea <a class="el" href="funzioni__utente_8c_source.html#l00040">40</a> del file <a class="el" href="funzioni__utente_8c_source.html">funzioni_utente.c</a>.</p>
 
 <p class="reference">Referenzia <a class="el" href="funzioni_8h_source.html#l00119">DATA::anno</a>, <a class="el" href="funzioni_8h_source.html#l00019">ARTISTI_MAX</a>, <a class="el" href="funzioni_8h_source.html#l00171">UTENTE::cognome</a>, <a class="el" href="funzioni_8h_source.html#l00125">DATA_CORRENTE</a>, <a class="el" href="funzioni_8h_source.html#l00183">UTENTE::data_iscrizione</a>, <a class="el" href="funzioni_8h_source.html#l00177">UTENTE::data_nascita</a>, <a class="el" href="funzioni_8c_source.html#l00238">eliminazione_acapo()</a>, <a class="el" href="funzioni_8h_source.html#l00084">ETA_MINIMA</a>, <a class="el" href="funzioni_8h_source.html#l00115">DATA::giorno</a>, <a class="el" href="funzioni_8c_source.html#l00257">isControllo_Esistenza()</a>, <a class="el" href="funzioni_8c_source.html#l00127">isControllo_Numero()</a>, <a class="el" href="funzioni_8c_source.html#l00026">logo()</a>, <a class="el" href="funzioni_8h_source.html#l00024">LUNGHEZZA_MAX</a>, <a class="el" href="funzioni_8h_source.html#l00029">LUNGHEZZA_PASS</a>, <a class="el" href="funzioni_8h_source.html#l00117">DATA::mese</a>, <a class="el" href="funzioni_8h_source.html#l00165">UTENTE::nickname</a>, <a class="el" href="funzioni_8h_source.html#l00169">UTENTE::nome</a>, <a class="el" href="funzioni_8h_source.html#l00167">UTENTE::password</a>, <a class="el" href="funzioni_8h_source.html#l00192">UTENTE::preferenze</a>, <a class="el" href="funzioni_8h_source.html#l00089">PRIMO_MESE</a>, <a class="el" href="funzioni_8c_source.html#l00014">SetColor()</a>, <a class="el" href="funzioni_8h_source.html#l00106">stringclear</a>, <a class="el" href="funzioni_8h_source.html#l00094">ULTIMO_MESE</a>, e <a class="el" href="funzioni_8h_source.html#l00198">UTENTI</a>.</p>
 
@@ -226,7 +234,7 @@ Per fare ciò, controlla prima se l'utente inserito in input è presente. Se l'u
 facendo apparire a schermo un "*" per ogni tasto premuto. Eventualmente l'utente avrà la possibilità anche di cancellare la password per un eventuale errore di battitura.</p>
 <dl class="section post"><dt>Postcondizione</dt><dd>Il ritorno sarà un intero </dd></dl>
 
-<p class="definition">Definizione alla linea <a class="el" href="funzioni__utente_8c_source.html#l00574">574</a> del file <a class="el" href="funzioni__utente_8c_source.html">funzioni_utente.c</a>.</p>
+<p class="definition">Definizione alla linea <a class="el" href="funzioni__utente_8c_source.html#l00598">598</a> del file <a class="el" href="funzioni__utente_8c_source.html">funzioni_utente.c</a>.</p>
 
 <p class="reference">Referenzia <a class="el" href="funzioni_8c_source.html#l00238">eliminazione_acapo()</a>, <a class="el" href="funzioni_8c_source.html#l00026">logo()</a>, <a class="el" href="funzioni_8h_source.html#l00024">LUNGHEZZA_MAX</a>, <a class="el" href="funzioni_8h_source.html#l00029">LUNGHEZZA_PASS</a>, <a class="el" href="funzioni_8h_source.html#l00165">UTENTE::nickname</a>, <a class="el" href="funzioni_8h_source.html#l00167">UTENTE::password</a>, <a class="el" href="funzioni_8c_source.html#l00014">SetColor()</a>, e <a class="el" href="funzioni_8h_source.html#l00198">UTENTI</a>.</p>
 
@@ -260,9 +268,9 @@ facendo apparire a schermo un "*" per ogni tasto premuto. Eventualmente l'utente
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definizione alla linea <a class="el" href="funzioni__utente_8c_source.html#l01265">1265</a> del file <a class="el" href="funzioni__utente_8c_source.html">funzioni_utente.c</a>.</p>
+<p class="definition">Definizione alla linea <a class="el" href="funzioni__utente_8c_source.html#l01289">1289</a> del file <a class="el" href="funzioni__utente_8c_source.html">funzioni_utente.c</a>.</p>
 
-<p class="reference">Referenzia <a class="el" href="funzioni__utente_8c_source.html#l01338">categoria_artisti()</a>, <a class="el" href="funzioni_8c_source.html#l00238">eliminazione_acapo()</a>, <a class="el" href="funzioni_8c_source.html#l00026">logo()</a>, <a class="el" href="funzioni_8h_source.html#l00036">LUNGHEZZA_INPUT</a>, <a class="el" href="funzioni__utente_8c_source.html#l01499">modifica_preferenze()</a>, <a class="el" href="funzioni_8c_source.html#l00014">SetColor()</a>, <a class="el" href="funzioni__utente_8c_source.html#l01683">top_10()</a>, e <a class="el" href="funzioni__utente_8c_source.html#l01453">totale_artisti()</a>.</p>
+<p class="reference">Referenzia <a class="el" href="funzioni__utente_8c_source.html#l01362">categoria_artisti()</a>, <a class="el" href="funzioni_8c_source.html#l00238">eliminazione_acapo()</a>, <a class="el" href="funzioni_8c_source.html#l00026">logo()</a>, <a class="el" href="funzioni_8h_source.html#l00036">LUNGHEZZA_INPUT</a>, <a class="el" href="funzioni__utente_8c_source.html#l01523">modifica_preferenze()</a>, <a class="el" href="funzioni_8c_source.html#l00014">SetColor()</a>, <a class="el" href="funzioni__utente_8c_source.html#l01707">top_10()</a>, e <a class="el" href="funzioni__utente_8c_source.html#l01477">totale_artisti()</a>.</p>
 
 <p class="reference">Referenziato da <a class="el" href="main_8c_source.html#l00088">main()</a>.</p>
 
@@ -294,11 +302,11 @@ facendo apparire a schermo un "*" per ogni tasto premuto. Eventualmente l'utente
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definizione alla linea <a class="el" href="funzioni__utente_8c_source.html#l01499">1499</a> del file <a class="el" href="funzioni__utente_8c_source.html">funzioni_utente.c</a>.</p>
+<p class="definition">Definizione alla linea <a class="el" href="funzioni__utente_8c_source.html#l01523">1523</a> del file <a class="el" href="funzioni__utente_8c_source.html">funzioni_utente.c</a>.</p>
 
 <p class="reference">Referenzia <a class="el" href="funzioni_8h_source.html#l00155">ARTISTI</a>, <a class="el" href="funzioni_8h_source.html#l00019">ARTISTI_MAX</a>, <a class="el" href="funzioni_8h_source.html#l00147">ARTISTA::ascolti</a>, <a class="el" href="funzioni_8c_source.html#l00238">eliminazione_acapo()</a>, <a class="el" href="funzioni_8c_source.html#l00026">logo()</a>, <a class="el" href="funzioni_8h_source.html#l00024">LUNGHEZZA_MAX</a>, <a class="el" href="funzioni_8h_source.html#l00149">ARTISTA::preferenze</a>, <a class="el" href="funzioni_8h_source.html#l00192">UTENTE::preferenze</a>, <a class="el" href="funzioni_8c_source.html#l00014">SetColor()</a>, e <a class="el" href="funzioni_8h_source.html#l00198">UTENTI</a>.</p>
 
-<p class="reference">Referenziato da <a class="el" href="funzioni__utente_8c_source.html#l01265">menu_preferenze()</a>.</p>
+<p class="reference">Referenziato da <a class="el" href="funzioni__utente_8c_source.html#l01289">menu_preferenze()</a>.</p>
 
 </div>
 </div>
@@ -328,7 +336,7 @@ facendo apparire a schermo un "*" per ogni tasto premuto. Eventualmente l'utente
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definizione alla linea <a class="el" href="funzioni__utente_8c_source.html#l00660">660</a> del file <a class="el" href="funzioni__utente_8c_source.html">funzioni_utente.c</a>.</p>
+<p class="definition">Definizione alla linea <a class="el" href="funzioni__utente_8c_source.html#l00684">684</a> del file <a class="el" href="funzioni__utente_8c_source.html">funzioni_utente.c</a>.</p>
 
 <p class="reference">Referenzia <a class="el" href="funzioni_8h_source.html#l00119">DATA::anno</a>, <a class="el" href="funzioni_8h_source.html#l00125">DATA_CORRENTE</a>, <a class="el" href="funzioni_8h_source.html#l00177">UTENTE::data_nascita</a>, <a class="el" href="funzioni_8c_source.html#l00238">eliminazione_acapo()</a>, <a class="el" href="funzioni_8h_source.html#l00084">ETA_MINIMA</a>, <a class="el" href="funzioni_8h_source.html#l00115">DATA::giorno</a>, <a class="el" href="funzioni_8c_source.html#l00257">isControllo_Esistenza()</a>, <a class="el" href="funzioni_8c_source.html#l00127">isControllo_Numero()</a>, <a class="el" href="funzioni_8c_source.html#l00026">logo()</a>, <a class="el" href="funzioni_8h_source.html#l00036">LUNGHEZZA_INPUT</a>, <a class="el" href="funzioni_8h_source.html#l00024">LUNGHEZZA_MAX</a>, <a class="el" href="funzioni_8h_source.html#l00029">LUNGHEZZA_PASS</a>, <a class="el" href="funzioni_8h_source.html#l00117">DATA::mese</a>, <a class="el" href="funzioni_8h_source.html#l00167">UTENTE::password</a>, <a class="el" href="funzioni_8h_source.html#l00089">PRIMO_MESE</a>, <a class="el" href="funzioni_8c_source.html#l00014">SetColor()</a>, <a class="el" href="funzioni_8h_source.html#l00106">stringclear</a>, <a class="el" href="funzioni_8h_source.html#l00094">ULTIMO_MESE</a>, e <a class="el" href="funzioni_8h_source.html#l00198">UTENTI</a>.</p>
 
@@ -352,11 +360,11 @@ facendo apparire a schermo un "*" per ogni tasto premuto. Eventualmente l'utente
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definizione alla linea <a class="el" href="funzioni__utente_8c_source.html#l01722">1722</a> del file <a class="el" href="funzioni__utente_8c_source.html">funzioni_utente.c</a>.</p>
+<p class="definition">Definizione alla linea <a class="el" href="funzioni__utente_8c_source.html#l01746">1746</a> del file <a class="el" href="funzioni__utente_8c_source.html">funzioni_utente.c</a>.</p>
 
 <p class="reference">Referenzia <a class="el" href="funzioni_8h_source.html#l00155">ARTISTI</a>, <a class="el" href="funzioni_8h_source.html#l00019">ARTISTI_MAX</a>, <a class="el" href="funzioni_8h_source.html#l00147">ARTISTA::ascolti</a>, <a class="el" href="funzioni_8h_source.html#l00200">flag</a>, <a class="el" href="funzioni_8c_source.html#l00026">logo()</a>, <a class="el" href="funzioni_8h_source.html#l00079">LUNGHEZZA_CODICE</a>, <a class="el" href="funzioni_8h_source.html#l00024">LUNGHEZZA_MAX</a>, <a class="el" href="funzioni_8h_source.html#l00149">ARTISTA::preferenze</a>, <a class="el" href="funzioni_8c_source.html#l00014">SetColor()</a>, e <a class="el" href="funzioni_8h_source.html#l00099">TOP</a>.</p>
 
-<p class="reference">Referenziato da <a class="el" href="funzioni__utente_8c_source.html#l01683">top_10()</a>.</p>
+<p class="reference">Referenziato da <a class="el" href="funzioni__utente_8c_source.html#l01707">top_10()</a>.</p>
 
 </div>
 </div>
@@ -376,7 +384,7 @@ facendo apparire a schermo un "*" per ogni tasto premuto. Eventualmente l'utente
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definizione alla linea <a class="el" href="funzioni__utente_8c_source.html#l00490">490</a> del file <a class="el" href="funzioni__utente_8c_source.html">funzioni_utente.c</a>.</p>
+<p class="definition">Definizione alla linea <a class="el" href="funzioni__utente_8c_source.html#l00514">514</a> del file <a class="el" href="funzioni__utente_8c_source.html">funzioni_utente.c</a>.</p>
 
 <p class="reference">Referenzia <a class="el" href="funzioni_8h_source.html#l00119">DATA::anno</a>, <a class="el" href="funzioni_8h_source.html#l00155">ARTISTI</a>, <a class="el" href="funzioni_8h_source.html#l00019">ARTISTI_MAX</a>, <a class="el" href="funzioni_8h_source.html#l00190">UTENTE::codice_artista</a>, <a class="el" href="funzioni_8h_source.html#l00171">UTENTE::cognome</a>, <a class="el" href="funzioni_8h_source.html#l00183">UTENTE::data_iscrizione</a>, <a class="el" href="funzioni_8h_source.html#l00177">UTENTE::data_nascita</a>, <a class="el" href="funzioni_8h_source.html#l00115">DATA::giorno</a>, <a class="el" href="funzioni_8h_source.html#l00117">DATA::mese</a>, <a class="el" href="funzioni_8h_source.html#l00165">UTENTE::nickname</a>, <a class="el" href="funzioni_8h_source.html#l00169">UTENTE::nome</a>, <a class="el" href="funzioni_8h_source.html#l00167">UTENTE::password</a>, <a class="el" href="funzioni_8h_source.html#l00192">UTENTE::preferenze</a>, <a class="el" href="funzioni_8c_source.html#l00014">SetColor()</a>, e <a class="el" href="funzioni_8h_source.html#l00198">UTENTI</a>.</p>
 
@@ -410,11 +418,11 @@ facendo apparire a schermo un "*" per ogni tasto premuto. Eventualmente l'utente
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definizione alla linea <a class="el" href="funzioni__utente_8c_source.html#l01683">1683</a> del file <a class="el" href="funzioni__utente_8c_source.html">funzioni_utente.c</a>.</p>
+<p class="definition">Definizione alla linea <a class="el" href="funzioni__utente_8c_source.html#l01707">1707</a> del file <a class="el" href="funzioni__utente_8c_source.html">funzioni_utente.c</a>.</p>
 
-<p class="reference">Referenzia <a class="el" href="funzioni_8h_source.html#l00155">ARTISTI</a>, <a class="el" href="funzioni_8c_source.html#l00238">eliminazione_acapo()</a>, <a class="el" href="funzioni_8c_source.html#l00026">logo()</a>, <a class="el" href="funzioni_8h_source.html#l00024">LUNGHEZZA_MAX</a>, <a class="el" href="funzioni__utente_8c_source.html#l01722">ordinamento()</a>, e <a class="el" href="funzioni_8c_source.html#l00014">SetColor()</a>.</p>
+<p class="reference">Referenzia <a class="el" href="funzioni_8h_source.html#l00155">ARTISTI</a>, <a class="el" href="funzioni_8c_source.html#l00238">eliminazione_acapo()</a>, <a class="el" href="funzioni_8c_source.html#l00026">logo()</a>, <a class="el" href="funzioni_8h_source.html#l00024">LUNGHEZZA_MAX</a>, <a class="el" href="funzioni__utente_8c_source.html#l01746">ordinamento()</a>, e <a class="el" href="funzioni_8c_source.html#l00014">SetColor()</a>.</p>
 
-<p class="reference">Referenziato da <a class="el" href="funzioni__utente_8c_source.html#l01265">menu_preferenze()</a>.</p>
+<p class="reference">Referenziato da <a class="el" href="funzioni__utente_8c_source.html#l01289">menu_preferenze()</a>.</p>
 
 </div>
 </div>
@@ -434,11 +442,11 @@ facendo apparire a schermo un "*" per ogni tasto premuto. Eventualmente l'utente
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definizione alla linea <a class="el" href="funzioni__utente_8c_source.html#l01453">1453</a> del file <a class="el" href="funzioni__utente_8c_source.html">funzioni_utente.c</a>.</p>
+<p class="definition">Definizione alla linea <a class="el" href="funzioni__utente_8c_source.html#l01477">1477</a> del file <a class="el" href="funzioni__utente_8c_source.html">funzioni_utente.c</a>.</p>
 
 <p class="reference">Referenzia <a class="el" href="funzioni_8h_source.html#l00155">ARTISTI</a>, <a class="el" href="funzioni_8c_source.html#l00238">eliminazione_acapo()</a>, <a class="el" href="funzioni_8c_source.html#l00026">logo()</a>, <a class="el" href="funzioni_8h_source.html#l00024">LUNGHEZZA_MAX</a>, e <a class="el" href="funzioni_8c_source.html#l00014">SetColor()</a>.</p>
 
-<p class="reference">Referenziato da <a class="el" href="funzioni__utente_8c_source.html#l01265">menu_preferenze()</a>.</p>
+<p class="reference">Referenziato da <a class="el" href="funzioni__utente_8c_source.html#l01289">menu_preferenze()</a>.</p>
 
 </div>
 </div>
@@ -458,7 +466,7 @@ facendo apparire a schermo un "*" per ogni tasto premuto. Eventualmente l'utente
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definizione alla linea <a class="el" href="funzioni__utente_8c_source.html#l00551">551</a> del file <a class="el" href="funzioni__utente_8c_source.html">funzioni_utente.c</a>.</p>
+<p class="definition">Definizione alla linea <a class="el" href="funzioni__utente_8c_source.html#l00575">575</a> del file <a class="el" href="funzioni__utente_8c_source.html">funzioni_utente.c</a>.</p>
 
 <p class="reference">Referenzia <a class="el" href="funzioni_8h_source.html#l00119">DATA::anno</a>, <a class="el" href="funzioni_8h_source.html#l00171">UTENTE::cognome</a>, <a class="el" href="funzioni_8h_source.html#l00183">UTENTE::data_iscrizione</a>, <a class="el" href="funzioni_8h_source.html#l00177">UTENTE::data_nascita</a>, <a class="el" href="funzioni_8h_source.html#l00115">DATA::giorno</a>, <a class="el" href="funzioni_8h_source.html#l00117">DATA::mese</a>, <a class="el" href="funzioni_8h_source.html#l00165">UTENTE::nickname</a>, <a class="el" href="funzioni_8h_source.html#l00169">UTENTE::nome</a>, <a class="el" href="funzioni_8c_source.html#l00014">SetColor()</a>, e <a class="el" href="funzioni_8h_source.html#l00198">UTENTI</a>.</p>
 

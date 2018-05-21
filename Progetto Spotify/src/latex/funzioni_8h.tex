@@ -402,7 +402,7 @@ Referenziato da gestione\+\_\+file().
 
 
 
-Definizione alla linea 1338 del file funzioni\+\_\+utente.\+c.
+Definizione alla linea 1362 del file funzioni\+\_\+utente.\+c.
 
 
 
@@ -449,7 +449,7 @@ Referenziato da main().
 
 
 \begin{DoxyParams}[1]{Parametri}
-\mbox{\tt in}  & {\em token\+\_\+buffer} & Viene passata la relative path dell\textquotesingle{}eseguibile. \\
+\mbox{\tt in}  & {\em token\+\_\+buffer} & Viene passata la relative path dell\textquotesingle{}eseguibile \\
 \hline
 \mbox{\tt out}  & {\em relative\+\_\+path} & Viene ritornata per riferimento la path dell\textquotesingle{}eseguibile fino a File\textbackslash{}\\
 \hline
@@ -485,7 +485,7 @@ Referenziato da main().
 
 Questa funzione elimina un artista dalla lista degli artisti memorizzati 
 \begin{DoxyParams}[1]{Parametri}
-\mbox{\tt in}  & {\em artisti\+\_\+effettivi} & Viene passato per valore in numero di utenti effetivamente memorizzati. \\
+\mbox{\tt in}  & {\em artisti\+\_\+effettivi} & Viene passato per valore in numero di artisti effetivamente memorizzati \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Restituisce}
@@ -494,7 +494,7 @@ Il numero degli artisti memorizzati dopo l\textquotesingle{}eliminazione
 La funzione stampa prima tutti gli artisti disponibili. Successivamente chiede l\textquotesingle{}inserimento del codicw artista da eliminare e controlla se effettivamente l\textquotesingle{}artista esiste.~\newline
 Se l\textquotesingle{}artista esiste procederà con la sua eliminazione; in alternativa la funzione chiederà se vogliamo provare ad inserire un nuovo artista da eliminare. 
 
-Definizione alla linea 615 del file funzioni\+\_\+artista.\+c.
+Definizione alla linea 613 del file funzioni\+\_\+artista.\+c.
 
 
 
@@ -512,7 +512,7 @@ Referenziato da main().
 
 
 
-Definizione alla linea 1201 del file funzioni\+\_\+utente.\+c.
+Definizione alla linea 1225 del file funzioni\+\_\+utente.\+c.
 
 
 
@@ -612,7 +612,7 @@ Referenziato da main().
 \begin{DoxyParams}[1]{Parametri}
 \mbox{\tt in}  & {\em lista\+\_\+generi} & Viene passata la lista dei generi disponibii \\
 \hline
-\mbox{\tt in}  & {\em artisti\+\_\+effettivi} & Viene passato per valore in numero di utenti effetivamente memorizzati. \\
+\mbox{\tt in}  & {\em artisti\+\_\+effettivi} & Viene passato per valore in numero di utenti effetivamente memorizzati \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Restituisce}
@@ -649,8 +649,42 @@ Referenziato da main().
 {\footnotesize\ttfamily int inserimento\+\_\+utente (\begin{DoxyParamCaption}\item[{int}]{utenti\+\_\+effettivi }\end{DoxyParamCaption})}
 
 
+\begin{DoxyParams}[1]{Parametri}
+\mbox{\tt in}  & {\em utenti\+\_\+effettivi} & Viene passato per valore in numero di utenti effetivamente memorizzati \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Restituisce}
+Il numero degli utenti memorizzati dopo l\textquotesingle{}eliminazione
+\end{DoxyReturn}
+Questa funzione permette di inserire un nuovo utente nella lista utenti memorizzata.~\newline
+Prima di tutto devono essere inseriti nome, cognome e nickname; su questo sarà effettuato il controllo per far si che il nome sia almeno di una lettera.~\newline
+Successivaente l\textquotesingle{}utente dovrà inserire la sua password. La funzione prevede un doppio controllo per la password.~\newline
+Successivamente l\textquotesingle{}utente dovrà inserire la sua data di nascita nell\textquotesingle{}ordine A\+A\+A\+A/\+M\+M/\+GG a causa dei controlli di bisestilità~\newline
+e di numeri giorni dei mesi. La data di iscrizione sarà inserita automaticamente.
 
-Definizione alla linea 16 del file funzioni\+\_\+utente.\+c.
+\begin{DoxyPrecond}{Precondizione}
+La variabile di tipo struct \mbox{\hyperlink{struct_d_a_t_a}{D\+A\+TA}}, \mbox{\hyperlink{funzioni_8h_a048c30f5edda591c124e5297e9c1100e}{D\+A\+T\+A\+\_\+\+C\+O\+R\+R\+E\+N\+TE}} deve essere riempita in uno qualsiasi dei source file~\newline
+possibilmente con la libreria time.\+h. Un esempio è quello presente nel file \mbox{\hyperlink{main_8c}{main.\+c}} riportato qui sotto\+:~\newline
+
+\begin{DoxyCode}
+time\_t t=time(NULL);
+\textcolor{keyword}{struct }tm *tp=localtime(&t);
+
+\textcolor{keywordtype}{char} giorno\_corrente[3];    \textcolor{comment}{//Variaible  momentanea contenente giorno corrente}
+\textcolor{keywordtype}{int} mese\_corrente;          \textcolor{comment}{//Variaible  momentanea contenente mese corrente}
+\textcolor{keywordtype}{char} anno\_corrente[5];      \textcolor{comment}{//Variaible  momentanea contenente anno corrente}
+strftime (anno\_corrente,5,\textcolor{stringliteral}{"%Y"}, tp);
+mese\_corrente=tp->tm\_mon+1;
+strftime (giorno\_corrente,3,\textcolor{stringliteral}{"%d"}, tp);
+\mbox{\hyperlink{funzioni_8h_a048c30f5edda591c124e5297e9c1100e}{DATA\_CORRENTE}}.\mbox{\hyperlink{struct_d_a_t_a_a51652b7ccc3b63d704943414ded3c38a}{anno}}=atoi(anno\_corrente);
+\mbox{\hyperlink{funzioni_8h_a048c30f5edda591c124e5297e9c1100e}{DATA\_CORRENTE}}.\mbox{\hyperlink{struct_d_a_t_a_a01ae59e2eaf050acfab59d94732ab535}{mese}}=mese\_corrente;
+\mbox{\hyperlink{funzioni_8h_a048c30f5edda591c124e5297e9c1100e}{DATA\_CORRENTE}}.\mbox{\hyperlink{struct_d_a_t_a_a5b7ee538f851d6654690c7abd5a73e95}{giorno}}=atoi(giorno\_corrente);
+\end{DoxyCode}
+ 
+\end{DoxyPrecond}
+
+
+Definizione alla linea 40 del file funzioni\+\_\+utente.\+c.
 
 
 
@@ -685,7 +719,7 @@ Il ritorno sarà un intero
 \end{DoxyPostcond}
 
 
-Definizione alla linea 574 del file funzioni\+\_\+utente.\+c.
+Definizione alla linea 598 del file funzioni\+\_\+utente.\+c.
 
 
 
@@ -825,7 +859,7 @@ Referenziato da categoria\+\_\+artisti(), controllo\+\_\+menu(), elimina\+\_\+ar
 
 
 
-Definizione alla linea 1265 del file funzioni\+\_\+utente.\+c.
+Definizione alla linea 1289 del file funzioni\+\_\+utente.\+c.
 
 
 
@@ -845,7 +879,7 @@ Questa funzione modifica gli attributi dell\textquotesingle{}artista o del grupp
 
 
 \begin{DoxyParams}[1]{Parametri}
-\mbox{\tt in}  & {\em artisti\+\_\+effettivi} & Viene passato per valore in numero di utenti effetivamente memorizzati. \\
+\mbox{\tt in}  & {\em artisti\+\_\+effettivi} & Viene passato per valore in numero di utenti effetivamente memorizzati \\
 \hline
 \mbox{\tt in}  & {\em lista\+\_\+generi} & Viene passata la lista dei generi disponibii \\
 \hline
@@ -870,7 +904,7 @@ Referenziato da main().
 
 
 
-Definizione alla linea 1499 del file funzioni\+\_\+utente.\+c.
+Definizione alla linea 1523 del file funzioni\+\_\+utente.\+c.
 
 
 
@@ -888,7 +922,7 @@ Referenziato da menu\+\_\+preferenze().
 
 
 
-Definizione alla linea 660 del file funzioni\+\_\+utente.\+c.
+Definizione alla linea 684 del file funzioni\+\_\+utente.\+c.
 
 
 
@@ -906,7 +940,7 @@ Referenziato da main().
 
 
 
-Definizione alla linea 1722 del file funzioni\+\_\+utente.\+c.
+Definizione alla linea 1746 del file funzioni\+\_\+utente.\+c.
 
 
 
@@ -1051,7 +1085,7 @@ Referenziato da controllo\+\_\+menu().
 
 
 
-Definizione alla linea 490 del file funzioni\+\_\+utente.\+c.
+Definizione alla linea 514 del file funzioni\+\_\+utente.\+c.
 
 
 
@@ -1069,7 +1103,7 @@ Referenziato da main().
 
 
 
-Definizione alla linea 1683 del file funzioni\+\_\+utente.\+c.
+Definizione alla linea 1707 del file funzioni\+\_\+utente.\+c.
 
 
 
@@ -1087,7 +1121,7 @@ Referenziato da menu\+\_\+preferenze().
 
 
 
-Definizione alla linea 1453 del file funzioni\+\_\+utente.\+c.
+Definizione alla linea 1477 del file funzioni\+\_\+utente.\+c.
 
 
 
@@ -1109,7 +1143,7 @@ Questa funzione visualizza gli artisti memorizzati
 \begin{DoxyParams}[1]{Parametri}
 \mbox{\tt in}  & {\em lista\+\_\+generi} & Viene passata la lista dei generi disponibii \\
 \hline
-\mbox{\tt in}  & {\em artisti\+\_\+effettivi} & Viene passato per valore in numero di utenti effetivamente memorizzati. \\
+\mbox{\tt in}  & {\em artisti\+\_\+effettivi} & Viene passato per valore in numero di utenti effetivamente memorizzati \\
 \hline
 \end{DoxyParams}
 
@@ -1132,7 +1166,7 @@ Referenziato da main().
 
 
 
-Definizione alla linea 551 del file funzioni\+\_\+utente.\+c.
+Definizione alla linea 575 del file funzioni\+\_\+utente.\+c.
 
 
 
