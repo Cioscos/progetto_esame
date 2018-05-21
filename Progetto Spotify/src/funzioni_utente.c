@@ -12,7 +12,16 @@
 #include <time.h>
 #include "funzioni.h"
 
-
+/**
+ * Questa funzione permette di inserire un nuovo utente nella lista utenti memorizzata.\n
+ * Prima di tutto devono essere inseriti nome, cognome e nickname; su questo sarà effettuato il controllo per far si che il nome sia almeno di una lettera.\n
+ * Successivaente l'utente dovrà inserire la sua password. La funzione prevede un doppio controllo per la password.\n
+ * Successivamente l'utente dovrà inserire la sua data di nascita nell'ordine AAAA/MM/GG a causa dei controlli di bisestilità\n
+ * e di numeri giorni dei mesi.
+ * La data di iscrizione sarà inserita automaticamente.
+ *
+ * @
+ */
 int inserimento_utente(int utenti_effettivi) {
 	//DEFINZIONE VARIABILI
 	unsigned int i = 0;	//Indice non negativo che conta il numero dei caratteri della password
@@ -52,7 +61,7 @@ int inserimento_utente(int utenti_effettivi) {
 //INSERIMENTO NICKNAME UTENTE
 
 	do
-	{//Controllo fin quando non viene inserito almeno una lettera e il nickname non deve essere giÃ  presente
+	{//Controllo fin quando non viene inserito almeno una lettera e il nickname non deve essere già  presente
 		system("cls");
 		logo();
 		printf("Inserisci Nickname nuovo utente: ");
@@ -87,7 +96,7 @@ int inserimento_utente(int utenti_effettivi) {
 		printf("Inserisci Password nuovo utente di 8 caratteri: ");
 		SetColor(6);
 		do
-		{	//Controllo fin quando la password non raggiungerÃ  gli 8 caratteri
+		{	//Controllo fin quando la password non raggiungerà gli 8 caratteri
 			fflush(stdin);
 			carattere_bf = '\0';
 
@@ -102,7 +111,7 @@ int inserimento_utente(int utenti_effettivi) {
 						controllo[i] = '\0';
 					}
 
-				}else//Se invece Ã¨ un carattere allora lo inserisco nella variabile e incremento la i
+				}else//Se invece è un carattere allora lo inserisco nella variabile e incremento la i
 				{
 					controllo[i] = carattere_bf;
 					printf("*");
@@ -132,7 +141,7 @@ int inserimento_utente(int utenti_effettivi) {
 						UTENTI[utenti_effettivi].password[i] = '\0';
 					}
 
-				}else//Se invece Ã¨ un carattere allora lo inserisco nella variabile e incremento la i
+				}else//Se invece è un carattere allora lo inserisco nella variabile e incremento la i
 				{
 					fflush(stdin);
 					UTENTI[utenti_effettivi].password[i] = carattere_bf;
@@ -173,9 +182,9 @@ int inserimento_utente(int utenti_effettivi) {
 
 	//INSERIMENTO ANNO DI NASCITA
 	do
-	{//Controllo fin quando l'anno non Ã¨ compreso tra 1900 e 2001(anno per avere l'etÃ  minima di 16 anni)
+	{//Controllo fin quando l'anno non è compreso tra 1900 e 2001(anno per avere l'età minima di 16 anni)
 		do
-		{		//Controllo fin quando l'input inserito non Ã¨ un numero
+		{		//Controllo fin quando l'input inserito non è un numero
 			printf("\nAnno: ");
 			SetColor(6);
 			fgets(data_provvisoria,LUNGHEZZA_MAX,stdin);
@@ -218,9 +227,9 @@ int inserimento_utente(int utenti_effettivi) {
 
 	//INSERIMENTO MESE DI NASCITA
 	do
-	{		//Controllo fin quando il mese non Ã¨ compreso tra 1 e 12
+	{		//Controllo fin quando il mese non è compreso tra 1 e 12
 		do
-		{		//Controllo fin quando l'input inserito non Ã¨ un numero
+		{		//Controllo fin quando l'input inserito non è un numero
 			printf("\nMese: ");
 			SetColor(6);
 			stringclear(data_provvisoria, LUNGHEZZA_MAX);
@@ -265,12 +274,12 @@ int inserimento_utente(int utenti_effettivi) {
 	//CONTROLLO SUL GIORNO NELL'ANNO BISESTILE NEL MESE DI FEBBRAIO
 	if (UTENTI[utenti_effettivi].data_nascita.mese == 2)
 	{
-		if (UTENTI[utenti_effettivi].data_nascita.anno % 4 == 0)//Caso in cui l'anno Ã¨ bisestile
+		if (UTENTI[utenti_effettivi].data_nascita.anno % 4 == 0)//Caso in cui l'anno è bisestile
 		{
 			do
-			{		//Controllo fin quando il giorno non Ã¨ compreso tra 1 e 29
+			{		//Controllo fin quando il giorno non è compreso tra 1 e 29
 				do
-				{		//Controllo fin quando l'input inserito non Ã¨ un numero
+				{		//Controllo fin quando l'input inserito non è un numero
 					printf("\nGiorno: ");
 					SetColor(6);
 					stringclear(data_provvisoria, LUNGHEZZA_MAX);
@@ -316,9 +325,9 @@ int inserimento_utente(int utenti_effettivi) {
 		{
 			//CONTROLLO SUL GIORNO DEL'ANNO NON BISESTILE NEL MESE DI FEBBRAIO
 			do
-			{		//Controllo fin quando il giorno non Ã¨ compreso tra 1 e 28
+			{		//Controllo fin quando il giorno non è compreso tra 1 e 28
 				do
-				{		//Controllo fin quando l'input inserito non Ã¨ un numero
+				{		//Controllo fin quando l'input inserito non è un numero
 					printf("\nGiorno: ");
 					SetColor(6);
 					stringclear(data_provvisoria, LUNGHEZZA_MAX);
@@ -369,7 +378,7 @@ int inserimento_utente(int utenti_effettivi) {
 		        || UTENTI[utenti_effettivi].data_nascita.mese == 11)
 		{
 			do
-			{		//Controllo fin quando il giorno non Ã¨ compreso tra 1 e 30
+			{		//Controllo fin quando il giorno non è compreso tra 1 e 30
 				do
 				{		//Controllo fin quando l'input inserito non Ã¨ un numero
 					printf("\nGiorno: ");
@@ -416,9 +425,9 @@ int inserimento_utente(int utenti_effettivi) {
 		{
 			//CONTROLLO MESI DA 31 GIORNI
 			do
-			{		//Controllo fin quando il giorno non Ã¨ compreso tra 1 e 31
+			{		//Controllo fin quando il giorno non è compreso tra 1 e 31
 				do
-				{		//Controllo fin quando l'input inserito non Ã¨ un numero
+				{		//Controllo fin quando l'input inserito non è un numero
 					printf("\nGiorno: ");
 					SetColor(6);
 					stringclear(data_provvisoria, LUNGHEZZA_MAX);

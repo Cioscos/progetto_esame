@@ -32,16 +32,19 @@
 <!-- end header part -->
 <!-- Generato da Doxygen 1.8.14 -->
 <script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
 var searchBox = new SearchBox("searchBox", "search",false,'Cerca');
+/* @license-end */
 </script>
 <script type="text/javascript" src="menudata.js"></script>
 <script type="text/javascript" src="menu.js"></script>
 <script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
 $(function() {
   initMenu('',true,false,'search.php','Cerca');
   $(document).ready(function() { init_search(); });
 });
-</script>
+/* @license-end */</script>
 <div id="main-nav"></div>
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -66,7 +69,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>File contenente le funzioni generali usate da tutti gli altri source file.  
+<p>File contenente i prototipi di funzioni generali usate da tutti gli altri source file.  
 <a href="#details">Continua...</a></p>
 <div class="textblock"><code>#include &lt;stdlib.h&gt;</code><br />
 <code>#include &lt;stdio.h&gt;</code><br />
@@ -117,7 +120,7 @@ Funzioni</h2></td></tr>
 <tr class="separator:ab31345a3c5d6a5009cd882266f12f113"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Descrizione dettagliata</h2>
-<div class="textblock"><p>File contenente le funzioni generali usate da tutti gli altri source file. </p>
+<div class="textblock"><p>File contenente i prototipi di funzioni generali usate da tutti gli altri source file. </p>
 
 <p class="definition">Definizione nel file <a class="el" href="funzioni_8c_source.html">funzioni.c</a>.</p>
 </div><h2 class="groupheader">Documentazione delle funzioni</h2>
@@ -189,8 +192,14 @@ Funzioni</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Questa funzione crea la path dei file necessari per il programma.</p>
+<dl class="section pre"><dt>Precondizione</dt><dd>L'eseguibile si deve trovare o nella directory chiamata "Progetto Spotify" o in una qualsiasi sua sottocartella </dd>
+<dd>
+I file si devono trovare in una cartella all'interno di "Progetto Spotify" chiamata "File" </dd></dl>
+<dl class="section warning"><dt>Avvertimento</dt><dd>La creazione di una path non corretta sarà segnalata da un messaggio di errore ma il programma funzionerà comunque.<br />
+I dati però saranno memorizzati fino alla chiusura del programma, poi saranno persi. </dd></dl>
 
-<p class="definition">Definizione alla linea <a class="el" href="funzioni_8c_source.html#l00914">914</a> del file <a class="el" href="funzioni_8c_source.html">funzioni.c</a>.</p>
+<p class="definition">Definizione alla linea <a class="el" href="funzioni_8c_source.html#l00935">935</a> del file <a class="el" href="funzioni_8c_source.html">funzioni.c</a>.</p>
 
 <p class="reference">Referenzia <a class="el" href="funzioni_8h_source.html#l00048">LUNGHEZZA_PATH</a>.</p>
 
@@ -226,7 +235,7 @@ Funzioni</h2></td></tr>
 
 <p class="reference">Referenzia <a class="el" href="funzioni_8h_source.html#l00024">LUNGHEZZA_MAX</a>.</p>
 
-<p class="reference">Referenziato da <a class="el" href="funzioni__utente_8c_source.html#l01339">categoria_artisti()</a>, <a class="el" href="funzioni__artista_8c_source.html#l00607">elimina_artista()</a>, <a class="el" href="funzioni_8c_source.html#l00339">gestione_file()</a>, <a class="el" href="funzioni__artista_8c_source.html#l00025">inserimento_artista()</a>, <a class="el" href="funzioni__utente_8c_source.html#l00017">inserimento_utente()</a>, <a class="el" href="funzioni__utente_8c_source.html#l00575">isAutenticazione()</a>, <a class="el" href="funzioni__utente_8c_source.html#l01266">menu_preferenze()</a>, <a class="el" href="funzioni__artista_8c_source.html#l00244">modifica_artista()</a>, <a class="el" href="funzioni__utente_8c_source.html#l01500">modifica_preferenze()</a>, <a class="el" href="funzioni__utente_8c_source.html#l00661">modifica_utente()</a>, <a class="el" href="funzioni__utente_8c_source.html#l01684">top_10()</a>, e <a class="el" href="funzioni__utente_8c_source.html#l01454">totale_artisti()</a>.</p>
+<p class="reference">Referenziato da <a class="el" href="funzioni__utente_8c_source.html#l01338">categoria_artisti()</a>, <a class="el" href="funzioni__artista_8c_source.html#l00615">elimina_artista()</a>, <a class="el" href="funzioni_8c_source.html#l00337">gestione_file()</a>, <a class="el" href="funzioni__artista_8c_source.html#l00025">inserimento_artista()</a>, <a class="el" href="funzioni__utente_8c_source.html#l00016">inserimento_utente()</a>, <a class="el" href="funzioni__utente_8c_source.html#l00574">isAutenticazione()</a>, <a class="el" href="funzioni__utente_8c_source.html#l01265">menu_preferenze()</a>, <a class="el" href="funzioni__artista_8c_source.html#l00244">modifica_artista()</a>, <a class="el" href="funzioni__utente_8c_source.html#l01499">modifica_preferenze()</a>, <a class="el" href="funzioni__utente_8c_source.html#l00660">modifica_utente()</a>, <a class="el" href="funzioni__utente_8c_source.html#l01683">top_10()</a>, e <a class="el" href="funzioni__utente_8c_source.html#l01453">totale_artisti()</a>.</p>
 
 </div>
 </div>
@@ -282,10 +291,8 @@ Alla funzione bisogna passare come secodno parametro (<em>int</em> <em>tipo</em>
 <li>2 = Preferenze </li>
 </ol>
 </dd></dl>
-<dl class="section warning"><dt>Avvertimento</dt><dd>Il non passaggio di uno dei parametri indicati nelle precondizioni potrebbe comportare un comportamento inatteso della funzione </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Da fare:</a></b></dt><dd>In miglioria (leggere l'avvertimento) </dd></dl>
 
-<p class="definition">Definizione alla linea <a class="el" href="funzioni_8c_source.html#l00339">339</a> del file <a class="el" href="funzioni_8c_source.html">funzioni.c</a>.</p>
+<p class="definition">Definizione alla linea <a class="el" href="funzioni_8c_source.html#l00337">337</a> del file <a class="el" href="funzioni_8c_source.html">funzioni.c</a>.</p>
 
 <p class="reference">Referenzia <a class="el" href="funzioni_8h_source.html#l00119">DATA::anno</a>, <a class="el" href="funzioni_8h_source.html#l00145">ARTISTA::anno_inizio</a>, <a class="el" href="funzioni_8h_source.html#l00155">ARTISTI</a>, <a class="el" href="funzioni_8h_source.html#l00019">ARTISTI_MAX</a>, <a class="el" href="funzioni_8h_source.html#l00147">ARTISTA::ascolti</a>, <a class="el" href="funzioni_8h_source.html#l00183">UTENTE::data_iscrizione</a>, <a class="el" href="funzioni_8h_source.html#l00177">UTENTE::data_nascita</a>, <a class="el" href="funzioni_8c_source.html#l00238">eliminazione_acapo()</a>, <a class="el" href="funzioni_8h_source.html#l00139">ARTISTA::genere</a>, <a class="el" href="funzioni_8h_source.html#l00074">GENERI_TOT</a>, <a class="el" href="funzioni_8h_source.html#l00115">DATA::giorno</a>, <a class="el" href="funzioni_8h_source.html#l00043">LUNGHEZZA_BUFFER</a>, <a class="el" href="funzioni_8h_source.html#l00024">LUNGHEZZA_MAX</a>, <a class="el" href="funzioni_8h_source.html#l00048">LUNGHEZZA_PATH</a>, <a class="el" href="funzioni_8h_source.html#l00117">DATA::mese</a>, <a class="el" href="funzioni_8h_source.html#l00149">ARTISTA::preferenze</a>, <a class="el" href="funzioni_8h_source.html#l00192">UTENTE::preferenze</a>, <a class="el" href="funzioni_8c_source.html#l00014">SetColor()</a>, <a class="el" href="funzioni_8h_source.html#l00198">UTENTI</a>, e <a class="el" href="funzioni_8h_source.html#l00012">UTENTI_MAX</a>.</p>
 
@@ -341,7 +348,7 @@ Alla funzione bisogna passare come secodno parametro (<em>int</em> <em>tipo</em>
 
 <p class="reference">Referenzia <a class="el" href="funzioni_8h_source.html#l00155">ARTISTI</a>, e <a class="el" href="funzioni_8h_source.html#l00198">UTENTI</a>.</p>
 
-<p class="reference">Referenziato da <a class="el" href="funzioni__artista_8c_source.html#l00025">inserimento_artista()</a>, <a class="el" href="funzioni__utente_8c_source.html#l00017">inserimento_utente()</a>, <a class="el" href="funzioni__artista_8c_source.html#l00244">modifica_artista()</a>, e <a class="el" href="funzioni__utente_8c_source.html#l00661">modifica_utente()</a>.</p>
+<p class="reference">Referenziato da <a class="el" href="funzioni__artista_8c_source.html#l00025">inserimento_artista()</a>, <a class="el" href="funzioni__utente_8c_source.html#l00016">inserimento_utente()</a>, <a class="el" href="funzioni__artista_8c_source.html#l00244">modifica_artista()</a>, e <a class="el" href="funzioni__utente_8c_source.html#l00660">modifica_utente()</a>.</p>
 
 </div>
 </div>
@@ -382,7 +389,7 @@ Alla funzione bisogna passare come secodno parametro (<em>int</em> <em>tipo</em>
 
 <p class="definition">Definizione alla linea <a class="el" href="funzioni_8c_source.html#l00127">127</a> del file <a class="el" href="funzioni_8c_source.html">funzioni.c</a>.</p>
 
-<p class="reference">Referenziato da <a class="el" href="funzioni__artista_8c_source.html#l00025">inserimento_artista()</a>, <a class="el" href="funzioni__utente_8c_source.html#l00017">inserimento_utente()</a>, <a class="el" href="main_8c_source.html#l00088">main()</a>, <a class="el" href="funzioni__artista_8c_source.html#l00244">modifica_artista()</a>, e <a class="el" href="funzioni__utente_8c_source.html#l00661">modifica_utente()</a>.</p>
+<p class="reference">Referenziato da <a class="el" href="funzioni__artista_8c_source.html#l00025">inserimento_artista()</a>, <a class="el" href="funzioni__utente_8c_source.html#l00016">inserimento_utente()</a>, <a class="el" href="main_8c_source.html#l00088">main()</a>, <a class="el" href="funzioni__artista_8c_source.html#l00244">modifica_artista()</a>, e <a class="el" href="funzioni__utente_8c_source.html#l00660">modifica_utente()</a>.</p>
 
 </div>
 </div>
@@ -409,7 +416,7 @@ Alla funzione bisogna passare come secodno parametro (<em>int</em> <em>tipo</em>
 
 <p class="reference">Referenzia <a class="el" href="funzioni_8h_source.html#l00119">DATA::anno</a>, <a class="el" href="funzioni_8h_source.html#l00125">DATA_CORRENTE</a>, <a class="el" href="funzioni_8h_source.html#l00115">DATA::giorno</a>, <a class="el" href="funzioni_8h_source.html#l00117">DATA::mese</a>, e <a class="el" href="funzioni_8c_source.html#l00014">SetColor()</a>.</p>
 
-<p class="reference">Referenziato da <a class="el" href="funzioni__utente_8c_source.html#l01339">categoria_artisti()</a>, <a class="el" href="funzioni_8c_source.html#l00176">controllo_menu()</a>, <a class="el" href="funzioni__artista_8c_source.html#l00607">elimina_artista()</a>, <a class="el" href="funzioni__utente_8c_source.html#l01202">elimina_utente()</a>, <a class="el" href="funzioni__artista_8c_source.html#l00025">inserimento_artista()</a>, <a class="el" href="funzioni__utente_8c_source.html#l00017">inserimento_utente()</a>, <a class="el" href="funzioni__utente_8c_source.html#l00575">isAutenticazione()</a>, <a class="el" href="main_8c_source.html#l00088">main()</a>, <a class="el" href="funzioni__utente_8c_source.html#l01266">menu_preferenze()</a>, <a class="el" href="funzioni__artista_8c_source.html#l00244">modifica_artista()</a>, <a class="el" href="funzioni__utente_8c_source.html#l01500">modifica_preferenze()</a>, <a class="el" href="funzioni__utente_8c_source.html#l00661">modifica_utente()</a>, <a class="el" href="funzioni__utente_8c_source.html#l01723">ordinamento()</a>, <a class="el" href="funzioni__utente_8c_source.html#l01684">top_10()</a>, <a class="el" href="funzioni__utente_8c_source.html#l01454">totale_artisti()</a>, e <a class="el" href="funzioni__artista_8c_source.html#l00194">visualizzazione_artisti()</a>.</p>
+<p class="reference">Referenziato da <a class="el" href="funzioni__utente_8c_source.html#l01338">categoria_artisti()</a>, <a class="el" href="funzioni_8c_source.html#l00176">controllo_menu()</a>, <a class="el" href="funzioni__artista_8c_source.html#l00615">elimina_artista()</a>, <a class="el" href="funzioni__utente_8c_source.html#l01201">elimina_utente()</a>, <a class="el" href="funzioni__artista_8c_source.html#l00025">inserimento_artista()</a>, <a class="el" href="funzioni__utente_8c_source.html#l00016">inserimento_utente()</a>, <a class="el" href="funzioni__utente_8c_source.html#l00574">isAutenticazione()</a>, <a class="el" href="main_8c_source.html#l00088">main()</a>, <a class="el" href="funzioni__utente_8c_source.html#l01265">menu_preferenze()</a>, <a class="el" href="funzioni__artista_8c_source.html#l00244">modifica_artista()</a>, <a class="el" href="funzioni__utente_8c_source.html#l01499">modifica_preferenze()</a>, <a class="el" href="funzioni__utente_8c_source.html#l00660">modifica_utente()</a>, <a class="el" href="funzioni__utente_8c_source.html#l01722">ordinamento()</a>, <a class="el" href="funzioni__utente_8c_source.html#l01683">top_10()</a>, <a class="el" href="funzioni__utente_8c_source.html#l01453">totale_artisti()</a>, e <a class="el" href="funzioni__artista_8c_source.html#l00194">visualizzazione_artisti()</a>.</p>
 
 </div>
 </div>
@@ -449,7 +456,7 @@ Alla funzione bisogna passare come secodno parametro (<em>int</em> <em>tipo</em>
 
 <p class="definition">Definizione alla linea <a class="el" href="funzioni_8c_source.html#l00014">14</a> del file <a class="el" href="funzioni_8c_source.html">funzioni.c</a>.</p>
 
-<p class="reference">Referenziato da <a class="el" href="funzioni__utente_8c_source.html#l01339">categoria_artisti()</a>, <a class="el" href="funzioni_8c_source.html#l00176">controllo_menu()</a>, <a class="el" href="funzioni__artista_8c_source.html#l00607">elimina_artista()</a>, <a class="el" href="funzioni_8c_source.html#l00339">gestione_file()</a>, <a class="el" href="funzioni__artista_8c_source.html#l00025">inserimento_artista()</a>, <a class="el" href="funzioni__utente_8c_source.html#l00017">inserimento_utente()</a>, <a class="el" href="funzioni__utente_8c_source.html#l00575">isAutenticazione()</a>, <a class="el" href="funzioni_8c_source.html#l00026">logo()</a>, <a class="el" href="funzioni__utente_8c_source.html#l01266">menu_preferenze()</a>, <a class="el" href="funzioni__artista_8c_source.html#l00244">modifica_artista()</a>, <a class="el" href="funzioni__utente_8c_source.html#l01500">modifica_preferenze()</a>, <a class="el" href="funzioni__utente_8c_source.html#l00661">modifica_utente()</a>, <a class="el" href="funzioni__utente_8c_source.html#l01723">ordinamento()</a>, <a class="el" href="funzioni_8c_source.html#l00057">stampa_menu_artista()</a>, <a class="el" href="funzioni_8c_source.html#l00042">stampa_menu_principale()</a>, <a class="el" href="funzioni_8c_source.html#l00080">stampa_menu_secondario()</a>, <a class="el" href="funzioni_8c_source.html#l00095">stampa_menu_utente()</a>, <a class="el" href="funzioni__utente_8c_source.html#l00491">stampa_profilo()</a>, <a class="el" href="funzioni__utente_8c_source.html#l01684">top_10()</a>, <a class="el" href="funzioni__utente_8c_source.html#l01454">totale_artisti()</a>, <a class="el" href="funzioni__artista_8c_source.html#l00194">visualizzazione_artisti()</a>, e <a class="el" href="funzioni__utente_8c_source.html#l00552">visualizzazione_utenti()</a>.</p>
+<p class="reference">Referenziato da <a class="el" href="funzioni__utente_8c_source.html#l01338">categoria_artisti()</a>, <a class="el" href="funzioni_8c_source.html#l00176">controllo_menu()</a>, <a class="el" href="funzioni__artista_8c_source.html#l00615">elimina_artista()</a>, <a class="el" href="funzioni_8c_source.html#l00337">gestione_file()</a>, <a class="el" href="funzioni__artista_8c_source.html#l00025">inserimento_artista()</a>, <a class="el" href="funzioni__utente_8c_source.html#l00016">inserimento_utente()</a>, <a class="el" href="funzioni__utente_8c_source.html#l00574">isAutenticazione()</a>, <a class="el" href="funzioni_8c_source.html#l00026">logo()</a>, <a class="el" href="funzioni__utente_8c_source.html#l01265">menu_preferenze()</a>, <a class="el" href="funzioni__artista_8c_source.html#l00244">modifica_artista()</a>, <a class="el" href="funzioni__utente_8c_source.html#l01499">modifica_preferenze()</a>, <a class="el" href="funzioni__utente_8c_source.html#l00660">modifica_utente()</a>, <a class="el" href="funzioni__utente_8c_source.html#l01722">ordinamento()</a>, <a class="el" href="funzioni_8c_source.html#l00057">stampa_menu_artista()</a>, <a class="el" href="funzioni_8c_source.html#l00042">stampa_menu_principale()</a>, <a class="el" href="funzioni_8c_source.html#l00080">stampa_menu_secondario()</a>, <a class="el" href="funzioni_8c_source.html#l00095">stampa_menu_utente()</a>, <a class="el" href="funzioni__utente_8c_source.html#l00490">stampa_profilo()</a>, <a class="el" href="funzioni__utente_8c_source.html#l01683">top_10()</a>, <a class="el" href="funzioni__utente_8c_source.html#l01453">totale_artisti()</a>, <a class="el" href="funzioni__artista_8c_source.html#l00194">visualizzazione_artisti()</a>, e <a class="el" href="funzioni__utente_8c_source.html#l00551">visualizzazione_utenti()</a>.</p>
 
 </div>
 </div>

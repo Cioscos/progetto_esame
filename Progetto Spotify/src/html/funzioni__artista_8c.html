@@ -32,16 +32,19 @@
 <!-- end header part -->
 <!-- Generato da Doxygen 1.8.14 -->
 <script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
 var searchBox = new SearchBox("searchBox", "search",false,'Cerca');
+/* @license-end */
 </script>
 <script type="text/javascript" src="menudata.js"></script>
 <script type="text/javascript" src="menu.js"></script>
 <script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
 $(function() {
   initMenu('',true,false,'search.php','Cerca');
   $(document).ready(function() { init_search(); });
 });
-</script>
+/* @license-end */</script>
 <div id="main-nav"></div>
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -110,8 +113,10 @@ Funzioni</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>La funzione stampa prima tutti gli artisti disponibili. Successivamente chiede l'inserimento del codicw artista da eliminare e controlla se effettivamente l'artista esiste.<br />
+Se l'artista esiste procederà con la sua eliminazione; in alternativa la funzione chiederà se vogliamo provare ad inserire un nuovo artista da eliminare. </p>
 
-<p class="definition">Definizione alla linea <a class="el" href="funzioni__artista_8c_source.html#l00607">607</a> del file <a class="el" href="funzioni__artista_8c_source.html">funzioni_artista.c</a>.</p>
+<p class="definition">Definizione alla linea <a class="el" href="funzioni__artista_8c_source.html#l00615">615</a> del file <a class="el" href="funzioni__artista_8c_source.html">funzioni_artista.c</a>.</p>
 
 <p class="reference">Referenzia <a class="el" href="funzioni_8h_source.html#l00145">ARTISTA::anno_inizio</a>, <a class="el" href="funzioni_8h_source.html#l00155">ARTISTI</a>, <a class="el" href="funzioni_8h_source.html#l00147">ARTISTA::ascolti</a>, <a class="el" href="funzioni_8c_source.html#l00238">eliminazione_acapo()</a>, <a class="el" href="funzioni_8h_source.html#l00139">ARTISTA::genere</a>, <a class="el" href="funzioni_8h_source.html#l00074">GENERI_TOT</a>, <a class="el" href="funzioni_8c_source.html#l00026">logo()</a>, <a class="el" href="funzioni_8h_source.html#l00079">LUNGHEZZA_CODICE</a>, <a class="el" href="funzioni_8h_source.html#l00036">LUNGHEZZA_INPUT</a>, <a class="el" href="funzioni_8h_source.html#l00024">LUNGHEZZA_MAX</a>, <a class="el" href="funzioni_8h_source.html#l00169">UTENTE::nome</a>, <a class="el" href="funzioni_8h_source.html#l00149">ARTISTA::preferenze</a>, <a class="el" href="funzioni_8c_source.html#l00014">SetColor()</a>, e <a class="el" href="funzioni_8h_source.html#l00106">stringclear</a>.</p>
 
@@ -145,7 +150,7 @@ Funzioni</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>Inserimento nuovo artista</p>
-<p>Questa funzione permette di inserire un nuovo cantante nella lista degli artisti. Prima di terminare aggiorna la lista dei cantanti chiamando la funzione gestione_file presente nel file <a class="el" href="funzioni_8c.html" title="File contenente le funzioni generali usate da tutti gli altri source file. ">funzioni.c</a> </p><dl class="params"><dt>Parametri</dt><dd>
+<p>Questa funzione permette di inserire un nuovo cantante nella lista degli artisti. Prima di terminare aggiorna la lista dei cantanti chiamando la funzione gestione_file presente nel file <a class="el" href="funzioni_8c.html" title="File contenente i prototipi di funzioni generali usate da tutti gli altri source file. ">funzioni.c</a> </p><dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
     <tr><td class="paramname">lista_generi</td><td>Vettore bidimensionale di caratteri contenente i generi disponibili nel programma </td></tr>
     <tr><td class="paramname">artisti_effettivi</td><td>Numero degli artisti effettivamente memorizzati nel programma </td></tr>
@@ -187,6 +192,14 @@ Funzioni</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Questa funzione modifica gli attributi dell'artista o del gruppo</p>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">artisti_effettivi</td><td>Viene passato per valore in numero di utenti effetivamente memorizzati. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">lista_generi</td><td>Viene passata la lista dei generi disponibii </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p class="definition">Definizione alla linea <a class="el" href="funzioni__artista_8c_source.html#l00244">244</a> del file <a class="el" href="funzioni__artista_8c_source.html">funzioni_artista.c</a>.</p>
 
@@ -221,6 +234,14 @@ Funzioni</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Questa funzione visualizza gli artisti memorizzati</p>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">lista_generi</td><td>Viene passata la lista dei generi disponibii </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">artisti_effettivi</td><td>Viene passato per valore in numero di utenti effetivamente memorizzati. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p class="definition">Definizione alla linea <a class="el" href="funzioni__artista_8c_source.html#l00194">194</a> del file <a class="el" href="funzioni__artista_8c_source.html">funzioni_artista.c</a>.</p>
 

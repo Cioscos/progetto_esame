@@ -922,6 +922,16 @@ void gestione_file(char modalita, int tipo, int *numero, char relative_path[]) {
 
 }
 
+/**
+ * Questa funzione crea la path dei file necessari per il programma.
+ *
+ * @pre L'eseguibile si deve trovare o nella directory chiamata "Progetto Spotify" o in una qualsiasi sua sottocartella
+ * @pre I file si devono trovare in una cartella all'interno di "Progetto Spotify" chiamata "File"
+ * @warning La creazione di una path non corretta sarà segnalata da un messaggio di errore ma il programma funzionerà comunque.\n
+ * I dati però saranno memorizzati fino alla chiusura del programma, poi saranno persi.
+ *
+ */
+
 void creazione_path(char* token_buffer, char* relative_path) {
 	char unita_path[LUNGHEZZA_PATH] = { '\0' };
 	char *token;

@@ -313,13 +313,50 @@ int isAutenticazione(int utenti_effettivi, int* posizione_utente);
  * @param[in] relative_path Stringa contenente la relative_path dei file
  */
 void gestione_file(char modalita, int tipo, int *numero, char relative_path[]);
+
+/**
+ *
+ * @param[in] token_buffer Viene passata la relative path dell'eseguibile
+ * @param[out] relative_path Viene ritornata per riferimento la path dell'eseguibile fino a File\\
+ */
 void creazione_path(char* token_buffer, char* relative_path);
 
+/**
+ *
+ * @param[in] lista_generi Viene passata la lista dei generi disponibii
+ * @param[in] artisti_effettivi Viene passato per valore in numero di utenti effetivamente memorizzati
+ * @return Numero utenti effettivi
+ */
 int inserimento_artista(char lista_generi[][LUNGHEZZA_MAX], int artisti_effettivi);
+
+/**
+ * Questa funzione visualizza gli artisti memorizzati
+ *
+ * @param[in] lista_generi Viene passata la lista dei generi disponibii
+ * @param[in] artisti_effettivi Viene passato per valore in numero di utenti effetivamente memorizzati
+ */
 void visualizzazione_artisti(char lista_generi[][LUNGHEZZA_MAX], int artisti_effettivi);
+
+/**
+ * Questa funzione modifica gli attributi dell'artista o del gruppo
+ *
+ * @param[in] artisti_effettivi Viene passato per valore in numero di utenti effetivamente memorizzati
+ * @param[in] lista_generi Viene passata la lista dei generi disponibii
+ */
 void modifica_artista(int artisti_effettivi, char lista_generi[][LUNGHEZZA_MAX]);
+
+/**
+ * Questa funzione elimina un artista dalla lista degli artisti memorizzati
+ * @param[in] artisti_effettivi Viene passato per valore in numero di artisti effetivamente memorizzati
+ * @return Il numero degli artisti memorizzati dopo l'eliminazione
+ */
 int elimina_artista(int artisti_effetivi);
 
+/**
+ *
+ * @param[in] utenti_effettivi Viene passato per valore in numero di utenti effetivamente memorizzati
+ * @return Il numero degli utenti memorizzati dopo l'eliminazione
+ */
 int inserimento_utente(int utenti_effettivi);
 void visualizzazione_utenti(int utenti_effettivi);
 void stampa_profilo(int posizione_utente);

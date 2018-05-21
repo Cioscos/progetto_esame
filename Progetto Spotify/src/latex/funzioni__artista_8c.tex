@@ -15,13 +15,13 @@ File contenente tutte le funzioni che riguardano la gestione degli artisti.
 \subsection*{Funzioni}
 \begin{DoxyCompactItemize}
 \item 
-int \hyperlink{funzioni__artista_8c_abf5be917c5d6727009f9281135ec60d1}{inserimento\+\_\+artista} (char lista\+\_\+generi\mbox{[}$\,$\mbox{]}\mbox{[}\hyperlink{funzioni_8h_a2cdd71b92d6e869f8b094e32a6da6a62}{L\+U\+N\+G\+H\+E\+Z\+Z\+A\+\_\+\+M\+AX}\mbox{]}, int artisti\+\_\+effettivi)
+int \mbox{\hyperlink{funzioni__artista_8c_abf5be917c5d6727009f9281135ec60d1}{inserimento\+\_\+artista}} (char lista\+\_\+generi\mbox{[}$\,$\mbox{]}\mbox{[}\mbox{\hyperlink{funzioni_8h_a2cdd71b92d6e869f8b094e32a6da6a62}{L\+U\+N\+G\+H\+E\+Z\+Z\+A\+\_\+\+M\+AX}}\mbox{]}, int artisti\+\_\+effettivi)
 \item 
-void \hyperlink{funzioni__artista_8c_a27b1103b03ab2bcb926728dede408ce0}{visualizzazione\+\_\+artisti} (char lista\+\_\+generi\mbox{[}$\,$\mbox{]}\mbox{[}\hyperlink{funzioni_8h_a2cdd71b92d6e869f8b094e32a6da6a62}{L\+U\+N\+G\+H\+E\+Z\+Z\+A\+\_\+\+M\+AX}\mbox{]}, int artisti\+\_\+effettivi)
+void \mbox{\hyperlink{funzioni__artista_8c_a27b1103b03ab2bcb926728dede408ce0}{visualizzazione\+\_\+artisti}} (char lista\+\_\+generi\mbox{[}$\,$\mbox{]}\mbox{[}\mbox{\hyperlink{funzioni_8h_a2cdd71b92d6e869f8b094e32a6da6a62}{L\+U\+N\+G\+H\+E\+Z\+Z\+A\+\_\+\+M\+AX}}\mbox{]}, int artisti\+\_\+effettivi)
 \item 
-void \hyperlink{funzioni__artista_8c_affb3276e623be41c374aa7efd8b660bc}{modifica\+\_\+artista} (int artisti\+\_\+effettivi, char lista\+\_\+generi\mbox{[}$\,$\mbox{]}\mbox{[}\hyperlink{funzioni_8h_a2cdd71b92d6e869f8b094e32a6da6a62}{L\+U\+N\+G\+H\+E\+Z\+Z\+A\+\_\+\+M\+AX}\mbox{]})
+void \mbox{\hyperlink{funzioni__artista_8c_affb3276e623be41c374aa7efd8b660bc}{modifica\+\_\+artista}} (int artisti\+\_\+effettivi, char lista\+\_\+generi\mbox{[}$\,$\mbox{]}\mbox{[}\mbox{\hyperlink{funzioni_8h_a2cdd71b92d6e869f8b094e32a6da6a62}{L\+U\+N\+G\+H\+E\+Z\+Z\+A\+\_\+\+M\+AX}}\mbox{]})
 \item 
-int \hyperlink{funzioni__artista_8c_ab38e14210cad9f822f062e704852197d}{elimina\+\_\+artista} (int artisti\+\_\+effettivi)
+int \mbox{\hyperlink{funzioni__artista_8c_ab38e14210cad9f822f062e704852197d}{elimina\+\_\+artista}} (int artisti\+\_\+effettivi)
 \end{DoxyCompactItemize}
 
 
@@ -37,9 +37,10 @@ Questo file permette di gestire la lista degli utenti, andandola a modificare.
 \subsubsection{\texorpdfstring{elimina\+\_\+artista()}{elimina\_artista()}}
 {\footnotesize\ttfamily int elimina\+\_\+artista (\begin{DoxyParamCaption}\item[{int}]{artisti\+\_\+effettivi }\end{DoxyParamCaption})}
 
+La funzione stampa prima tutti gli artisti disponibili. Successivamente chiede l\textquotesingle{}inserimento del codicw artista da eliminare e controlla se effettivamente l\textquotesingle{}artista esiste.~\newline
+Se l\textquotesingle{}artista esiste procederà con la sua eliminazione; in alternativa la funzione chiederà se vogliamo provare ad inserire un nuovo artista da eliminare. 
 
-
-Definizione alla linea 607 del file funzioni\+\_\+artista.\+c.
+Definizione alla linea 615 del file funzioni\+\_\+artista.\+c.
 
 
 
@@ -57,7 +58,7 @@ Referenziato da main().
 
 Inserimento nuovo artista
 
-Questa funzione permette di inserire un nuovo cantante nella lista degli artisti. Prima di terminare aggiorna la lista dei cantanti chiamando la funzione gestione\+\_\+file presente nel file \hyperlink{funzioni_8c}{funzioni.\+c} 
+Questa funzione permette di inserire un nuovo cantante nella lista degli artisti. Prima di terminare aggiorna la lista dei cantanti chiamando la funzione gestione\+\_\+file presente nel file \mbox{\hyperlink{funzioni_8c}{funzioni.\+c}} 
 \begin{DoxyParams}{Parametri}
 {\em lista\+\_\+generi} & Vettore bidimensionale di caratteri contenente i generi disponibili nel programma \\
 \hline
@@ -85,6 +86,15 @@ Referenziato da main().
 \subsubsection{\texorpdfstring{modifica\+\_\+artista()}{modifica\_artista()}}
 {\footnotesize\ttfamily void modifica\+\_\+artista (\begin{DoxyParamCaption}\item[{int}]{artisti\+\_\+effettivi,  }\item[{char}]{lista\+\_\+generi\mbox{[}$\,$\mbox{]}\mbox{[}\+L\+U\+N\+G\+H\+E\+Z\+Z\+A\+\_\+\+M\+A\+X\mbox{]} }\end{DoxyParamCaption})}
 
+Questa funzione modifica gli attributi dell\textquotesingle{}artista o del gruppo
+
+
+\begin{DoxyParams}[1]{Parametri}
+\mbox{\tt in}  & {\em artisti\+\_\+effettivi} & Viene passato per valore in numero di utenti effetivamente memorizzati. \\
+\hline
+\mbox{\tt in}  & {\em lista\+\_\+generi} & Viene passata la lista dei generi disponibii \\
+\hline
+\end{DoxyParams}
 
 
 Definizione alla linea 244 del file funzioni\+\_\+artista.\+c.
@@ -103,6 +113,15 @@ Referenziato da main().
 \subsubsection{\texorpdfstring{visualizzazione\+\_\+artisti()}{visualizzazione\_artisti()}}
 {\footnotesize\ttfamily void visualizzazione\+\_\+artisti (\begin{DoxyParamCaption}\item[{char}]{lista\+\_\+generi\mbox{[}$\,$\mbox{]}\mbox{[}\+L\+U\+N\+G\+H\+E\+Z\+Z\+A\+\_\+\+M\+A\+X\mbox{]},  }\item[{int}]{artisti\+\_\+effettivi }\end{DoxyParamCaption})}
 
+Questa funzione visualizza gli artisti memorizzati
+
+
+\begin{DoxyParams}[1]{Parametri}
+\mbox{\tt in}  & {\em lista\+\_\+generi} & Viene passata la lista dei generi disponibii \\
+\hline
+\mbox{\tt in}  & {\em artisti\+\_\+effettivi} & Viene passato per valore in numero di utenti effetivamente memorizzati. \\
+\hline
+\end{DoxyParams}
 
 
 Definizione alla linea 194 del file funzioni\+\_\+artista.\+c.
