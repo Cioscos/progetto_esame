@@ -215,7 +215,7 @@ unsigned int flag;//Controllo sull'entrata nel do while | 0 Entrato almeno una v
 	 6 = Orange/Brown 7 = White 8 = Grey 9 = Blue
 	 10 = Green 11 = Light Blue 12 = Pink/Red 13 = Purple
 	 14 = Yellow 15 = White\n
-	 @warning Comportamento imprevedibile per valori diversi da quelli indicati!
+	 @warning Numeri oltre quelli indicati cambieranno anche l'evidenziazione del testo
  */
 void SetColor(short Color);
 
@@ -405,7 +405,7 @@ void modifica_preferenze(int posizione_utente, int pos_artista);
  * Questa funzione stampa tutti i generi disponibili
  *
  * @param[in] artisti_effettivi Viene passato per valore il numero di utenti effetivamente memorizzati
- * @return Ritorna ::pos_artista ovvero la posizione dell'artista all'interno dell'indice.
+ * @return Ritorna pos_artista ovvero la posizione dell'artista all'interno dell'indice.
  */
 int categoria_artisti(int artisti_effettivi);
 
@@ -413,7 +413,7 @@ int categoria_artisti(int artisti_effettivi);
  * Questa funzione mostra la lista degli artisti
  *
  * @param[in] artisti_effettivi Viene passato per valore il numero di utenti effetivamente memorizzati
- * @return Ritorna ::pos_artista ovvero la posizione dell'artista all'interno dell'indice.
+ * @return Ritorna pos_artista ovvero la posizione dell'artista all'interno dell'indice.
  */
 int totale_artisti(int artisti_effettivi);
 
@@ -429,7 +429,7 @@ void ordinamento(char* input);
  *
  * @param[in] artisti_effettivi Viene passato per valore il numero di utenti effetivamente memorizzati
  * @param[in] input Viene passata una stringa (saranno accettate solo le stringhe "Mi piace" e "Ascolti"
- * @return
+ * @return Ritorna pos_artista ovvero la posizione dell'artista all'interno dell'indice.
  */
 int top_10(int artisti_effettivi, char* input);
 

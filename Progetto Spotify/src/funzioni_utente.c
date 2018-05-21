@@ -511,6 +511,9 @@ int inserimento_utente(int utenti_effettivi) {
 	return (utenti_effettivi);
 }
 
+/**
+ * La password dell'utente sarà oscurata permettendo di vedere solo la prima e l'ultima lettera.
+ */
 void stampa_profilo(int posizione_utente) {
 	int i, j;
 	SetColor(3);
@@ -520,9 +523,23 @@ void stampa_profilo(int posizione_utente) {
 	SetColor(3);
 	printf("PASSWORD:");
 	SetColor(15);
-	printf("%s\n", UTENTI[posizione_utente].password);
+	for(i=0;i<LUNGHEZZA_PASS;i++)
+	{
+		if( (UTENTI[posizione_utente].password[i]!='\0') && (i==0 || i==(strlen(UTENTI[posizione_utente].password) - 1)) )
+		{
+			printf("%c", UTENTI[posizione_utente].password[i]);
+			if(i==(strlen(UTENTI[posizione_utente].password) - 1))
+			{
+				i=LUNGHEZZA_PASS;
+			}
+		}
+		else
+		{
+			printf("*");
+		}
+	}
 	SetColor(3);
-	printf("NOME:");
+	printf("\nNOME:");
 	SetColor(15);
 	printf("%-31s\t", UTENTI[posizione_utente].nome);
 	SetColor(3);
@@ -1235,7 +1252,10 @@ int elimina_utente(int* utenti_effettivi, int posizione_utente) {
 	{
 		system("cls");
 		logo();
-		printf("Sei sicuro di voler eliminare l'artista?\nRispondere con si o no:");
+		SetColor(30);
+		printf("Sei sicuro di volerti eliminare da Spotify? :(");
+		SetColor(15);
+		printf("\nRispondere con si o no: ");
 		fgets(risposta, LUNGHEZZA_INPUT, stdin);
 		fflush(stdin);		//Svuota flusso in input
 	}while (strcmp(risposta, "si") != 0 && strcmp(risposta, "no") != 0);
@@ -1557,7 +1577,7 @@ int totale_artisti(int artisti_effettivi) {
  * 	-# Ogni "Ascoltare e mettere non mi piace" aumenterà di 1 gli ascolti e toglierà il "Mi piace" solamente se il "Mi piace" era già presente.
  *
  */
-void modifica_preferenze(int posizione_utente, int pos_artista) { //TODO Cambiare ascotlare soltando con Ascolta <nome_cantante>
+void modifica_preferenze(int posizione_utente, int pos_artista) {
 	char artista[LUNGHEZZA_MAX] = { "\0" };	//Variabile d'appoggio per l'artista chiesto in input
 	int artista_trovato = 0;//0 artista non trovato | 1 artista trovato					//Contiene la posizione nel vettore dell'artista trovato
 	int i;
@@ -1569,17 +1589,17 @@ void modifica_preferenze(int posizione_utente, int pos_artista) { //TODO Cambiar
 		SetColor(2);
 		printf("[1]");
 		SetColor(15);
-		printf("Ascolta soltanto\n");
+		printf("Ascolta %s\n", ARTISTI[pos_artista].nome);
 		SetColor(2);
 		printf("[2]");
 		SetColor(15);
-		printf("Ascolta e Mi piace\n");
+		printf("Mi piace %s\n", ARTISTI[pos_artista].nome);
 		SetColor(2);
 		printf("[3]");
 		SetColor(15);
-		printf("Ascolta e Non mi piace\n");
+		printf("Non mi piace %s\n", ARTISTI[pos_artista].nome);
 		SetColor(15);
-		printf("\nInserisci comando:");
+		printf("\nInserisci comando: ");
 		fgets(artista, LUNGHEZZA_MAX, stdin);
 		eliminazione_acapo(artista);
 		fflush(stdin);

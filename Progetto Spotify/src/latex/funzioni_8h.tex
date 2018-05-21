@@ -247,7 +247,7 @@ Definizione alla linea 29 del file funzioni.\+h.
 
 
 
-Referenziato da elimina\+\_\+utente(), inserimento\+\_\+utente(), is\+Autenticazione(), e modifica\+\_\+utente().
+Referenziato da elimina\+\_\+utente(), inserimento\+\_\+utente(), is\+Autenticazione(), modifica\+\_\+utente(), e stampa\+\_\+profilo().
 
 \mbox{\Hypertarget{funzioni_8h_a97919f204e700544cc9903f105fae3c1}\label{funzioni_8h_a97919f204e700544cc9903f105fae3c1}} 
 \index{funzioni.\+h@{funzioni.\+h}!L\+U\+N\+G\+H\+E\+Z\+Z\+A\+\_\+\+P\+A\+TH@{L\+U\+N\+G\+H\+E\+Z\+Z\+A\+\_\+\+P\+A\+TH}}
@@ -408,7 +408,7 @@ Questa funzione stampa tutti i generi disponibili
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Restituisce}
-Ritorna \+::pos\+\_\+artista ovvero la posizione dell\textquotesingle{}artista all\textquotesingle{}interno dell\textquotesingle{}indice.
+Ritorna pos\+\_\+artista ovvero la posizione dell\textquotesingle{}artista all\textquotesingle{}interno dell\textquotesingle{}indice.
 \end{DoxyReturn}
 Quando l\textquotesingle{}utente inserisce il genere, viene effettuato un controllo per verificare che il genere effettivamente esista.~\newline
 Se il genere sarà trovato, saranno visualizzati tutti i nomi degli artisti o gruppi. Se non esistono artisti o gruppi di quel genere, sarà notificato. \begin{DoxyPrecond}{Precondizione}
@@ -419,7 +419,7 @@ La funzione controlla l\textquotesingle{}esistenza del genere carattere per cara
 \end{DoxyWarning}
 
 
-Definizione alla linea 1382 del file funzioni\+\_\+utente.\+c.
+Definizione alla linea 1402 del file funzioni\+\_\+utente.\+c.
 
 
 
@@ -542,11 +542,11 @@ Questa funzione permette di eliminare un utente registrato
 La funzione chiede la conferma di eliminazione all\textquotesingle{}utente prima di procedere.~\newline
 Essa procede agendo sull\textquotesingle{}array di struct \hyperlink{struct_u_t_e_n_t_e}{U\+T\+E\+N\+TE}, \hyperlink{funzioni_8h_a3d93cea7cf4778a76e971a141571a911}{U\+T\+E\+N\+TI} scalando le informazioni degli utenti di una posizione in modo da eliminare le informazioni dell\textquotesingle{}utente desiderato. 
 
-Definizione alla linea 1230 del file funzioni\+\_\+utente.\+c.
+Definizione alla linea 1247 del file funzioni\+\_\+utente.\+c.
 
 
 
-Referenzia D\+A\+T\+A\+::anno, A\+R\+T\+I\+S\+T\+I\+\_\+\+M\+AX, U\+T\+E\+N\+T\+E\+::codice\+\_\+artista, U\+T\+E\+N\+T\+E\+::cognome, U\+T\+E\+N\+T\+E\+::data\+\_\+iscrizione, U\+T\+E\+N\+T\+E\+::data\+\_\+nascita, D\+A\+T\+A\+::giorno, logo(), L\+U\+N\+G\+H\+E\+Z\+Z\+A\+\_\+\+I\+N\+P\+UT, L\+U\+N\+G\+H\+E\+Z\+Z\+A\+\_\+\+M\+AX, L\+U\+N\+G\+H\+E\+Z\+Z\+A\+\_\+\+P\+A\+SS, D\+A\+T\+A\+::mese, U\+T\+E\+N\+T\+E\+::nickname, U\+T\+E\+N\+T\+E\+::nome, U\+T\+E\+N\+T\+E\+::password, U\+T\+E\+N\+T\+E\+::preferenze, stringclear, e U\+T\+E\+N\+TI.
+Referenzia D\+A\+T\+A\+::anno, A\+R\+T\+I\+S\+T\+I\+\_\+\+M\+AX, U\+T\+E\+N\+T\+E\+::codice\+\_\+artista, U\+T\+E\+N\+T\+E\+::cognome, U\+T\+E\+N\+T\+E\+::data\+\_\+iscrizione, U\+T\+E\+N\+T\+E\+::data\+\_\+nascita, D\+A\+T\+A\+::giorno, logo(), L\+U\+N\+G\+H\+E\+Z\+Z\+A\+\_\+\+I\+N\+P\+UT, L\+U\+N\+G\+H\+E\+Z\+Z\+A\+\_\+\+M\+AX, L\+U\+N\+G\+H\+E\+Z\+Z\+A\+\_\+\+P\+A\+SS, D\+A\+T\+A\+::mese, U\+T\+E\+N\+T\+E\+::nickname, U\+T\+E\+N\+T\+E\+::nome, U\+T\+E\+N\+T\+E\+::password, U\+T\+E\+N\+T\+E\+::preferenze, Set\+Color(), stringclear, e U\+T\+E\+N\+TI.
 
 
 
@@ -749,7 +749,7 @@ Il ritorno sarà un intero
 \end{DoxyPostcond}
 
 
-Definizione alla linea 598 del file funzioni\+\_\+utente.\+c.
+Definizione alla linea 615 del file funzioni\+\_\+utente.\+c.
 
 
 
@@ -906,7 +906,7 @@ L\textquotesingle{}utente potrà scegliere se\+:
 
 Questa funzione referenzia le sopra elencate funzioni. 
 
-Definizione alla linea 1303 del file funzioni\+\_\+utente.\+c.
+Definizione alla linea 1323 del file funzioni\+\_\+utente.\+c.
 
 
 
@@ -973,11 +973,11 @@ Nell\textquotesingle{}utilizzo della funzione si tenga presente che\+:
 \item Ogni \char`\"{}\+Ascoltare e mettere non mi piace\char`\"{} aumenterà di 1 gli ascolti e toglierà il \char`\"{}\+Mi piace\char`\"{} solamente se il \char`\"{}\+Mi piace\char`\"{} era già presente. 
 \end{DoxyEnumerate}
 
-Definizione alla linea 1560 del file funzioni\+\_\+utente.\+c.
+Definizione alla linea 1580 del file funzioni\+\_\+utente.\+c.
 
 
 
-Referenzia A\+R\+T\+I\+S\+TI, A\+R\+T\+I\+S\+T\+I\+\_\+\+M\+AX, A\+R\+T\+I\+S\+T\+A\+::ascolti, U\+T\+E\+N\+T\+E\+::codice\+\_\+artista, eliminazione\+\_\+acapo(), logo(), L\+U\+N\+G\+H\+E\+Z\+Z\+A\+\_\+\+M\+AX, A\+R\+T\+I\+S\+T\+A\+::preferenze, U\+T\+E\+N\+T\+E\+::preferenze, Set\+Color(), e U\+T\+E\+N\+TI.
+Referenzia A\+R\+T\+I\+S\+TI, A\+R\+T\+I\+S\+T\+I\+\_\+\+M\+AX, A\+R\+T\+I\+S\+T\+A\+::ascolti, U\+T\+E\+N\+T\+E\+::codice\+\_\+artista, eliminazione\+\_\+acapo(), logo(), L\+U\+N\+G\+H\+E\+Z\+Z\+A\+\_\+\+M\+AX, U\+T\+E\+N\+T\+E\+::nome, A\+R\+T\+I\+S\+T\+A\+::preferenze, U\+T\+E\+N\+T\+E\+::preferenze, Set\+Color(), e U\+T\+E\+N\+TI.
 
 
 
@@ -1015,7 +1015,7 @@ Tutte le opzioni effettueranno dei controlli sui dati in input
 \item Doppio controllo sull\textquotesingle{}inserimento password 
 \end{DoxyEnumerate}
 
-Definizione alla linea 699 del file funzioni\+\_\+utente.\+c.
+Definizione alla linea 716 del file funzioni\+\_\+utente.\+c.
 
 
 
@@ -1045,7 +1045,7 @@ Questa funzione deve essere chiamata da \hyperlink{funzioni__utente_8c_a1b64a9be
 \end{DoxyPrecond}
 
 
-Definizione alla linea 1792 del file funzioni\+\_\+utente.\+c.
+Definizione alla linea 1812 del file funzioni\+\_\+utente.\+c.
 
 
 
@@ -1084,7 +1084,7 @@ Ovviamente la funzione può essere usata solo su sistemi operativi Windows.
 \hline
 \end{DoxyParams}
 \begin{DoxyWarning}{Avvertimento}
-Comportamento imprevedibile per valori diversi da quelli indicati! 
+Numeri oltre quelli indicati cambieranno anche l\textquotesingle{}evidenziazione del testo 
 \end{DoxyWarning}
 
 
@@ -1092,7 +1092,7 @@ Definizione alla linea 14 del file funzioni.\+c.
 
 
 
-Referenziato da categoria\+\_\+artisti(), controllo\+\_\+menu(), elimina\+\_\+artista(), gestione\+\_\+file(), inserimento\+\_\+artista(), inserimento\+\_\+utente(), is\+Autenticazione(), logo(), menu\+\_\+preferenze(), modifica\+\_\+artista(), modifica\+\_\+preferenze(), modifica\+\_\+utente(), ordinamento(), stampa\+\_\+menu\+\_\+artista(), stampa\+\_\+menu\+\_\+principale(), stampa\+\_\+menu\+\_\+secondario(), stampa\+\_\+menu\+\_\+utente(), stampa\+\_\+profilo(), top\+\_\+10(), totale\+\_\+artisti(), visualizzazione\+\_\+artisti(), e visualizzazione\+\_\+utenti().
+Referenziato da categoria\+\_\+artisti(), controllo\+\_\+menu(), elimina\+\_\+artista(), elimina\+\_\+utente(), gestione\+\_\+file(), inserimento\+\_\+artista(), inserimento\+\_\+utente(), is\+Autenticazione(), logo(), menu\+\_\+preferenze(), modifica\+\_\+artista(), modifica\+\_\+preferenze(), modifica\+\_\+utente(), ordinamento(), stampa\+\_\+menu\+\_\+artista(), stampa\+\_\+menu\+\_\+principale(), stampa\+\_\+menu\+\_\+secondario(), stampa\+\_\+menu\+\_\+utente(), stampa\+\_\+profilo(), top\+\_\+10(), totale\+\_\+artisti(), visualizzazione\+\_\+artisti(), e visualizzazione\+\_\+utenti().
 
 \mbox{\Hypertarget{funzioni_8h_a0c45f4a88c2b2099dec0301e6288a828}\label{funzioni_8h_a0c45f4a88c2b2099dec0301e6288a828}} 
 \index{funzioni.\+h@{funzioni.\+h}!stampa\+\_\+menu\+\_\+artista@{stampa\+\_\+menu\+\_\+artista}}
@@ -1192,16 +1192,16 @@ Questa funzione permette di stampare il profilo dell\textquotesingle{}utente
 
 
 \begin{DoxyParams}[1]{Parametri}
-\mbox{\tt in}  & {\em posizione\+\_\+utente} & Viene passato per valore l\textquotesingle{}indice dell\textquotesingle{}utente che ha fatto accesso al programma \\
+\mbox{\tt in}  & {\em posizione\+\_\+utente} & Viene passato per valore l\textquotesingle{}indice dell\textquotesingle{}utente che ha fatto accesso al programma\\
 \hline
 \end{DoxyParams}
+La password dell\textquotesingle{}utente sarà oscurata permettendo di vedere solo la prima e l\textquotesingle{}ultima lettera. 
+
+Definizione alla linea 517 del file funzioni\+\_\+utente.\+c.
 
 
-Definizione alla linea 514 del file funzioni\+\_\+utente.\+c.
 
-
-
-Referenzia D\+A\+T\+A\+::anno, A\+R\+T\+I\+S\+TI, A\+R\+T\+I\+S\+T\+I\+\_\+\+M\+AX, U\+T\+E\+N\+T\+E\+::codice\+\_\+artista, U\+T\+E\+N\+T\+E\+::cognome, U\+T\+E\+N\+T\+E\+::data\+\_\+iscrizione, U\+T\+E\+N\+T\+E\+::data\+\_\+nascita, D\+A\+T\+A\+::giorno, D\+A\+T\+A\+::mese, U\+T\+E\+N\+T\+E\+::nickname, U\+T\+E\+N\+T\+E\+::nome, U\+T\+E\+N\+T\+E\+::password, U\+T\+E\+N\+T\+E\+::preferenze, Set\+Color(), e U\+T\+E\+N\+TI.
+Referenzia D\+A\+T\+A\+::anno, A\+R\+T\+I\+S\+TI, A\+R\+T\+I\+S\+T\+I\+\_\+\+M\+AX, U\+T\+E\+N\+T\+E\+::codice\+\_\+artista, U\+T\+E\+N\+T\+E\+::cognome, U\+T\+E\+N\+T\+E\+::data\+\_\+iscrizione, U\+T\+E\+N\+T\+E\+::data\+\_\+nascita, D\+A\+T\+A\+::giorno, L\+U\+N\+G\+H\+E\+Z\+Z\+A\+\_\+\+P\+A\+SS, D\+A\+T\+A\+::mese, U\+T\+E\+N\+T\+E\+::nickname, U\+T\+E\+N\+T\+E\+::nome, U\+T\+E\+N\+T\+E\+::password, U\+T\+E\+N\+T\+E\+::preferenze, Set\+Color(), e U\+T\+E\+N\+TI.
 
 
 
@@ -1223,11 +1223,11 @@ Questa funzione farà visualizzare gli Artisti T\+OP 10
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Restituisce}
-
+Ritorna pos\+\_\+artista ovvero la posizione dell\textquotesingle{}artista all\textquotesingle{}interno dell\textquotesingle{}indice.
 \end{DoxyReturn}
 L\textquotesingle{}utente dovrà inserire il codice dell\textquotesingle{}artista desiderato. Sarà effettuato un controllo per verificare l\textquotesingle{}esistenza dell\textquotesingle{}artista 
 
-Definizione alla linea 1747 del file funzioni\+\_\+utente.\+c.
+Definizione alla linea 1767 del file funzioni\+\_\+utente.\+c.
 
 
 
@@ -1251,14 +1251,14 @@ Questa funzione mostra la lista degli artisti
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Restituisce}
-Ritorna \+::pos\+\_\+artista ovvero la posizione dell\textquotesingle{}artista all\textquotesingle{}interno dell\textquotesingle{}indice.
+Ritorna pos\+\_\+artista ovvero la posizione dell\textquotesingle{}artista all\textquotesingle{}interno dell\textquotesingle{}indice.
 \end{DoxyReturn}
 L\textquotesingle{}utente inserirà il codice dell\textquotesingle{}artista e se il codice e disponibile l\textquotesingle{}artista sarà selezionato. \begin{DoxyPrecond}{Precondizione}
 Deve esistere la funzione \hyperlink{funzioni__utente_8c_a7665672f273b357976bb4e8b7ab44f67}{menu\+\_\+preferenze} 
 \end{DoxyPrecond}
 
 
-Definizione alla linea 1501 del file funzioni\+\_\+utente.\+c.
+Definizione alla linea 1521 del file funzioni\+\_\+utente.\+c.
 
 
 
@@ -1303,7 +1303,7 @@ Referenziato da main().
 
 
 
-Definizione alla linea 575 del file funzioni\+\_\+utente.\+c.
+Definizione alla linea 592 del file funzioni\+\_\+utente.\+c.
 
 
 
