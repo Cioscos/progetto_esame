@@ -167,7 +167,7 @@ int inserimento_artista(char lista_generi[][LUNGHEZZA_MAX], int artisti_effettiv
 		fgets(anno_provvisorio, LUNGHEZZA_MAX, stdin);
 		eliminazione_acapo(anno_provvisorio);
 		fflush(stdin);
-	}while (isControllo_Numero(anno_provvisorio, LUNGHEZZA_MAX) != 1 || atoi(anno_provvisorio)>DATA_CORRENTE.anno);
+	}while (isControllo_Numero(anno_provvisorio, LUNGHEZZA_MAX) != 1);
 
 	ARTISTI[artisti_effettivi].anno_inizio = atoi(anno_provvisorio);
 

@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <CUnit/CUnit.h>
 #include <CUnit/Console.h>
-#include <CUnit/Basic.h>
 #include "funzioni.h"
 
 //Funzione id inizializzazione
@@ -11,7 +10,14 @@ int init_suite1(void);
 //Funzione di clean up
 int clean_suite1(void);
 
+//Prototipi di funzioni generali
 void test_of_isControllo_Numero(void);
+void test_of_isControllo_Esistenza(void);
+
+
+//Prototipi di funzioni artista
+void test_of_inserimento_artista(void);
+void test_of_elimina_artista(void);
 
 
 int main(int argc, char *argv[]){
@@ -31,12 +37,19 @@ int main(int argc, char *argv[]){
 
 	CU_pSuite pSuite_A = CU_add_suite("Suite_funzioni_generali", init_suite1,clean_suite1);
 	CU_add_test(pSuite_A, "test of isControllo_Numero()", test_of_isControllo_Numero);
+	CU_add_test(pSuite_A, "test of isControllo_Esistenza()", test_of_isControllo_Esistenza);
 
-		CU_basic_set_mode(CU_BRM_VERBOSE);
+	CU_pSuite pSuite_B = CU_add_suite("Suite_funzioni_artista", init_suite1,clean_suite1);
+//	CU_add_test(pSuite_B, "test of inserimento_artista()", test_of_inserimento_artista);
+	CU_add_test(pSuite_B, "test of elimina_artista()", test_of_elimina_artista);
+
+
+
 		CU_console_run_tests();
 		CU_cleanup_registry();
 
 		system("pause");
+
 
 		return CU_get_error();
 }
@@ -55,7 +68,7 @@ int clean_suite1(void){
 void test_of_isControllo_Numero(void){
 	//1 INPUT CORRETTO - 0 INPUT NON CORRETTO
 
-	//Vera per tutti i valori compresi tra 0 e un numero max LUNGHEZZA_MAX di caratteri
+	//Vero per tutti i valori compresi tra 0 e un numero max LUNGHEZZA_MAX di caratteri
 	CU_ASSERT_EQUAL( isControllo_Numero("0",LUNGHEZZA_MAX), 1);
 	CU_ASSERT_EQUAL( isControllo_Numero("99999999999999999999999999999999",LUNGHEZZA_MAX), 1);
 
@@ -73,5 +86,57 @@ void test_of_isControllo_Numero(void){
 
 	//Falso quando non si inserisce nulla
 	CU_ASSERT_EQUAL( isControllo_Numero("",LUNGHEZZA_MAX), 0);
+}
+
+void test_of_isControllo_Esistenza(void){
+	//1 ELEMENTO TROVATO - 0 ELEMENTO NON TROVATO
+
+	//Falso quando viene inserito un artista non presente
+	CU_ASSERT_EQUAL( isControllo_Esistenza(ARTISTI_MAX,"xxxx","nome_artista"), 0);
+	//Falso quando viene inserito un numero di artisti non corretto
+	CU_ASSERT_EQUAL( isControllo_Esistenza(5,"Hardwell","nome_artista"), 0);
+	//Falso quando viene inserito un campo di ricerca non corretto
+	CU_ASSERT_EQUAL( isControllo_Esistenza(ARTISTI_MAX,"Hardwell","xxxx"), 0);
+	//Vero quando viene inserito il numero degli artisti max, il nome di un artista e il campo di ricerca(nome_artista) corretto
+	CU_ASSERT_EQUAL( isControllo_Esistenza(ARTISTI_MAX,"Hardwell","nome_artista"), 1);
+
+
+	//Falso quando viene inserito un codice artista non presente
+	CU_ASSERT_EQUAL( isControllo_Esistenza(ARTISTI_MAX,"xxxx","codice_artista"), 0);
+	//Falso quando viene inserito un numero di artisti non corretto
+	CU_ASSERT_EQUAL( isControllo_Esistenza(5,"0020","codice_artista"), 0);
+	//Falso quando viene inserito un campo di ricerca non corretto
+	CU_ASSERT_EQUAL( isControllo_Esistenza(ARTISTI_MAX,"0020","xxxx"), 0);
+	//Vero quando viene inserito il numero degli artisti max, il codice di un artista e il campo di ricerca(nome_artista) corretto
+	CU_ASSERT_EQUAL( isControllo_Esistenza(ARTISTI_MAX,"0020","codice_artista"), 1);
+
+
+	//Falso quando viene inserito un nickname non presente
+	CU_ASSERT_EQUAL( isControllo_Esistenza(UTENTI_MAX,"xxxx","nickname_utente"), 0);
+	//Falso quando viene inserito un numero di utenti non corretto
+	CU_ASSERT_EQUAL( isControllo_Esistenza(5,"DaftGot","nickname_utente"), 0);
+	//Falso quando viene inserito un campo di ricerca non corretto
+	CU_ASSERT_EQUAL( isControllo_Esistenza(UTENTI_MAX,"DaftGot","xxxx"), 0);
+	//Vero quando viene inserito il numero degli utenti max, il nome di un utente e il campo di ricerca(nome_artista) corretto
+	CU_ASSERT_EQUAL( isControllo_Esistenza(UTENTI_MAX,"DaftGot","nickname_utente"), 1);
+}
+
+void test_of_inserimento_artista(void){
+
+	char lista_generi[GENERI_TOT][LUNGHEZZA_MAX]={"N.A.","Electro","Pop","Techno","Rock","Jazz","Rap","Blues","Country","Britpop","Dubstep","EDM","Hip-Hop","House","Musica leggera","Trap","Trance","Disco","Dance"};
+	int artisti_effettivi=0;
+
+	//Vero quando l'inserimento è andato a buon fine ed è stato aumentato il numero di artisti effettivi
+	CU_ASSERT_EQUAL( inserimento_artista(lista_generi,artisti_effettivi), artisti_effettivi+1);
+
+}
+
+void test_of_elimina_artista(void){
+
+	int artisti_effettivi=21;
+
+	//Vero quando l'eliminazione è andata a buon fine ed è stato diminuito il numero di artisti effettivi
+	CU_ASSERT_EQUAL( elimina_artista(artisti_effettivi), artisti_effettivi-1);
+
 }
 

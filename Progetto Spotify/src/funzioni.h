@@ -72,11 +72,11 @@ void stampa_menu_utente();
 
 void controllo_menu(char* input_utente, unsigned int menu);
 
-int isControllo_Numero(char appoggio[], int lunghezza_massima);		//TODO
+int isControllo_Numero(char appoggio[], int lunghezza_massima);		//FATTO
 
-int isControllo_Esistenza(int numero_presenze, char* campo, char* controllo);		//TODO
+int isControllo_Esistenza(int numero_presenze, char* campo, char* controllo);		//FATT0
 
-void eliminazione_acapo(char* input);		//TODO
+void eliminazione_acapo(char* input);		//TODO CHIEDERE AL PROF
 
 int isAutenticazione(int utenti_effettivi, int* posizione_utente);		//TODO
 
@@ -84,13 +84,17 @@ void gestione_file(char modalita, int tipo, int *numero, char relative_path[]);	
 
 void creazione_path(char* token_buffer, char* relative_path);
 
-int inserimento_artista(char lista_generi[][LUNGHEZZA_MAX], int artisti_effettivi);		//TODO
+//-----------------------------------------------------------------------------------------------------------------
+
+int inserimento_artista(char lista_generi[][LUNGHEZZA_MAX], int artisti_effettivi);		//FATTO
 
 void visualizzazione_artisti(char lista_generi[][LUNGHEZZA_MAX], int artisti_effettivi);
 
 void modifica_artista(int artisti_effettivi, char lista_generi[][LUNGHEZZA_MAX]);
 
-int elimina_artista(int artisti_effetivi);		//TODO da vedere
+int elimina_artista(int artisti_effetivi);		//FATTA
+
+//-----------------------------------------------------------------------------------------------------------------
 
 int inserimento_utente(int utenti_effettivi);		//TODO da vedere
 

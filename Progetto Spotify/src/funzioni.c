@@ -19,8 +19,6 @@ void SetColor(short Color) {
 }
 
 void logo() {
-	char *mesi[] = { "Gen", "Feb", "Mar", "Apr", "Mag", "Giu", "Lug", "Ago",
-	        "Set", "Ott", "Nov", "Dic" };
 	SetColor(2);
 	printf("   _____                   _     _    __         \n"
 			"  / ____|                 | |   (_)  / _|        \n"
@@ -29,8 +27,7 @@ void logo() {
 			"  ____) | | |_) | | (_) | | |_  | | | |   | |_| |\n"
 			" |_____/  | .__/   \\___/   \\__| |_| |_|    \\__, |\n"
 			"          | |                               __/ |\n"
-			"          |_|        %d/%s/%d            |___/   %c\n\n\n", DATA_CORRENTE.giorno, mesi[DATA_CORRENTE.mese
-	        - 1], DATA_CORRENTE.anno, 169);
+			"          |_|        TEST                  |___/   %c\n\n\n", 169);
 	SetColor(15);
 }
 
@@ -270,13 +267,7 @@ int isControllo_Esistenza(int numero_presenze, char* campo, char* controllo) {
 	}
 
 
-	if (presenza == 1)
-	{
-		return presenza;		//Ritorna 1 - elemento non presente
-	}else
-	{
-		return presenza;		//Ritorna 0 - elemento già presente
-	}
+	return presenza;
 
 }
 
@@ -867,7 +858,6 @@ void gestione_file(char modalita, int tipo, int *numero, char relative_path[]) {
 	}
 
 }
-
 
 void creazione_path(char* token_buffer, char* relative_path) {
 	char unita_path[LUNGHEZZA_PATH] = { '\0' };
