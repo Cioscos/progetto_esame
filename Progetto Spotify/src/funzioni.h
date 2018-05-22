@@ -28,12 +28,6 @@
  */
 #define LUNGHEZZA_PASS 9
 
-/**@def LUNGHEZZA_INPUT
- * Lunghezza dell'input del menu utente
- *
- * Lunghezza massima accettata dalla stringa in input nei menù.
- */
-#define LUNGHEZZA_INPUT 3
 
 /**@def LUNGHEZZA_BUFFER
  * Lunghezza buffer file

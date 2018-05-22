@@ -27,7 +27,7 @@ int inserimento_artista(char lista_generi[][LUNGHEZZA_MAX], int artisti_effettiv
 	int posizione_genere = 0;							//pozione del genere nel vettore lista_generi
 	char genere_provvisorio[LUNGHEZZA_MAX];				//Contiene l'input inserito dall'utente
 	int genere_esistente = GENERI_TOT;					//0 genere non esistente | 1 genere esistente
-	char risposta[LUNGHEZZA_INPUT] = { "si" };			//Risposta alla domanda 'Vuoi inserire un'altra preferenza?'
+	char risposta[LUNGHEZZA_MAX] = { "si" };			//Risposta alla domanda 'Vuoi inserire un'altra preferenza?'
 	char anno_provvisorio[LUNGHEZZA_MAX] = { '\0' };	//Contiene l'anno in formato stringa per poter effettuare controlli
 	int i = 0;
 
@@ -140,7 +140,7 @@ int inserimento_artista(char lista_generi[][LUNGHEZZA_MAX], int artisti_effettiv
 			system("cls");
 			logo();
 			printf("Vuoi inserire un altro genere?\nRispondere con si o no:");
-			fgets(risposta, LUNGHEZZA_INPUT, stdin);
+			fgets(risposta, LUNGHEZZA_MAX, stdin);
 			eliminazione_acapo(risposta);
 			fflush(stdin);		//Svuota flusso in input
 		}while (strcmp(risposta, "si") != 0 && strcmp(risposta, "no") != 0);
@@ -243,7 +243,7 @@ void visualizzazione_artisti(char lista_generi[][LUNGHEZZA_MAX], int artisti_eff
 
 void modifica_artista(int artisti_effettivi, char lista_generi[][LUNGHEZZA_MAX]) {
 	int i, j;
-	char scelta[LUNGHEZZA_INPUT] = { "\0" };	//Variabile d'appoggio per l'input della scelta per il men? chiesto in input
+	char scelta[LUNGHEZZA_MAX] = { "\0" };	//Variabile d'appoggio per l'input della scelta per il men? chiesto in input
 	int numero_generi = 0;						//Numero generi
 	int genere_trovato = 0;						//0 genere non trovato - 1 genere trovato
 	char genere[LUNGHEZZA_MAX] = { "\0" };		//Variabile d'appoggio per il genere chiesto in input
@@ -361,12 +361,17 @@ void modifica_artista(int artisti_effettivi, char lista_generi[][LUNGHEZZA_MAX])
 							}
 						}
 						SetColor(15);
-
-						printf("\nHai a disposizione le seguenti opzioni:\n"
-								"[1]Elimina genere\n"
-								"[2]Aggiungere genere\n\n"
-								"Inserisci l'opzione: ");
-						fgets(scelta, LUNGHEZZA_INPUT, stdin);
+						printf("\nHai a disposizione le seguenti opzioni:\n");
+						SetColor(3);
+						printf("[1]");
+						SetColor(15);
+						printf("Elimina genere\n");
+						SetColor(3);
+						printf("[2]");
+						SetColor(15);
+						printf("Aggiungi genere\n");
+						printf("Inserisci l'opzione: ");
+						fgets(scelta, LUNGHEZZA_MAX, stdin);
 						eliminazione_acapo(scelta);
 						fflush(stdin);
 
@@ -586,7 +591,7 @@ void modifica_artista(int artisti_effettivi, char lista_generi[][LUNGHEZZA_MAX])
 			{//Continua a chiedere l'input fin quando non viene inserito si o no
 				gets(scelta);
 				fflush(stdin);
-				for (j = 0; j < LUNGHEZZA_INPUT; j++)
+				for (j = 0; j < LUNGHEZZA_MAX; j++)
 				{
 					scelta[j] = tolower(scelta[j]);	//Trasforma in minuscolo in primo carattere
 				}
@@ -612,7 +617,7 @@ void modifica_artista(int artisti_effettivi, char lista_generi[][LUNGHEZZA_MAX])
  */
 int elimina_artista(int artisti_effettivi) {
 	int i, j;
-	char scelta[LUNGHEZZA_INPUT] = { "\0" };//Variabile d'appoggio per l'input della scelta per il men? chiesto in input
+	char scelta[LUNGHEZZA_MAX] = { "\0" };//Variabile d'appoggio per l'input della scelta per il men? chiesto in input
 	char artista[LUNGHEZZA_MAX] = { "\0" };	//Variabile d'appoggio per l'artista chiesto in input
 	int posizione_artista = 0;//Contiene la posizone dell'artista trovato nel vettore
 	int artista_trovato = 0;		//0 artista non trovato - 1 artista trovato
@@ -655,7 +660,7 @@ int elimina_artista(int artisti_effettivi) {
 			{//Continua a chiedere l'input fin quando non viene inserito si o no
 				gets(scelta);
 				fflush(stdin);
-				for (j = 0; j < LUNGHEZZA_INPUT; j++)
+				for (j = 0; j < LUNGHEZZA_MAX; j++)
 				{
 					scelta[j] = tolower(scelta[j]);	//Trasforma in minuscolo in primo carattere
 				}

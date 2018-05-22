@@ -196,8 +196,9 @@ void controllo_menu(char* input_utente, unsigned int menu) {
 			stampa_menu_secondario();
 			break;
 		}
-		stringclear(input_utente, LUNGHEZZA_INPUT);
-		scanf("%3s", input_utente);
+		stringclear(input_utente, LUNGHEZZA_MAX);
+		fgets(input_utente,LUNGHEZZA_MAX,stdin);
+		eliminazione_acapo(input_utente);
 		fflush(stdin);		//Svuota flusso in input
 		flag = 0;
 	}else	//Comando input non accettato
@@ -229,8 +230,8 @@ void controllo_menu(char* input_utente, unsigned int menu) {
 			stampa_menu_secondario();
 			break;
 		}
-		stringclear(input_utente, LUNGHEZZA_INPUT);
-		scanf("%3s", input_utente);
+		fgets(input_utente,LUNGHEZZA_MAX,stdin);
+		eliminazione_acapo(input_utente);
 		fflush(stdin);		//Svuota flusso in input
 	}
 }
@@ -249,8 +250,6 @@ void eliminazione_acapo(char *input) {
  * 1. nome_artista
  * 2. codice_artista
  * 3. nickname_utente
- * 4. nome_utente
- * 5. cognome_utente
  * @post Il ritorno sarà un intero (0 o 1).
  * @warning Se non si inserisce un argomento \e char* \e controllo fra quelli elencati sopra, il ritorno sarà 0 ovvero "elemento già presente".
  */
@@ -291,27 +290,6 @@ int isControllo_Esistenza(int numero_presenze, char* campo, char* controllo) {
 		}
 	}
 
-	if (strcmp(controllo, "nome_utente") == 0)
-	{
-		for (i = 0; i < numero_presenze; i++)
-		{
-			if (strcmp(campo, UTENTI[i].nome) == 0)
-			{
-				presenza = 1;
-			}
-		}
-	}
-
-	if (strcmp(controllo, "cognome_utente") == 0)
-	{
-		for (i = 0; i < numero_presenze; i++)
-		{
-			if (strcmp(campo, UTENTI[i].cognome) == 0)
-			{
-				presenza = 1;
-			}
-		}
-	}
 
 	if (presenza == 1)
 	{

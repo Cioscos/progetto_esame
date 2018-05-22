@@ -104,7 +104,7 @@ int main(int argc, char *argv[]){
 
 	//DEFINIZIONE VARIABILI --------------------------------------------------------------------------------------------------------------------------------------------------
 	char lista_generi[GENERI_TOT][LUNGHEZZA_MAX]={"N.A.","Electro","Pop","Techno","Rock","Jazz","Rap","Blues","Country","Britpop","Dubstep","EDM","Hip-Hop","House","Musica leggera","Trap","Trance","Disco","Dance"};
-	char input_utente[LUNGHEZZA_INPUT]={"1"};		//Variabile contenente l'input dell'utente
+	char input_utente[LUNGHEZZA_MAX]={"1"};		//Variabile contenente l'input dell'utente
 	int posizione_utente=-1;						//Variabile contenente la posizione nel vettore dell'utente loggato
 	int flag_utente_eliminato=0;					//Flag utilizzata per controllare se un utente è stato eliminato   0 - Utente non eliminato | 1 - Utente eliminato
 	int artisti_effettivi=0;
@@ -127,7 +127,7 @@ int main(int argc, char *argv[]){
 
 		do{//Controllo sull'input dell'utente fin quando non viene digitato una cifra
 			controllo_menu(input_utente,MENU_PRINCIPALE);
-		}while(isControllo_Numero(input_utente,LUNGHEZZA_INPUT)!=1);
+		}while(isControllo_Numero(input_utente,LUNGHEZZA_MAX)!=1);
 
 		switch(atoi(input_utente))		//Funzione atoi converta da stringa a intero
 		{
@@ -146,7 +146,7 @@ int main(int argc, char *argv[]){
 
 						do{	//Controllo sull'input dell'utente fin quando non viene digitato una cifra
 							controllo_menu(input_utente,MENU_ARTISTA);
-						}while(isControllo_Numero(input_utente,LUNGHEZZA_INPUT)!=1);
+						}while(isControllo_Numero(input_utente,LUNGHEZZA_MAX)!=1);
 
 						switch(atoi(input_utente))
 						{
@@ -187,7 +187,9 @@ int main(int argc, char *argv[]){
 							//---- Cattura gli errori dell'utente ----
 							default : 	system("cls");
 										logo();
+										SetColor(4);
 										printf("Comando errato, inserisci un valore corretto\a\n");
+										SetColor(15);
 										system("PAUSE");
 						}
 					}
@@ -204,7 +206,7 @@ int main(int argc, char *argv[]){
 						flag=1;
 						do{		//Controllo sull'input dell'utente fin quando non viene digitato una cifra
 							controllo_menu(input_utente,MENU_SECONDARIO);
-						}while(isControllo_Numero(input_utente,LUNGHEZZA_INPUT)!=1);
+						}while(isControllo_Numero(input_utente,LUNGHEZZA_MAX)!=1);
 
 						switch(atoi(input_utente))
 						{
@@ -229,7 +231,7 @@ int main(int argc, char *argv[]){
 											flag=1;
 											do{		//Controllo sull'input dell'utente fin quando non viene digitato una cifra
 												controllo_menu(input_utente,MENU_UTENTE);
-											}while(isControllo_Numero(input_utente,LUNGHEZZA_INPUT)!=1);
+											}while(isControllo_Numero(input_utente,LUNGHEZZA_MAX)!=1);
 
 											switch(atoi(input_utente))
 											{
@@ -276,7 +278,9 @@ int main(int argc, char *argv[]){
 												//---- Cattura gli errori dell'utente ----
 												default : 	system("cls");
 															logo();
+															SetColor(4);
 															printf("Comando errato, inserisci un valore corretto\a\n");
+															SetColor(15);
 															system("PAUSE");
 											}
 
@@ -290,7 +294,9 @@ int main(int argc, char *argv[]){
 							//---- Cattura gli errori dell'utente ----
 							default : 	system("cls");
 										logo();
+										SetColor(4);
 										printf("Comando errato, inserisci un valore corretto\a\n");
+										SetColor(15);
 										system("PAUSE");
 						}
 					}
@@ -300,7 +306,9 @@ int main(int argc, char *argv[]){
 			//---- Cattura gli errori dell'utente ----
 			default : 	system("cls");
 						logo();
+						SetColor(4);
 						printf("Comando errato, inserisci un valore corretto\a\n");
+						SetColor(15);
 						system("PAUSE");
 		}
 

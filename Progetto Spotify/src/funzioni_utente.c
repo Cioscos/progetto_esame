@@ -627,8 +627,9 @@ int isAutenticazione(int utenti_effettivi, int* posizione_utente) {
 		printf("Inserisci nickname:");
 		SetColor(6);
 		fgets(utente, LUNGHEZZA_MAX, stdin);
-		fflush(stdin);
 		eliminazione_acapo(utente);
+		fflush(stdin);
+
 	}while (strlen(utente) < 1);
 
 	for (i = 0; i < utenti_effettivi; i++)
@@ -716,7 +717,7 @@ int isAutenticazione(int utenti_effettivi, int* posizione_utente) {
 void modifica_utente(int utenti_effettivi, int posizione_utente) {
 
 	int i;
-	char scelta[LUNGHEZZA_INPUT] = { "\0" };			//Variabile d'appoggio per l'input della scelta per il men? chiesto in input
+	char scelta[LUNGHEZZA_MAX] = { "\0" };			//Variabile d'appoggio per l'input della scelta per il men? chiesto in input
 	char utente[LUNGHEZZA_MAX];							//Variabile d'appoggio per nickname, nome e cognome chiesti in input
 	char controllo[LUNGHEZZA_PASS] = { '\0' };			//Variabile utilizzata per effettuare un doppio controllo sulla password per verificare che corrisponda alla prima chiesta in input
 	char carattere_bf;									//Variabile contenenete un solo carattere per la creazione della password
@@ -751,7 +752,8 @@ void modifica_utente(int utenti_effettivi, int posizione_utente) {
 		printf("[0]");
 		SetColor(15);
 		printf("Torna indietro\n\nInserisci comando: ");
-		fgets(scelta, LUNGHEZZA_INPUT, stdin);
+		fgets(scelta, LUNGHEZZA_MAX, stdin);
+		eliminazione_acapo(scelta);
 		fflush(stdin);
 
 		if ((strcmp(scelta, "0") < 0) || (strcmp(scelta, "6") > 0))
@@ -941,7 +943,6 @@ void modifica_utente(int utenti_effettivi, int posizione_utente) {
 				SetColor(6);
 				fgets(data_provvisoria,LUNGHEZZA_MAX,stdin);
 				eliminazione_acapo(data_provvisoria);
-				fflush(stdin);
 				fflush(stdin);
 				SetColor(15);
 				if (isControllo_Numero(data_provvisoria, LUNGHEZZA_MAX) != 1)
@@ -1246,7 +1247,7 @@ void modifica_utente(int utenti_effettivi, int posizione_utente) {
  */
 int elimina_utente(int* utenti_effettivi, int posizione_utente) {
 	int i, j;
-	char risposta[LUNGHEZZA_INPUT] = { "si" };//Risposta alla domanda 'Sei sicuro di voler eliminare l'artista?'
+	char risposta[LUNGHEZZA_MAX] = { "si" };//Risposta alla domanda 'Sei sicuro di voler eliminare l'artista?'
 
 	do
 	{
@@ -1256,7 +1257,8 @@ int elimina_utente(int* utenti_effettivi, int posizione_utente) {
 		printf("Sei sicuro di volerti eliminare da Spotify? :(");
 		SetColor(15);
 		printf("\nRispondere con si o no: ");
-		fgets(risposta, LUNGHEZZA_INPUT, stdin);
+		fgets(risposta, LUNGHEZZA_MAX, stdin);
+		eliminazione_acapo(risposta);
 		fflush(stdin);		//Svuota flusso in input
 	}while (strcmp(risposta, "si") != 0 && strcmp(risposta, "no") != 0);
 
@@ -1322,7 +1324,7 @@ int elimina_utente(int* utenti_effettivi, int posizione_utente) {
  */
 void menu_preferenze(int posizione_utente, int artisti_effettivi) {
 	int pos_artista;	//Contiene la posizione nel vettore dell'artista trovato
-	char metodo[LUNGHEZZA_INPUT] = { '\0' };
+	char metodo[LUNGHEZZA_MAX] = { '\0' };
 
 	do
 	{		//Controllo fin quando non viene inserito il giusto comando
@@ -1345,7 +1347,7 @@ void menu_preferenze(int posizione_utente, int artisti_effettivi) {
 		printf("[4]");
 		SetColor(15);
 		printf("Top 10 %cAscolti%c\n\nInserisci comando:", 34, 34);
-		fgets(metodo, LUNGHEZZA_INPUT, stdin);
+		fgets(metodo, LUNGHEZZA_MAX, stdin);
 		eliminazione_acapo(metodo);
 		fflush(stdin);
 
