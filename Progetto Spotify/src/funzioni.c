@@ -112,7 +112,7 @@ void stampa_menu_utente() {
 
 int isControllo_Numero(char appoggio[], int lunghezza_massima) {
 	int i = 0;
-	int input_valido = 1;			//1 Input valido - 0 Input non valido
+	int input_valido = 0;			//1 Input valido - 0 Input non valido
 	int lughezza_effettiva = 0;	//Numero caratteri effettivi
 
 	while (i < lunghezza_massima)		//Conta numero effettivo di caratteri
@@ -136,6 +136,7 @@ int isControllo_Numero(char appoggio[], int lunghezza_massima) {
 		}else
 		{
 			input_valido = 0;
+			i = lughezza_effettiva;
 		}
 	}
 
