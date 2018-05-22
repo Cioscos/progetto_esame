@@ -1,8 +1,3 @@
-/*!
- * @file funzioni_utente.c
- * @brief File contenente tutte le funzioni che riguardano la gestione degli utenti
- */
-
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -12,31 +7,7 @@
 #include <time.h>
 #include "funzioni.h"
 
-/**
- * Questa funzione permette di inserire un nuovo utente nella lista utenti memorizzata.\n
- * Prima di tutto devono essere inseriti nome, cognome e nickname; su questo sarà effettuato il controllo per far si che il nome sia almeno di una lettera.\n
- * Successivaente l'utente dovrà inserire la sua password. La funzione prevede un doppio controllo per la password.\n
- * Successivamente l'utente dovrà inserire la sua data di nascita nell'ordine AAAA/MM/GG a causa dei controlli di bisestilità\n
- * e di numeri giorni dei mesi.
- * La data di iscrizione sarà inserita automaticamente.
- *
- * @pre La variabile di tipo struct DATA, ::DATA_CORRENTE deve essere riempita in uno qualsiasi dei source file\n
- * possibilmente con la libreria time.h. Un esempio è quello presente nel file main.c riportato qui sotto:\n
- * \code{.c}
- * time_t t=time(NULL);
- * struct tm *tp=localtime(&t);
- *
- * char giorno_corrente[3];    //Variaible  momentanea contenente giorno corrente
- * int mese_corrente;			//Variaible  momentanea contenente mese corrente
- * char anno_corrente[5];		//Variaible  momentanea contenente anno corrente
- * strftime (anno_corrente,5,"%Y", tp);
- * mese_corrente=tp->tm_mon+1;
- * strftime (giorno_corrente,3,"%d", tp);
- * DATA_CORRENTE.anno=atoi(anno_corrente);
- * DATA_CORRENTE.mese=mese_corrente;
- * DATA_CORRENTE.giorno=atoi(giorno_corrente);
- * \endcode
- */
+
 int inserimento_utente(int utenti_effettivi) {
 	//DEFINZIONE VARIABILI
 	unsigned int i = 0;	//Indice non negativo che conta il numero dei caratteri della password
@@ -511,9 +482,8 @@ int inserimento_utente(int utenti_effettivi) {
 	return (utenti_effettivi);
 }
 
-/**
- * La password dell'utente sarà oscurata permettendo di vedere solo la prima e l'ultima lettera.
- */
+
+
 void stampa_profilo(int posizione_utente) {
 	int i, j;
 	SetColor(3);
@@ -589,29 +559,7 @@ void stampa_profilo(int posizione_utente) {
 	}
 }
 
-void visualizzazione_utenti(int utenti_effettivi)	//Al momento non serve più
-{
-	int i;
 
-	SetColor(11);
-	printf("NOME                            COGNOME                         NICKNAME                        DATA NASCITA        DATA ISCRIZIONE\n");
-	SetColor(15);
-
-	for (i = 0; i < utenti_effettivi; i++)
-	{
-		printf("%-31s %-31s %-31s %d/%d/%d            %d/%d/%d\n", UTENTI[i].nome, UTENTI[i].cognome, UTENTI[i].nickname, UTENTI[i].data_nascita.giorno, UTENTI[i].data_nascita.mese, UTENTI[i].data_nascita.anno, UTENTI[i].data_iscrizione.giorno, UTENTI[i].data_iscrizione.mese, UTENTI[i].data_iscrizione.anno);
-	}
-	printf("\n");
-}
-
-/**
- * Questa funzione permette di autenticare l'accesso dell'utente.\n
- * Per fare ciò, controlla prima se l'utente inserito in input è presente. Se l'utente è presente, egli potrà continuare con l'inserimento della password che avverrà\n
- * facendo apparire a schermo un "*" per ogni tasto premuto. Eventualmente l'utente avrà la possibilità anche di cancellare la password per un eventuale errore di battitura.
- *
- * @post Il ritorno sarà un intero
- *
- */
 int isAutenticazione(int utenti_effettivi, int* posizione_utente) {
 	int i, j;
 	int utente_trovato = 0;			//0 Utente trovato - 1 Utente non trovato
@@ -699,20 +647,6 @@ int isAutenticazione(int utenti_effettivi, int* posizione_utente) {
 	return (autenticazione);
 }
 
-/**
- * L'utente potrà scegliere fra 6 possibili scelte:
- * 	1. Modificare il nickname
- * 	2. Modificare la password
- * 	3. Modificare il nome
- * 	4. Modificare il cognome
- * 	5. Modificare la data di nascita
- * 	6. Tornare indietro
- *
- * Tutte le opzioni effettueranno dei controlli sui dati in input
- * 	-# Non possono essere inseriti dei dati numerici
- * 	-# Non può essere inseriti lo stesso nickname o il nickname di un altro utente
- * 	-# Doppio controllo sull'inserimento password
- */
 
 void modifica_utente(int utenti_effettivi, int posizione_utente) {
 
@@ -1241,10 +1175,7 @@ void modifica_utente(int utenti_effettivi, int posizione_utente) {
 	}
 }
 
-/**
- * La funzione chiede la conferma di eliminazione all'utente prima di procedere.\n
- * Essa procede agendo sull'array di struct ::UTENTE, ::UTENTI scalando le informazioni degli utenti di una posizione in modo da eliminare le informazioni dell'utente desiderato.
- */
+
 int elimina_utente(int* utenti_effettivi, int posizione_utente) {
 	int i, j;
 	char risposta[LUNGHEZZA_MAX] = { "si" };//Risposta alla domanda 'Sei sicuro di voler eliminare l'artista?'
@@ -1313,15 +1244,7 @@ int elimina_utente(int* utenti_effettivi, int posizione_utente) {
 	}
 }
 
-/**
- * L'utente potrà scegliere se:
- *  1. Scegliere l'artista sfogliando tutti i generi (referenziando ::categoria_artisti)
- *  2. Scegliere direttamente l'artista, dopo aver consultato la lista degli artisti (referenziando ::totale_artisti)
- *  3. Visualizzare la TOP 10 degli artisti con più "Mi piace" (referenziando ::top_10)
- *  4. Visualizzare la TOP 10 degli artisti con più "Ascolti" (referenziando ::top_10)
- *
- * Questa funzione referenzia le sopra elencate funzioni.
- */
+
 void menu_preferenze(int posizione_utente, int artisti_effettivi) {
 	int pos_artista;	//Contiene la posizione nel vettore dell'artista trovato
 	char metodo[LUNGHEZZA_MAX] = { '\0' };
@@ -1395,12 +1318,7 @@ void menu_preferenze(int posizione_utente, int artisti_effettivi) {
 	}
 }
 
-/**
- * Quando l'utente inserisce il genere, viene effettuato un controllo per verificare che il genere effettivamente esista.\n
- * Se il genere sarà trovato, saranno visualizzati tutti i nomi degli artisti o gruppi. Se non esistono artisti o gruppi di quel genere, sarà notificato.
- * \pre Deve esistere la funzione ::menu_preferenze
- * \warning La funzione controlla l'esistenza del genere carattere per carattere, quindi vanno inserite anche le lettere maiuscole
- */
+
 int categoria_artisti(int artisti_effettivi) {
 	char lista_generi[GENERI_TOT][LUNGHEZZA_MAX] = { "N.A.", "Electro", "Pop",
 	        "Techno", "Rock", "Jazz", "Rap", "Blues", "Country", "Britpop",
@@ -1516,10 +1434,7 @@ int categoria_artisti(int artisti_effettivi) {
 
 }
 
-/**
- * L'utente inserirà il codice dell'artista e se il codice e disponibile l'artista sarà selezionato.
- * \pre Deve esistere la funzione ::menu_preferenze
- */
+
 int totale_artisti(int artisti_effettivi) {
 	char artista[LUNGHEZZA_MAX] = { "\0" };	//Variabile d'appoggio per l'artista chiesto in input
 	int artista_trovato = 0;		//0 artista non trovato | 1 artista trovato
@@ -1566,19 +1481,7 @@ int totale_artisti(int artisti_effettivi) {
 	return (pos_artista);
 }
 
-/**
- * Questa funzione viene chiamata da ::menu_preferenze e permette di far scegliere all'utente cosa fare per ogni signolo artista.\n
- * Le opzioni sono:
- * 	1. Ascoltare cantante
- * 	2. Ascoltare e mettere mi piace
- * 	3. Ascoltare e mettere non mi piace.
- *
- * Nell'utilizzo della funzione si tenga presente che:
- * 	-# Ogni "Ascoltare cantante" aumenta di 1 gli ascolti
- * 	-# Ogni "Ascoltare e mettere mi piace" aumenterà di 1 gli ascolti ma il "Mi piace" sarà incrementato solo la prima volta.
- * 	-# Ogni "Ascoltare e mettere non mi piace" aumenterà di 1 gli ascolti e toglierà il "Mi piace" solamente se il "Mi piace" era già presente.
- *
- */
+
 void modifica_preferenze(int posizione_utente, int pos_artista) {
 	char artista[LUNGHEZZA_MAX] = { "\0" };	//Variabile d'appoggio per l'artista chiesto in input
 	int artista_trovato = 0;//0 artista non trovato | 1 artista trovato					//Contiene la posizione nel vettore dell'artista trovato
@@ -1763,9 +1666,7 @@ void modifica_preferenze(int posizione_utente, int pos_artista) {
 	}
 }
 
-/**
- * L'utente dovrà inserire il codice dell'artista desiderato. Sarà effettuato un controllo per verificare l'esistenza dell'artista
- */
+
 int top_10(int artisti_effettivi, char* input) {
 	char artista[LUNGHEZZA_MAX] = { "\0" };	//Variabile d'appoggio per l'artista chiesto in input
 	int artista_trovato = 0;		//0 artista non trovato | 1 artista trovato
@@ -1805,12 +1706,7 @@ int top_10(int artisti_effettivi, char* input) {
 	return (pos_artista);
 }
 
-/**
- * La funzione a seconda dell'input che riceverà andrà a ordinare gli artisti.\n
- * Per fare ciò saranno utilizzate delle variabili temporane rinominate con il nome del campo della struct preceduto da "tmp_".\n
- * Se il numero di "Mi piace" o "Ascolti" eccede il numero di massimo di TOP, saranno visualizzati comunque gli artisti con lo stesso numero di "Mi piace" o "Ascolti" in eccesso.
- * \pre Questa funzione deve essere chiamata da ::top_10
- */
+
 void ordinamento(char* input) {
 	unsigned int top = 0;
 	unsigned int i;

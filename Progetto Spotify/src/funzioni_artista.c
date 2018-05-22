@@ -1,10 +1,3 @@
-/**
- * @file funzioni_artista.c
- * @brief File contenente tutte le funzioni che riguardano la gestione degli artisti.
- *
- * Questo file permette di gestire la lista degli utenti, andandola a modificare.
- */
-
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -13,15 +6,7 @@
 #include <time.h>
 #include "funzioni.h"
 
- /**
- * Inserimento nuovo artista
- *
- * Questa funzione permette di inserire un nuovo cantante nella lista degli artisti.
- * Prima di terminare aggiorna la lista dei cantanti chiamando la funzione gestione_file presente nel file funzioni.c
- * @param lista_generi Vettore bidimensionale di caratteri contenente i generi disponibili nel programma
- * @param artisti_effettivi Numero degli artisti effettivamente memorizzati nel programma
- * @return Il numero degli artisti effettivi aggiornato
- */
+
 int inserimento_artista(char lista_generi[][LUNGHEZZA_MAX], int artisti_effettivi) {
 
 	int posizione_genere = 0;							//pozione del genere nel vettore lista_generi
@@ -609,12 +594,6 @@ void modifica_artista(int artisti_effettivi, char lista_generi[][LUNGHEZZA_MAX])
 	}while (strcmp(scelta, "si") == 0);		//Termina quando viene digitato si
 }
 
-/**
- * La funzione stampa prima tutti gli artisti disponibili.
- * Successivamente chiede l'inserimento del codicw artista da eliminare e controlla se effettivamente l'artista esiste.\n
- * Se l'artista esiste procederà con la sua eliminazione; in alternativa la funzione chiederà se vogliamo provare
- * ad inserire un nuovo artista da eliminare.
- */
 int elimina_artista(int artisti_effettivi) {
 	int i, j;
 	char scelta[LUNGHEZZA_MAX] = { "\0" };//Variabile d'appoggio per l'input della scelta per il men? chiesto in input

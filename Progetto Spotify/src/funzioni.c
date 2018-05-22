@@ -1,8 +1,3 @@
-/*!
- * @file funzioni.c
- * @brief File contenente i prototipi di funzioni generali usate da tutti gli altri source file
- */
-
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -115,15 +110,6 @@ void stampa_menu_utente() {
 	printf("Disconnetti\n\nInserisci comando: ");
 }
 
-/**
- * -La funzione effettua diversi controlli
- * 		1. Controlla prima la lunghezza effettiva dell'input
- * 		2. Controlla se l'input è diverso da un numero
- * 		3. Controllo i casi limite 01-10-00-0'\0'
- *
- * @pre appoggio deve essere di massimo 3 caratteri ma vengono effettuati dei controlli per verificare se sono stati scritti dei numeri o l'input è più lungo di LUNGHEZZA_INPUT.
- * @post Il ritorno sarà un intero
- */
 int isControllo_Numero(char appoggio[], int lunghezza_massima) {
 	int i = 0;
 	int input_valido = 1;			//1 Input valido - 0 Input non valido
@@ -195,7 +181,7 @@ void controllo_menu(char* input_utente, unsigned int menu) {
 		case MENU_SECONDARIO:
 			stampa_menu_secondario();
 			break;
-		}
+		}//DIOCAN
 		stringclear(input_utente, LUNGHEZZA_MAX);
 		fgets(input_utente,LUNGHEZZA_MAX,stdin);
 		eliminazione_acapo(input_utente);
@@ -245,14 +231,6 @@ void eliminazione_acapo(char *input) {
 	}
 }
 
-/**
- * @pre La stringa passata a come terzo argomento (char* controllo) deve corrispondere a uno dei seguenti elementi:
- * 1. nome_artista
- * 2. codice_artista
- * 3. nickname_utente
- * @post Il ritorno sarà un intero (0 o 1).
- * @warning Se non si inserisce un argomento \e char* \e controllo fra quelli elencati sopra, il ritorno sarà 0 ovvero "elemento già presente".
- */
 int isControllo_Esistenza(int numero_presenze, char* campo, char* controllo) {
 	int i;
 	int presenza = 0;		//0 elemento già presente - 1 elemento non presente
@@ -301,17 +279,6 @@ int isControllo_Esistenza(int numero_presenze, char* campo, char* controllo) {
 
 }
 
-/**
- *
- * @pre Alla funzione bisogna passare come primo parametro (\e char \e modalità ) per forza uno di questi paramtri
- * 	1. r = lettura
- * 	2. w = scrittura
- * 	3. a = aggiunta
- * @pre Alla funzione bisogna passare come secodno parametro (\e int \e tipo ) per forza uno di questi parametri
- * 	1. 0 = Artista
- * 	2. 1 = Utente
- * 	3. 2 = Preferenze
- */
 void gestione_file(char modalita, int tipo, int *numero, char relative_path[]) {
 	int i = 0, j, k;
 	char buffer[LUNGHEZZA_BUFFER] = { '\0' };
@@ -900,15 +867,6 @@ void gestione_file(char modalita, int tipo, int *numero, char relative_path[]) {
 
 }
 
-/**
- * Questa funzione crea la path dei file necessari per il programma.
- *
- * @pre L'eseguibile si deve trovare o nella directory chiamata "Progetto Spotify" o in una qualsiasi sua sottocartella
- * @pre I file si devono trovare in una cartella all'interno di "Progetto Spotify" chiamata "File"
- * @warning La creazione di una path non corretta sarà segnalata da un messaggio di errore ma il programma funzionerà comunque.\n
- * I dati però saranno memorizzati fino alla chiusura del programma, poi saranno persi.
- *
- */
 
 void creazione_path(char* token_buffer, char* relative_path) {
 	char unita_path[LUNGHEZZA_PATH] = { '\0' };
