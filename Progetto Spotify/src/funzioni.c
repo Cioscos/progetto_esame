@@ -126,14 +126,14 @@ void stampa_menu_utente() {
  */
 int isControllo_Numero(char appoggio[], int lunghezza_massima) {
 	int i = 0;
-	int input_valido = 1;			//1 Input valido - 0 Input non valido
-	int lughezza_effettiva = 0;	//Numero caratteri effettivi
+	int input_valido = 0;			//1 Input valido - 0 Input non valido
+	int lunghezza_effettiva = 0;	//Numero caratteri effettivi
 
 	while (i < lunghezza_massima)		//Conta numero effettivo di caratteri
 	{
 		if (appoggio[i] != '\0')
 		{
-			lughezza_effettiva++;
+			lunghezza_effettiva++;
 			i++;
 		}else
 		{
@@ -142,7 +142,7 @@ int isControllo_Numero(char appoggio[], int lunghezza_massima) {
 	}
 	i = 0;
 
-	for (i = 0; i < lughezza_effettiva; i++)//Controllo se l'input è diverso da un numero
+	for (i = 0; i < lunghezza_effettiva; i++)//Controllo se l'input è diverso da un numero
 	{
 		if ((isdigit(appoggio[i]) != 0) || (appoggio[i] == '\0'))
 		{
@@ -150,6 +150,7 @@ int isControllo_Numero(char appoggio[], int lunghezza_massima) {
 		}else
 		{
 			input_valido = 0;
+			i=lunghezza_effettiva;
 		}
 	}
 
