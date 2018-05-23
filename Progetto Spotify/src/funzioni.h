@@ -390,7 +390,7 @@ int conferma_eliminazione(int utenti_effettivi);
 /**
  * Questa funzione permette di eliminare un utente registrato
  *
- * @param[in, out] utenti_effettivi Viene passato per riferimento il numero di utenti effetivamente memorizzati
+ * @param[in] utenti_effettivi Viene passato per riferimento il numero di utenti effetivamente memorizzati
  * @param[in] posizione_utente Viene passato per valore l'indice dell'utente che ha fatto accesso al programma
  * @return 1 = Utente eliminato     0 = Utente non eliminato
  */

@@ -1185,7 +1185,7 @@ void modifica_utente(int utenti_effettivi, int posizione_utente) {
 			{
 				//CONTROLLO MESI DA 31 GIORNI
 				do
-				{	//Controllo fin quando il giorno non Ã¨ compreso tra 1 e 31
+				{	//Controllo fin quando il giorno non è compreso tra 1 e 31
 					do
 					{	//Controllo fin quando l'input inserito non Ã¨ un numero
 						printf("\nGiorno: ");
@@ -1242,7 +1242,7 @@ void modifica_utente(int utenti_effettivi, int posizione_utente) {
 }
 
 /**
- *
+ * Chiede conferma dell'eliminazione dell'utente
  */
 int conferma_eliminazione(int utenti_effettivi)
 {
