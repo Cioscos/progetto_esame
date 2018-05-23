@@ -133,10 +133,7 @@ void test_of_inserimento_artista(void){
 
 void test_of_elimina_artista(void){
 
-	int artisti_effettivi=21;
 
-	//Vero quando l'eliminazione è andata a buon fine ed è stato diminuito il numero di artisti effettivi
-	CU_ASSERT_EQUAL( elimina_artista(artisti_effettivi), artisti_effettivi-1);
 
 }
 

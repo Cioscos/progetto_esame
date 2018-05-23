@@ -1175,11 +1175,9 @@ void modifica_utente(int utenti_effettivi, int posizione_utente) {
 	}
 }
 
-
-int elimina_utente(int* utenti_effettivi, int posizione_utente) {
-	int i, j;
+int conferma_eliminazione(int utenti_effettivi)
+{
 	char risposta[LUNGHEZZA_MAX] = { "si" };//Risposta alla domanda 'Sei sicuro di voler eliminare l'artista?'
-
 	do
 	{
 		system("cls");
@@ -1193,55 +1191,60 @@ int elimina_utente(int* utenti_effettivi, int posizione_utente) {
 		fflush(stdin);		//Svuota flusso in input
 	}while (strcmp(risposta, "si") != 0 && strcmp(risposta, "no") != 0);
 
-	if (strcmp(risposta, "si") == 0)
+	if((strcmp(risposta, "si")==0))
 	{
-		for (i = posizione_utente + 1; i < *utenti_effettivi; i++)//Spostamento degli artisti nella posizione precendete fino all'indice del artista da eliminare
-		{
-			//COPIA DEL UTENTE IN POSIZIONE SUPERIORE IN QUELLO IN POSIZIONE INFERIORE
-			strcpy(UTENTI[i - 1].nickname, UTENTI[i].nickname);
-			strcpy(UTENTI[i - 1].password, UTENTI[i].password);
-			strcpy(UTENTI[i - 1].nome, UTENTI[i].nome);
-			strcpy(UTENTI[i - 1].cognome, UTENTI[i].cognome);
-			UTENTI[i - 1].data_nascita.anno = UTENTI[i].data_nascita.anno;
-			UTENTI[i - 1].data_nascita.mese = UTENTI[i].data_nascita.mese;
-			UTENTI[i - 1].data_nascita.giorno = UTENTI[i].data_nascita.giorno;
-			UTENTI[i - 1].data_iscrizione.anno = UTENTI[i].data_iscrizione.anno;
-			UTENTI[i - 1].data_iscrizione.mese = UTENTI[i].data_iscrizione.mese;
-			UTENTI[i - 1].data_iscrizione.giorno =
-			        UTENTI[i].data_iscrizione.giorno;
-			for (j = 0; j < ARTISTI_MAX; j++)
-			{
-				strcpy(UTENTI[i - 1].codice_artista[j], UTENTI[i].codice_artista[j]);
-				UTENTI[i - 1].preferenze[j] = UTENTI[i].preferenze[j];
-			}
+		return 1;
+	}
+	else
+	{
+		return 0;
+	}
+}
 
-		}
+int elimina_utente(int utenti_effettivi, int posizione_utente) {
+	int i, j;
 
-		//PULITURA ULTIMO POSZIONE UTENTE
-		stringclear(UTENTI[*utenti_effettivi - 1].nickname, LUNGHEZZA_MAX);
-		stringclear(UTENTI[*utenti_effettivi - 1].password, LUNGHEZZA_PASS);
-		stringclear(UTENTI[*utenti_effettivi - 1].nome, LUNGHEZZA_MAX);
-		stringclear(UTENTI[*utenti_effettivi - 1].cognome, LUNGHEZZA_MAX);
-		UTENTI[*utenti_effettivi - 1].data_nascita.anno = 0;
-		UTENTI[*utenti_effettivi - 1].data_nascita.mese = 0;
-		UTENTI[*utenti_effettivi - 1].data_nascita.giorno = 0;
-		UTENTI[*utenti_effettivi - 1].data_iscrizione.anno = 0;
-		UTENTI[*utenti_effettivi - 1].data_iscrizione.mese = 0;
-		UTENTI[*utenti_effettivi - 1].data_iscrizione.giorno = 0;
+	for (i = posizione_utente + 1; i < utenti_effettivi; i++)//Spostamento degli artisti nella posizione precendete fino all'indice del artista da eliminare
+	{
+		//COPIA DEL UTENTE IN POSIZIONE SUPERIORE IN QUELLO IN POSIZIONE INFERIORE
+		strcpy(UTENTI[i - 1].nickname, UTENTI[i].nickname);
+		strcpy(UTENTI[i - 1].password, UTENTI[i].password);
+		strcpy(UTENTI[i - 1].nome, UTENTI[i].nome);
+		strcpy(UTENTI[i - 1].cognome, UTENTI[i].cognome);
+		UTENTI[i - 1].data_nascita.anno = UTENTI[i].data_nascita.anno;
+		UTENTI[i - 1].data_nascita.mese = UTENTI[i].data_nascita.mese;
+		UTENTI[i - 1].data_nascita.giorno = UTENTI[i].data_nascita.giorno;
+		UTENTI[i - 1].data_iscrizione.anno = UTENTI[i].data_iscrizione.anno;
+		UTENTI[i - 1].data_iscrizione.mese = UTENTI[i].data_iscrizione.mese;
+		UTENTI[i - 1].data_iscrizione.giorno = UTENTI[i].data_iscrizione.giorno;
 		for (j = 0; j < ARTISTI_MAX; j++)
 		{
-			strcpy(UTENTI[*utenti_effettivi - 1].codice_artista[j], "0000");
-			UTENTI[*utenti_effettivi - 1].preferenze[j] = 0;
+			strcpy(UTENTI[i - 1].codice_artista[j], UTENTI[i].codice_artista[j]);
+			UTENTI[i - 1].preferenze[j] = UTENTI[i].preferenze[j];
 		}
 
-		*utenti_effettivi -= 1;		//Eliminazione di un utente
-		printf("\nUtente eliminato!\n");
-		return (1);
-	}else
-	{
-		return (0);
-		printf("\nUtente non eliminato!\n");
 	}
+
+	//PULITURA ULTIMO POSZIONE UTENTE
+	stringclear(UTENTI[utenti_effettivi - 1].nickname, LUNGHEZZA_MAX);
+	stringclear(UTENTI[utenti_effettivi - 1].password, LUNGHEZZA_PASS);
+	stringclear(UTENTI[utenti_effettivi - 1].nome, LUNGHEZZA_MAX);
+	stringclear(UTENTI[utenti_effettivi - 1].cognome, LUNGHEZZA_MAX);
+	UTENTI[utenti_effettivi - 1].data_nascita.anno = 0;
+	UTENTI[utenti_effettivi - 1].data_nascita.mese = 0;
+	UTENTI[utenti_effettivi - 1].data_nascita.giorno = 0;
+	UTENTI[utenti_effettivi - 1].data_iscrizione.anno = 0;
+	UTENTI[utenti_effettivi - 1].data_iscrizione.mese = 0;
+	UTENTI[utenti_effettivi - 1].data_iscrizione.giorno = 0;
+	for (j = 0; j < ARTISTI_MAX; j++)
+	{
+		strcpy(UTENTI[utenti_effettivi - 1].codice_artista[j], "0000");
+		UTENTI[utenti_effettivi - 1].preferenze[j] = 0;
+	}
+
+	utenti_effettivi--;		//Eliminazione di un utente
+
+	return utenti_effettivi;
 }
 
 

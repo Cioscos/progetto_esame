@@ -92,7 +92,9 @@ void visualizzazione_artisti(char lista_generi[][LUNGHEZZA_MAX], int artisti_eff
 
 void modifica_artista(int artisti_effettivi, char lista_generi[][LUNGHEZZA_MAX]);
 
-int elimina_artista(int artisti_effetivi);		//FATTA
+int scegli_artista(int artisti_effettivi);
+
+int elimina_artista(int artisti_effettivi, int posizione_artista);		//FATTA
 
 //-----------------------------------------------------------------------------------------------------------------
 
@@ -102,7 +104,10 @@ void stampa_profilo(int posizione_utente);
 
 void modifica_utente(int utenti_effettivi, int posizione_utente);
 
-int elimina_utente(int* utenti_effettivi, int posizione_utente);		//TODO da vedere
+
+int conferma_eliminazione(int utenti_effettivi);
+
+int elimina_utente(int utenti_effettivi, int posizione_utente);		//TODO da vedere
 
 void menu_preferenze(int posizione_utente, int artisti_effettivi);
 
