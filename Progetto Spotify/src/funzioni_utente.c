@@ -1244,7 +1244,7 @@ void modifica_utente(int utenti_effettivi, int posizione_utente) {
 /**
  *
  */
-int conferma_eliminazione(int utenti_effettivi)		//DA METTERE NEL .h
+int conferma_eliminazione(int utenti_effettivi)
 {
 	char risposta[LUNGHEZZA_MAX] = { "si" };//Risposta alla domanda 'Sei sicuro di voler eliminare l'artista?'
 	do
@@ -1922,17 +1922,26 @@ void ordinamento(char* input) {
 
 		for (i = 0; i < ARTISTI_MAX; i++)
 		{
-			printf("    %-8d %s\t%-32s%d\n", i + 1, tmp_codice_artista[i], tmp_nome_artista[i], tmp_mi_piace[i]);
-
-			top++;
-
-			if (top >= TOP)
+			if(tmp_mi_piace[i]!=0)
 			{
-				if (min != tmp_mi_piace[i + 1])
+				printf("    %-8d %s\t%-32s%d\n", i + 1, tmp_codice_artista[i], tmp_nome_artista[i], tmp_mi_piace[i]);
+
+				top++;
+
+				if (top >= TOP)
 				{
-					i = ARTISTI_MAX;
+					if (min != tmp_mi_piace[i + 1])
+					{
+						i = ARTISTI_MAX;
+					}
 				}
 			}
+			else
+			{
+				i=ARTISTI_MAX;
+			}
+
+
 		}
 	}
 
@@ -1954,16 +1963,23 @@ void ordinamento(char* input) {
 
 		for (i = 0; i < ARTISTI_MAX; i++)
 		{
-			printf("    %-8d %s\t%-32s%d\n", i + 1, tmp_codice_artista[i], tmp_nome_artista[i], tmp_ascolti[i]);
-
-			top++;
-
-			if (top >= TOP)
+			if(tmp_ascolti[i]!=0)
 			{
-				if (min != tmp_ascolti[i + 1])
+				printf("    %-8d %s\t%-32s%d\n", i + 1, tmp_codice_artista[i], tmp_nome_artista[i], tmp_ascolti[i]);
+
+				top++;
+
+				if (top >= TOP)
 				{
-					i = ARTISTI_MAX;
+					if (min != tmp_ascolti[i + 1])
+					{
+						i = ARTISTI_MAX;
+					}
 				}
+			}
+			else
+			{
+				i=ARTISTI_MAX;
 			}
 		}
 	}
