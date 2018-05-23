@@ -106,6 +106,7 @@ int main(int argc, char *argv[]){
 	char lista_generi[GENERI_TOT][LUNGHEZZA_MAX]={"N.A.","Electro","Pop","Techno","Rock","Jazz","Rap","Blues","Country","Britpop","Dubstep","EDM","Hip-Hop","House","Musica leggera","Trap","Trance","Disco","Dance"};
 	char input_utente[LUNGHEZZA_MAX]={"1"};		//Variabile contenente l'input dell'utente
 	int posizione_utente=-1;						//Variabile contenente la posizione nel vettore dell'utente loggato
+	int posizione_artista=-1;
 	int flag_utente_eliminato=0;					//Flag utilizzata per controllare se un utente è stato eliminato   0 - Utente non eliminato | 1 - Utente eliminato
 	int artisti_effettivi=0;
 	int utenti_effettivi=0;
@@ -178,9 +179,15 @@ int main(int argc, char *argv[]){
 							//---- Elimina un artista ----
 							case 4:	system("cls");
 									logo();
-									artisti_effettivi=elimina_artista(artisti_effettivi);
-									gestione_file('w', 0, &artisti_effettivi, relative_path);
-									gestione_file('w', 2, &utenti_effettivi, relative_path);
+									posizione_artista=scegli_artista(artisti_effettivi);
+									if(posizione_artista!=-1)
+									{
+										artisti_effettivi=elimina_artista(artisti_effettivi,posizione_artista);
+										printf("\nArtista eliminato!\n");
+										gestione_file('w', 0, &artisti_effettivi, relative_path);
+										gestione_file('w', 2, &utenti_effettivi, relative_path);
+									}
+
 									system("PAUSE");
 									break;
 
@@ -195,8 +202,6 @@ int main(int argc, char *argv[]){
 					}
 					strcpy(input_utente,"1");//Permette di rientrare nel menu principale
 					break;
-
-
 
 
 			//-----------------------  GESTIONE UTENTE -------------------------------------------
@@ -269,7 +274,13 @@ int main(int argc, char *argv[]){
 												//---- Elimina utente ----
 												case 4:	system("cls");
 														logo();
-														flag_utente_eliminato=elimina_utente(&utenti_effettivi, posizione_utente);
+														flag_utente_eliminato=conferma_eliminazione(utenti_effettivi);
+														if(flag_utente_eliminato==1)
+														{
+															utenti_effettivi=elimina_utente(utenti_effettivi, posizione_utente);
+															printf("\nUtente eliminato!\n");
+														}
+
 														gestione_file('w', 1, &utenti_effettivi, relative_path);
 														gestione_file('w', 2, &utenti_effettivi, relative_path);
 														system("PAUSE");

@@ -340,11 +340,21 @@ void visualizzazione_artisti(char lista_generi[][LUNGHEZZA_MAX], int artisti_eff
 void modifica_artista(int artisti_effettivi, char lista_generi[][LUNGHEZZA_MAX]);
 
 /**
- * Questa funzione elimina un artista dalla lista degli artisti memorizzati
+ * Questa funzione permette di scegliere l'artista da eliminare dalla lista degli artisti memorizzati
+ *
  * @param[in] artisti_effettivi Viene passato per valore il numero di artisti effetivamente memorizzati
+ * @return L'indice di posizione nella lista degli artisti, dell'artista scelto per l'eliminazione
+ */
+int scegli_artista(int artisti_effettivi);
+
+/**
+ * Questa funzione elimina un artista dalla lista degli artisti memorizzati
+ *
+ * @param[in] artisti_effettivi Viene passato per valore il numero di artisti effetivamente memorizzati
+ * @param[in] posizione_artista Viene passato per valore l'indice dell'artista selezionato [vedi ::scegli_artista]
  * @return Il numero degli artisti memorizzati dopo l'eliminazione
  */
-int elimina_artista(int artisti_effetivi);
+int elimina_artista(int artisti_effettivi, int posizione_artista);
 
 /**
  *
@@ -371,13 +381,20 @@ void stampa_profilo(int posizione_utente);
 void modifica_utente(int utenti_effettivi, int posizione_utente);
 
 /**
+ * Questa funzion
+ * @param[in] utenti_effettivi Viene passato per riferimento il numero di utenti effetivamente memorizzati
+ * @return
+ */
+int conferma_eliminazione(int utenti_effettivi);
+
+/**
  * Questa funzione permette di eliminare un utente registrato
  *
  * @param[in, out] utenti_effettivi Viene passato per riferimento il numero di utenti effetivamente memorizzati
  * @param[in] posizione_utente Viene passato per valore l'indice dell'utente che ha fatto accesso al programma
  * @return 1 = Utente eliminato     0 = Utente non eliminato
  */
-int elimina_utente(int* utenti_effettivi, int posizione_utente);
+int elimina_utente(int utenti_effettivi, int posizione_utente);
 
 /**
  * Questa funzione mostra il menù dal quale l'utente può decidere di ascoltare un cantante e modficiare le preferenze

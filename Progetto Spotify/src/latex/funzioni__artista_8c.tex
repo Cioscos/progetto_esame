@@ -21,7 +21,9 @@ void \hyperlink{funzioni__artista_8c_a27b1103b03ab2bcb926728dede408ce0}{visualiz
 \item 
 void \hyperlink{funzioni__artista_8c_affb3276e623be41c374aa7efd8b660bc}{modifica\+\_\+artista} (int artisti\+\_\+effettivi, char lista\+\_\+generi\mbox{[}$\,$\mbox{]}\mbox{[}\hyperlink{funzioni_8h_a2cdd71b92d6e869f8b094e32a6da6a62}{L\+U\+N\+G\+H\+E\+Z\+Z\+A\+\_\+\+M\+AX}\mbox{]})
 \item 
-int \hyperlink{funzioni__artista_8c_ab38e14210cad9f822f062e704852197d}{elimina\+\_\+artista} (int artisti\+\_\+effettivi)
+int \hyperlink{funzioni__artista_8c_a0a19e0d28b6df555b0320c438ef5edfa}{scegli\+\_\+artista} (int artisti\+\_\+effettivi)
+\item 
+int \hyperlink{funzioni__artista_8c_a144e521e9428a8bd15bec299cf2c4083}{elimina\+\_\+artista} (int artisti\+\_\+effettivi, int posizione\+\_\+artista)
 \end{DoxyCompactItemize}
 
 
@@ -31,20 +33,31 @@ File contenente tutte le funzioni che riguardano la gestione degli artisti.
 Questo file permette di gestire la lista degli utenti, andandola a modificare. 
 
 \subsection{Documentazione delle funzioni}
-\mbox{\Hypertarget{funzioni__artista_8c_ab38e14210cad9f822f062e704852197d}\label{funzioni__artista_8c_ab38e14210cad9f822f062e704852197d}} 
+\mbox{\Hypertarget{funzioni__artista_8c_a144e521e9428a8bd15bec299cf2c4083}\label{funzioni__artista_8c_a144e521e9428a8bd15bec299cf2c4083}} 
 \index{funzioni\+\_\+artista.\+c@{funzioni\+\_\+artista.\+c}!elimina\+\_\+artista@{elimina\+\_\+artista}}
 \index{elimina\+\_\+artista@{elimina\+\_\+artista}!funzioni\+\_\+artista.\+c@{funzioni\+\_\+artista.\+c}}
 \subsubsection{\texorpdfstring{elimina\+\_\+artista()}{elimina\_artista()}}
-{\footnotesize\ttfamily int elimina\+\_\+artista (\begin{DoxyParamCaption}\item[{int}]{artisti\+\_\+effettivi }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int elimina\+\_\+artista (\begin{DoxyParamCaption}\item[{int}]{artisti\+\_\+effettivi,  }\item[{int}]{posizione\+\_\+artista }\end{DoxyParamCaption})}
 
-La funzione stampa prima tutti gli artisti disponibili. Successivamente chiede l\textquotesingle{}inserimento del codicw artista da eliminare e controlla se effettivamente l\textquotesingle{}artista esiste.~\newline
-Se l\textquotesingle{}artista esiste procederà con la sua eliminazione; in alternativa la funzione chiederà se vogliamo provare ad inserire un nuovo artista da eliminare. 
-
-Definizione alla linea 613 del file funzioni\+\_\+artista.\+c.
+Questa funzione elimina un artista dalla lista degli artisti memorizzati
 
 
+\begin{DoxyParams}[1]{Parametri}
+\mbox{\tt in}  & {\em artisti\+\_\+effettivi} & Viene passato per valore il numero di artisti effetivamente memorizzati \\
+\hline
+\mbox{\tt in}  & {\em posizione\+\_\+artista} & Viene passato per valore l\textquotesingle{}indice dell\textquotesingle{}artista selezionato \mbox{[}vedi \hyperlink{funzioni_8h_a0a19e0d28b6df555b0320c438ef5edfa}{scegli\+\_\+artista}\mbox{]} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Restituisce}
+Il numero degli artisti memorizzati dopo l\textquotesingle{}eliminazione 
+\end{DoxyReturn}
 
-Referenzia A\+R\+T\+I\+S\+T\+A\+::anno\+\_\+inizio, A\+R\+T\+I\+S\+TI, A\+R\+T\+I\+S\+T\+A\+::ascolti, eliminazione\+\_\+acapo(), A\+R\+T\+I\+S\+T\+A\+::genere, G\+E\+N\+E\+R\+I\+\_\+\+T\+OT, logo(), L\+U\+N\+G\+H\+E\+Z\+Z\+A\+\_\+\+C\+O\+D\+I\+CE, L\+U\+N\+G\+H\+E\+Z\+Z\+A\+\_\+\+I\+N\+P\+UT, L\+U\+N\+G\+H\+E\+Z\+Z\+A\+\_\+\+M\+AX, U\+T\+E\+N\+T\+E\+::nome, A\+R\+T\+I\+S\+T\+A\+::preferenze, Set\+Color(), e stringclear.
+
+Definizione alla linea 687 del file funzioni\+\_\+artista.\+c.
+
+
+
+Referenzia A\+R\+T\+I\+S\+T\+A\+::anno\+\_\+inizio, A\+R\+T\+I\+S\+TI, A\+R\+T\+I\+S\+T\+A\+::ascolti, A\+R\+T\+I\+S\+T\+A\+::genere, G\+E\+N\+E\+R\+I\+\_\+\+T\+OT, L\+U\+N\+G\+H\+E\+Z\+Z\+A\+\_\+\+C\+O\+D\+I\+CE, L\+U\+N\+G\+H\+E\+Z\+Z\+A\+\_\+\+M\+AX, U\+T\+E\+N\+T\+E\+::nome, A\+R\+T\+I\+S\+T\+A\+::preferenze, e stringclear.
 
 
 
@@ -74,7 +87,7 @@ Definizione alla linea 25 del file funzioni\+\_\+artista.\+c.
 
 
 
-Referenzia D\+A\+T\+A\+::anno, A\+R\+T\+I\+S\+T\+A\+::anno\+\_\+inizio, A\+R\+T\+I\+S\+TI, D\+A\+T\+A\+\_\+\+C\+O\+R\+R\+E\+N\+TE, eliminazione\+\_\+acapo(), A\+R\+T\+I\+S\+T\+A\+::genere, G\+E\+N\+E\+R\+I\+\_\+\+T\+OT, is\+Controllo\+\_\+\+Esistenza(), is\+Controllo\+\_\+\+Numero(), logo(), L\+U\+N\+G\+H\+E\+Z\+Z\+A\+\_\+\+C\+O\+D\+I\+CE, L\+U\+N\+G\+H\+E\+Z\+Z\+A\+\_\+\+I\+N\+P\+UT, L\+U\+N\+G\+H\+E\+Z\+Z\+A\+\_\+\+M\+AX, U\+T\+E\+N\+T\+E\+::nome, e Set\+Color().
+Referenzia D\+A\+T\+A\+::anno, A\+R\+T\+I\+S\+T\+A\+::anno\+\_\+inizio, A\+R\+T\+I\+S\+TI, D\+A\+T\+A\+\_\+\+C\+O\+R\+R\+E\+N\+TE, eliminazione\+\_\+acapo(), A\+R\+T\+I\+S\+T\+A\+::genere, G\+E\+N\+E\+R\+I\+\_\+\+T\+OT, is\+Controllo\+\_\+\+Esistenza(), is\+Controllo\+\_\+\+Numero(), logo(), L\+U\+N\+G\+H\+E\+Z\+Z\+A\+\_\+\+C\+O\+D\+I\+CE, L\+U\+N\+G\+H\+E\+Z\+Z\+A\+\_\+\+M\+AX, U\+T\+E\+N\+T\+E\+::nome, e Set\+Color().
 
 
 
@@ -101,7 +114,26 @@ Definizione alla linea 244 del file funzioni\+\_\+artista.\+c.
 
 
 
-Referenzia D\+A\+T\+A\+::anno, A\+R\+T\+I\+S\+T\+A\+::anno\+\_\+inizio, A\+R\+T\+I\+S\+TI, D\+A\+T\+A\+\_\+\+C\+O\+R\+R\+E\+N\+TE, eliminazione\+\_\+acapo(), A\+R\+T\+I\+S\+T\+A\+::genere, G\+E\+N\+E\+R\+I\+\_\+\+T\+OT, is\+Controllo\+\_\+\+Esistenza(), is\+Controllo\+\_\+\+Numero(), logo(), L\+U\+N\+G\+H\+E\+Z\+Z\+A\+\_\+\+I\+N\+P\+UT, L\+U\+N\+G\+H\+E\+Z\+Z\+A\+\_\+\+M\+AX, U\+T\+E\+N\+T\+E\+::nome, Set\+Color(), e stringclear.
+Referenzia D\+A\+T\+A\+::anno, A\+R\+T\+I\+S\+T\+A\+::anno\+\_\+inizio, A\+R\+T\+I\+S\+TI, D\+A\+T\+A\+\_\+\+C\+O\+R\+R\+E\+N\+TE, eliminazione\+\_\+acapo(), A\+R\+T\+I\+S\+T\+A\+::genere, G\+E\+N\+E\+R\+I\+\_\+\+T\+OT, is\+Controllo\+\_\+\+Esistenza(), is\+Controllo\+\_\+\+Numero(), logo(), L\+U\+N\+G\+H\+E\+Z\+Z\+A\+\_\+\+M\+AX, U\+T\+E\+N\+T\+E\+::nome, Set\+Color(), e stringclear.
+
+
+
+Referenziato da main().
+
+\mbox{\Hypertarget{funzioni__artista_8c_a0a19e0d28b6df555b0320c438ef5edfa}\label{funzioni__artista_8c_a0a19e0d28b6df555b0320c438ef5edfa}} 
+\index{funzioni\+\_\+artista.\+c@{funzioni\+\_\+artista.\+c}!scegli\+\_\+artista@{scegli\+\_\+artista}}
+\index{scegli\+\_\+artista@{scegli\+\_\+artista}!funzioni\+\_\+artista.\+c@{funzioni\+\_\+artista.\+c}}
+\subsubsection{\texorpdfstring{scegli\+\_\+artista()}{scegli\_artista()}}
+{\footnotesize\ttfamily int scegli\+\_\+artista (\begin{DoxyParamCaption}\item[{int}]{artisti\+\_\+effettivi }\end{DoxyParamCaption})}
+
+La funzione stampa prima tutti gli artisti disponibili. Successivamente chiede l\textquotesingle{}inserimento del codice artista da eliminare e controlla se effettivamente l\textquotesingle{}artista esiste.~\newline
+Se l\textquotesingle{}artista esiste procederà con la sua eliminazione referenziando la funzione \hyperlink{funzioni__artista_8c_a144e521e9428a8bd15bec299cf2c4083}{elimina\+\_\+artista}; in alternativa la funzione chiederà se vogliamo provare ad inserire un nuovo artista da eliminare. 
+
+Definizione alla linea 618 del file funzioni\+\_\+artista.\+c.
+
+
+
+Referenzia A\+R\+T\+I\+S\+TI, eliminazione\+\_\+acapo(), logo(), L\+U\+N\+G\+H\+E\+Z\+Z\+A\+\_\+\+C\+O\+D\+I\+CE, L\+U\+N\+G\+H\+E\+Z\+Z\+A\+\_\+\+M\+AX, U\+T\+E\+N\+T\+E\+::nome, Set\+Color(), e stringclear.
 
 
 
