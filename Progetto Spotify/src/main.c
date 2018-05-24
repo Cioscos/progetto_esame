@@ -17,6 +17,9 @@ void test_of_isControllo_Esistenza(void);
 //Prototipi di funzioni artista
 void test_of_elimina_artista(void);
 
+//Prototipi di funzioni utenti
+void test_of_elimina_utente(void);
+
 int main(int argc, char *argv[]){
 
 	int artisti_effettivi=0;
@@ -40,7 +43,7 @@ int main(int argc, char *argv[]){
 	CU_add_test(pSuite_B, "Elimina Artista", test_of_elimina_artista);
 
 	CU_pSuite pSuite_C = CU_add_suite("Suite_funzioni_utente", init_suite1,clean_suite1);
-
+	CU_add_test(pSuite_C, "Elimina Utente", test_of_elimina_utente);
 
 
 	CU_console_run_tests();
@@ -128,7 +131,16 @@ void test_of_elimina_artista(void){
 
 }
 
-int elimina_utente(int utenti_effettivi, int posizione_utente)
+void test_of_elimina_utente(void){
+
+	int utenti_effettivi=10;
+
+	//Vero quando viene dato il numero degli utenti_effettivi e la posizione dell'utente da eliminare
+	CU_ASSERT_EQUAL( elimina_utente(utenti_effettivi,10), utenti_effettivi-1);
+
+
+}
+
 
 
 

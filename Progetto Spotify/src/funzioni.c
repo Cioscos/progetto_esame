@@ -157,9 +157,6 @@ int isControllo_Numero(char appoggio[], int lunghezza_massima) {
 	}
 }
 
-/**
- * @pre
- */
 void controllo_menu(char* input_utente, unsigned int menu) {
 	if (flag == 1)		//Comando input accettato
 	{

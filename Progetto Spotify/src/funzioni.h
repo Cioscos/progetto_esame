@@ -73,13 +73,6 @@ void stampa_menu_artista();
 
 void stampa_menu_utente();
 
-/**
- * Queata funzionebla..
- *
- * jddjjjdjdjdj
- * @param[in, out] input_utente smdsdd
- * @param menu
- */
 void controllo_menu(char* input_utente, unsigned int menu);
 
 int isControllo_Numero(char appoggio[], int lunghezza_massima);		//FATTO
