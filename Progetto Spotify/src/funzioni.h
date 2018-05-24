@@ -3,6 +3,9 @@
 
 //DEFINIZIONE DI COSTANTI ----------------------------------------------------------------------------------------------------------------------------------------------------
 
+/**
+ *
+ */
 #define UTENTI_MAX 100
 #define ARTISTI_MAX 200
 #define LUNGHEZZA_MAX 32
@@ -70,13 +73,20 @@ void stampa_menu_artista();
 
 void stampa_menu_utente();
 
+/**
+ * Queata funzionebla..
+ *
+ * jddjjjdjdjdj
+ * @param[in, out] input_utente smdsdd
+ * @param menu
+ */
 void controllo_menu(char* input_utente, unsigned int menu);
 
 int isControllo_Numero(char appoggio[], int lunghezza_massima);		//FATTO
 
 int isControllo_Esistenza(int numero_presenze, char* campo, char* controllo);		//FATT0
 
-void eliminazione_acapo(char* input);		//TODO CHIEDERE AL PROF
+void eliminazione_acapo(char * input);		//TODO CHIEDERE AL PROF
 
 int isAutenticazione(int utenti_effettivi, int* posizione_utente);		//TODO
 

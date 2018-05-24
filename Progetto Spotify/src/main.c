@@ -14,11 +14,8 @@ int clean_suite1(void);
 void test_of_isControllo_Numero(void);
 void test_of_isControllo_Esistenza(void);
 
-
 //Prototipi di funzioni artista
-void test_of_inserimento_artista(void);
 void test_of_elimina_artista(void);
-
 
 int main(int argc, char *argv[]){
 
@@ -36,22 +33,23 @@ int main(int argc, char *argv[]){
 
 
 	CU_pSuite pSuite_A = CU_add_suite("Suite_funzioni_generali", init_suite1,clean_suite1);
-	CU_add_test(pSuite_A, "test of isControllo_Numero()", test_of_isControllo_Numero);
-	CU_add_test(pSuite_A, "test of isControllo_Esistenza()", test_of_isControllo_Esistenza);
+	CU_add_test(pSuite_A, "Controllo Numero", test_of_isControllo_Numero);
+	CU_add_test(pSuite_A, "Controllo Esistenza", test_of_isControllo_Esistenza);
 
 	CU_pSuite pSuite_B = CU_add_suite("Suite_funzioni_artista", init_suite1,clean_suite1);
-//	CU_add_test(pSuite_B, "test of inserimento_artista()", test_of_inserimento_artista);
-	CU_add_test(pSuite_B, "test of elimina_artista()", test_of_elimina_artista);
+	CU_add_test(pSuite_B, "Elimina Artista", test_of_elimina_artista);
+
+	CU_pSuite pSuite_C = CU_add_suite("Suite_funzioni_utente", init_suite1,clean_suite1);
 
 
 
-		CU_console_run_tests();
-		CU_cleanup_registry();
+	CU_console_run_tests();
+	CU_cleanup_registry();
 
-		system("pause");
+	system("pause");
 
 
-		return CU_get_error();
+	return CU_get_error();
 }
 
 //Funzione id inizializzazione
@@ -63,7 +61,6 @@ int init_suite1(void){
 int clean_suite1(void){
 	return 0;
 }
-
 
 void test_of_isControllo_Numero(void){
 	//1 INPUT CORRETTO - 0 INPUT NON CORRETTO
@@ -121,19 +118,17 @@ void test_of_isControllo_Esistenza(void){
 	CU_ASSERT_EQUAL( isControllo_Esistenza(UTENTI_MAX,"DaftGot","nickname_utente"), 1);
 }
 
-void test_of_inserimento_artista(void){
-
-	char lista_generi[GENERI_TOT][LUNGHEZZA_MAX]={"N.A.","Electro","Pop","Techno","Rock","Jazz","Rap","Blues","Country","Britpop","Dubstep","EDM","Hip-Hop","House","Musica leggera","Trap","Trance","Disco","Dance"};
-	int artisti_effettivi=0;
-
-	//Vero quando l'inserimento è andato a buon fine ed è stato aumentato il numero di artisti effettivi
-	CU_ASSERT_EQUAL( inserimento_artista(lista_generi,artisti_effettivi), artisti_effettivi+1);
-
-}
-
 void test_of_elimina_artista(void){
 
+	int artisti_effettivi=22;
+
+	//Vero quando viene dato il numero degli artisti_effettivi e la posizione dell'artista da eliminare
+	CU_ASSERT_EQUAL( elimina_artista(artisti_effettivi,10), artisti_effettivi-1);
 
 
 }
+
+int elimina_utente(int utenti_effettivi, int posizione_utente)
+
+
 

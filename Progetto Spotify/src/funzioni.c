@@ -157,6 +157,9 @@ int isControllo_Numero(char appoggio[], int lunghezza_massima) {
 	}
 }
 
+/**
+ * @pre
+ */
 void controllo_menu(char* input_utente, unsigned int menu) {
 	if (flag == 1)		//Comando input accettato
 	{
@@ -179,7 +182,7 @@ void controllo_menu(char* input_utente, unsigned int menu) {
 		case MENU_SECONDARIO:
 			stampa_menu_secondario();
 			break;
-		}//DIOCAN
+		}
 		stringclear(input_utente, LUNGHEZZA_MAX);
 		fgets(input_utente,LUNGHEZZA_MAX,stdin);
 		eliminazione_acapo(input_utente);
@@ -221,10 +224,11 @@ void controllo_menu(char* input_utente, unsigned int menu) {
 }
 
 void eliminazione_acapo(char *input) {
+
 	int i;
 	for (i = 0; i < LUNGHEZZA_MAX; i++)
 	{
-		if (input[i] == '\n')
+		if (input[i] == 'c')
 			input[i] = '\0';
 	}
 }
