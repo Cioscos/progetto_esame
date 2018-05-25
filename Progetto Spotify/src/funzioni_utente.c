@@ -1331,6 +1331,7 @@ int elimina_utente(int utenti_effettivi, int posizione_utente) {
  *
  * Questa funzione referenzia le sopra elencate funzioni.
  */
+//TODO
 void menu_preferenze(int posizione_utente, int artisti_effettivi) {
 	int pos_artista;	//Contiene la posizione nel vettore dell'artista trovato
 	char metodo[LUNGHEZZA_MAX] = { '\0' };
@@ -1343,7 +1344,7 @@ void menu_preferenze(int posizione_utente, int artisti_effettivi) {
 		SetColor(2);
 		printf("[1]");
 		SetColor(15);
-		printf("Categoria preferita\n");
+		printf("Genere\n");
 		SetColor(2);
 		printf("[2]");
 		SetColor(15);
@@ -1351,16 +1352,24 @@ void menu_preferenze(int posizione_utente, int artisti_effettivi) {
 		SetColor(2);
 		printf("[3]");
 		SetColor(15);
-		printf("Top 10 %cMi piace%c\n", 34, 34);
+		printf("Nazionalit%c\n",133);
 		SetColor(2);
 		printf("[4]");
+		SetColor(15);
+		printf("Anno\n");
+		SetColor(2);
+		printf("[5]");
+		SetColor(15);
+		printf("Top 10 %cMi piace%c\n", 34, 34);
+		SetColor(2);
+		printf("[6]");
 		SetColor(15);
 		printf("Top 10 %cAscolti%c\n\nInserisci comando:", 34, 34);
 		fgets(metodo, LUNGHEZZA_MAX, stdin);
 		eliminazione_acapo(metodo);
 		fflush(stdin);
 
-	}while ((strcmp(metodo, "1")) < 0 || (strcmp(metodo, "4") > 0));
+	}while (isControllo_Numero(metodo,LUNGHEZZA_MAX)!=1);
 
 	switch (atoi(metodo)) {
 	//Categoria preferita
@@ -1373,7 +1382,7 @@ void menu_preferenze(int posizione_utente, int artisti_effettivi) {
 
 		break;
 
-		//Tutti gli artisti
+	//Tutti gli artisti
 	case 2:
 		pos_artista = totale_artisti(artisti_effettivi);
 		if (pos_artista != -1)
@@ -1383,8 +1392,29 @@ void menu_preferenze(int posizione_utente, int artisti_effettivi) {
 
 		break;
 
-
+	//Nazionalità
 	case 3:
+		pos_artista = campo_artisti(artisti_effettivi, atoi(metodo));
+		if (pos_artista != -1)
+		{
+			modifica_preferenze(posizione_utente, pos_artista);
+		}
+
+		break;
+
+	//Anno
+	case 4:
+		pos_artista = campo_artisti(artisti_effettivi, atoi(metodo));
+		if (pos_artista != -1)
+		{
+			modifica_preferenze(posizione_utente, pos_artista);
+		}
+
+		break;
+
+
+	//top 10 mi piace
+	case 5:
 		pos_artista = top_10(artisti_effettivi, "mi piace");
 		if (pos_artista != -1)
 		{
@@ -1393,7 +1423,9 @@ void menu_preferenze(int posizione_utente, int artisti_effettivi) {
 
 		break;
 
-	case 4:
+
+	//Top 10 ascolti
+	case 6:
 		pos_artista = top_10(artisti_effettivi, "ascolti");
 		if (pos_artista != -1)
 		{
@@ -1401,7 +1433,184 @@ void menu_preferenze(int posizione_utente, int artisti_effettivi) {
 		}
 		break;
 
+	default:
+		system("cls");
+		logo();
+		SetColor(4);
+		printf("Comando errato, inserisci un valore corretto\a\n");
+		SetColor(15);
+		system("PAUSE");
+
 	}
+}
+
+//TODO
+
+int campo_artisti(int artisti_effettivi,int campo){
+
+	char input[LUNGHEZZA_MAX];	//Contiene l'input inserito dall'utente
+	int trovato=0;			//0 elemento non trovato - 1 elemento trovato
+	int pos_artista = -1;//Contiene la posizione nel vettore dell'artista trovato
+	int vett[artisti_effettivi];	//vettore d'appoggio contenente gli anni di inizio attività degli artisti
+	int i,k,j;
+
+
+
+	if(campo==4)		//Anno
+	{
+		do{		//controllo fin quando non viene inserito un anno presente
+			for(i=0;i<artisti_effettivi;i++)		//Inizializzazione vettore con 0
+			{
+				vett[i]=0;
+			}
+			system("cls");
+			logo();
+			printf("Lista anni:\n");
+			SetColor(6);
+			j=0;
+			for(i=0;i<artisti_effettivi;i++)		//Stampa anni presenti
+			{
+				trovato=0;
+				for(k=0;k<i;k++)	//Evita stampe di anni già presenti
+				{
+					if(ARTISTI[i].anno_inizio==ARTISTI[k].anno_inizio)
+					{
+						trovato=1;
+
+					}
+				}
+				if(trovato==0)
+				{
+					vett[j]=ARTISTI[i].anno_inizio;	//Inserimento degli anni in un vettore
+					j++;
+
+				}
+
+			}
+
+			ordinamento_crescente(vett,artisti_effettivi);		//ordinamento vettore
+
+			for(i=0;i<artisti_effettivi;i++)	//stampa anni ordinati
+			{
+				if(vett[i]!=0)
+				{
+					printf("%d\t",vett[i]);
+				}
+
+			}
+
+			SetColor(15);
+			printf("\nInserisci l'anno da controllare:");
+			fgets(input, LUNGHEZZA_MAX, stdin);
+			eliminazione_acapo(input);
+			fflush(stdin);
+
+			trovato=0;
+			for(i=0;i<artisti_effettivi;i++)	//Controllo se l'anno inserito è presente
+			{
+				if(atoi(input)==ARTISTI[i].anno_inizio)
+				{
+					trovato=1;
+					i=artisti_effettivi;
+				}
+			}
+
+		}while(trovato==0);
+
+
+		for(i=0;i<artisti_effettivi;i++)		//Stampa artisti con l'anno inserito in input
+		{
+			if(atoi(input)==ARTISTI[i].anno_inizio)
+			{
+				printf("%s\t\t%s\n", ARTISTI[i].codice, ARTISTI[i].nome);
+			}
+		}
+	}
+
+	if(campo==3)		//Nazionalità
+	{
+		do{		//controllo fin quando non viene inserita una nazionalità presente
+			j=1;
+			system("cls");
+			logo();
+			printf("Lista nazionalit%c:\n",133);
+			SetColor(6);
+			for(i=0;i<artisti_effettivi;i++)		//Stampa nazionalita presenti
+			{
+				trovato=0;
+				for(k=0;k<i;k++)	//Evita stampe di nazionalita già presenti
+				{
+					if(strcmp(ARTISTI[i].nazionalita,ARTISTI[k].nazionalita)==0)
+					{
+						trovato=1;
+
+					}
+				}
+
+				if(trovato==0)			//Stampa nazionalita
+				{
+					printf("%-31s",ARTISTI[i].nazionalita);
+
+					if ((j % 2) == 0)
+					{
+						printf("\n");
+					}
+					j++;
+				}
+
+			}
+			SetColor(15);
+			printf("\nInserisci la nazionalit%c da controllare:",133);
+			fgets(input, LUNGHEZZA_MAX, stdin);
+			eliminazione_acapo(input);
+			fflush(stdin);
+
+			trovato=0;
+			for(i=0;i<artisti_effettivi;i++)	//Controllo se la nazionalità inserita è presente
+			{
+				if(strcmp(input,ARTISTI[i].nazionalita)==0)
+				{
+					trovato=1;
+					i=artisti_effettivi;
+				}
+			}
+		}while(trovato==0);
+
+		for(i=0;i<artisti_effettivi;i++)
+		{
+			if(strcmp(input,ARTISTI[i].nazionalita)==0)
+			{
+				printf("%s\t\t%s\n", ARTISTI[i].codice, ARTISTI[i].nome);
+			}
+		}
+	}
+
+	printf("Inserisci il codice dell'artista:");
+	fgets(input, LUNGHEZZA_MAX, stdin);
+	eliminazione_acapo(input);
+	fflush(stdin);
+
+
+	for(i=0;i<artisti_effettivi;i++)		//Individuazione dell'utente
+	{
+		if(strcmp(input,ARTISTI[i].codice)==0)
+		{
+			pos_artista=i;
+			i=ARTISTI_MAX;
+		}
+	}
+
+	if(pos_artista==-1)		//Stampa messaggio artista non trovato
+	{
+		system("cls");
+		logo();
+		SetColor(4);
+		printf("\nArtista non trovato\a\n");
+		SetColor(15);
+	}
+
+
+	return (pos_artista);
 }
 
 /**
@@ -1588,6 +1797,7 @@ int totale_artisti(int artisti_effettivi) {
  * 	-# Ogni "Ascoltare e mettere non mi piace" aumenterà di 1 gli ascolti e toglierà il "Mi piace" solamente se il "Mi piace" era già presente.
  *
  */
+
 void modifica_preferenze(int posizione_utente, int pos_artista) {
 	char artista[LUNGHEZZA_MAX] = { "\0" };	//Variabile d'appoggio per l'artista chiesto in input
 	int artista_trovato = 0;//0 artista non trovato | 1 artista trovato					//Contiene la posizione nel vettore dell'artista trovato

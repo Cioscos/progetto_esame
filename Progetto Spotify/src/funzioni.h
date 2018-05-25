@@ -315,6 +315,9 @@ void gestione_file(char modalita, int tipo, int *numero, char relative_path[]);
  */
 void creazione_path(char* token_buffer, char* relative_path);
 
+//TODO
+void ordinamento_crescente(int vett[],int artisti_effettivi);
+
 /**
  *
  * @param[in] lista_generi Viene passata la lista dei generi disponibii
@@ -362,6 +365,8 @@ int elimina_artista(int artisti_effettivi, int posizione_artista);
  * @return Il numero degli utenti memorizzati dopo l'eliminazione
  */
 int inserimento_utente(int utenti_effettivi);
+
+int campo_artisti(int artisti_effettivi,int campo);
 
 void visualizzazione_utenti(int utenti_effettivi); //FUNZIONE DEBUG
 
@@ -420,6 +425,8 @@ void modifica_preferenze(int posizione_utente, int pos_artista);
  */
 int categoria_artisti(int artisti_effettivi);
 
+//TODO
+int campo_artisti(int artisti_effettivi,int campo);
 /**
  * Questa funzione mostra la lista degli artisti
  *

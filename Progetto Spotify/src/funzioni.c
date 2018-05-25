@@ -939,3 +939,32 @@ void creazione_path(char* token_buffer, char* relative_path) {
 	strcat(relative_path, "File\\");
 
 }
+
+
+//TODO
+
+void ordinamento_crescente(int vett[],int artisti_effettivi)
+{
+	int i,x;
+	int p=0;
+	int flag=0;
+
+	while(p<artisti_effettivi-1 && flag!=1)
+	{
+		p++;
+		flag=1;
+
+		for(i=artisti_effettivi-1;i>=p;i--)
+		{
+			if(vett[i]<vett[i-1])
+			{
+				x=vett[i];
+				vett[i]=vett[i-1];
+				vett[i-1]=x;
+
+				flag=0;
+			}
+
+		}
+	}
+}
