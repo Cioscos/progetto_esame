@@ -425,7 +425,7 @@ void modifica_preferenze(int posizione_utente, int pos_artista);
  */
 int categoria_artisti(int artisti_effettivi);
 
-//TODO
+//TODO f
 int campo_artisti(int artisti_effettivi,int campo);
 /**
  * Questa funzione mostra la lista degli artisti

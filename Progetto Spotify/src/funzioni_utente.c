@@ -1331,7 +1331,7 @@ int elimina_utente(int utenti_effettivi, int posizione_utente) {
  *
  * Questa funzione referenzia le sopra elencate funzioni.
  */
-//TODO
+//TODO f
 void menu_preferenze(int posizione_utente, int artisti_effettivi) {
 	int pos_artista;	//Contiene la posizione nel vettore dell'artista trovato
 	char metodo[LUNGHEZZA_MAX] = { '\0' };
