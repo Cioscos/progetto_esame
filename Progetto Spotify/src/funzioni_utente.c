@@ -523,7 +523,7 @@ void stampa_profilo(int posizione_utente) {
 	SetColor(3);
 	printf("PASSWORD:");
 	SetColor(15);
-	for(i=0;i<LUNGHEZZA_PASS;i++)
+	for(i=0;i<LUNGHEZZA_PASS;i++)    //Occultamento della password
 	{
 		if( (UTENTI[posizione_utente].password[i]!='\0') && (i==0 || i==(strlen(UTENTI[posizione_utente].password) - 1)) )
 		{
@@ -553,7 +553,9 @@ void stampa_profilo(int posizione_utente) {
 	SetColor(3);
 	printf("DATA DI ISCRIZIONE:");
 	SetColor(15);
-	printf("%d/%d/%d\n", UTENTI[posizione_utente].data_iscrizione.giorno, UTENTI[posizione_utente].data_iscrizione.mese, UTENTI[posizione_utente].data_iscrizione.anno);
+	printf("%d/%d/%d", UTENTI[posizione_utente].data_iscrizione.giorno, UTENTI[posizione_utente].data_iscrizione.mese, UTENTI[posizione_utente].data_iscrizione.anno);
+	SetColor(55);
+	printf("\n\nASCOLTATI DI RECENTE\n\n");
 	for (i = 0; i < ARTISTI_MAX; i++)
 	{
 		if (UTENTI[posizione_utente].preferenze[i] != 0)
@@ -581,12 +583,11 @@ void stampa_profilo(int posizione_utente) {
 					{
 						printf("Ascoltato e Non mi piace\n");
 					}
-
 				}
 			}
-
 		}
 	}
+	printf("\n");
 }
 
 void visualizzazione_utenti(int utenti_effettivi)	//Al momento non serve più
@@ -1706,7 +1707,7 @@ int categoria_artisti(int artisti_effettivi) {
 		SetColor(15);
 	}else
 	{
-		printf("Inserisci il codice dell'artista:");
+		printf("\nInserisci il codice dell'artista:");
 		fgets(artista, LUNGHEZZA_MAX, stdin);
 		strcpy(artista, eliminazione_acapo(artista));
 		fflush(stdin);

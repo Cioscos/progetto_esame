@@ -34,8 +34,11 @@ void logo() {
 			"  ____) | | |_) | | (_) | | |_  | | | |   | |_| |\n"
 			" |_____/  | .__/   \\___/   \\__| |_| |_|    \\__, |\n"
 			"          | |                               __/ |\n"
-			"          |_|        %d/%s/%d           |___/   %c\n\n\n", DATA_CORRENTE.giorno, mesi[DATA_CORRENTE.mese
-	        - 1], DATA_CORRENTE.anno, 169);
+			"          |_|        ");
+	SetColor(15);
+	printf("%d/%s/%d", DATA_CORRENTE.giorno, mesi[DATA_CORRENTE.mese- 1], DATA_CORRENTE.anno);
+	SetColor(2);
+	printf("           |___/   %c\n\n\n", 169);
 	SetColor(15);
 }
 
