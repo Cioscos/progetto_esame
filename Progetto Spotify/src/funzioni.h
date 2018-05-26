@@ -79,7 +79,7 @@ int isControllo_Numero(char appoggio[], int lunghezza_massima);		//FATTO
 
 int isControllo_Esistenza(int numero_presenze, char* campo, char* controllo);		//FATT0
 
-void eliminazione_acapo(char * input);		//TODO CHIEDERE AL PROF
+char* eliminazione_acapo(char * input);		//TODO CHIEDERE AL PROF
 
 int isAutenticazione(int utenti_effettivi, int* posizione_utente);		//TODO
 

@@ -13,6 +13,7 @@ int clean_suite1(void);
 //Prototipi di funzioni generali
 void test_of_isControllo_Numero(void);
 void test_of_isControllo_Esistenza(void);
+void test_of_eliminazione_acapo(void);
 
 //Prototipi di funzioni artista
 void test_of_elimina_artista(void);
@@ -38,6 +39,7 @@ int main(int argc, char *argv[]){
 	CU_pSuite pSuite_A = CU_add_suite("Suite_funzioni_generali", init_suite1,clean_suite1);
 	CU_add_test(pSuite_A, "Controllo Numero", test_of_isControllo_Numero);
 	CU_add_test(pSuite_A, "Controllo Esistenza", test_of_isControllo_Esistenza);
+	CU_add_test(pSuite_A, "Eliminazione a capo", test_of_eliminazione_acapo);
 
 	CU_pSuite pSuite_B = CU_add_suite("Suite_funzioni_artista", init_suite1,clean_suite1);
 	CU_add_test(pSuite_B, "Elimina Artista", test_of_elimina_artista);
@@ -63,6 +65,11 @@ int init_suite1(void){
 //Funzione di clean up
 int clean_suite1(void){
 	return 0;
+}
+
+void test_of_eliminazione_acapo(void){
+
+	CU_ASSERT_STRING_EQUAL( eliminazione_acapo("vito\n"), "vito");
 }
 
 void test_of_isControllo_Numero(void){

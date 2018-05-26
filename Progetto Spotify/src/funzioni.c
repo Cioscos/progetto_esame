@@ -220,14 +220,29 @@ void controllo_menu(char* input_utente, unsigned int menu) {
 	}
 }
 
-void eliminazione_acapo(char *input) {
+char* eliminazione_acapo(char *input) {
+
+	char *stringa;
+	stringa=malloc(LUNGHEZZA_MAX * sizeof(char));
+
+	strcpy(stringa, input);
 
 	int i;
+
+	for (i = 0; i < LUNGHEZZA_MAX; i++)
+	{
+		if (stringa[i] == '\n')
+			stringa[i] = '\0';
+	}
+
+	return (stringa);
+
+	/*int i;
 	for (i = 0; i < LUNGHEZZA_MAX; i++)
 	{
 		if (input[i] == 'c')
 			input[i] = '\0';
-	}
+	}*/
 }
 
 int isControllo_Esistenza(int numero_presenze, char* campo, char* controllo) {
