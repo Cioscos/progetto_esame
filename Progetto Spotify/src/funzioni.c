@@ -943,18 +943,19 @@ void creazione_path(char* token_buffer, char* relative_path) {
 
 //TODO f
 
-void ordinamento_crescente(int vett[],int artisti_effettivi)
+int ordinamento_crescente(int vett[],int dim)
 {
 	int i,x;
 	int p=0;
 	int flag=0;
+	int ordinato=1;		//1 vettore ordinato - 0 vettore non ordinato
 
-	while(p<artisti_effettivi-1 && flag!=1)
+	while(p<dim-1 && flag!=1)
 	{
 		p++;
 		flag=1;
 
-		for(i=artisti_effettivi-1;i>=p;i--)
+		for(i=dim-1;i>=p;i--)
 		{
 			if(vett[i]<vett[i-1])
 			{
@@ -967,4 +968,19 @@ void ordinamento_crescente(int vett[],int artisti_effettivi)
 
 		}
 	}
+
+	for(i=1;i<dim;i++)		//Controllo se il vettore è stato ordinato
+	{
+		if(vett[i-1]<=vett[i])
+		{
+
+		}
+		else
+		{
+			ordinato=0;
+			i=dim;
+		}
+	}
+
+	return ordinato;
 }

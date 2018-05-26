@@ -1488,32 +1488,35 @@ int campo_artisti(int artisti_effettivi,int campo){
 
 			}
 
-			ordinamento_crescente(vett,artisti_effettivi);		//ordinamento vettore
-
-			for(i=0;i<artisti_effettivi;i++)	//stampa anni ordinati
+			if(ordinamento_crescente(vett,artisti_effettivi)==1)	//controllo sull'ordinamento del vettore
 			{
-				if(vett[i]!=0)
+				for (i = 0; i < artisti_effettivi; i++)	//stampa anni ordinati
 				{
-					printf("%d\t",vett[i]);
+					if (vett[i] != 0)
+					{
+						printf("%d\t", vett[i]);
+					}
+
 				}
 
-			}
+				SetColor(15);
+				printf("\nInserisci l'anno da controllare:");
+				fgets(input, LUNGHEZZA_MAX, stdin);
+				eliminazione_acapo(input);
+				fflush(stdin);
 
-			SetColor(15);
-			printf("\nInserisci l'anno da controllare:");
-			fgets(input, LUNGHEZZA_MAX, stdin);
-			eliminazione_acapo(input);
-			fflush(stdin);
-
-			trovato=0;
-			for(i=0;i<artisti_effettivi;i++)	//Controllo se l'anno inserito è presente
-			{
-				if(atoi(input)==ARTISTI[i].anno_inizio)
+				trovato = 0;
+				for (i = 0; i < artisti_effettivi; i++)	//Controllo se l'anno inserito è presente
 				{
-					trovato=1;
-					i=artisti_effettivi;
+					if (atoi(input) == ARTISTI[i].anno_inizio)
+					{
+						trovato = 1;
+						i = artisti_effettivi;
+					}
 				}
 			}
+
+
 
 		}while(trovato==0);
 

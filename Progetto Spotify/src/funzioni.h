@@ -316,7 +316,7 @@ void gestione_file(char modalita, int tipo, int *numero, char relative_path[]);
 void creazione_path(char* token_buffer, char* relative_path);
 
 //TODO
-void ordinamento_crescente(int vett[],int artisti_effettivi);
+int ordinamento_crescente(int vett[],int artisti_effettivi);
 
 /**
  *
