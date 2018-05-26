@@ -285,7 +285,7 @@ int isControllo_Esistenza(int numero_presenze, char* campo, char* controllo);
  * @brief Funzione creata per eliminare un'eventuale \0 a fine frase
  * @param[in] input Riceve in input una stringa
  */
-void eliminazione_acapo(char* input);
+char* eliminazione_acapo(char* input);
 
 /**
  *
@@ -315,8 +315,14 @@ void gestione_file(char modalita, int tipo, int *numero, char relative_path[]);
  */
 void creazione_path(char* token_buffer, char* relative_path);
 
-//TODO
-int ordinamento_crescente(int vett[],int artisti_effettivi);
+/**
+ * Questa funzione ordina in ordine crescente un vettore datogli in pasto
+ *
+ * @param[in,out] vett Vettore generico datogli in pasto
+ * @param[in] dim Dimensione del vettore
+ * @return Ritorna 1 se l'ordinamento è andato a buon fine
+ */
+int ordinamento_crescente(int vett[],int dim);
 
 /**
  *
@@ -425,7 +431,13 @@ void modifica_preferenze(int posizione_utente, int pos_artista);
  */
 int categoria_artisti(int artisti_effettivi);
 
-//TODO f
+/**
+ * Questa funzione gestice la scelta dell'utente e permette di visualizzare gli artisti per anno di creazione o per nazionalità
+ *
+ * @param[in] artisti_effettivi Viene passato per valore il numero di utenti effetivamente memorizzati
+ * @param[in] campo Può essere 4 per la scelta dell'anno o 3 per la scelta della nazionalità
+ * @return Ritorna la posizione dell'artista nella lista degli artisti
+ */
 int campo_artisti(int artisti_effettivi,int campo);
 /**
  * Questa funzione mostra la lista degli artisti

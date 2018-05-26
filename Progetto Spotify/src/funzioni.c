@@ -34,7 +34,7 @@ void logo() {
 			"  ____) | | |_) | | (_) | | |_  | | | |   | |_| |\n"
 			" |_____/  | .__/   \\___/   \\__| |_| |_|    \\__, |\n"
 			"          | |                               __/ |\n"
-			"          |_|        %d/%s/%d            |___/   %c\n\n\n", DATA_CORRENTE.giorno, mesi[DATA_CORRENTE.mese
+			"          |_|        %d/%s/%d           |___/   %c\n\n\n", DATA_CORRENTE.giorno, mesi[DATA_CORRENTE.mese
 	        - 1], DATA_CORRENTE.anno, 169);
 	SetColor(15);
 }
@@ -199,7 +199,7 @@ void controllo_menu(char* input_utente, unsigned int menu) {
 		}
 		stringclear(input_utente, LUNGHEZZA_MAX);
 		fgets(input_utente,LUNGHEZZA_MAX,stdin);
-		eliminazione_acapo(input_utente);
+		strcpy(input_utente, eliminazione_acapo(input_utente));
 		fflush(stdin);		//Svuota flusso in input
 		flag = 0;
 	}else	//Comando input non accettato
@@ -232,18 +232,34 @@ void controllo_menu(char* input_utente, unsigned int menu) {
 			break;
 		}
 		fgets(input_utente,LUNGHEZZA_MAX,stdin);
-		eliminazione_acapo(input_utente);
+		strcpy(input_utente, eliminazione_acapo(input_utente));
 		fflush(stdin);		//Svuota flusso in input
 	}
 }
 
-void eliminazione_acapo(char *input) {
+char* eliminazione_acapo(char *input) {
+
+	char *stringa;
+	stringa=malloc(LUNGHEZZA_MAX * sizeof(char));
+
+	strcpy(stringa, input);
+
 	int i;
+
 	for (i = 0; i < LUNGHEZZA_MAX; i++)
 	{
-		if (input[i] == '\n')
-			input[i] = '\0';
+		if (stringa[i] == '\n')
+			stringa[i] = '\0';
 	}
+
+	return (stringa);
+
+	/*int i;
+	for (i = 0; i < LUNGHEZZA_MAX; i++)
+	{
+		if (input[i] == 'c')
+			input[i] = '\0';
+	}*/
 }
 
 /**
@@ -378,7 +394,7 @@ void gestione_file(char modalita, int tipo, int *numero, char relative_path[]) {
 				ARTISTI[i].preferenze = atoi(token);
 
 				token = strtok(NULL, virgola);
-				eliminazione_acapo(token);
+				strcpy(token, eliminazione_acapo(token));
 
 				for (k = 0; k < GENERI_TOT; k++)
 				{
@@ -393,7 +409,7 @@ void gestione_file(char modalita, int tipo, int *numero, char relative_path[]) {
 								k = GENERI_TOT;
 							}else
 							{
-								eliminazione_acapo(token);
+								strcpy(token, eliminazione_acapo(token));
 							}
 						}
 					}
@@ -939,9 +955,6 @@ void creazione_path(char* token_buffer, char* relative_path) {
 	strcat(relative_path, "File\\");
 
 }
-
-
-//TODO f
 
 int ordinamento_crescente(int vett[],int dim)
 {

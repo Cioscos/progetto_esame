@@ -54,7 +54,7 @@ int inserimento_utente(int utenti_effettivi) {
 		printf("Inserisci nome nuovo utente: ");
 		SetColor(6);
 		fgets(UTENTI[utenti_effettivi].nome, LUNGHEZZA_MAX, stdin);
-		eliminazione_acapo(UTENTI[utenti_effettivi].nome);
+		strcpy(UTENTI[utenti_effettivi].nome, eliminazione_acapo(UTENTI[utenti_effettivi].nome));
 		fflush(stdin);
 		SetColor(15);
 	}while ((strlen(UTENTI[utenti_effettivi].nome) < 1));
@@ -68,7 +68,7 @@ int inserimento_utente(int utenti_effettivi) {
 		printf("Inserisci cognome nuovo utente: ");
 		SetColor(6);
 		fgets(UTENTI[utenti_effettivi].cognome, LUNGHEZZA_MAX, stdin);
-		eliminazione_acapo(UTENTI[utenti_effettivi].cognome);
+		strcpy(UTENTI[utenti_effettivi].cognome, eliminazione_acapo(UTENTI[utenti_effettivi].cognome));
 		fflush(stdin);
 		SetColor(15);
 	}while ((strlen(UTENTI[utenti_effettivi].cognome) < 1));
@@ -82,7 +82,7 @@ int inserimento_utente(int utenti_effettivi) {
 		printf("Inserisci Nickname nuovo utente: ");
 		SetColor(6);
 		fgets(UTENTI[utenti_effettivi].nickname, LUNGHEZZA_MAX, stdin);
-		eliminazione_acapo(UTENTI[utenti_effettivi].nickname);
+		strcpy(UTENTI[utenti_effettivi].nickname, eliminazione_acapo(UTENTI[utenti_effettivi].nickname));
 		fflush(stdin);
 		SetColor(15);
 		if ((isControllo_Esistenza(utenti_effettivi, UTENTI[utenti_effettivi].nickname, "nickname_utente")
@@ -203,7 +203,7 @@ int inserimento_utente(int utenti_effettivi) {
 			printf("\nAnno: ");
 			SetColor(6);
 			fgets(data_provvisoria,LUNGHEZZA_MAX,stdin);
-			eliminazione_acapo(data_provvisoria);
+			strcpy(data_provvisoria, eliminazione_acapo(data_provvisoria));
 			fflush(stdin);
 			SetColor(15);
 			if (isControllo_Numero(data_provvisoria, LUNGHEZZA_MAX) != 1)
@@ -249,7 +249,7 @@ int inserimento_utente(int utenti_effettivi) {
 			SetColor(6);
 			stringclear(data_provvisoria, LUNGHEZZA_MAX);
 			fgets(data_provvisoria,LUNGHEZZA_MAX,stdin);
-			eliminazione_acapo(data_provvisoria);
+			strcpy(data_provvisoria, eliminazione_acapo(data_provvisoria));
 			fflush(stdin);
 			SetColor(15);
 			if (isControllo_Numero(data_provvisoria, LUNGHEZZA_MAX) != 1)
@@ -299,7 +299,7 @@ int inserimento_utente(int utenti_effettivi) {
 					SetColor(6);
 					stringclear(data_provvisoria, LUNGHEZZA_MAX);
 					fgets(data_provvisoria,LUNGHEZZA_MAX,stdin);
-					eliminazione_acapo(data_provvisoria);
+					strcpy(data_provvisoria, eliminazione_acapo(data_provvisoria));
 					fflush(stdin);
 					SetColor(15);
 
@@ -347,7 +347,7 @@ int inserimento_utente(int utenti_effettivi) {
 					SetColor(6);
 					stringclear(data_provvisoria, LUNGHEZZA_MAX);
 					fgets(data_provvisoria,LUNGHEZZA_MAX,stdin);
-					eliminazione_acapo(data_provvisoria);
+					strcpy(data_provvisoria, eliminazione_acapo(data_provvisoria));
 					fflush(stdin);
 					SetColor(15);
 					if (isControllo_Numero(data_provvisoria, LUNGHEZZA_MAX)
@@ -400,7 +400,7 @@ int inserimento_utente(int utenti_effettivi) {
 					SetColor(6);
 					stringclear(data_provvisoria, LUNGHEZZA_MAX);
 					fgets(data_provvisoria,LUNGHEZZA_MAX,stdin);
-					eliminazione_acapo(data_provvisoria);
+					strcpy(data_provvisoria, eliminazione_acapo(data_provvisoria));
 					fflush(stdin);
 					SetColor(15);
 					if (isControllo_Numero(data_provvisoria, LUNGHEZZA_MAX)
@@ -447,7 +447,7 @@ int inserimento_utente(int utenti_effettivi) {
 					SetColor(6);
 					stringclear(data_provvisoria, LUNGHEZZA_MAX);
 					fgets(data_provvisoria,LUNGHEZZA_MAX,stdin);
-					eliminazione_acapo(data_provvisoria);
+					strcpy(data_provvisoria, eliminazione_acapo(data_provvisoria));
 					fflush(stdin);
 					SetColor(15);
 					if (isControllo_Numero(data_provvisoria, LUNGHEZZA_MAX)
@@ -627,7 +627,7 @@ int isAutenticazione(int utenti_effettivi, int* posizione_utente) {
 		printf("Inserisci nickname:");
 		SetColor(6);
 		fgets(utente, LUNGHEZZA_MAX, stdin);
-		eliminazione_acapo(utente);
+		strcpy(utente, eliminazione_acapo(utente));
 		fflush(stdin);
 
 	}while (strlen(utente) < 1);
@@ -669,7 +669,7 @@ int isAutenticazione(int utenti_effettivi, int* posizione_utente) {
 
 			fflush(stdin);
 
-			eliminazione_acapo(password);
+			strcpy(password, eliminazione_acapo(password));
 
 			if (strcmp(password, UTENTI[i].password) == 0)//Controlla se la password inserita in input è corretta
 			{
@@ -753,7 +753,7 @@ void modifica_utente(int utenti_effettivi, int posizione_utente) {
 		SetColor(15);
 		printf("Torna indietro\n\nInserisci comando: ");
 		fgets(scelta, LUNGHEZZA_MAX, stdin);
-		eliminazione_acapo(scelta);
+		strcpy(scelta, eliminazione_acapo(scelta));
 		fflush(stdin);
 
 		if ((strcmp(scelta, "0") < 0) || (strcmp(scelta, "6") > 0))
@@ -781,7 +781,7 @@ void modifica_utente(int utenti_effettivi, int posizione_utente) {
 			printf("Inserisci nuovo Nickname: ");
 			SetColor(6);
 			fgets(utente, LUNGHEZZA_MAX, stdin);
-			eliminazione_acapo(utente);
+			strcpy(utente, eliminazione_acapo(utente));
 			fflush(stdin);
 			SetColor(15);
 			if ((isControllo_Esistenza(utenti_effettivi, utente, "nickname_utente")
@@ -906,7 +906,7 @@ void modifica_utente(int utenti_effettivi, int posizione_utente) {
 			printf("Inserisci nuovo nome: ");
 			SetColor(6);
 			fgets(UTENTI[posizione_utente].nome, LUNGHEZZA_MAX, stdin);
-			eliminazione_acapo(UTENTI[posizione_utente].nome);
+			strcpy(UTENTI[posizione_utente].nome, eliminazione_acapo(UTENTI[posizione_utente].nome));
 			fflush(stdin);
 			SetColor(15);
 		}while ((strlen(UTENTI[posizione_utente].nome) < 1));
@@ -923,7 +923,7 @@ void modifica_utente(int utenti_effettivi, int posizione_utente) {
 			printf("Inserisci cognome nuovo utente: ");
 			SetColor(6);
 			fgets(UTENTI[posizione_utente].cognome, LUNGHEZZA_MAX, stdin);
-			eliminazione_acapo(UTENTI[posizione_utente].cognome);
+			strcpy(UTENTI[posizione_utente].cognome, eliminazione_acapo(UTENTI[posizione_utente].cognome));
 			fflush(stdin);
 			SetColor(15);
 		}while ((strlen(UTENTI[posizione_utente].cognome) < 1));
@@ -942,7 +942,7 @@ void modifica_utente(int utenti_effettivi, int posizione_utente) {
 				printf("\nAnno: ");
 				SetColor(6);
 				fgets(data_provvisoria,LUNGHEZZA_MAX,stdin);
-				eliminazione_acapo(data_provvisoria);
+				strcpy(data_provvisoria, eliminazione_acapo(data_provvisoria));
 				fflush(stdin);
 				SetColor(15);
 				if (isControllo_Numero(data_provvisoria, LUNGHEZZA_MAX) != 1)
@@ -988,7 +988,7 @@ void modifica_utente(int utenti_effettivi, int posizione_utente) {
 				SetColor(6);
 				stringclear(data_provvisoria, LUNGHEZZA_MAX);
 				fgets(data_provvisoria,LUNGHEZZA_MAX,stdin);
-				eliminazione_acapo(data_provvisoria);
+				strcpy(data_provvisoria, eliminazione_acapo(data_provvisoria));
 				fflush(stdin);
 				SetColor(15);
 				if (isControllo_Numero(data_provvisoria, LUNGHEZZA_MAX) != 1)
@@ -1038,7 +1038,7 @@ void modifica_utente(int utenti_effettivi, int posizione_utente) {
 						SetColor(6);
 						stringclear(data_provvisoria, LUNGHEZZA_MAX);
 						fgets(data_provvisoria,LUNGHEZZA_MAX,stdin);
-						eliminazione_acapo(data_provvisoria);
+						strcpy(data_provvisoria, eliminazione_acapo(data_provvisoria));
 						fflush(stdin);
 						SetColor(15);
 
@@ -1088,7 +1088,7 @@ void modifica_utente(int utenti_effettivi, int posizione_utente) {
 						SetColor(6);
 						stringclear(data_provvisoria, LUNGHEZZA_MAX);
 						fgets(data_provvisoria,LUNGHEZZA_MAX,stdin);
-						eliminazione_acapo(data_provvisoria);
+						strcpy(data_provvisoria, eliminazione_acapo(data_provvisoria));
 						fflush(stdin);
 						SetColor(15);
 						if (isControllo_Numero(data_provvisoria, LUNGHEZZA_MAX)
@@ -1143,7 +1143,7 @@ void modifica_utente(int utenti_effettivi, int posizione_utente) {
 						SetColor(6);
 						stringclear(data_provvisoria, LUNGHEZZA_MAX);
 						fgets(data_provvisoria,LUNGHEZZA_MAX,stdin);
-						eliminazione_acapo(data_provvisoria);
+						strcpy(data_provvisoria, eliminazione_acapo(data_provvisoria));
 						fflush(stdin);
 						SetColor(15);
 						if (isControllo_Numero(data_provvisoria, LUNGHEZZA_MAX)
@@ -1192,7 +1192,7 @@ void modifica_utente(int utenti_effettivi, int posizione_utente) {
 						SetColor(6);
 						stringclear(data_provvisoria, LUNGHEZZA_MAX);
 						fgets(data_provvisoria,LUNGHEZZA_MAX,stdin);
-						eliminazione_acapo(data_provvisoria);
+						strcpy(data_provvisoria, eliminazione_acapo(data_provvisoria));
 						fflush(stdin);
 						SetColor(15);
 						if (isControllo_Numero(data_provvisoria, LUNGHEZZA_MAX)
@@ -1256,7 +1256,7 @@ int conferma_eliminazione(int utenti_effettivi)
 		SetColor(15);
 		printf("\nRispondere con si o no: ");
 		fgets(risposta, LUNGHEZZA_MAX, stdin);
-		eliminazione_acapo(risposta);
+		strcpy(risposta, eliminazione_acapo(risposta));
 		fflush(stdin);		//Svuota flusso in input
 	}while (strcmp(risposta, "si") != 0 && strcmp(risposta, "no") != 0);
 
@@ -1326,12 +1326,13 @@ int elimina_utente(int utenti_effettivi, int posizione_utente) {
  * L'utente potrà scegliere se:
  *  1. Scegliere l'artista sfogliando tutti i generi (referenziando ::categoria_artisti)
  *  2. Scegliere direttamente l'artista, dopo aver consultato la lista degli artisti (referenziando ::totale_artisti)
- *  3. Visualizzare la TOP 10 degli artisti con più "Mi piace" (referenziando ::top_10)
- *  4. Visualizzare la TOP 10 degli artisti con più "Ascolti" (referenziando ::top_10)
+ *  3. Scegliere l'artista per nazionalità
+ *  4. Scegliere l'artista anno
+ *  5. Visualizzare la TOP 10 degli artisti con più "Mi piace" (referenziando ::top_10)
+ *  6. Visualizzare la TOP 10 degli artisti con più "Ascolti" (referenziando ::top_10)
  *
  * Questa funzione referenzia le sopra elencate funzioni.
  */
-//TODO f
 void menu_preferenze(int posizione_utente, int artisti_effettivi) {
 	int pos_artista;	//Contiene la posizione nel vettore dell'artista trovato
 	char metodo[LUNGHEZZA_MAX] = { '\0' };
@@ -1366,7 +1367,7 @@ void menu_preferenze(int posizione_utente, int artisti_effettivi) {
 		SetColor(15);
 		printf("Top 10 %cAscolti%c\n\nInserisci comando:", 34, 34);
 		fgets(metodo, LUNGHEZZA_MAX, stdin);
-		eliminazione_acapo(metodo);
+		strcpy(metodo, eliminazione_acapo(metodo));
 		fflush(stdin);
 
 	}while (isControllo_Numero(metodo,LUNGHEZZA_MAX)!=1);
@@ -1444,8 +1445,6 @@ void menu_preferenze(int posizione_utente, int artisti_effettivi) {
 	}
 }
 
-//TODO
-
 int campo_artisti(int artisti_effettivi,int campo){
 
 	char input[LUNGHEZZA_MAX];	//Contiene l'input inserito dall'utente
@@ -1502,7 +1501,7 @@ int campo_artisti(int artisti_effettivi,int campo){
 				SetColor(15);
 				printf("\nInserisci l'anno da controllare:");
 				fgets(input, LUNGHEZZA_MAX, stdin);
-				eliminazione_acapo(input);
+				strcpy(input, eliminazione_acapo(input));
 				fflush(stdin);
 
 				trovato = 0;
@@ -1565,7 +1564,7 @@ int campo_artisti(int artisti_effettivi,int campo){
 			SetColor(15);
 			printf("\nInserisci la nazionalit%c da controllare:",133);
 			fgets(input, LUNGHEZZA_MAX, stdin);
-			eliminazione_acapo(input);
+			strcpy(input, eliminazione_acapo(input));
 			fflush(stdin);
 
 			trovato=0;
@@ -1590,7 +1589,7 @@ int campo_artisti(int artisti_effettivi,int campo){
 
 	printf("Inserisci il codice dell'artista:");
 	fgets(input, LUNGHEZZA_MAX, stdin);
-	eliminazione_acapo(input);
+	strcpy(input, eliminazione_acapo(input));
 	fflush(stdin);
 
 
@@ -1656,7 +1655,7 @@ int categoria_artisti(int artisti_effettivi) {
 
 		printf("\nInserisci il tuo genere preferito:");
 		fgets(genere_provvisorio, LUNGHEZZA_MAX, stdin);
-		eliminazione_acapo(genere_provvisorio);
+		strcpy(genere_provvisorio, eliminazione_acapo(genere_provvisorio));
 		fflush(stdin);
 
 		for (i = 0; i < GENERI_TOT; i++) //Controlla se il genere è presente nella lista_generi
@@ -1709,7 +1708,7 @@ int categoria_artisti(int artisti_effettivi) {
 	{
 		printf("Inserisci il codice dell'artista:");
 		fgets(artista, LUNGHEZZA_MAX, stdin);
-		eliminazione_acapo(artista);
+		strcpy(artista, eliminazione_acapo(artista));
 		fflush(stdin);
 
 		for (i = 0; i < artisti_effettivi; i++)
@@ -1760,7 +1759,7 @@ int totale_artisti(int artisti_effettivi) {
 		}
 		printf("Inserisci il codice dell'artista:");
 		fgets(artista, LUNGHEZZA_MAX, stdin);
-		eliminazione_acapo(artista);
+		strcpy(artista, eliminazione_acapo(artista));
 		fflush(stdin);
 
 		for (i = 0; i < artisti_effettivi; i++)
@@ -1825,7 +1824,7 @@ void modifica_preferenze(int posizione_utente, int pos_artista) {
 		SetColor(15);
 		printf("\nInserisci comando: ");
 		fgets(artista, LUNGHEZZA_MAX, stdin);
-		eliminazione_acapo(artista);
+		strcpy(artista, eliminazione_acapo(artista));
 		fflush(stdin);
 
 		if (strcmp(artista, "1") != 0 && strcmp(artista, "2") != 0
@@ -2000,7 +1999,7 @@ int top_10(int artisti_effettivi, char* input) {
 
 		printf("\nInserisci il codice dell'artista:");
 		fgets(artista, LUNGHEZZA_MAX, stdin);
-		eliminazione_acapo(artista);
+		strcpy(artista, eliminazione_acapo(artista));
 		fflush(stdin);
 
 		for (i = 0; i < artisti_effettivi; i++)

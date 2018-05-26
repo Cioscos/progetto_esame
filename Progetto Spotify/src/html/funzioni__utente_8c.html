@@ -91,10 +91,14 @@ Funzioni</h2></td></tr>
 <tr class="separator:a472e5deb6426ce44db6be33176b28a0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3681991241900aa7a4bc7344fd691901"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="funzioni__utente_8c.html#a3681991241900aa7a4bc7344fd691901">modifica_utente</a> (int utenti_effettivi, int posizione_utente)</td></tr>
 <tr class="separator:a3681991241900aa7a4bc7344fd691901"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2c46db008d024c7fea410472d6ef75c4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="funzioni__utente_8c.html#a2c46db008d024c7fea410472d6ef75c4">elimina_utente</a> (int *utenti_effettivi, int posizione_utente)</td></tr>
-<tr class="separator:a2c46db008d024c7fea410472d6ef75c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a70c134e7f17a4bb304f113e69702adb5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="funzioni__utente_8c.html#a70c134e7f17a4bb304f113e69702adb5">conferma_eliminazione</a> (int utenti_effettivi)</td></tr>
+<tr class="separator:a70c134e7f17a4bb304f113e69702adb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6163c03b7b991996d176e06c2d1035f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="funzioni__utente_8c.html#ae6163c03b7b991996d176e06c2d1035f">elimina_utente</a> (int utenti_effettivi, int posizione_utente)</td></tr>
+<tr class="separator:ae6163c03b7b991996d176e06c2d1035f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7665672f273b357976bb4e8b7ab44f67"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="funzioni__utente_8c.html#a7665672f273b357976bb4e8b7ab44f67">menu_preferenze</a> (int posizione_utente, int artisti_effettivi)</td></tr>
 <tr class="separator:a7665672f273b357976bb4e8b7ab44f67"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a65022d9ee63e31b9bdf8178df8c37b40"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="funzioni__utente_8c.html#a65022d9ee63e31b9bdf8178df8c37b40">campo_artisti</a> (int artisti_effettivi, int campo)</td></tr>
+<tr class="separator:a65022d9ee63e31b9bdf8178df8c37b40"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0c4dc83be03f64b3ee1c46a7977b84a9"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="funzioni__utente_8c.html#a0c4dc83be03f64b3ee1c46a7977b84a9">categoria_artisti</a> (int artisti_effettivi)</td></tr>
 <tr class="separator:a0c4dc83be03f64b3ee1c46a7977b84a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac18b91b3134734c44ed4c8488725cf00"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="funzioni__utente_8c.html#ac18b91b3134734c44ed4c8488725cf00">totale_artisti</a> (int artisti_effettivi)</td></tr>
@@ -111,6 +115,49 @@ Funzioni</h2></td></tr>
 
 <p class="definition">Definizione nel file <a class="el" href="funzioni__utente_8c_source.html">funzioni_utente.c</a>.</p>
 </div><h2 class="groupheader">Documentazione delle funzioni</h2>
+<a id="a65022d9ee63e31b9bdf8178df8c37b40"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a65022d9ee63e31b9bdf8178df8c37b40">&#9670;&nbsp;</a></span>campo_artisti()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int campo_artisti </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>artisti_effettivi</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>campo</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Questa funzione gestice la scelta dell'utente e permette di visualizzare gli artisti per anno di creazione o per nazionalità</p>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">artisti_effettivi</td><td>Viene passato per valore il numero di utenti effetivamente memorizzati </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">campo</td><td>Può essere 4 per la scelta dell'anno o 3 per la scelta della nazionalità </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Restituisce</dt><dd>Ritorna la posizione dell'artista nella lista degli artisti </dd></dl>
+
+<p class="definition">Definizione alla linea <a class="el" href="funzioni__utente_8c_source.html#l01448">1448</a> del file <a class="el" href="funzioni__utente_8c_source.html">funzioni_utente.c</a>.</p>
+
+<p class="reference">Referenzia <a class="el" href="funzioni_8h_source.html#l00139">ARTISTA::anno_inizio</a>, <a class="el" href="funzioni_8h_source.html#l00149">ARTISTI</a>, <a class="el" href="funzioni_8h_source.html#l00019">ARTISTI_MAX</a>, <a class="el" href="funzioni_8c_source.html#l00240">eliminazione_acapo()</a>, <a class="el" href="funzioni_8c_source.html#l00026">logo()</a>, <a class="el" href="funzioni_8h_source.html#l00024">LUNGHEZZA_MAX</a>, <a class="el" href="funzioni_8h_source.html#l00163">UTENTE::nome</a>, <a class="el" href="funzioni_8c_source.html#l00959">ordinamento_crescente()</a>, e <a class="el" href="funzioni_8c_source.html#l00014">SetColor()</a>.</p>
+
+<p class="reference">Referenziato da <a class="el" href="funzioni__utente_8c_source.html#l01336">menu_preferenze()</a>.</p>
+
+</div>
+</div>
 <a id="a0c4dc83be03f64b3ee1c46a7977b84a9"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0c4dc83be03f64b3ee1c46a7977b84a9">&#9670;&nbsp;</a></span>categoria_artisti()</h2>
 
@@ -130,16 +177,41 @@ Funzioni</h2></td></tr>
 Se il genere sarà trovato, saranno visualizzati tutti i nomi degli artisti o gruppi. Se non esistono artisti o gruppi di quel genere, sarà notificato. </p><dl class="section pre"><dt>Precondizione</dt><dd>Deve esistere la funzione <a class="el" href="funzioni__utente_8c.html#a7665672f273b357976bb4e8b7ab44f67">menu_preferenze</a> </dd></dl>
 <dl class="section warning"><dt>Avvertimento</dt><dd>La funzione controlla l'esistenza del genere carattere per carattere, quindi vanno inserite anche le lettere maiuscole </dd></dl>
 
-<p class="definition">Definizione alla linea <a class="el" href="funzioni__utente_8c_source.html#l01404">1404</a> del file <a class="el" href="funzioni__utente_8c_source.html">funzioni_utente.c</a>.</p>
+<p class="definition">Definizione alla linea <a class="el" href="funzioni__utente_8c_source.html#l01624">1624</a> del file <a class="el" href="funzioni__utente_8c_source.html">funzioni_utente.c</a>.</p>
 
 <p class="reference">Referenzia <a class="el" href="funzioni_8h_source.html#l00149">ARTISTI</a>, <a class="el" href="funzioni_8c_source.html#l00240">eliminazione_acapo()</a>, <a class="el" href="funzioni_8h_source.html#l00068">GENERI_TOT</a>, <a class="el" href="funzioni_8c_source.html#l00026">logo()</a>, <a class="el" href="funzioni_8h_source.html#l00024">LUNGHEZZA_MAX</a>, <a class="el" href="funzioni_8h_source.html#l00163">UTENTE::nome</a>, e <a class="el" href="funzioni_8c_source.html#l00014">SetColor()</a>.</p>
 
-<p class="reference">Referenziato da <a class="el" href="funzioni__utente_8c_source.html#l01325">menu_preferenze()</a>.</p>
+<p class="reference">Referenziato da <a class="el" href="funzioni__utente_8c_source.html#l01336">menu_preferenze()</a>.</p>
 
 </div>
 </div>
-<a id="a2c46db008d024c7fea410472d6ef75c4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2c46db008d024c7fea410472d6ef75c4">&#9670;&nbsp;</a></span>elimina_utente()</h2>
+<a id="a70c134e7f17a4bb304f113e69702adb5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a70c134e7f17a4bb304f113e69702adb5">&#9670;&nbsp;</a></span>conferma_eliminazione()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int conferma_eliminazione </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>utenti_effettivi</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Chiede conferma dell'eliminazione dell'utente </p>
+
+<p class="definition">Definizione alla linea <a class="el" href="funzioni__utente_8c_source.html#l01247">1247</a> del file <a class="el" href="funzioni__utente_8c_source.html">funzioni_utente.c</a>.</p>
+
+<p class="reference">Referenzia <a class="el" href="funzioni_8c_source.html#l00240">eliminazione_acapo()</a>, <a class="el" href="funzioni_8c_source.html#l00026">logo()</a>, <a class="el" href="funzioni_8h_source.html#l00024">LUNGHEZZA_MAX</a>, e <a class="el" href="funzioni_8c_source.html#l00014">SetColor()</a>.</p>
+
+<p class="reference">Referenziato da <a class="el" href="main_8c_source.html#l00088">main()</a>.</p>
+
+</div>
+</div>
+<a id="ae6163c03b7b991996d176e06c2d1035f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae6163c03b7b991996d176e06c2d1035f">&#9670;&nbsp;</a></span>elimina_utente()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -147,7 +219,7 @@ Se il genere sarà trovato, saranno visualizzati tutti i nomi degli artisti o gr
         <tr>
           <td class="memname">int elimina_utente </td>
           <td>(</td>
-          <td class="paramtype">int *&#160;</td>
+          <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>utenti_effettivi</em>, </td>
         </tr>
         <tr>
@@ -166,9 +238,9 @@ Se il genere sarà trovato, saranno visualizzati tutti i nomi degli artisti o gr
 <p>La funzione chiede la conferma di eliminazione all'utente prima di procedere.<br />
 Essa procede agendo sull'array di struct <a class="el" href="struct_u_t_e_n_t_e.html" title="Struttura usata per creare vettori di tipo utente. ">UTENTE</a>, <a class="el" href="funzioni_8h.html#a3d93cea7cf4778a76e971a141571a911">UTENTI</a> scalando le informazioni degli utenti di una posizione in modo da eliminare le informazioni dell'utente desiderato. </p>
 
-<p class="definition">Definizione alla linea <a class="el" href="funzioni__utente_8c_source.html#l01248">1248</a> del file <a class="el" href="funzioni__utente_8c_source.html">funzioni_utente.c</a>.</p>
+<p class="definition">Definizione alla linea <a class="el" href="funzioni__utente_8c_source.html#l01278">1278</a> del file <a class="el" href="funzioni__utente_8c_source.html">funzioni_utente.c</a>.</p>
 
-<p class="reference">Referenzia <a class="el" href="funzioni_8h_source.html#l00113">DATA::anno</a>, <a class="el" href="funzioni_8h_source.html#l00019">ARTISTI_MAX</a>, <a class="el" href="funzioni_8h_source.html#l00184">UTENTE::codice_artista</a>, <a class="el" href="funzioni_8h_source.html#l00165">UTENTE::cognome</a>, <a class="el" href="funzioni_8h_source.html#l00177">UTENTE::data_iscrizione</a>, <a class="el" href="funzioni_8h_source.html#l00171">UTENTE::data_nascita</a>, <a class="el" href="funzioni_8c_source.html#l00240">eliminazione_acapo()</a>, <a class="el" href="funzioni_8h_source.html#l00109">DATA::giorno</a>, <a class="el" href="funzioni_8c_source.html#l00026">logo()</a>, <a class="el" href="funzioni_8h_source.html#l00024">LUNGHEZZA_MAX</a>, <a class="el" href="funzioni_8h_source.html#l00029">LUNGHEZZA_PASS</a>, <a class="el" href="funzioni_8h_source.html#l00111">DATA::mese</a>, <a class="el" href="funzioni_8h_source.html#l00159">UTENTE::nickname</a>, <a class="el" href="funzioni_8h_source.html#l00163">UTENTE::nome</a>, <a class="el" href="funzioni_8h_source.html#l00161">UTENTE::password</a>, <a class="el" href="funzioni_8h_source.html#l00186">UTENTE::preferenze</a>, <a class="el" href="funzioni_8c_source.html#l00014">SetColor()</a>, <a class="el" href="funzioni_8h_source.html#l00100">stringclear</a>, e <a class="el" href="funzioni_8h_source.html#l00192">UTENTI</a>.</p>
+<p class="reference">Referenzia <a class="el" href="funzioni_8h_source.html#l00113">DATA::anno</a>, <a class="el" href="funzioni_8h_source.html#l00019">ARTISTI_MAX</a>, <a class="el" href="funzioni_8h_source.html#l00184">UTENTE::codice_artista</a>, <a class="el" href="funzioni_8h_source.html#l00165">UTENTE::cognome</a>, <a class="el" href="funzioni_8h_source.html#l00177">UTENTE::data_iscrizione</a>, <a class="el" href="funzioni_8h_source.html#l00171">UTENTE::data_nascita</a>, <a class="el" href="funzioni_8h_source.html#l00109">DATA::giorno</a>, <a class="el" href="funzioni_8h_source.html#l00024">LUNGHEZZA_MAX</a>, <a class="el" href="funzioni_8h_source.html#l00029">LUNGHEZZA_PASS</a>, <a class="el" href="funzioni_8h_source.html#l00111">DATA::mese</a>, <a class="el" href="funzioni_8h_source.html#l00159">UTENTE::nickname</a>, <a class="el" href="funzioni_8h_source.html#l00163">UTENTE::nome</a>, <a class="el" href="funzioni_8h_source.html#l00161">UTENTE::password</a>, <a class="el" href="funzioni_8h_source.html#l00186">UTENTE::preferenze</a>, <a class="el" href="funzioni_8h_source.html#l00100">stringclear</a>, e <a class="el" href="funzioni_8h_source.html#l00192">UTENTI</a>.</p>
 
 <p class="reference">Referenziato da <a class="el" href="main_8c_source.html#l00088">main()</a>.</p>
 
@@ -200,7 +272,7 @@ possibilmente con la libreria time.h. Un esempio è quello presente nel file <a 
 
 <p class="definition">Definizione alla linea <a class="el" href="funzioni__utente_8c_source.html#l00040">40</a> del file <a class="el" href="funzioni__utente_8c_source.html">funzioni_utente.c</a>.</p>
 
-<p class="reference">Referenzia <a class="el" href="funzioni_8h_source.html#l00113">DATA::anno</a>, <a class="el" href="funzioni_8h_source.html#l00019">ARTISTI_MAX</a>, <a class="el" href="funzioni_8h_source.html#l00165">UTENTE::cognome</a>, <a class="el" href="funzioni_8h_source.html#l00119">DATA_CORRENTE</a>, <a class="el" href="funzioni_8h_source.html#l00177">UTENTE::data_iscrizione</a>, <a class="el" href="funzioni_8h_source.html#l00171">UTENTE::data_nascita</a>, <a class="el" href="funzioni_8c_source.html#l00240">eliminazione_acapo()</a>, <a class="el" href="funzioni_8h_source.html#l00078">ETA_MINIMA</a>, <a class="el" href="funzioni_8h_source.html#l00109">DATA::giorno</a>, <a class="el" href="funzioni_8c_source.html#l00257">isControllo_Esistenza()</a>, <a class="el" href="funzioni_8c_source.html#l00127">isControllo_Numero()</a>, <a class="el" href="funzioni_8c_source.html#l00026">logo()</a>, <a class="el" href="funzioni_8h_source.html#l00024">LUNGHEZZA_MAX</a>, <a class="el" href="funzioni_8h_source.html#l00029">LUNGHEZZA_PASS</a>, <a class="el" href="funzioni_8h_source.html#l00111">DATA::mese</a>, <a class="el" href="funzioni_8h_source.html#l00159">UTENTE::nickname</a>, <a class="el" href="funzioni_8h_source.html#l00163">UTENTE::nome</a>, <a class="el" href="funzioni_8h_source.html#l00161">UTENTE::password</a>, <a class="el" href="funzioni_8h_source.html#l00186">UTENTE::preferenze</a>, <a class="el" href="funzioni_8h_source.html#l00083">PRIMO_MESE</a>, <a class="el" href="funzioni_8c_source.html#l00014">SetColor()</a>, <a class="el" href="funzioni_8h_source.html#l00100">stringclear</a>, <a class="el" href="funzioni_8h_source.html#l00088">ULTIMO_MESE</a>, e <a class="el" href="funzioni_8h_source.html#l00192">UTENTI</a>.</p>
+<p class="reference">Referenzia <a class="el" href="funzioni_8h_source.html#l00113">DATA::anno</a>, <a class="el" href="funzioni_8h_source.html#l00019">ARTISTI_MAX</a>, <a class="el" href="funzioni_8h_source.html#l00165">UTENTE::cognome</a>, <a class="el" href="funzioni_8h_source.html#l00119">DATA_CORRENTE</a>, <a class="el" href="funzioni_8h_source.html#l00177">UTENTE::data_iscrizione</a>, <a class="el" href="funzioni_8h_source.html#l00171">UTENTE::data_nascita</a>, <a class="el" href="funzioni_8c_source.html#l00240">eliminazione_acapo()</a>, <a class="el" href="funzioni_8h_source.html#l00078">ETA_MINIMA</a>, <a class="el" href="funzioni_8h_source.html#l00109">DATA::giorno</a>, <a class="el" href="funzioni_8c_source.html#l00273">isControllo_Esistenza()</a>, <a class="el" href="funzioni_8c_source.html#l00127">isControllo_Numero()</a>, <a class="el" href="funzioni_8c_source.html#l00026">logo()</a>, <a class="el" href="funzioni_8h_source.html#l00024">LUNGHEZZA_MAX</a>, <a class="el" href="funzioni_8h_source.html#l00029">LUNGHEZZA_PASS</a>, <a class="el" href="funzioni_8h_source.html#l00111">DATA::mese</a>, <a class="el" href="funzioni_8h_source.html#l00159">UTENTE::nickname</a>, <a class="el" href="funzioni_8h_source.html#l00163">UTENTE::nome</a>, <a class="el" href="funzioni_8h_source.html#l00161">UTENTE::password</a>, <a class="el" href="funzioni_8h_source.html#l00186">UTENTE::preferenze</a>, <a class="el" href="funzioni_8h_source.html#l00083">PRIMO_MESE</a>, <a class="el" href="funzioni_8c_source.html#l00014">SetColor()</a>, <a class="el" href="funzioni_8h_source.html#l00100">stringclear</a>, <a class="el" href="funzioni_8h_source.html#l00088">ULTIMO_MESE</a>, e <a class="el" href="funzioni_8h_source.html#l00192">UTENTI</a>.</p>
 
 <p class="reference">Referenziato da <a class="el" href="main_8c_source.html#l00088">main()</a>.</p>
 
@@ -272,14 +344,16 @@ facendo apparire a schermo un "*" per ogni tasto premuto. Eventualmente l'utente
 <p>L'utente potrà scegliere se:</p><ol type="1">
 <li>Scegliere l'artista sfogliando tutti i generi (referenziando <a class="el" href="funzioni__utente_8c.html#a0c4dc83be03f64b3ee1c46a7977b84a9">categoria_artisti</a>)</li>
 <li>Scegliere direttamente l'artista, dopo aver consultato la lista degli artisti (referenziando <a class="el" href="funzioni__utente_8c.html#ac18b91b3134734c44ed4c8488725cf00">totale_artisti</a>)</li>
+<li>Scegliere l'artista per nazionalità</li>
+<li>Scegliere l'artista anno</li>
 <li>Visualizzare la TOP 10 degli artisti con più "Mi piace" (referenziando <a class="el" href="funzioni__utente_8c.html#a1b64a9be7f1ef215216e96b661378e0e">top_10</a>)</li>
 <li>Visualizzare la TOP 10 degli artisti con più "Ascolti" (referenziando <a class="el" href="funzioni__utente_8c.html#a1b64a9be7f1ef215216e96b661378e0e">top_10</a>)</li>
 </ol>
 <p>Questa funzione referenzia le sopra elencate funzioni. </p>
 
-<p class="definition">Definizione alla linea <a class="el" href="funzioni__utente_8c_source.html#l01325">1325</a> del file <a class="el" href="funzioni__utente_8c_source.html">funzioni_utente.c</a>.</p>
+<p class="definition">Definizione alla linea <a class="el" href="funzioni__utente_8c_source.html#l01336">1336</a> del file <a class="el" href="funzioni__utente_8c_source.html">funzioni_utente.c</a>.</p>
 
-<p class="reference">Referenzia <a class="el" href="funzioni__utente_8c_source.html#l01404">categoria_artisti()</a>, <a class="el" href="funzioni_8c_source.html#l00240">eliminazione_acapo()</a>, <a class="el" href="funzioni_8c_source.html#l00026">logo()</a>, <a class="el" href="funzioni_8h_source.html#l00024">LUNGHEZZA_MAX</a>, <a class="el" href="funzioni__utente_8c_source.html#l01582">modifica_preferenze()</a>, <a class="el" href="funzioni_8c_source.html#l00014">SetColor()</a>, <a class="el" href="funzioni__utente_8c_source.html#l01769">top_10()</a>, e <a class="el" href="funzioni__utente_8c_source.html#l01523">totale_artisti()</a>.</p>
+<p class="reference">Referenzia <a class="el" href="funzioni__utente_8c_source.html#l01448">campo_artisti()</a>, <a class="el" href="funzioni__utente_8c_source.html#l01624">categoria_artisti()</a>, <a class="el" href="funzioni_8c_source.html#l00240">eliminazione_acapo()</a>, <a class="el" href="funzioni_8c_source.html#l00127">isControllo_Numero()</a>, <a class="el" href="funzioni_8c_source.html#l00026">logo()</a>, <a class="el" href="funzioni_8h_source.html#l00024">LUNGHEZZA_MAX</a>, <a class="el" href="funzioni__utente_8c_source.html#l01803">modifica_preferenze()</a>, <a class="el" href="funzioni_8c_source.html#l00014">SetColor()</a>, <a class="el" href="funzioni__utente_8c_source.html#l01990">top_10()</a>, e <a class="el" href="funzioni__utente_8c_source.html#l01743">totale_artisti()</a>.</p>
 
 <p class="reference">Referenziato da <a class="el" href="main_8c_source.html#l00088">main()</a>.</p>
 
@@ -322,11 +396,11 @@ Le opzioni sono:</p><ol type="1">
 <li>Ogni "Ascoltare e mettere non mi piace" aumenterà di 1 gli ascolti e toglierà il "Mi piace" solamente se il "Mi piace" era già presente. </li>
 </ol>
 
-<p class="definition">Definizione alla linea <a class="el" href="funzioni__utente_8c_source.html#l01582">1582</a> del file <a class="el" href="funzioni__utente_8c_source.html">funzioni_utente.c</a>.</p>
+<p class="definition">Definizione alla linea <a class="el" href="funzioni__utente_8c_source.html#l01803">1803</a> del file <a class="el" href="funzioni__utente_8c_source.html">funzioni_utente.c</a>.</p>
 
 <p class="reference">Referenzia <a class="el" href="funzioni_8h_source.html#l00149">ARTISTI</a>, <a class="el" href="funzioni_8h_source.html#l00019">ARTISTI_MAX</a>, <a class="el" href="funzioni_8h_source.html#l00141">ARTISTA::ascolti</a>, <a class="el" href="funzioni_8h_source.html#l00184">UTENTE::codice_artista</a>, <a class="el" href="funzioni_8c_source.html#l00240">eliminazione_acapo()</a>, <a class="el" href="funzioni_8c_source.html#l00026">logo()</a>, <a class="el" href="funzioni_8h_source.html#l00024">LUNGHEZZA_MAX</a>, <a class="el" href="funzioni_8h_source.html#l00163">UTENTE::nome</a>, <a class="el" href="funzioni_8h_source.html#l00143">ARTISTA::preferenze</a>, <a class="el" href="funzioni_8h_source.html#l00186">UTENTE::preferenze</a>, <a class="el" href="funzioni_8c_source.html#l00014">SetColor()</a>, e <a class="el" href="funzioni_8h_source.html#l00192">UTENTI</a>.</p>
 
-<p class="reference">Referenziato da <a class="el" href="funzioni__utente_8c_source.html#l01325">menu_preferenze()</a>.</p>
+<p class="reference">Referenziato da <a class="el" href="funzioni__utente_8c_source.html#l01336">menu_preferenze()</a>.</p>
 
 </div>
 </div>
@@ -371,7 +445,7 @@ Le opzioni sono:</p><ol type="1">
 
 <p class="definition">Definizione alla linea <a class="el" href="funzioni__utente_8c_source.html#l00717">717</a> del file <a class="el" href="funzioni__utente_8c_source.html">funzioni_utente.c</a>.</p>
 
-<p class="reference">Referenzia <a class="el" href="funzioni_8h_source.html#l00113">DATA::anno</a>, <a class="el" href="funzioni_8h_source.html#l00165">UTENTE::cognome</a>, <a class="el" href="funzioni_8h_source.html#l00119">DATA_CORRENTE</a>, <a class="el" href="funzioni_8h_source.html#l00171">UTENTE::data_nascita</a>, <a class="el" href="funzioni_8c_source.html#l00240">eliminazione_acapo()</a>, <a class="el" href="funzioni_8h_source.html#l00078">ETA_MINIMA</a>, <a class="el" href="funzioni_8h_source.html#l00109">DATA::giorno</a>, <a class="el" href="funzioni_8c_source.html#l00257">isControllo_Esistenza()</a>, <a class="el" href="funzioni_8c_source.html#l00127">isControllo_Numero()</a>, <a class="el" href="funzioni_8c_source.html#l00026">logo()</a>, <a class="el" href="funzioni_8h_source.html#l00024">LUNGHEZZA_MAX</a>, <a class="el" href="funzioni_8h_source.html#l00029">LUNGHEZZA_PASS</a>, <a class="el" href="funzioni_8h_source.html#l00111">DATA::mese</a>, <a class="el" href="funzioni_8h_source.html#l00159">UTENTE::nickname</a>, <a class="el" href="funzioni_8h_source.html#l00163">UTENTE::nome</a>, <a class="el" href="funzioni_8h_source.html#l00161">UTENTE::password</a>, <a class="el" href="funzioni_8h_source.html#l00083">PRIMO_MESE</a>, <a class="el" href="funzioni_8c_source.html#l00014">SetColor()</a>, <a class="el" href="funzioni_8h_source.html#l00100">stringclear</a>, <a class="el" href="funzioni_8h_source.html#l00088">ULTIMO_MESE</a>, e <a class="el" href="funzioni_8h_source.html#l00192">UTENTI</a>.</p>
+<p class="reference">Referenzia <a class="el" href="funzioni_8h_source.html#l00113">DATA::anno</a>, <a class="el" href="funzioni_8h_source.html#l00165">UTENTE::cognome</a>, <a class="el" href="funzioni_8h_source.html#l00119">DATA_CORRENTE</a>, <a class="el" href="funzioni_8h_source.html#l00171">UTENTE::data_nascita</a>, <a class="el" href="funzioni_8c_source.html#l00240">eliminazione_acapo()</a>, <a class="el" href="funzioni_8h_source.html#l00078">ETA_MINIMA</a>, <a class="el" href="funzioni_8h_source.html#l00109">DATA::giorno</a>, <a class="el" href="funzioni_8c_source.html#l00273">isControllo_Esistenza()</a>, <a class="el" href="funzioni_8c_source.html#l00127">isControllo_Numero()</a>, <a class="el" href="funzioni_8c_source.html#l00026">logo()</a>, <a class="el" href="funzioni_8h_source.html#l00024">LUNGHEZZA_MAX</a>, <a class="el" href="funzioni_8h_source.html#l00029">LUNGHEZZA_PASS</a>, <a class="el" href="funzioni_8h_source.html#l00111">DATA::mese</a>, <a class="el" href="funzioni_8h_source.html#l00159">UTENTE::nickname</a>, <a class="el" href="funzioni_8h_source.html#l00163">UTENTE::nome</a>, <a class="el" href="funzioni_8h_source.html#l00161">UTENTE::password</a>, <a class="el" href="funzioni_8h_source.html#l00083">PRIMO_MESE</a>, <a class="el" href="funzioni_8c_source.html#l00014">SetColor()</a>, <a class="el" href="funzioni_8h_source.html#l00100">stringclear</a>, <a class="el" href="funzioni_8h_source.html#l00088">ULTIMO_MESE</a>, e <a class="el" href="funzioni_8h_source.html#l00192">UTENTI</a>.</p>
 
 <p class="reference">Referenziato da <a class="el" href="main_8c_source.html#l00088">main()</a>.</p>
 
@@ -396,11 +470,11 @@ Le opzioni sono:</p><ol type="1">
 Per fare ciò saranno utilizzate delle variabili temporane rinominate con il nome del campo della struct preceduto da "tmp_".<br />
 Se il numero di "Mi piace" o "Ascolti" eccede il numero di massimo di TOP, saranno visualizzati comunque gli artisti con lo stesso numero di "Mi piace" o "Ascolti" in eccesso. </p><dl class="section pre"><dt>Precondizione</dt><dd>Questa funzione deve essere chiamata da <a class="el" href="funzioni__utente_8c.html#a1b64a9be7f1ef215216e96b661378e0e">top_10</a> </dd></dl>
 
-<p class="definition">Definizione alla linea <a class="el" href="funzioni__utente_8c_source.html#l01814">1814</a> del file <a class="el" href="funzioni__utente_8c_source.html">funzioni_utente.c</a>.</p>
+<p class="definition">Definizione alla linea <a class="el" href="funzioni__utente_8c_source.html#l02035">2035</a> del file <a class="el" href="funzioni__utente_8c_source.html">funzioni_utente.c</a>.</p>
 
 <p class="reference">Referenzia <a class="el" href="funzioni_8h_source.html#l00149">ARTISTI</a>, <a class="el" href="funzioni_8h_source.html#l00019">ARTISTI_MAX</a>, <a class="el" href="funzioni_8h_source.html#l00141">ARTISTA::ascolti</a>, <a class="el" href="funzioni_8h_source.html#l00194">flag</a>, <a class="el" href="funzioni_8c_source.html#l00026">logo()</a>, <a class="el" href="funzioni_8h_source.html#l00073">LUNGHEZZA_CODICE</a>, <a class="el" href="funzioni_8h_source.html#l00024">LUNGHEZZA_MAX</a>, <a class="el" href="funzioni_8h_source.html#l00163">UTENTE::nome</a>, <a class="el" href="funzioni_8h_source.html#l00143">ARTISTA::preferenze</a>, <a class="el" href="funzioni_8c_source.html#l00014">SetColor()</a>, e <a class="el" href="funzioni_8h_source.html#l00093">TOP</a>.</p>
 
-<p class="reference">Referenziato da <a class="el" href="funzioni__utente_8c_source.html#l01769">top_10()</a>.</p>
+<p class="reference">Referenziato da <a class="el" href="funzioni__utente_8c_source.html#l01990">top_10()</a>.</p>
 
 </div>
 </div>
@@ -456,11 +530,11 @@ Se il numero di "Mi piace" o "Ascolti" eccede il numero di massimo di TOP, saran
 </div><div class="memdoc">
 <p>L'utente dovrà inserire il codice dell'artista desiderato. Sarà effettuato un controllo per verificare l'esistenza dell'artista </p>
 
-<p class="definition">Definizione alla linea <a class="el" href="funzioni__utente_8c_source.html#l01769">1769</a> del file <a class="el" href="funzioni__utente_8c_source.html">funzioni_utente.c</a>.</p>
+<p class="definition">Definizione alla linea <a class="el" href="funzioni__utente_8c_source.html#l01990">1990</a> del file <a class="el" href="funzioni__utente_8c_source.html">funzioni_utente.c</a>.</p>
 
-<p class="reference">Referenzia <a class="el" href="funzioni_8h_source.html#l00149">ARTISTI</a>, <a class="el" href="funzioni_8c_source.html#l00240">eliminazione_acapo()</a>, <a class="el" href="funzioni_8c_source.html#l00026">logo()</a>, <a class="el" href="funzioni_8h_source.html#l00024">LUNGHEZZA_MAX</a>, <a class="el" href="funzioni__utente_8c_source.html#l01814">ordinamento()</a>, e <a class="el" href="funzioni_8c_source.html#l00014">SetColor()</a>.</p>
+<p class="reference">Referenzia <a class="el" href="funzioni_8h_source.html#l00149">ARTISTI</a>, <a class="el" href="funzioni_8c_source.html#l00240">eliminazione_acapo()</a>, <a class="el" href="funzioni_8c_source.html#l00026">logo()</a>, <a class="el" href="funzioni_8h_source.html#l00024">LUNGHEZZA_MAX</a>, <a class="el" href="funzioni__utente_8c_source.html#l02035">ordinamento()</a>, e <a class="el" href="funzioni_8c_source.html#l00014">SetColor()</a>.</p>
 
-<p class="reference">Referenziato da <a class="el" href="funzioni__utente_8c_source.html#l01325">menu_preferenze()</a>.</p>
+<p class="reference">Referenziato da <a class="el" href="funzioni__utente_8c_source.html#l01336">menu_preferenze()</a>.</p>
 
 </div>
 </div>
@@ -481,11 +555,11 @@ Se il numero di "Mi piace" o "Ascolti" eccede il numero di massimo di TOP, saran
 </div><div class="memdoc">
 <p>L'utente inserirà il codice dell'artista e se il codice e disponibile l'artista sarà selezionato. </p><dl class="section pre"><dt>Precondizione</dt><dd>Deve esistere la funzione <a class="el" href="funzioni__utente_8c.html#a7665672f273b357976bb4e8b7ab44f67">menu_preferenze</a> </dd></dl>
 
-<p class="definition">Definizione alla linea <a class="el" href="funzioni__utente_8c_source.html#l01523">1523</a> del file <a class="el" href="funzioni__utente_8c_source.html">funzioni_utente.c</a>.</p>
+<p class="definition">Definizione alla linea <a class="el" href="funzioni__utente_8c_source.html#l01743">1743</a> del file <a class="el" href="funzioni__utente_8c_source.html">funzioni_utente.c</a>.</p>
 
 <p class="reference">Referenzia <a class="el" href="funzioni_8h_source.html#l00149">ARTISTI</a>, <a class="el" href="funzioni_8c_source.html#l00240">eliminazione_acapo()</a>, <a class="el" href="funzioni_8c_source.html#l00026">logo()</a>, <a class="el" href="funzioni_8h_source.html#l00024">LUNGHEZZA_MAX</a>, <a class="el" href="funzioni_8h_source.html#l00163">UTENTE::nome</a>, e <a class="el" href="funzioni_8c_source.html#l00014">SetColor()</a>.</p>
 
-<p class="reference">Referenziato da <a class="el" href="funzioni__utente_8c_source.html#l01325">menu_preferenze()</a>.</p>
+<p class="reference">Referenziato da <a class="el" href="funzioni__utente_8c_source.html#l01336">menu_preferenze()</a>.</p>
 
 </div>
 </div>
