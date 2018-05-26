@@ -372,8 +372,6 @@ int elimina_artista(int artisti_effettivi, int posizione_artista);
  */
 int inserimento_utente(int utenti_effettivi);
 
-int campo_artisti(int artisti_effettivi,int campo);
-
 void visualizzazione_utenti(int utenti_effettivi); //FUNZIONE DEBUG
 
 /**
