@@ -119,7 +119,7 @@ int inserimento_artista(char lista_generi[][LUNGHEZZA_MAX], int artisti_effettiv
 					{
 						system("cls");
 						logo();
-						printf("Genere gia inserito precedentemente\n");
+						printf("Genere gi%c inserito precedentemente\n", 133);
 						system("PAUSE");
 					}
 				}else
@@ -192,7 +192,7 @@ int inserimento_artista(char lista_generi[][LUNGHEZZA_MAX], int artisti_effettiv
 }
 
 void visualizzazione_artisti(char lista_generi[][LUNGHEZZA_MAX], int artisti_effettivi) {
-	int i = 0, j;
+	int i, j;
 
 	logo();
 
@@ -262,7 +262,7 @@ void modifica_artista(int artisti_effettivi, char lista_generi[][LUNGHEZZA_MAX])
 			printf("%s\t\t%s\n", ARTISTI[i].codice, ARTISTI[i].nome);
 		}
 		printf("Inserisci il codice dell'artista da modificare:");
-		gets(artista);
+		gets(artista); //TODO Togliere il gets
 		fflush(stdin);
 
 		for (i = 0; i < artisti_effettivi; i++)
@@ -297,7 +297,7 @@ void modifica_artista(int artisti_effettivi, char lista_generi[][LUNGHEZZA_MAX])
 					printf("[5]");
 					SetColor(15);
 					printf("Nazionalit%c\nInserisci comando:", 133);
-					gets(scelta);
+					gets(scelta); //TODO
 
 					if ((strcmp(scelta, "1") < 0) || (strcmp(scelta, "5") > 0))
 					{
@@ -482,6 +482,7 @@ void modifica_artista(int artisti_effettivi, char lista_generi[][LUNGHEZZA_MAX])
 								{
 									ARTISTI[i].genere[j] = 1;
 									genere_trovato = 1;
+									j=GENERI_TOT;
 								}else
 								{
 									system("cls");
