@@ -80,258 +80,36 @@ void stampa_menu_artista() {
 	printf("Torna al menu principale\n\nInserisci comando: ");
 }
 
-void stampa_menu_secondario() {
-	SetColor(2);
-	printf("[1]");
-	SetColor(15);
-	printf("Registrati a Spotify!\n");
-	SetColor(2);
-	printf("[2]");
-	SetColor(15);
-	printf("Accedi a Spotify!\n");
-	SetColor(2);
-	printf("[0]");
-	SetColor(15);
-	printf("Torna al menu principale\n\nInserisci comndo: ");
-}
+void creazione_path(char* token_buffer, char* relative_path) {
+	char unita_path[LUNGHEZZA_PATH] = { '\0' };
+	char *token;
+	int i = 0;  	//Permette di gestire l'if nel while
+	int k = 1;           //Permette di entrare nel while
 
-void stampa_menu_utente() {
-	SetColor(2);
-	printf("[1]");
-	SetColor(15);
-	printf("Visualizza il tuo Account\n");
-	SetColor(2);
-	printf("[2]");
-	SetColor(15);
-	printf("Ascolta artisti\n");
-	SetColor(2);
-	printf("[3]");
-	SetColor(15);
-	printf("Modifica il tuo profilo\n");
-	SetColor(2);
-	printf("[4]");
-	SetColor(15);
-	printf("Eliminati da Spotify\n");
-	SetColor(2);
-	printf("[0]");
-	SetColor(15);
-	printf("Disconnetti\n\nInserisci comando: ");
-}
-
-/**
- * -La funzione effettua diversi controlli
- * 		1. Controlla prima la lunghezza effettiva dell'input
- * 		2. Controlla se l'input è diverso da un numero
- * 		3. Controllo i casi limite 01-10-00-0'\0'
- *
- * @pre appoggio deve essere di massimo 3 caratteri ma vengono effettuati dei controlli per verificare se sono stati scritti dei numeri o l'input è più lungo di LUNGHEZZA_INPUT.
- * @post Il ritorno sarà un intero
- */
-int isControllo_Numero(char appoggio[], int lunghezza_massima) {
-	int i = 0;
-	int input_valido = 0;			//1 Input valido - 0 Input non valido
-	int lunghezza_effettiva = 0;	//Numero caratteri effettivi
-
-	while (i < lunghezza_massima)		//Conta numero effettivo di caratteri
+	while ((k == 1) || (strcmp("Progetto Spotify", unita_path) != 0))
 	{
-		if (appoggio[i] != '\0')
+		if (i == 0)
 		{
-			lunghezza_effettiva++;
-			i++;
+			token = strtok(token_buffer, "\\");
+			strcpy(unita_path, token);
+			strcpy(relative_path, unita_path);
+			strcat(relative_path, "\\");
 		}else
 		{
-			i = lunghezza_massima;
+			token = strtok(NULL, "\\");
+			strcpy(unita_path, token);
+			strcat(relative_path, unita_path);
+			strcat(relative_path, "\\");
 		}
-	}
-	i = 0;
-
-	for (i = 0; i < lunghezza_effettiva; i++)//Controllo se l'input è diverso da un numero
-	{
-		if ((isdigit(appoggio[i]) != 0) || (appoggio[i] == '\0'))
-		{
-			input_valido = 1;
-		}else
-		{
-			input_valido = 0;
-			i=lunghezza_effettiva;
-		}
+		i++;
+		k++;
 	}
 
-	if (lunghezza_massima == 3)	//Ulteriore controllo su i casi limite di 01-10-00-0'\0'
-	{
-		if ((appoggio[0] == '0' && appoggio[1] != '0')
-		        || (appoggio[0] != '0' && appoggio[1] == '0')
-		        || (appoggio[0] == '0' && appoggio[1] == '0'))
-		{
-			if ((appoggio[0] == '0' && appoggio[1] != '\0'))
-				input_valido = 0;
-		}
-	}
-
-	if (input_valido == 1)//Ritorna il valore 1 se la striga era corretta oppure ritorna il valore 0 se la stringa non era corretta
-	{
-		return 1;		//Input corretto
-	}else
-	{
-		return 0;		//Input non corretto
-	}
-}
-
-void controllo_menu(char* input_utente, unsigned int menu) {
-	if (flag == 1)		//Comando input accettato
-	{
-		system("cls");
-		logo();
-		switch (menu)		//Scelta del menu da stampare
-		{
-		case MENU_PRINCIPALE:
-			stampa_menu_principale();
-			break;
-
-		case MENU_ARTISTA:
-			stampa_menu_artista();
-			break;
-
-		case MENU_UTENTE:
-			stampa_menu_utente();
-			break;
-
-		case MENU_SECONDARIO:
-			stampa_menu_secondario();
-			break;
-		}
-		stringclear(input_utente, LUNGHEZZA_MAX);
-		fgets(input_utente,LUNGHEZZA_MAX,stdin);
-		strcpy(input_utente, eliminazione_acapo(input_utente));
-		fflush(stdin);		//Svuota flusso in input
-		flag = 0;
-	}else	//Comando input non accettato
-	{
-		system("cls");
-		logo();
-		SetColor(4);
-		printf("Comando errato, inserisci un valore corretto\a\n\n");
-		SetColor(15);
-		system("PAUSE");
-		system("cls");
-
-		logo();
-		switch (menu)		//Scelta del menu da stampare
-		{
-		case MENU_PRINCIPALE:
-			stampa_menu_principale();
-			break;
-
-		case MENU_ARTISTA:
-			stampa_menu_artista();
-			break;
-
-		case MENU_UTENTE:
-			stampa_menu_utente();
-			break;
-
-		case MENU_SECONDARIO:
-			stampa_menu_secondario();
-			break;
-		}
-		fgets(input_utente,LUNGHEZZA_MAX,stdin);
-		strcpy(input_utente, eliminazione_acapo(input_utente));
-		fflush(stdin);		//Svuota flusso in input
-	}
-}
-
-char* eliminazione_acapo(char *input) {
-
-	char *stringa;
-	stringa=malloc(LUNGHEZZA_MAX * sizeof(char));
-
-	strcpy(stringa, input);
-
-	int i;
-
-	for (i = 0; i < LUNGHEZZA_MAX; i++)
-	{
-		if (stringa[i] == '\n')
-			stringa[i] = '\0';
-	}
-
-	return (stringa);
-
-	/*int i;
-	for (i = 0; i < LUNGHEZZA_MAX; i++)
-	{
-		if (input[i] == 'c')
-			input[i] = '\0';
-	}*/
-}
-
-/**
- * @pre La stringa passata a come terzo argomento (char* controllo) deve corrispondere a uno dei seguenti elementi:
- * 1. nome_artista
- * 2. codice_artista
- * 3. nickname_utente
- * @post Il ritorno sarà un intero (0 o 1).
- * @warning Se non si inserisce un argomento \e char* \e controllo fra quelli elencati sopra, il ritorno sarà 0 ovvero "elemento già presente".
- */
-int isControllo_Esistenza(int numero_presenze, char* campo, char* controllo) {
-	int i;
-	int presenza = 0;		//0 elemento già presente - 1 elemento non presente
-
-	if (strcmp(controllo, "nome_artista") == 0)
-	{
-		for (i = 0; i < numero_presenze; i++)
-		{
-			if (strcmp(campo, ARTISTI[i].nome) == 0)
-			{
-				presenza = 1;
-			}
-		}
-	}
-
-	if (strcmp(controllo, "codice_artista") == 0)
-	{
-		for (i = 0; i < numero_presenze; i++)
-		{
-			if (strcmp(campo, ARTISTI[i].codice) == 0)
-			{
-				presenza = 1;
-			}
-		}
-	}
-
-	if (strcmp(controllo, "nickname_utente") == 0)
-	{
-		for (i = 0; i < numero_presenze; i++)
-		{
-			if (strcmp(campo, UTENTI[i].nickname) == 0)
-			{
-				presenza = 1;
-			}
-		}
-	}
-
-
-	if (presenza == 1)
-	{
-		return presenza;		//Ritorna 1 - elemento non presente
-	}else
-	{
-		return presenza;		//Ritorna 0 - elemento già presente
-	}
+	strcat(relative_path, "File\\");
 
 }
 
-/**
- *
- * @pre Alla funzione bisogna passare come primo parametro (\e char \e modalità ) per forza uno di questi paramtri
- * 	1. r = lettura
- * 	2. w = scrittura
- * 	3. a = aggiunta
- * @pre Alla funzione bisogna passare come secodno parametro (\e int \e tipo ) per forza uno di questi parametri
- * 	1. 0 = Artista
- * 	2. 1 = Utente
- * 	3. 2 = Preferenze
- */
+
 void gestione_file(char modalita, int tipo, int *numero, char relative_path[]) {
 	int i = 0, j, k;
 	char buffer[LUNGHEZZA_BUFFER] = { '\0' };
@@ -920,6 +698,259 @@ void gestione_file(char modalita, int tipo, int *numero, char relative_path[]) {
 
 }
 
+
+void stampa_menu_secondario() {
+	SetColor(2);
+	printf("[1]");
+	SetColor(15);
+	printf("Registrati a Spotify!\n");
+	SetColor(2);
+	printf("[2]");
+	SetColor(15);
+	printf("Accedi a Spotify!\n");
+	SetColor(2);
+	printf("[0]");
+	SetColor(15);
+	printf("Torna al menu principale\n\nInserisci comndo: ");
+}
+
+void stampa_menu_utente() {
+	SetColor(2);
+	printf("[1]");
+	SetColor(15);
+	printf("Visualizza il tuo Account\n");
+	SetColor(2);
+	printf("[2]");
+	SetColor(15);
+	printf("Ascolta artisti\n");
+	SetColor(2);
+	printf("[3]");
+	SetColor(15);
+	printf("Modifica il tuo profilo\n");
+	SetColor(2);
+	printf("[4]");
+	SetColor(15);
+	printf("Eliminati da Spotify\n");
+	SetColor(2);
+	printf("[0]");
+	SetColor(15);
+	printf("Disconnetti\n\nInserisci comando: ");
+}
+
+/**
+ * -La funzione effettua diversi controlli
+ * 		1. Controlla prima la lunghezza effettiva dell'input
+ * 		2. Controlla se l'input è diverso da un numero
+ * 		3. Controllo i casi limite 01-10-00-0'\0'
+ *
+ * @pre appoggio deve essere di massimo 3 caratteri ma vengono effettuati dei controlli per verificare se sono stati scritti dei numeri o l'input è più lungo di LUNGHEZZA_INPUT.
+ * @post Il ritorno sarà un intero
+ */
+int isControllo_Numero(char appoggio[], int lunghezza_massima) {
+	int i = 0;
+	int input_valido = 0;			//1 Input valido - 0 Input non valido
+	int lunghezza_effettiva = 0;	//Numero caratteri effettivi
+
+	while (i < lunghezza_massima)		//Conta numero effettivo di caratteri
+	{
+		if (appoggio[i] != '\0')
+		{
+			lunghezza_effettiva++;
+			i++;
+		}else
+		{
+			i = lunghezza_massima;
+		}
+	}
+	i = 0;
+
+	for (i = 0; i < lunghezza_effettiva; i++)//Controllo se l'input è diverso da un numero
+	{
+		if ((isdigit(appoggio[i]) != 0) || (appoggio[i] == '\0'))
+		{
+			input_valido = 1;
+		}else
+		{
+			input_valido = 0;
+			i=lunghezza_effettiva;
+		}
+	}
+
+	if (lunghezza_massima == 3)	//Ulteriore controllo su i casi limite di 01-10-00-0'\0'
+	{
+		if ((appoggio[0] == '0' && appoggio[1] != '0')
+		        || (appoggio[0] != '0' && appoggio[1] == '0')
+		        || (appoggio[0] == '0' && appoggio[1] == '0'))
+		{
+			if ((appoggio[0] == '0' && appoggio[1] != '\0'))
+				input_valido = 0;
+		}
+	}
+
+	if (input_valido == 1)//Ritorna il valore 1 se la striga era corretta oppure ritorna il valore 0 se la stringa non era corretta
+	{
+		return 1;		//Input corretto
+	}else
+	{
+		return 0;		//Input non corretto
+	}
+}
+
+void controllo_menu(char* input_utente, unsigned int menu) {
+	if (flag == 1)		//Comando input accettato
+	{
+		system("cls");
+		logo();
+		switch (menu)		//Scelta del menu da stampare
+		{
+		case MENU_PRINCIPALE:
+			stampa_menu_principale();
+			break;
+
+		case MENU_ARTISTA:
+			stampa_menu_artista();
+			break;
+
+		case MENU_UTENTE:
+			stampa_menu_utente();
+			break;
+
+		case MENU_SECONDARIO:
+			stampa_menu_secondario();
+			break;
+		}
+		stringclear(input_utente, LUNGHEZZA_MAX);
+		fgets(input_utente,LUNGHEZZA_MAX,stdin);
+		strcpy(input_utente, eliminazione_acapo(input_utente));
+		fflush(stdin);		//Svuota flusso in input
+		flag = 0;
+	}else	//Comando input non accettato
+	{
+		system("cls");
+		logo();
+		SetColor(4);
+		printf("Comando errato, inserisci un valore corretto\a\n\n");
+		SetColor(15);
+		system("PAUSE");
+		system("cls");
+
+		logo();
+		switch (menu)		//Scelta del menu da stampare
+		{
+		case MENU_PRINCIPALE:
+			stampa_menu_principale();
+			break;
+
+		case MENU_ARTISTA:
+			stampa_menu_artista();
+			break;
+
+		case MENU_UTENTE:
+			stampa_menu_utente();
+			break;
+
+		case MENU_SECONDARIO:
+			stampa_menu_secondario();
+			break;
+		}
+		fgets(input_utente,LUNGHEZZA_MAX,stdin);
+		strcpy(input_utente, eliminazione_acapo(input_utente));
+		fflush(stdin);		//Svuota flusso in input
+	}
+}
+
+char* eliminazione_acapo(char *input) {
+
+	char *stringa;
+	stringa=malloc(LUNGHEZZA_MAX * sizeof(char));
+
+	strcpy(stringa, input);
+
+	int i;
+
+	for (i = 0; i < LUNGHEZZA_MAX; i++)
+	{
+		if (stringa[i] == '\n')
+			stringa[i] = '\0';
+	}
+
+	return (stringa);
+
+	/*int i;
+	for (i = 0; i < LUNGHEZZA_MAX; i++)
+	{
+		if (input[i] == 'c')
+			input[i] = '\0';
+	}*/
+}
+
+/**
+ * @pre La stringa passata a come terzo argomento (char* controllo) deve corrispondere a uno dei seguenti elementi:
+ * 1. nome_artista
+ * 2. codice_artista
+ * 3. nickname_utente
+ * @post Il ritorno sarà un intero (0 o 1).
+ * @warning Se non si inserisce un argomento \e char* \e controllo fra quelli elencati sopra, il ritorno sarà 0 ovvero "elemento già presente".
+ */
+int isControllo_Esistenza(int numero_presenze, char* campo, char* controllo) {
+	int i;
+	int presenza = 0;		//0 elemento già presente - 1 elemento non presente
+
+	if (strcmp(controllo, "nome_artista") == 0)
+	{
+		for (i = 0; i < numero_presenze; i++)
+		{
+			if (strcmp(campo, ARTISTI[i].nome) == 0)
+			{
+				presenza = 1;
+			}
+		}
+	}
+
+	if (strcmp(controllo, "codice_artista") == 0)
+	{
+		for (i = 0; i < numero_presenze; i++)
+		{
+			if (strcmp(campo, ARTISTI[i].codice) == 0)
+			{
+				presenza = 1;
+			}
+		}
+	}
+
+	if (strcmp(controllo, "nickname_utente") == 0)
+	{
+		for (i = 0; i < numero_presenze; i++)
+		{
+			if (strcmp(campo, UTENTI[i].nickname) == 0)
+			{
+				presenza = 1;
+			}
+		}
+	}
+
+
+	if (presenza == 1)
+	{
+		return presenza;		//Ritorna 1 - elemento non presente
+	}else
+	{
+		return presenza;		//Ritorna 0 - elemento già presente
+	}
+
+}
+
+/**
+ *
+ * @pre Alla funzione bisogna passare come primo parametro (\e char \e modalità ) per forza uno di questi paramtri
+ * 	1. r = lettura
+ * 	2. w = scrittura
+ * 	3. a = aggiunta
+ * @pre Alla funzione bisogna passare come secodno parametro (\e int \e tipo ) per forza uno di questi parametri
+ * 	1. 0 = Artista
+ * 	2. 1 = Utente
+ * 	3. 2 = Preferenze
+ */
 /**
  * Questa funzione crea la path dei file necessari per il programma.
  *
@@ -929,35 +960,6 @@ void gestione_file(char modalita, int tipo, int *numero, char relative_path[]) {
  * I dati però saranno memorizzati fino alla chiusura del programma, poi saranno persi.
  *
  */
-
-void creazione_path(char* token_buffer, char* relative_path) {
-	char unita_path[LUNGHEZZA_PATH] = { '\0' };
-	char *token;
-	int i = 0;  	//Permette di gestire l'if nel while
-	int k = 1;           //Permette di entrare nel while
-
-	while ((k == 1) || (strcmp("Progetto Spotify", unita_path) != 0))
-	{
-		if (i == 0)
-		{
-			token = strtok(token_buffer, "\\");
-			strcpy(unita_path, token);
-			strcpy(relative_path, unita_path);
-			strcat(relative_path, "\\");
-		}else
-		{
-			token = strtok(NULL, "\\");
-			strcpy(unita_path, token);
-			strcat(relative_path, unita_path);
-			strcat(relative_path, "\\");
-		}
-		i++;
-		k++;
-	}
-
-	strcat(relative_path, "File\\");
-
-}
 
 int ordinamento_crescente(int vett[],int dim)
 {
