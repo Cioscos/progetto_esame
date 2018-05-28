@@ -46,11 +46,11 @@ void stampa_menu_principale() {
 	SetColor(2);
 	printf("[1]");
 	SetColor(15);
-	printf("Gestione artisti\n");
+	printf("Entra in modalit%c sviluppatore\n", 133);
 	SetColor(2);
 	printf("[2]");
 	SetColor(15);
-	printf("Gestione utenti\n");
+	printf("Entra come utente\n");
 	SetColor(2);
 	printf("[0]");
 	SetColor(15);
