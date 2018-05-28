@@ -189,7 +189,7 @@ struct UTENTE {
  * Vettore usato per memorizzare tutti gli utenti.
  * @warning Il vettore sarà riempito in run-time. Se chiuso il programma e cancellati i dati da file, il programma non troverà più nessun dato salvato.
  */
-struct UTENTE UTENTI[UTENTI_MAX];//Bisogna ancora inserire le preferenze sugli artisti e sui generi
+struct UTENTE UTENTI[UTENTI_MAX];
 
 unsigned int flag;//Controllo sull'entrata nel do while | 0 Entrato almeno una volta nel do while - 1 Mai entrato nel do while
 

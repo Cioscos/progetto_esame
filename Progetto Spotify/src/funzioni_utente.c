@@ -36,6 +36,7 @@
  * DATA_CORRENTE.mese=mese_corrente;
  * DATA_CORRENTE.giorno=atoi(giorno_corrente);
  * \endcode
+ * @post All'inserimento di dati fuori dai canoni programmati, ci saranno dei messaggi di errore
  */
 int inserimento_utente(int utenti_effettivi) {
 	//DEFINZIONE VARIABILI
@@ -48,7 +49,7 @@ int inserimento_utente(int utenti_effettivi) {
 //INSERIMENTO NOME UTENTE
 
 	do
-	{		//Controllo fin quando non viene inserito almeno una lettera
+	{	//Controllo fin quando non viene inserito almeno una lettera
 		system("cls");
 		logo();
 		printf("Inserisci nome nuovo utente: ");
@@ -395,7 +396,7 @@ int inserimento_utente(int utenti_effettivi) {
 			do
 			{		//Controllo fin quando il giorno non è compreso tra 1 e 30
 				do
-				{		//Controllo fin quando l'input inserito non Ã¨ un numero
+				{	//Controllo fin quando l'input inserito non è un numero
 					printf("\nGiorno: ");
 					SetColor(6);
 					stringclear(data_provvisoria, LUNGHEZZA_MAX);
@@ -689,7 +690,7 @@ int isAutenticazione(int utenti_effettivi, int* posizione_utente) {
 		}
 	}
 
-	if (utente_trovato == 0)//Stampa messaggio di errore quando l'utente non Ã¨ stato trovato
+	if (utente_trovato == 0)//Stampa messaggio di errore quando l'utente non è stato trovato
 	{
 		SetColor(4);
 		printf("\nNickname errato\a\n");

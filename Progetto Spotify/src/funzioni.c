@@ -113,9 +113,9 @@ void creazione_path(char* token_buffer, char* relative_path) {
  * @pre La funzione funzionerà correttamente solamente se verrà eseguita precedentemente la funzione ::creazione_path
  * @post
  * 	-#  Successo: il programma caricherà i dati nel programma
- * 	-# Fallimento: Il programma mostrerà dei file di errore\n@warning Il programma partirà ugualmente
+ * 	-# Fallimento: Il programma mostrerà dei messaggi di errore\n @warning Se il caricamento da file fallisce, il programma partirà ugualmente
  * 	ma non salverà mai i dati permanentemente
- */     //TODO
+ */
 void gestione_file(char modalita, int tipo, int *numero, char relative_path[]) {
 	int i = 0, j, k;
 	char buffer[LUNGHEZZA_BUFFER] = { '\0' };

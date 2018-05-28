@@ -4,7 +4,7 @@
  * @brief File contenente il menù principale e tutte le chiamate delle funzioni presenti in funzioni.c, funzioni_artista.c e funzioni_utente.c
  * \mainpage Progetto Universitario Spotify
  * \authors Claudio Ciccarone, Mattia De Donatis (in ordine alfabetico)
- * \version 1.0.5
+ * \version 1.0.6
  * \date 19/05/2018
  * \copyright GNU Pubblic license
  *
