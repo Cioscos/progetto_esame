@@ -262,7 +262,8 @@ void modifica_artista(int artisti_effettivi, char lista_generi[][LUNGHEZZA_MAX])
 			printf("%s\t\t%s\n", ARTISTI[i].codice, ARTISTI[i].nome);
 		}
 		printf("Inserisci il codice dell'artista da modificare:");
-		gets(artista); //TODO Togliere il gets
+		fgets(artista,LUNGHEZZA_MAX,stdin);
+		strcpy(artista, eliminazione_acapo(artista));
 		fflush(stdin);
 
 		for (i = 0; i < artisti_effettivi; i++)
@@ -297,7 +298,9 @@ void modifica_artista(int artisti_effettivi, char lista_generi[][LUNGHEZZA_MAX])
 					printf("[5]");
 					SetColor(15);
 					printf("Nazionalit%c\nInserisci comando:", 133);
-					gets(scelta); //TODO
+					fgets(scelta,LUNGHEZZA_MAX,stdin);
+					strcpy(scelta, eliminazione_acapo(scelta));
+					fflush(stdin);
 
 					if ((strcmp(scelta, "1") < 0) || (strcmp(scelta, "5") > 0))
 					{
