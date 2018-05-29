@@ -75,21 +75,23 @@ void stampa_menu_utente();
 
 void controllo_menu(char* input_utente, unsigned int menu);
 
-int isControllo_Numero(char appoggio[], int lunghezza_massima);		//FATTO
+int isControllo_Numero(char appoggio[], int lunghezza_massima);
 
-int isControllo_Esistenza(int numero_presenze, char* campo, char* controllo);		//FATT0
+int isControllo_Esistenza(int numero_presenze, char* campo, char* controllo);
 
-char* eliminazione_acapo(char * input);		//TODO CHIEDERE AL PROF
+char* eliminazione_acapo(char * input);
 
-int isAutenticazione(int utenti_effettivi, int* posizione_utente);		//TODO
+int isAutenticazione(int utenti_effettivi, int* posizione_utente);
 
-void gestione_file(char modalita, int tipo, int *numero, char relative_path[]);		//TODO forse
+int ordinamento_crescente(int vett[],int dim);
+
+void gestione_file(char modalita, int tipo, int *numero, char relative_path[]);
 
 void creazione_path(char* token_buffer, char* relative_path);
 
 //-----------------------------------------------------------------------------------------------------------------
 
-int inserimento_artista(char lista_generi[][LUNGHEZZA_MAX], int artisti_effettivi);		//FATTO
+int inserimento_artista(char lista_generi[][LUNGHEZZA_MAX], int artisti_effettivi);
 
 void visualizzazione_artisti(char lista_generi[][LUNGHEZZA_MAX], int artisti_effettivi);
 
@@ -97,11 +99,11 @@ void modifica_artista(int artisti_effettivi, char lista_generi[][LUNGHEZZA_MAX])
 
 int scegli_artista(int artisti_effettivi);
 
-int elimina_artista(int artisti_effettivi, int posizione_artista);		//FATTA
+int elimina_artista(int artisti_effettivi, int posizione_artista);
 
 //-----------------------------------------------------------------------------------------------------------------
 
-int inserimento_utente(int utenti_effettivi);		//TODO da vedere
+int inserimento_utente(int utenti_effettivi);
 
 void stampa_profilo(int posizione_utente);
 
@@ -110,18 +112,18 @@ void modifica_utente(int utenti_effettivi, int posizione_utente);
 
 int conferma_eliminazione(int utenti_effettivi);
 
-int elimina_utente(int utenti_effettivi, int posizione_utente);		//TODO da vedere
+int elimina_utente(int utenti_effettivi, int posizione_utente);
 
 void menu_preferenze(int posizione_utente, int artisti_effettivi);
 
 void modifica_preferenze(int posizione_utente, int pos_artista);
 
-int categoria_artisti(int artisti_effettivi);		//TODO da vedere
+int categoria_artisti(int artisti_effettivi);
 
-int totale_artisti(int artisti_effettivi);		//TODO da vedere
+int totale_artisti(int artisti_effettivi);
 
 void ordinamento(char* input);
 
-int top_10(int artisti_effettivi, char* input);		//TODO da vedere
+int top_10(int artisti_effettivi, char* input);
 
 #endif /* FUNZIONI_H_ */

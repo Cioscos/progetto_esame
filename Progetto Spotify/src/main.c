@@ -1,7 +1,9 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <CUnit/CUnit.h>
 #include <CUnit/Console.h>
+#include <CUnit/CUError.h>
+#include <CUnit/CUnit.h>
+#include <CUnit/TestDB.h>
+#include <stdlib.h>
+
 #include "funzioni.h"
 
 //Funzione id inizializzazione
@@ -14,6 +16,7 @@ int clean_suite1(void);
 void test_of_isControllo_Numero(void);
 void test_of_isControllo_Esistenza(void);
 void test_of_eliminazione_acapo(void);
+void test_of_ordinamento_crescente(void);
 
 //Prototipi di funzioni artista
 void test_of_elimina_artista(void);
@@ -40,6 +43,7 @@ int main(int argc, char *argv[]){
 	CU_add_test(pSuite_A, "Controllo Numero", test_of_isControllo_Numero);
 	CU_add_test(pSuite_A, "Controllo Esistenza", test_of_isControllo_Esistenza);
 	CU_add_test(pSuite_A, "Eliminazione a capo", test_of_eliminazione_acapo);
+	CU_add_test(pSuite_A, "Ordinamento Creascente", test_of_ordinamento_crescente);
 
 	CU_pSuite pSuite_B = CU_add_suite("Suite_funzioni_artista", init_suite1,clean_suite1);
 	CU_add_test(pSuite_B, "Elimina Artista", test_of_elimina_artista);
@@ -69,7 +73,47 @@ int clean_suite1(void){
 
 void test_of_eliminazione_acapo(void){
 
+	//Vero quando inserisco una parola
 	CU_ASSERT_STRING_EQUAL( eliminazione_acapo("vito\n"), "vito");
+
+	//Vero quando inserisco una frase
+	CU_ASSERT_STRING_EQUAL( eliminazione_acapo("vito ciao a tutti\n"), "vito ciao a tutti");
+
+	//Vero quando inserisco stringa vuota
+	CU_ASSERT_STRING_EQUAL( eliminazione_acapo("   "), "   ");
+
+	//Vero quando inserisco solo \n
+	CU_ASSERT_STRING_EQUAL( eliminazione_acapo("\n"), "");
+}
+
+void test_of_ordinamento_crescente(void){
+
+	//Vero quando inserisco un vettore  ordinato
+	int vet1[5]={1,2,3,4,5};
+	CU_ASSERT_EQUAL( ordinamento_crescente(vet1,5), 1);
+
+	//Vero quando inserisco un vettore disordinato
+	int vet2[5]={5,4,3,2,1};
+	CU_ASSERT_EQUAL( ordinamento_crescente(vet2,5), 1);
+
+	//Vero quando inserisco un vettore di un singolo elemento
+	int vet3[1]={5};
+	CU_ASSERT_EQUAL( ordinamento_crescente(vet3,1), 1);
+
+	//Vero quando inserisco un vettore di con gli elementi dello stesso valore
+	int vet4[5]={2,2,2,2,2};
+	CU_ASSERT_EQUAL( ordinamento_crescente(vet4,5), 1);
+
+	/*è necessario fornire la dimensione corretta del vettore poichè*/
+
+	//Vero anche quando si fornisce una dimensione errata più grande
+	int vet5[5]={1,2,3,4,5};
+	CU_ASSERT_EQUAL( ordinamento_crescente(vet5,6), 1);
+
+	//Vero anche quando si fornisce una dimensione errata più piccola
+	int vet6[5]={1,2,3,4,5};
+	CU_ASSERT_EQUAL( ordinamento_crescente(vet6,4), 1);
+
 }
 
 void test_of_isControllo_Numero(void){

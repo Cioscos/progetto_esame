@@ -220,6 +220,48 @@ void controllo_menu(char* input_utente, unsigned int menu) {
 	}
 }
 
+int ordinamento_crescente(int vett[],int dim)
+{
+	int i,x;
+	int p=0;
+	int flag=0;
+	int ordinato=1;		//1 vettore ordinato - 0 vettore non ordinato
+
+	while(p<dim-1 && flag!=1)
+	{
+		p++;
+		flag=1;
+
+		for(i=dim-1;i>=p;i--)
+		{
+			if(vett[i]<vett[i-1])
+			{
+				x=vett[i];
+				vett[i]=vett[i-1];
+				vett[i-1]=x;
+
+				flag=0;
+			}
+
+		}
+	}
+
+	for(i=1;i<dim;i++)		//Controllo se il vettore Ã¨ stato ordinato
+	{
+		if(vett[i-1]<=vett[i])
+		{
+
+		}
+		else
+		{
+			ordinato=0;
+			i=dim;
+		}
+	}
+
+	return ordinato;
+}
+
 char* eliminazione_acapo(char *input) {
 
 	char *stringa;
@@ -236,13 +278,6 @@ char* eliminazione_acapo(char *input) {
 	}
 
 	return (stringa);
-
-	/*int i;
-	for (i = 0; i < LUNGHEZZA_MAX; i++)
-	{
-		if (input[i] == 'c')
-			input[i] = '\0';
-	}*/
 }
 
 int isControllo_Esistenza(int numero_presenze, char* campo, char* controllo) {
