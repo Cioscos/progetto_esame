@@ -1420,7 +1420,7 @@ void menu_preferenze(int posizione_utente, int artisti_effettivi) {
 
 	//top 10 mi piace
 	case 5:
-		pos_artista = top_10(artisti_effettivi, "mi piace");
+		pos_artista = top(artisti_effettivi, "mi piace");
 		if (pos_artista != -1)
 		{
 			modifica_preferenze(posizione_utente, pos_artista);
@@ -1431,7 +1431,7 @@ void menu_preferenze(int posizione_utente, int artisti_effettivi) {
 
 	//Top 10 ascolti
 	case 6:
-		pos_artista = top_10(artisti_effettivi, "ascolti");
+		pos_artista = top(artisti_effettivi, "ascolti");
 		if (pos_artista != -1)
 		{
 			modifica_preferenze(posizione_utente, pos_artista);
@@ -1991,7 +1991,7 @@ void modifica_preferenze(int posizione_utente, int pos_artista) {
 /**
  * L'utente dovrà inserire il codice dell'artista desiderato. Sarà effettuato un controllo per verificare l'esistenza dell'artista
  */
-int top_10(int artisti_effettivi, char* input) {
+int top(int artisti_effettivi, char* input) {
 	char artista[LUNGHEZZA_MAX] = { "\0" };	//Variabile d'appoggio per l'artista chiesto in input
 	int artista_trovato = 0;		//0 artista non trovato | 1 artista trovato
 	int pos_artista = -1;//Contiene la posizione nel vettore dell'artista trovato
@@ -1999,7 +1999,7 @@ int top_10(int artisti_effettivi, char* input) {
 	do
 	{//Controllo fin quando non viene digitato il codice dell'artista correttamente
 
-		ordinamento(input);
+		ordinamento_stampa(input);
 
 		printf("\nInserisci il codice dell'artista:");
 		fgets(artista, LUNGHEZZA_MAX, stdin);
@@ -2036,7 +2036,7 @@ int top_10(int artisti_effettivi, char* input) {
  * Se il numero di "Mi piace" o "Ascolti" eccede il numero di massimo di TOP, saranno visualizzati comunque gli artisti con lo stesso numero di "Mi piace" o "Ascolti" in eccesso.
  * \pre Questa funzione deve essere chiamata da ::top_10
  */
-void ordinamento(char* input) {
+void ordinamento_stampa(char* input) {
 	unsigned int top = 0;
 	unsigned int i;
 	unsigned int min = 4294967295;		//valore massimo per l'int (2^32)-1

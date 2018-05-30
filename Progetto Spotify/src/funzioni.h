@@ -450,7 +450,7 @@ int totale_artisti(int artisti_effettivi);
  *
  * @param[in] input Viene passata una stringa (saranno accettate solo le stringhe "Mi piace" e "Ascolti"
  */
-void ordinamento(char* input);
+void ordinamento_stampa(char* input);
 
 /**
  * Questa funzione farà visualizzare gli Artisti TOP 10
@@ -459,6 +459,6 @@ void ordinamento(char* input);
  * @param[in] input Viene passata una stringa (saranno accettate solo le stringhe "Mi piace" e "Ascolti"
  * @return Ritorna pos_artista ovvero la posizione dell'artista all'interno dell'indice.
  */
-int top_10(int artisti_effettivi, char* input);
+int top(int artisti_effettivi, char* input);
 
 #endif /* FUNZIONI_H_ */
