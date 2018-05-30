@@ -76,6 +76,9 @@ void test_of_eliminazione_acapo(void){
 	//Vero quando inserisco una parola
 	CU_ASSERT_STRING_EQUAL( eliminazione_acapo("vito\n"), "vito");
 
+	//Vero quando inserisco una parola senza \n
+	CU_ASSERT_STRING_EQUAL( eliminazione_acapo("vito"), "vito");
+
 	//Vero quando inserisco una frase
 	CU_ASSERT_STRING_EQUAL( eliminazione_acapo("vito ciao a tutti\n"), "vito ciao a tutti");
 
