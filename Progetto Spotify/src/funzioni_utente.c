@@ -557,6 +557,8 @@ void stampa_profilo(int posizione_utente) {
 	printf("%d/%d/%d", UTENTI[posizione_utente].data_iscrizione.giorno, UTENTI[posizione_utente].data_iscrizione.mese, UTENTI[posizione_utente].data_iscrizione.anno);
 	SetColor(55);
 	printf("\n\nASCOLTATI DI RECENTE\n\n");
+	SetColor(15);
+
 	for (i = 0; i < ARTISTI_MAX; i++)
 	{
 		if (UTENTI[posizione_utente].preferenze[i] != 0)
@@ -1866,7 +1868,7 @@ void modifica_preferenze(int posizione_utente, int pos_artista) {
 
 				if (UTENTI[posizione_utente].preferenze[i] == 3)//Stava un non mi piace
 				{
-					UTENTI[posizione_utente].preferenze[i] = 1;
+					UTENTI[posizione_utente].preferenze[i] = 3;
 					artista_trovato = 1;
 					i = ARTISTI_MAX;
 				}
