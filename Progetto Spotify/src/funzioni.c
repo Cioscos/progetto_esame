@@ -80,6 +80,14 @@ void stampa_menu_artista() {
 	printf("Torna al menu principale\n\nInserisci comando: ");
 }
 
+/**
+ * Questa funzione crea la path dei file necessari per il programma.
+ *
+ * @pre L'eseguibile si deve trovare o nella directory chiamata "Progetto Spotify" o in una qualsiasi sua sottocartella
+ * @pre I file si devono trovare in una cartella all'interno di "Progetto Spotify" chiamata "File"
+ * @warning La creazione di una path non corretta sarà segnalata da un messaggio di errore ma il programma funzionerà comunque.\n
+ * I dati però saranno memorizzati fino alla chiusura del programma, poi saranno persi.
+ */
 void creazione_path(char* token_buffer, char* relative_path) {
 	char unita_path[LUNGHEZZA_PATH] = { '\0' };
 	char *token;
@@ -108,8 +116,16 @@ void creazione_path(char* token_buffer, char* relative_path) {
 	strcat(relative_path, "File\\");
 
 }
-
 /**
+ *
+ * @pre Alla funzione bisogna passare come primo parametro (\e char \e modalità ) per forza uno di questi paramtri
+ * 	1. r = lettura
+ * 	2. w = scrittura
+ * 	3. a = aggiunta
+ * @pre Alla funzione bisogna passare come secodno parametro (\e int \e tipo ) per forza uno di questi parametri
+ * 	1. 0 = Artista
+ * 	2. 1 = Utente
+ * 	3. 2 = Preferenze
  * @pre La funzione funzionerà correttamente solamente se verrà eseguita precedentemente la funzione ::creazione_path
  * @post
  * 	-#  Successo: il programma caricherà i dati nel programma
@@ -945,27 +961,6 @@ int isControllo_Esistenza(int numero_presenze, char* campo, char* controllo) {
 	}
 
 }
-
-/**
- *
- * @pre Alla funzione bisogna passare come primo parametro (\e char \e modalità ) per forza uno di questi paramtri
- * 	1. r = lettura
- * 	2. w = scrittura
- * 	3. a = aggiunta
- * @pre Alla funzione bisogna passare come secodno parametro (\e int \e tipo ) per forza uno di questi parametri
- * 	1. 0 = Artista
- * 	2. 1 = Utente
- * 	3. 2 = Preferenze
- */
-/**
- * Questa funzione crea la path dei file necessari per il programma.
- *
- * @pre L'eseguibile si deve trovare o nella directory chiamata "Progetto Spotify" o in una qualsiasi sua sottocartella
- * @pre I file si devono trovare in una cartella all'interno di "Progetto Spotify" chiamata "File"
- * @warning La creazione di una path non corretta sarà segnalata da un messaggio di errore ma il programma funzionerà comunque.\n
- * I dati però saranno memorizzati fino alla chiusura del programma, poi saranno persi.
- *
- */
 
 int ordinamento_crescente(int vett[],int dim)
 {

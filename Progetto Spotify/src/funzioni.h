@@ -417,7 +417,7 @@ void menu_preferenze(int posizione_utente, int artisti_effettivi);
  * Questa funzione serve per modificare gli ascolti e le preferenze dell'utente
  *
  * @param[in] posizione_utente Viene passato per valore l'indice dell'utente che ha fatto accesso al programma
- * @param[in] pos_artista Viene passato per valore l'indice dell'artista selezionato (Ritorno per le funzioni ::categoria_artisti, ::totale_artisti e ::top_10)
+ * @param[in] pos_artista Viene passato per valore l'indice dell'artista selezionato (Ritorno per le funzioni ::categoria_artisti, ::totale_artisti e ::top)
  */
 void modifica_preferenze(int posizione_utente, int pos_artista);
 

@@ -1332,8 +1332,8 @@ int elimina_utente(int utenti_effettivi, int posizione_utente) {
  *  2. Scegliere direttamente l'artista, dopo aver consultato la lista degli artisti (referenziando ::totale_artisti)
  *  3. Scegliere l'artista per nazionalità
  *  4. Scegliere l'artista anno
- *  5. Visualizzare la TOP 10 degli artisti con più "Mi piace" (referenziando ::top_10)
- *  6. Visualizzare la TOP 10 degli artisti con più "Ascolti" (referenziando ::top_10)
+ *  5. Visualizzare la TOP 10 degli artisti con più "Mi piace" (referenziando ::top)
+ *  6. Visualizzare la TOP 10 degli artisti con più "Ascolti" (referenziando ::top)
  *
  * Questa funzione referenzia le sopra elencate funzioni.
  */
@@ -2034,7 +2034,7 @@ int top(int artisti_effettivi, char* input) {
  * La funzione a seconda dell'input che riceverà andrà a ordinare gli artisti.\n
  * Per fare ciò saranno utilizzate delle variabili temporane rinominate con il nome del campo della struct preceduto da "tmp_".\n
  * Se il numero di "Mi piace" o "Ascolti" eccede il numero di massimo di TOP, saranno visualizzati comunque gli artisti con lo stesso numero di "Mi piace" o "Ascolti" in eccesso.
- * \pre Questa funzione deve essere chiamata da ::top_10
+ * \pre Questa funzione deve essere chiamata da ::top
  */
 void ordinamento_stampa(char* input) {
 	unsigned int top = 0;
