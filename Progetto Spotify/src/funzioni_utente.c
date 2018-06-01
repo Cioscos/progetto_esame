@@ -1990,6 +1990,8 @@ void modifica_preferenze(int posizione_utente, int pos_artista) {
 
 /**
  * L'utente dovrà inserire il codice dell'artista desiderato. Sarà effettuato un controllo per verificare l'esistenza dell'artista
+ *
+ * @pre È possibile cambiare la dimensione della TOP cambiando il valore LUNGHEZZA_MAX
  */
 int top(int artisti_effettivi, char* input) {
 	char artista[LUNGHEZZA_MAX] = { "\0" };	//Variabile d'appoggio per l'artista chiesto in input

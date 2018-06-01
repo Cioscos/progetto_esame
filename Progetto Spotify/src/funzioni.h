@@ -453,7 +453,7 @@ int totale_artisti(int artisti_effettivi);
 void ordinamento_stampa(char* input);
 
 /**
- * Questa funzione farà visualizzare gli Artisti TOP 10
+ * Questa funzione farà visualizzare gli Artisti TOP
  *
  * @param[in] artisti_effettivi Viene passato per valore il numero di utenti effetivamente memorizzati
  * @param[in] input Viene passata una stringa (saranno accettate solo le stringhe "Mi piace" e "Ascolti"
