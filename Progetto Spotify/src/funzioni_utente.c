@@ -1248,7 +1248,8 @@ void modifica_utente(int utenti_effettivi, int posizione_utente) {
 /**
  * Chiede conferma dell'eliminazione dell'utente
  */
-int conferma_eliminazione(int utenti_effettivi)
+//TODO ho tolto utenti effettivi come parametro --> aggiusta doxygen
+int conferma_eliminazione()
 {
 	char risposta[LUNGHEZZA_MAX] = { "si" };//Risposta alla domanda 'Sei sicuro di voler eliminare l'artista?'
 	do
@@ -1625,6 +1626,8 @@ int campo_artisti(int artisti_effettivi,int campo){
  * \pre Deve esistere la funzione ::menu_preferenze
  * \warning La funzione controlla l'esistenza del genere carattere per carattere, quindi vanno inserite anche le lettere maiuscole
  */
+
+//TODO mettere il genere come parametro
 int categoria_artisti(int artisti_effettivi) {
 	char lista_generi[GENERI_TOT][LUNGHEZZA_MAX] = { "N.A.", "Electro", "Pop",
 	        "Techno", "Rock", "Jazz", "Rap", "Blues", "Country", "Britpop",

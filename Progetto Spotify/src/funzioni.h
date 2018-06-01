@@ -394,7 +394,8 @@ void modifica_utente(int utenti_effettivi, int posizione_utente);
  * @param[in] utenti_effettivi Viene passato per riferimento il numero di utenti effetivamente memorizzati
  * @return
  */
-int conferma_eliminazione(int utenti_effettivi);
+//todo PER RIFERIMENTO?? comunque ho tolto il parametro --->aggiiusta doxygen
+int conferma_eliminazione();
 
 /**
  * Questa funzione permette di eliminare un utente registrato
