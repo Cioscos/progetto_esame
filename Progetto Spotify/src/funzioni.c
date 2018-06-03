@@ -11,6 +11,10 @@
 #include <conio.h>
 #include "funzioni.h"
 
+/**
+ * @pre Il numero del colore da visualizzare deve essere valido. Deve aver inserito solo un valore.
+ * @post La console mostrerà i caratteri con un colore/sfondo diverso.
+ */
 void SetColor(short Color) {
 	/*	1 = Blue 2 = Green 3 = Light Blue 4 = Red 5 = Purple
 	 6 = Orange/Brown 7 = White 8 = Grey 9 = Blue
@@ -23,6 +27,10 @@ void SetColor(short Color) {
 	SetConsoleTextAttribute(hCon, Color);
 }
 
+/**
+ * @pre Basterà richiamare la funzione in quanto non ci sono parametri da inviare.
+ * @post La console mostrerà il logo Spotify più la data corrente.
+ */
 void logo() {
 	char *mesi[] = { "Gen", "Feb", "Mar", "Apr", "Mag", "Giu", "Lug", "Ago",
 	        "Set", "Ott", "Nov", "Dic" };
@@ -42,6 +50,10 @@ void logo() {
 	SetColor(15);
 }
 
+/**
+ * @pre Basterà richiamare la funzione in quanto non ci sono parametri da inviare
+ * @post Il sistema visualizza il menu
+ */
 void stampa_menu_principale() {
 	SetColor(2);
 	printf("[1]");
@@ -57,6 +69,10 @@ void stampa_menu_principale() {
 	printf("Termina programma\n\nInserisci comando: ");
 }
 
+/**
+ * @pre Basterà richiamare la funzione in quanto non ci sono parametri da inviare
+ * @post Il sistema visualizza il menu
+ */
 void stampa_menu_artista() {
 	SetColor(2);
 	printf("[1]");
@@ -85,6 +101,7 @@ void stampa_menu_artista() {
  *
  * @pre L'eseguibile si deve trovare o nella directory chiamata "Progetto Spotify" o in una qualsiasi sua sottocartella
  * @pre I file si devono trovare in una cartella all'interno di "Progetto Spotify" chiamata "File"
+ * @post Il programma individuerà il percorso corretto da dove caricare i file
  * @warning La creazione di una path non corretta sarà segnalata da un messaggio di errore ma il programma funzionerà comunque.\n
  * I dati però saranno memorizzati fino alla chiusura del programma, poi saranno persi.
  */
@@ -118,7 +135,7 @@ void creazione_path(char* token_buffer, char* relative_path) {
 }
 /**
  *
- * @pre Alla funzione bisogna passare come primo parametro (\e char \e modalità ) per forza uno di questi paramtri
+ * @pre Alla funzione bisogna passare come primo parametro (\e char \e modalità ) per forza uno di questi parametri
  * 	1. r = lettura
  * 	2. w = scrittura
  * 	3. a = aggiunta
@@ -720,7 +737,10 @@ void gestione_file(char modalita, int tipo, int *numero, char relative_path[]) {
 
 }
 
-
+/**
+ * @pre Basterà richiamare la funzione in quanto non ci sono parametri da inviare
+ * @post Il sistema visualizza il menu
+ */
 void stampa_menu_secondario() {
 	SetColor(2);
 	printf("[1]");
@@ -736,6 +756,10 @@ void stampa_menu_secondario() {
 	printf("Torna al menu principale\n\nInserisci comndo: ");
 }
 
+/**
+ * @pre Basterà richiamare la funzione in quanto non ci sono parametri da inviare
+ * @post Il sistema visualizza il menu
+ */
 void stampa_menu_utente() {
 	SetColor(2);
 	printf("[1]");
@@ -765,8 +789,7 @@ void stampa_menu_utente() {
  * 		2. Controlla se l'input è diverso da un numero
  * 		3. Controllo i casi limite 01-10-00-0'\0'
  *
- * @pre appoggio deve essere di massimo 3 caratteri ma vengono effettuati dei controlli per verificare se sono stati scritti dei numeri o l'input è più lungo di LUNGHEZZA_INPUT.
- * @post Il ritorno sarà un intero
+ * @pre Appoggio deve essere di massimo 3 caratteri ma vengono effettuati dei controlli per verificare se sono stati scritti dei numeri o l'input è più lungo di LUNGHEZZA_MAX.
  */
 int isControllo_Numero(char appoggio[], int lunghezza_massima) {
 	int i = 0;
@@ -798,7 +821,7 @@ int isControllo_Numero(char appoggio[], int lunghezza_massima) {
 		}
 	}
 
-	if (lunghezza_massima == 3)	//Ulteriore controllo su i casi limite di 01-10-00-0'\0'
+	if (lunghezza_effettiva == 3)	//Ulteriore controllo su i casi limite di 01-10-00-0'\0'
 	{
 		if ((appoggio[0] == '0' && appoggio[1] != '0')
 		        || (appoggio[0] != '0' && appoggio[1] == '0')
@@ -818,6 +841,10 @@ int isControllo_Numero(char appoggio[], int lunghezza_massima) {
 	}
 }
 
+/**
+ * @pre Deve essere passato in input la variabile contenente l’input e il numero del menu da visualizzare
+ * @post Il sistema visualizza il profilo
+ */
 void controllo_menu(char* input_utente, unsigned int menu) {
 	if (flag == 1)		//Comando input accettato
 	{
@@ -881,6 +908,10 @@ void controllo_menu(char* input_utente, unsigned int menu) {
 	}
 }
 
+/**
+ * @pre Deve essere passato in input una variabile di tipo stringa
+ * @post Verrà rimosso il carattere \n se presente
+ */
 char* eliminazione_acapo(char *input) {
 
 	char *stringa;
@@ -962,6 +993,11 @@ int isControllo_Esistenza(int numero_presenze, char* campo, char* controllo) {
 
 }
 
+/**
+ * @pre Dovrà essere passato il vettore di interi da ordinare con la sua dimensione corretta
+ * @post Successo: La funzione ritornerà il valore 1 se l’ordinamento è andato a buon fine\n
+ * 		 Fallimento: La funzione ritornerà il valore 0 se l’ordinamento non è andato a buon fine
+ */
 int ordinamento_crescente(int vett[],int dim)
 {
 	int i,x;

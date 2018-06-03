@@ -372,8 +372,6 @@ int elimina_artista(int artisti_effettivi, int posizione_artista);
  */
 int inserimento_utente(int utenti_effettivi);
 
-void visualizzazione_utenti(int utenti_effettivi); //FUNZIONE DEBUG
-
 /**
  * Questa funzione permette di stampare il profilo dell'utente
  *
@@ -390,24 +388,23 @@ void stampa_profilo(int posizione_utente);
 void modifica_utente(int utenti_effettivi, int posizione_utente);
 
 /**
- * Questa funzion
- * @param[in] utenti_effettivi Viene passato per riferimento il numero di utenti effetivamente memorizzati
- * @return
+ * Questa funzione chiede conferma dell'eliminazione dell'utente
+ *
+ * @return 1 se l'utente risponde "si" 0 se l'utente risponde "no"
  */
-//todo PER RIFERIMENTO?? comunque ho tolto il parametro --->aggiiusta doxygen
 int conferma_eliminazione();
 
 /**
  * Questa funzione permette di eliminare un utente registrato
  *
- * @param[in] utenti_effettivi Viene passato per riferimento il numero di utenti effetivamente memorizzati
+ * @param[in] utenti_effettivi Viene passato per valore il numero di utenti effetivamente memorizzati
  * @param[in] posizione_utente Viene passato per valore l'indice dell'utente che ha fatto accesso al programma
  * @return 1 = Utente eliminato     0 = Utente non eliminato
  */
 int elimina_utente(int utenti_effettivi, int posizione_utente);
 
 /**
- * Questa funzione mostra il menù dal quale l'utente può decidere di ascoltare un cantante e modficiare le preferenze
+ * Questa funzione mostra il menù dal quale l'utente può decidere di ascoltare un cantante e modificare le preferenze
  *
  * @param[in] posizione_utente Viene passato per valore l'indice dell'utente che ha fatto accesso al programma
  * @param[in] artisti_effettivi Viene passato per valore il numero di utenti effetivamente memorizzati
@@ -425,7 +422,6 @@ void modifica_preferenze(int posizione_utente, int pos_artista);
 /**
  * Questa funzione stampa tutti i generi disponibili
  *
- * @param[in] artisti_effettivi Viene passato per valore il numero di utenti effetivamente memorizzati
  * @return Ritorna pos_artista ovvero la posizione dell'artista all'interno dell'indice.
  */
 int categoria_artisti(int artisti_effettivi);
