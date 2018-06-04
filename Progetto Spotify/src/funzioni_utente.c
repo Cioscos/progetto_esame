@@ -16,7 +16,7 @@
  * Questa funzione permette di inserire un nuovo utente nella lista utenti memorizzata.\n
  * Prima di tutto devono essere inseriti nome, cognome e nickname; su questo sarà effettuato il controllo per far si che il nome sia almeno di una lettera.\n
  * Successivaente l'utente dovrà inserire la sua password. La funzione prevede un doppio controllo per la password.\n
- * Successivamente l'utente dovrà inserire la sua data di nascita nell'ordine AAAA/MM/GG a causa dei controlli di bisestilità\n
+ * L'utente dovrà inserire la sua data di nascita nell'ordine AAAA/MM/GG a causa dei controlli di bisestilità\n
  * e di numeri giorni dei mesi.
  * La data di iscrizione sarà inserita automaticamente.
  *

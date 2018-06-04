@@ -17,7 +17,6 @@
  * Inserimento nuovo artista
  *
  * Questa funzione permette di inserire un nuovo cantante nella lista degli artisti.
- * Prima di terminare aggiorna la lista dei cantanti chiamando la funzione gestione_file presente nel file funzioni.c
  * @param lista_generi Vettore bidimensionale di caratteri contenente i generi disponibili nel programma
  * @param artisti_effettivi Numero degli artisti effettivamente memorizzati nel programma
  * @return Il numero degli artisti effettivi aggiornato

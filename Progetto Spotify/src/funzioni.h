@@ -175,14 +175,16 @@ struct UTENTE {
 	 * Viene usata una variabile di tipo struttura DATA.
 	 */
 	struct DATA data_iscrizione;
-	/** Contiene numeri distintivi per indicare il gradimento di un artista da parte di un utente.\n
-	 * -Nello specifico:
-	 * 		-# 1 indica che l'artista è stato ascoltato.
-	 * 		-# 2 indica che l'utente ha messo un mi piace per l'artista (incrementa anche gli ascolti)
-	 * 		-# 3 indica che l'utente ha messo un non mi piace per l'artista (incrementa anche gli ascolti)
+	/**
+	 * Contiene l'eventuale codice dell'artista al quale si è data una preferenza
 	 */
-	char codice_artista[ARTISTI_MAX][LUNGHEZZA_CODICE];	//Matrice con codice artista e 1-Ascoltato 2-Mi piace 3-Non mi piace
-	/** Contiene il numero di "Mi piace". */
+	char codice_artista[ARTISTI_MAX][LUNGHEZZA_CODICE];
+	/** Contiene numeri distintivi per indicare il gradimento di un artista da parte di un utente.\n
+	* -Nello specifico:
+	* 		-# 1 indica che l'artista è stato ascoltato.
+	* 		-# 2 indica che l'utente ha messo un mi piace per l'artista (incrementa anche gli ascolti)
+	* 		-# 3 indica che l'utente ha messo un non mi piace per l'artista (incrementa anche gli ascolti)
+	*/
 	int preferenze[ARTISTI_MAX];
 };
 /**

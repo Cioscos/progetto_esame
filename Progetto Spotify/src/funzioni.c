@@ -789,7 +789,7 @@ void stampa_menu_utente() {
  * 		2. Controlla se l'input è diverso da un numero
  * 		3. Controllo i casi limite 01-10-00-0'\0'
  *
- * @pre Appoggio deve essere di massimo 3 caratteri ma vengono effettuati dei controlli per verificare se sono stati scritti dei numeri o l'input è più lungo di LUNGHEZZA_MAX.
+ * @pre Appoggio deve essere di massimo ::LUNGHEZZA_MAX caratteri ma vengono effettuati dei controlli per verificare se sono stati scritti dei numeri o l'input è più lungo di ::LUNGHEZZA_MAX.
  */
 int isControllo_Numero(char appoggio[], int lunghezza_massima) {
 	int i = 0;
@@ -938,7 +938,7 @@ char* eliminazione_acapo(char *input) {
 }
 
 /**
- * @pre La stringa passata a come terzo argomento (char* controllo) deve corrispondere a uno dei seguenti elementi:
+ * @pre La stringa passata come terzo argomento (char* controllo) deve corrispondere a uno dei seguenti elementi:
  * 1. nome_artista
  * 2. codice_artista
  * 3. nickname_utente

@@ -30,7 +30,8 @@
  * Per ulteriori informazioni riguardo le funzioni del programma leggere la documentazione.
  *
  * \section comp_sec Compilazione
- * Il codice per essere compilato a bisogno di un qualsiasi compilatore C e necessita di includere la libreria funzioni.h in questo modo: include "funzioni.h"
+ * Il codice per essere compilato ha bisogno di un qualsiasi compilatore C e necessita di includere la libreria funzioni.h in questo modo: include "funzioni.h" , e di inserire nella cartella del progetto\n
+ * i source file funzioni.c ,funzioni_artista.c e funzioni_utente.c .
  * \warning Eseguire il programma solo su Windows e inserire l'eseguibile in una cartella chiamata "Progetto Spotify".\n
  * I file si devono trovare in una sottocartella di "Progetto Spotify" chiamata "File".
  * \section file_sec File
