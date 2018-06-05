@@ -821,7 +821,7 @@ int isControllo_Numero(char appoggio[], int lunghezza_massima) {
 		}
 	}
 
-	if (lunghezza_effettiva == 3)	//Ulteriore controllo su i casi limite di 01-10-00-0'\0'
+	if (lunghezza_effettiva == 2)	//Ulteriore controllo su i casi limite di 01-10-00-0'\0'
 	{
 		if ((appoggio[0] == '0' && appoggio[1] != '0')
 		        || (appoggio[0] != '0' && appoggio[1] == '0')
