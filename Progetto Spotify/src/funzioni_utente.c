@@ -14,7 +14,7 @@
 
 /**
  * Questa funzione permette di inserire un nuovo utente nella lista utenti memorizzata.\n
- * Prima di tutto devono essere inseriti nome, cognome e nickname; su questo sarà effettuato il controllo per far si che il nome sia almeno di una lettera.\n
+ * Prima di tutto devono essere inseriti nome, cognome e nickname; sarà effettuato il controllo per far si che il nome e il cognome siano almeno di una lettera.\n
  * Successivaente l'utente dovrà inserire la sua password. La funzione prevede un doppio controllo per la password.\n
  * L'utente dovrà inserire la sua data di nascita nell'ordine AAAA/MM/GG a causa dei controlli di bisestilità\n
  * e di numeri giorni dei mesi.
@@ -593,21 +593,6 @@ void stampa_profilo(int posizione_utente) {
 	printf("\n");
 }
 
-void visualizzazione_utenti(int utenti_effettivi)	//Al momento non serve più
-{
-	int i;
-
-	SetColor(11);
-	printf("NOME                            COGNOME                         NICKNAME                        DATA NASCITA        DATA ISCRIZIONE\n");
-	SetColor(15);
-
-	for (i = 0; i < utenti_effettivi; i++)
-	{
-		printf("%-31s %-31s %-31s %d/%d/%d            %d/%d/%d\n", UTENTI[i].nome, UTENTI[i].cognome, UTENTI[i].nickname, UTENTI[i].data_nascita.giorno, UTENTI[i].data_nascita.mese, UTENTI[i].data_nascita.anno, UTENTI[i].data_iscrizione.giorno, UTENTI[i].data_iscrizione.mese, UTENTI[i].data_iscrizione.anno);
-	}
-	printf("\n");
-}
-
 /**
  * Questa funzione permette di autenticare l'accesso dell'utente.\n
  * Per fare ciò, controlla prima se l'utente inserito in input è presente. Se l'utente è presente, egli potrà continuare con l'inserimento della password che avverrà\n
@@ -713,7 +698,6 @@ int isAutenticazione(int utenti_effettivi, int* posizione_utente) {
  * 	6. Tornare indietro
  *
  * Tutte le opzioni effettueranno dei controlli sui dati in input
- * 	-# Non possono essere inseriti dei dati numerici
  * 	-# Non può essere inseriti lo stesso nickname o il nickname di un altro utente
  * 	-# Doppio controllo sull'inserimento password
  */
@@ -1327,8 +1311,8 @@ int elimina_utente(int utenti_effettivi, int posizione_utente) {
  * L'utente potrà scegliere se:
  *  1. Scegliere l'artista sfogliando tutti i generi (referenziando ::categoria_artisti)
  *  2. Scegliere direttamente l'artista, dopo aver consultato la lista degli artisti (referenziando ::totale_artisti)
- *  3. Scegliere l'artista per nazionalità
- *  4. Scegliere l'artista anno
+ *  3. Scegliere l'artista per nazionalità (referenziando ::campo_artisti)
+ *  4. Scegliere l'artista anno (referenziando ::campo_artisti)
  *  5. Visualizzare la TOP 10 degli artisti con più "Mi piace" (referenziando ::top)
  *  6. Visualizzare la TOP 10 degli artisti con più "Ascolti" (referenziando ::top)
  *
