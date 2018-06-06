@@ -29,6 +29,7 @@ int inserimento_artista(char lista_generi[][LUNGHEZZA_MAX], int artisti_effettiv
 	char risposta[LUNGHEZZA_MAX] = { "si" };			//Risposta alla domanda 'Vuoi inserire un'altra preferenza?'
 	char anno_provvisorio[LUNGHEZZA_MAX] = { '\0' };	//Contiene l'anno in formato stringa per poter effettuare controlli
 	int i = 0;
+	char inserimento_provvisorio[LUNGHEZZA_MAX] = { '\0' };
 
 //NOME ARTISTA-----------------------
 	do
@@ -48,7 +49,7 @@ int inserimento_artista(char lista_generi[][LUNGHEZZA_MAX], int artisti_effettiv
 		}
 	}while ((strlen(ARTISTI[artisti_effettivi].nome) < 1)
 	        || (isControllo_Esistenza(artisti_effettivi, ARTISTI[artisti_effettivi].nome, "nome_artista")
-	                != 0));	//Controllo per evitare che non venga inserito nulla
+	                != 0));
 
 //CODICE ARTISTA---------------------
 	do
@@ -177,15 +178,32 @@ int inserimento_artista(char lista_generi[][LUNGHEZZA_MAX], int artisti_effettiv
 
 //INSERIEMNTO NAZIONALITA'----------------
 	do
-	{
+	{	//Controllo fin quando non viene inserito almeno una lettera
 		system("cls");
 		logo();
-		printf("Inserisci nazionalit%c:", 133);
-		fgets(ARTISTI[artisti_effettivi].nazionalita, LUNGHEZZA_MAX, stdin);
-		strcpy(ARTISTI[artisti_effettivi].nazionalita, eliminazione_acapo(ARTISTI[artisti_effettivi].nazionalita));
-		fflush(stdin);
-	}while (strlen(ARTISTI[artisti_effettivi].nazionalita) < 1);//Controllo per evitare che non venga inserito nulla
+		do
+		{
+			printf("Inserisci nazionalit%c nuovo utente: ", 133);
+			SetColor(6);
+			fgets(inserimento_provvisorio, LUNGHEZZA_MAX, stdin);
+			strcpy(inserimento_provvisorio, eliminazione_acapo(inserimento_provvisorio));
+			fflush(stdin);
+			SetColor(15);
+			if(isControllo_Lettera(inserimento_provvisorio, LUNGHEZZA_MAX)!=1)
+			{
+				system("cls");
+				logo();
+				SetColor(4);
+				printf("Hai inserito dei caratteri non validi.\nInserisci solamente lettere minuscole o maiuscole\n");
+				SetColor(15);
+				system("pause");
+				system("cls");
+				logo();				}
+			}while(isControllo_Lettera(inserimento_provvisorio, LUNGHEZZA_MAX)!=1);
+		}while ((strlen(inserimento_provvisorio) < 1));  //Controllo per evitare che non venga inserito nulla
 
+		strcpy(ARTISTI[artisti_effettivi].nazionalita, inserimento_provvisorio);
+		stringclear(inserimento_provvisorio, LUNGHEZZA_MAX);
 
 //INSERIMENTO ANNO NASCITA GRUPPO---------
 	do
@@ -233,7 +251,7 @@ void visualizzazione_artisti(char lista_generi[][LUNGHEZZA_MAX], int artisti_eff
 			}
 		}
 		SetColor(2);
-		printf("\nNAZIONALITA': ");
+		printf("\nNAZIONALIT%c: ", 183);
 		SetColor(15);
 		printf("%s\n", ARTISTI[i].nazionalita);
 		SetColor(2);
@@ -263,6 +281,7 @@ void modifica_artista(int artisti_effettivi, char lista_generi[][LUNGHEZZA_MAX])
 	char genere[LUNGHEZZA_MAX] = { "\0" };		//Variabile d'appoggio per il genere chiesto in input
 	unsigned int artista_trovato = 0;					//0 artista non trovato - 1 artista trovato
 	char artista[LUNGHEZZA_MAX] = { "\0" };	 	//Variabile d'appoggio per l'artista chiesto in input
+	char inserimento_provvisorio[LUNGHEZZA_MAX] = { '\0' };
 
 	do
 	{
@@ -341,16 +360,25 @@ void modifica_artista(int artisti_effettivi, char lista_generi[][LUNGHEZZA_MAX])
 						printf("%s\n\n", ARTISTI[i].nome);
 						SetColor(15);
 						printf("Con che nome vuoi sostituirlo?\n");
-
 						fgets(artista, LUNGHEZZA_MAX, stdin);
 						strcpy(artista, eliminazione_acapo(artista));
 						fflush(stdin);
-					}while ((strlen(artista) < 1)
-					        || (isControllo_Esistenza(artisti_effettivi, artista, "nome_artista")
-					                != 0));
+						if(isControllo_Lettera(artista, LUNGHEZZA_MAX)!=1)
+						{
+							system("cls");
+							logo();
+							SetColor(4);
+							printf("Hai inserito dei caratteri non validi.\nInserisci solamente lettere minuscole o maiuscole\n");
+							SetColor(15);
+							system("pause");
+							system("cls");
+							logo();
+						}
+					}while ((strlen(artista) < 1 )
+					        || (isControllo_Esistenza(artisti_effettivi, artista, "nome_artista")!= 0)
+					        || (isControllo_Lettera(artista, LUNGHEZZA_MAX)!=1));
 
-					stringclear(ARTISTI[i].nome, LUNGHEZZA_MAX)
-					;
+					stringclear(ARTISTI[i].nome, LUNGHEZZA_MAX);
 					strcpy(ARTISTI[i].nome, artista);
 
 					system("cls");
@@ -576,19 +604,32 @@ void modifica_artista(int artisti_effettivi, char lista_generi[][LUNGHEZZA_MAX])
 					break;
 
 				case 5:
-					system("cls");		//Cambio nazionalità
-					logo();
-					printf("L'attuale nazionalit%c %c: ", 133, 138);
-					SetColor(11);
-					printf("%s\n\n", ARTISTI[i].nazionalita);
-					SetColor(15);
-					printf("Inserisci nuova nazionalit%c: ", 133);
-					fgets(ARTISTI[i].nazionalita, LUNGHEZZA_MAX, stdin);
-					strcpy(ARTISTI[i].nazionalita, eliminazione_acapo(ARTISTI[i].nazionalita));
-					fflush(stdin);
-					system("cls");
-					logo();
-					printf("Nuova nazionalit%c inserita inserito!\n\n", 133);
+					do
+					{
+						system("cls");		//Cambio nazionalità
+						logo();
+						printf("L'attuale nazionalit%c %c: ", 133, 138);
+						SetColor(11);
+						printf("%s\n\n", ARTISTI[i].nazionalita);
+						SetColor(15);
+						printf("Inserisci nuova nazionalit%c: ", 133);
+						fgets(inserimento_provvisorio, LUNGHEZZA_MAX, stdin);
+						strcpy(inserimento_provvisorio, eliminazione_acapo(inserimento_provvisorio));
+						fflush(stdin);
+						if(isControllo_Lettera(inserimento_provvisorio, LUNGHEZZA_MAX)!=1)
+						{
+							system("cls");
+							logo();
+							SetColor(4);
+							printf("Hai inserito dei caratteri non validi.\nInserisci solamente lettere minuscole o maiuscole\n");
+							SetColor(15);
+							system("pause");
+							system("cls");
+							logo();
+						}
+					}while((isControllo_Lettera(inserimento_provvisorio, LUNGHEZZA_MAX)!=1) || (strlen(inserimento_provvisorio) < 1));
+					strcpy(ARTISTI[i].nazionalita, inserimento_provvisorio);
+					printf("Nuova nazionalit%c inserita!\n\n", 133);
 					break;
 				}
 

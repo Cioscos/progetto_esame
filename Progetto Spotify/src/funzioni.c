@@ -1032,7 +1032,13 @@ int ordinamento_crescente(int vett[],int dim)
 
 	return ordinato;
 }
-//TODO
+
+/**
+ * La funzione controllerà i caratteri della stringa uno a uno verificando prima se il carattere è una lettera, se non lo fosse verificherà anche
+ * se il carattere è una posizione vuota nella stringa o uno spazio.\n Se questi controlli risulteranno tutti positivi allora la funzione ritornerà 1.
+ * @pre Bisogna passare alla funzione una stringa di dimensione pari a DIMENSIONE:MAX per permettere un controllo accurato
+ * @post La funzione ritornerà 0 o 1
+ */
 int isControllo_Lettera(char stringa[], int DIMENSIONE_MAX){
 
     unsigned int i, input_valido=0;

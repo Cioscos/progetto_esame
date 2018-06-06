@@ -128,13 +128,13 @@ struct ARTISTA {
 	/**Contiene il codice artista. */
 	char codice[LUNGHEZZA_CODICE];
 	/**Contiene il nome dell'artista o del gruppo. */
-	char nome[LUNGHEZZA_MAX];	//TODO
+	char nome[LUNGHEZZA_MAX];
 	/**Contiene il genere dell'artista o del gruppo. */
 	unsigned int genere[GENERI_TOT];
 	/**Contiene il mome della casa discografica */
 	char produttore[LUNGHEZZA_MAX];
 	/**Contiene la nazionalità dell'artista o del gruppo. */
-	char nazionalita[LUNGHEZZA_MAX];		//TODO
+	char nazionalita[LUNGHEZZA_MAX];
 	/**Contiene l'anno di inizio attività dell'artista. */
 	unsigned int anno_inizio;
 	/**Contiene il numero degli ascolti complessivi. */
@@ -160,9 +160,9 @@ struct UTENTE {
 	/** Utilizzata per accedere al programma dall'utente. */
 	char password[LUNGHEZZA_PASS];
 	/** Nome dell'utente. */
-	char nome[LUNGHEZZA_MAX];	//TODO
+	char nome[LUNGHEZZA_MAX];
 	/** Cognome dell'utente. */
-	char cognome[LUNGHEZZA_MAX];	//TODO
+	char cognome[LUNGHEZZA_MAX];
 	/**
 	 * @brief Data di nascita memorizzata nell'ordine GG/MM/AAAA
 	 *
@@ -325,7 +325,14 @@ void creazione_path(char* token_buffer, char* relative_path);
  * @return Ritorna 1 se l'ordinamento è andato a buon fine
  */
 int ordinamento_crescente(int vett[],int dim);
-//TODO
+
+/**
+ * Questa funzione controlla se la stringa contiene dei numeri
+ *
+ * @param[in] stringa Array di caratteri passato per valore
+ * @param[in] DIMENSIONE_MAX Lunghezza massima input
+ * @return 1 se la stringa contiene solo lettere    0 se la stringa contiene almeno un numero
+ */
 int isControllo_Lettera(char stringa[], int DIMENSIONE_MAX);
 
 /**

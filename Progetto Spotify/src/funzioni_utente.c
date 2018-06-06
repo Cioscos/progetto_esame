@@ -45,6 +45,7 @@ int inserimento_utente(int utenti_effettivi) {
 	char controllo[LUNGHEZZA_PASS] = { '\0' };//Variabile utilizzata per effettuare un doppio controllo sulla password per verificare che corrisponda alla prima chiesta in input
 	unsigned int uguali;	//Variaibile utilizzata come flag    0=Controllo non superato | 1=Controllo superato
 	char data_provvisoria[LUNGHEZZA_MAX] = { '\0' };//Variabile contenente la data di tipo char per effettuare i controlli
+	char inserimento_provvisorio[LUNGHEZZA_MAX] = { '\0' };
 
 //INSERIMENTO NOME UTENTE
 
@@ -52,27 +53,58 @@ int inserimento_utente(int utenti_effettivi) {
 	{	//Controllo fin quando non viene inserito almeno una lettera
 		system("cls");
 		logo();
-		printf("Inserisci nome utente: ");
-		SetColor(6);
-		fgets(UTENTI[utenti_effettivi].nome, LUNGHEZZA_MAX, stdin);
-		strcpy(UTENTI[utenti_effettivi].nome, eliminazione_acapo(UTENTI[utenti_effettivi].nome));
-		fflush(stdin);
-		SetColor(15);
-	}while ((strlen(UTENTI[utenti_effettivi].nome) < 1));
+		do
+		{
+			printf("Inserisci nome nuovo utente: ");
+			SetColor(6);
+			fgets(inserimento_provvisorio, LUNGHEZZA_MAX, stdin);
+			strcpy(inserimento_provvisorio, eliminazione_acapo(inserimento_provvisorio));
+			fflush(stdin);
+			SetColor(15);
+			if(isControllo_Lettera(inserimento_provvisorio, LUNGHEZZA_MAX)!=1)
+			{
+				system("cls");
+				logo();
+				SetColor(4);
+				printf("Hai inserito dei caratteri non validi.\nInserisci solamente lettere minuscole o maiuscole\n");
+				SetColor(15);
+				system("pause");
+				system("cls");
+				logo();
+			}
+		}while(isControllo_Lettera(inserimento_provvisorio, LUNGHEZZA_MAX)!=1);
+	}while ((strlen(inserimento_provvisorio) < 1));
+	strcpy(UTENTI[utenti_effettivi].nome, inserimento_provvisorio);
+	stringclear(inserimento_provvisorio, LUNGHEZZA_MAX);
 
 //INSERIMENTO COGNOME UTENTE
 
 	do
-	{			//Controllo fin quando non viene inserito almeno una lettera
+	{	//Controllo fin quando non viene inserito almeno una lettera
 		system("cls");
 		logo();
-		printf("Inserisci cognome nuovo utente: ");
-		SetColor(6);
-		fgets(UTENTI[utenti_effettivi].cognome, LUNGHEZZA_MAX, stdin);
-		strcpy(UTENTI[utenti_effettivi].cognome, eliminazione_acapo(UTENTI[utenti_effettivi].cognome));
-		fflush(stdin);
-		SetColor(15);
-	}while ((strlen(UTENTI[utenti_effettivi].cognome) < 1));
+		do
+		{
+			printf("Inserisci cognome nuovo utente: ");
+			SetColor(6);
+			fgets(inserimento_provvisorio, LUNGHEZZA_MAX, stdin);
+			strcpy(inserimento_provvisorio, eliminazione_acapo(inserimento_provvisorio));
+			fflush(stdin);
+			SetColor(15);
+			if(isControllo_Lettera(inserimento_provvisorio, LUNGHEZZA_MAX)!=1)
+			{
+				system("cls");
+				logo();
+				SetColor(4);
+				printf("Hai inserito dei caratteri non validi.\nInserisci solamente lettere minuscole o maiuscole\n");
+				SetColor(15);
+				system("pause");
+				system("cls");
+				logo();
+			}
+		}while(isControllo_Lettera(inserimento_provvisorio, LUNGHEZZA_MAX)!=1);
+	}while ((strlen(inserimento_provvisorio) < 1));
+	strcpy(UTENTI[utenti_effettivi].cognome, inserimento_provvisorio);
 
 //INSERIMENTO NICKNAME UTENTE
 
@@ -706,12 +738,13 @@ int isAutenticazione(int utenti_effettivi, int* posizione_utente) {
 void modifica_utente(int utenti_effettivi, int posizione_utente) {
 
 	int i;
-	char scelta[LUNGHEZZA_MAX] = { "\0" };			//Variabile d'appoggio per l'input della scelta per il men? chiesto in input
-	char utente[LUNGHEZZA_MAX];							//Variabile d'appoggio per nickname, nome e cognome chiesti in input
-	char controllo[LUNGHEZZA_PASS] = { '\0' };			//Variabile utilizzata per effettuare un doppio controllo sulla password per verificare che corrisponda alla prima chiesta in input
-	char carattere_bf;									//Variabile contenenete un solo carattere per la creazione della password
-	unsigned int uguali;											//Variaibile utilizzata come flag    0=Controllo non superato | 1=Controllo superato
-	char data_provvisoria[LUNGHEZZA_MAX] = { '\0' };	//Variabile contenente la data di tipo char per effettuare i controlli
+	char scelta[LUNGHEZZA_MAX] = { "\0" };					//Variabile d'appoggio per l'input della scelta per il men? chiesto in input
+	char utente[LUNGHEZZA_MAX];								//Variabile d'appoggio per nickname, nome e cognome chiesti in input
+	char controllo[LUNGHEZZA_PASS] = { '\0' };				//Variabile utilizzata per effettuare un doppio controllo sulla password per verificare che corrisponda alla prima chiesta in input
+	char carattere_bf;										//Variabile contenenete un solo carattere per la creazione della password
+	unsigned int uguali;									//Variaibile utilizzata come flag    0=Controllo non superato | 1=Controllo superato
+	char data_provvisoria[LUNGHEZZA_MAX] = { '\0' };		//Variabile contenente la data di tipo char per effettuare i controlli
+	char inserimento_provvisorio[LUNGHEZZA_MAX] = { '\0' };	//Variabile contenente l'inserimento provvisorio da copiare successivamente nell'array di tipo struct
 
 	do
 	{//Controllo sull input fornito dall'utente fin quando non viene inserito un valore compreso tra 0 e 5 compresi
@@ -761,7 +794,7 @@ void modifica_utente(int utenti_effettivi, int posizione_utente) {
 	case 0:
 		break;
 
-		//MODIFICA NICKNAME
+	//MODIFICA NICKNAME
 	case 1:
 		do
 		{//Controllo fin quando non viene inserito almeno una lettera e il nickname non deve essere già  presente
@@ -789,7 +822,7 @@ void modifica_utente(int utenti_effettivi, int posizione_utente) {
 		strcpy(UTENTI[posizione_utente].nickname, utente);
 		break;
 
-		//MODIFICA PASSWORD
+	//MODIFICA PASSWORD
 	case 2:
 		system("cls");
 		logo();
@@ -884,38 +917,68 @@ void modifica_utente(int utenti_effettivi, int posizione_utente) {
 		printf("\nPassword cambiata correttamente\n");
 		break;
 
-		//MODIFICA NOME
+	//MODIFICA NOME
 	case 3:
-		stringclear(UTENTI[posizione_utente].nome, LUNGHEZZA_MAX)
-		;
+		stringclear(UTENTI[posizione_utente].nome, LUNGHEZZA_MAX);
 		do
-		{		//Controllo fin quando non viene inserito almeno una lettera
-			system("cls");
-			logo();
-			printf("Inserisci nuovo nome: ");
-			SetColor(6);
-			fgets(UTENTI[posizione_utente].nome, LUNGHEZZA_MAX, stdin);
-			strcpy(UTENTI[posizione_utente].nome, eliminazione_acapo(UTENTI[posizione_utente].nome));
-			fflush(stdin);
-			SetColor(15);
-		}while ((strlen(UTENTI[posizione_utente].nome) < 1));
+			{	//Controllo fin quando non viene inserito almeno una lettera
+				system("cls");
+				logo();
+				do
+				{
+					printf("Inserisci nuovo nome utente: ");
+					SetColor(6);
+					fgets(inserimento_provvisorio, LUNGHEZZA_MAX, stdin);
+					strcpy(inserimento_provvisorio, eliminazione_acapo(inserimento_provvisorio));
+					fflush(stdin);
+					SetColor(15);
+					if(isControllo_Lettera(inserimento_provvisorio, LUNGHEZZA_MAX)!=1)
+					{
+						system("cls");
+						logo();
+						SetColor(4);
+						printf("Hai inserito dei caratteri non validi.\nInserisci solamente lettere minuscole o maiuscole\n");
+						SetColor(15);
+						system("pause");
+						system("cls");
+						logo();
+					}
+				}while(isControllo_Lettera(inserimento_provvisorio, LUNGHEZZA_MAX)!=1);
+			}while ((strlen(inserimento_provvisorio) < 1));
+			strcpy(UTENTI[utenti_effettivi].nome, inserimento_provvisorio);
+			stringclear(inserimento_provvisorio, LUNGHEZZA_MAX);
 		break;
 
 		//MODIFICA COGNOME
 	case 4:
-		stringclear(UTENTI[posizione_utente].cognome, LUNGHEZZA_MAX)
-		;
+		stringclear(UTENTI[posizione_utente].cognome, LUNGHEZZA_MAX);
 		do
-		{			//Controllo fin quando non viene inserito almeno una lettera
+		{	//Controllo fin quando non viene inserito almeno una lettera
 			system("cls");
 			logo();
-			printf("Inserisci cognome nuovo utente: ");
-			SetColor(6);
-			fgets(UTENTI[posizione_utente].cognome, LUNGHEZZA_MAX, stdin);
-			strcpy(UTENTI[posizione_utente].cognome, eliminazione_acapo(UTENTI[posizione_utente].cognome));
-			fflush(stdin);
-			SetColor(15);
-		}while ((strlen(UTENTI[posizione_utente].cognome) < 1));
+			do
+			{
+				printf("Inserisci nuovo cognome utente: ");
+				SetColor(6);
+				fgets(inserimento_provvisorio, LUNGHEZZA_MAX, stdin);
+				strcpy(inserimento_provvisorio, eliminazione_acapo(inserimento_provvisorio));
+				fflush(stdin);
+				SetColor(15);
+				if(isControllo_Lettera(inserimento_provvisorio, LUNGHEZZA_MAX)!=1)
+				{
+					system("cls");
+					logo();
+					SetColor(4);
+					printf("Hai inserito dei caratteri non validi.\nInserisci solamente lettere minuscole o maiuscole\n");
+					SetColor(15);
+					system("pause");
+					system("cls");
+					logo();
+				}
+			}while(isControllo_Lettera(inserimento_provvisorio, LUNGHEZZA_MAX)!=1);
+		}while ((strlen(inserimento_provvisorio) < 1));
+		strcpy(UTENTI[utenti_effettivi].cognome, inserimento_provvisorio);
+		stringclear(inserimento_provvisorio, LUNGHEZZA_MAX);
 		break;
 
 		//MODIFICA DATA DI NASCITA
