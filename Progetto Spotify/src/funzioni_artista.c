@@ -39,6 +39,13 @@ int inserimento_artista(char lista_generi[][LUNGHEZZA_MAX], int artisti_effettiv
 		fgets(ARTISTI[artisti_effettivi].nome, LUNGHEZZA_MAX, stdin);
 		strcpy(ARTISTI[artisti_effettivi].nome, eliminazione_acapo(ARTISTI[artisti_effettivi].nome));
 		fflush(stdin);
+		if((isControllo_Esistenza(artisti_effettivi, ARTISTI[artisti_effettivi].nome, "nome_artista")!= 0))
+		{
+			SetColor(4);
+			printf("\aNome artista gi%c presente\n",133);
+			SetColor(15);
+			system("pause");
+		}
 	}while ((strlen(ARTISTI[artisti_effettivi].nome) < 1)
 	        || (isControllo_Esistenza(artisti_effettivi, ARTISTI[artisti_effettivi].nome, "nome_artista")
 	                != 0));	//Controllo per evitare che non venga inserito nulla
@@ -59,6 +66,14 @@ int inserimento_artista(char lista_generi[][LUNGHEZZA_MAX], int artisti_effettiv
 			logo();
 			SetColor(4);
 			printf("\aNon puoi inserire un codice vuoto!\n");
+			SetColor(15);
+			system("pause");
+		}
+
+		if(isControllo_Esistenza(artisti_effettivi, ARTISTI[artisti_effettivi].codice, "codice_artista")!= 0)
+		{
+			SetColor(4);
+			printf("\aCodice artista gi%c presente\n",133);
 			SetColor(15);
 			system("pause");
 		}

@@ -52,7 +52,7 @@ int inserimento_utente(int utenti_effettivi) {
 	{	//Controllo fin quando non viene inserito almeno una lettera
 		system("cls");
 		logo();
-		printf("Inserisci nome nuovo utente: ");
+		printf("Inserisci nome utente: ");
 		SetColor(6);
 		fgets(UTENTI[utenti_effettivi].nome, LUNGHEZZA_MAX, stdin);
 		strcpy(UTENTI[utenti_effettivi].nome, eliminazione_acapo(UTENTI[utenti_effettivi].nome));
@@ -217,7 +217,7 @@ int inserimento_utente(int utenti_effettivi) {
 				system("pause");
 				system("cls");
 				logo();
-				printf("Inserisci data di nascita:\n");
+				printf("Inserisci data di nascita\n");
 			}
 		}while (isControllo_Numero(data_provvisoria, LUNGHEZZA_MAX) != 1);
 
@@ -235,7 +235,7 @@ int inserimento_utente(int utenti_effettivi) {
 			system("pause");
 			system("cls");
 			logo();
-			printf("Inserisci data di nascita:\n");
+			printf("Inserisci data di nascita\n");
 		}
 	}while (UTENTI[utenti_effettivi].data_nascita.anno < 1900
 	        || UTENTI[utenti_effettivi].data_nascita.anno
@@ -263,7 +263,7 @@ int inserimento_utente(int utenti_effettivi) {
 				system("pause");
 				system("cls");
 				logo();
-				printf("Inserisci data di nascita:\n");
+				printf("Inserisci data di nascita\n");
 			}
 		}while (isControllo_Numero(data_provvisoria, LUNGHEZZA_MAX) != 1);
 
@@ -280,7 +280,7 @@ int inserimento_utente(int utenti_effettivi) {
 			system("pause");
 			system("cls");
 			logo();
-			printf("Inserisci data di nascita:\n");
+			printf("Inserisci data di nascita\n");
 		}
 	}while (UTENTI[utenti_effettivi].data_nascita.mese < PRIMO_MESE
 	        || UTENTI[utenti_effettivi].data_nascita.mese > ULTIMO_MESE);
@@ -315,7 +315,7 @@ int inserimento_utente(int utenti_effettivi) {
 						system("pause");
 						system("cls");
 						logo();
-						printf("Inserisci data di nascita:\n");
+						printf("Inserisci data di nascita\n");
 					}
 				}while (isControllo_Numero(data_provvisoria, LUNGHEZZA_MAX) != 1);
 
@@ -333,7 +333,7 @@ int inserimento_utente(int utenti_effettivi) {
 					system("pause");
 					system("cls");
 					logo();
-					printf("Inserisci data di nascita:\n");
+					printf("Inserisci data di nascita\n");
 				}
 			}while (UTENTI[utenti_effettivi].data_nascita.giorno < 1
 			        || UTENTI[utenti_effettivi].data_nascita.giorno > 29);
@@ -362,7 +362,7 @@ int inserimento_utente(int utenti_effettivi) {
 						system("pause");
 						system("cls");
 						logo();
-						printf("Inserisci data di nascita:\n");
+						printf("Inserisci data di nascita\n");
 					}
 				}while (isControllo_Numero(data_provvisoria, LUNGHEZZA_MAX) != 1);
 
@@ -380,7 +380,7 @@ int inserimento_utente(int utenti_effettivi) {
 					system("pause");
 					system("cls");
 					logo();
-					printf("Inserisci data di nascita:\n");
+					printf("Inserisci data di nascita\n");
 				}
 			}while (UTENTI[utenti_effettivi].data_nascita.giorno < 1
 			        || UTENTI[utenti_effettivi].data_nascita.giorno > 28);
@@ -415,7 +415,7 @@ int inserimento_utente(int utenti_effettivi) {
 						system("pause");
 						system("cls");
 						logo();
-						printf("Inserisci data di nascita:\n");
+						printf("Inserisci data di nascita\n");
 					}
 				}while (isControllo_Numero(data_provvisoria, LUNGHEZZA_MAX) != 1);
 
@@ -433,7 +433,7 @@ int inserimento_utente(int utenti_effettivi) {
 					system("pause");
 					system("cls");
 					logo();
-					printf("Inserisci data di nascita:\n");
+					printf("Inserisci data di nascita\n");
 				}
 			}while (UTENTI[utenti_effettivi].data_nascita.giorno <= 0
 			        || UTENTI[utenti_effettivi].data_nascita.giorno > 30);
@@ -462,7 +462,7 @@ int inserimento_utente(int utenti_effettivi) {
 						system("pause");
 						system("cls");
 						logo();
-						printf("Inserisci data di nascita:\n");
+						printf("Inserisci data di nascita\n");
 					}
 				}while (isControllo_Numero(data_provvisoria, LUNGHEZZA_MAX) != 1);
 
@@ -480,7 +480,7 @@ int inserimento_utente(int utenti_effettivi) {
 					system("pause");
 					system("cls");
 					logo();
-					printf("Inserisci data di nascita:\n");
+					printf("Inserisci data di nascita\n");
 				}
 			}while (UTENTI[utenti_effettivi].data_nascita.giorno <= 0
 			        || UTENTI[utenti_effettivi].data_nascita.giorno > 31);
@@ -592,6 +592,7 @@ void stampa_profilo(int posizione_utente) {
 	}
 	printf("\n");
 }
+
 
 /**
  * Questa funzione permette di autenticare l'accesso dell'utente.\n
