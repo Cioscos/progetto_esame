@@ -1810,11 +1810,11 @@ void modifica_preferenze(int posizione_utente, int pos_artista) {
 		SetColor(2);
 		printf("[2]");
 		SetColor(15);
-		printf("Mi piace e ascolta%s\n", ARTISTI[pos_artista].nome);
+		printf("Mi piace e ascolta %s\n", ARTISTI[pos_artista].nome);
 		SetColor(2);
 		printf("[3]");
 		SetColor(15);
-		printf("Non mi piace e ascolta%s\n", ARTISTI[pos_artista].nome);
+		printf("Non mi piace e ascolta %s\n", ARTISTI[pos_artista].nome);
 		SetColor(15);
 		printf("\nInserisci comando: ");
 		fgets(artista, LUNGHEZZA_MAX, stdin);
