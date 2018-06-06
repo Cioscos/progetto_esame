@@ -194,7 +194,7 @@ int inserimento_utente(int utenti_effettivi) {
 
 	system("cls");
 	logo();
-	printf("Inserisci data di nascita\n");
+	printf("Inserisci data di nascita in cifre\n");
 
 	//INSERIMENTO ANNO DI NASCITA
 	do
