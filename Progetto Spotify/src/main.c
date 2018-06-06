@@ -17,6 +17,7 @@ void test_of_isControllo_Numero(void);
 void test_of_isControllo_Esistenza(void);
 void test_of_eliminazione_acapo(void);
 void test_of_ordinamento_crescente(void);
+void test_of_isControllo_Lettera(void);
 
 //Prototipi di funzioni artista
 void test_of_elimina_artista(void);
@@ -44,6 +45,7 @@ int main(int argc, char *argv[]){
 	CU_add_test(pSuite_A, "Controllo Esistenza", test_of_isControllo_Esistenza);
 	CU_add_test(pSuite_A, "Eliminazione a capo", test_of_eliminazione_acapo);
 	CU_add_test(pSuite_A, "Ordinamento Creascente", test_of_ordinamento_crescente);
+	CU_add_test(pSuite_A, "Controllo lettera", test_of_isControllo_Lettera);
 
 	CU_pSuite pSuite_B = CU_add_suite("Suite_funzioni_artista", init_suite1,clean_suite1);
 	CU_add_test(pSuite_B, "Elimina Artista", test_of_elimina_artista);
@@ -70,6 +72,8 @@ int init_suite1(void){
 int clean_suite1(void){
 	return 0;
 }
+
+
 
 void test_of_eliminazione_acapo(void){
 
@@ -140,6 +144,39 @@ void test_of_isControllo_Numero(void){
 
 	//Falso quando non si inserisce nulla
 	CU_ASSERT_EQUAL( isControllo_Numero("",LUNGHEZZA_MAX), 0);
+}
+
+void test_of_isControllo_Lettera(void){
+
+	//1 INPUT CORRETTO - 0 INPUT NON CORRETTO
+
+	//Vero quando inserisco un solo carattere
+	CU_ASSERT_EQUAL( isControllo_Lettera("a",LUNGHEZZA_MAX), 1);
+
+	//Vero quando inserisco più caratteri
+	CU_ASSERT_EQUAL( isControllo_Lettera("abc",LUNGHEZZA_MAX), 1);
+
+	//Vero quando inserisco una stringa con spazi
+	CU_ASSERT_EQUAL( isControllo_Lettera("ab asd wer sadf xcz",LUNGHEZZA_MAX), 1);
+
+
+	//Falso per tutti i valori compresi tra 0 e un numero max LUNGHEZZA_MAX di caratteri
+	CU_ASSERT_EQUAL( isControllo_Lettera("0",LUNGHEZZA_MAX), 0);
+	CU_ASSERT_EQUAL( isControllo_Lettera("99999999999999999999999999999999",LUNGHEZZA_MAX), 0);
+
+	//Falso anche se si inserisce un numero oltre la 32esima posizione
+	CU_ASSERT_EQUAL( isControllo_Lettera("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa1",LUNGHEZZA_MAX), 0);
+
+	//Falso se si inserisce un simbolo diverso da un carattere
+	CU_ASSERT_EQUAL( isControllo_Lettera("1ciao",LUNGHEZZA_MAX), 0);
+	CU_ASSERT_EQUAL( isControllo_Lettera("ciao1",LUNGHEZZA_MAX), 0);
+	CU_ASSERT_EQUAL( isControllo_Lettera("-",LUNGHEZZA_MAX), 0);
+
+	//Falso quando si inserisce uno spazio
+	CU_ASSERT_EQUAL( isControllo_Lettera(" ",LUNGHEZZA_MAX), 0);
+
+	//Falso quando non si inserisce nulla
+	CU_ASSERT_EQUAL( isControllo_Lettera("",LUNGHEZZA_MAX), 0);
 }
 
 void test_of_isControllo_Esistenza(void){

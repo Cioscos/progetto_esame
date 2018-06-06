@@ -89,6 +89,8 @@ void gestione_file(char modalita, int tipo, int *numero, char relative_path[]);
 
 void creazione_path(char* token_buffer, char* relative_path);
 
+int isControllo_Lettera(char stringa[], int DIMENSIONE_MAX);
+
 //-----------------------------------------------------------------------------------------------------------------
 
 int inserimento_artista(char lista_generi[][LUNGHEZZA_MAX], int artisti_effettivi);
