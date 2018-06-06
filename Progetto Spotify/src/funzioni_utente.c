@@ -1989,8 +1989,8 @@ int top(int artisti_effettivi, char* input) {
 	int artista_trovato = 0;		//0 artista non trovato | 1 artista trovato
 	int pos_artista = -1;//Contiene la posizione nel vettore dell'artista trovato
 	int i;
-	do
-	{//Controllo fin quando non viene digitato il codice dell'artista correttamente
+
+	do{//Controllo fin quando non viene digitato il codice dell'artista correttamente
 
 		ordinamento_stampa(input);
 
