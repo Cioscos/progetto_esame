@@ -217,7 +217,7 @@ int inserimento_utente(int utenti_effettivi) {
 				system("pause");
 				system("cls");
 				logo();
-				printf("Inserisci data di nascita\n");
+				printf("Inserisci data di nascita in cifre\n");
 			}
 		}while (isControllo_Numero(data_provvisoria, LUNGHEZZA_MAX) != 1);
 
@@ -235,7 +235,7 @@ int inserimento_utente(int utenti_effettivi) {
 			system("pause");
 			system("cls");
 			logo();
-			printf("Inserisci data di nascita\n");
+			printf("Inserisci data di nascita in cifre\n");
 		}
 	}while (UTENTI[utenti_effettivi].data_nascita.anno < 1900
 	        || UTENTI[utenti_effettivi].data_nascita.anno
@@ -263,7 +263,7 @@ int inserimento_utente(int utenti_effettivi) {
 				system("pause");
 				system("cls");
 				logo();
-				printf("Inserisci data di nascita\n");
+				printf("Inserisci data di nascita in cifre\n");
 			}
 		}while (isControllo_Numero(data_provvisoria, LUNGHEZZA_MAX) != 1);
 
@@ -280,7 +280,7 @@ int inserimento_utente(int utenti_effettivi) {
 			system("pause");
 			system("cls");
 			logo();
-			printf("Inserisci data di nascita\n");
+			printf("Inserisci data di nascita in cifre\n");
 		}
 	}while (UTENTI[utenti_effettivi].data_nascita.mese < PRIMO_MESE
 	        || UTENTI[utenti_effettivi].data_nascita.mese > ULTIMO_MESE);
@@ -315,7 +315,7 @@ int inserimento_utente(int utenti_effettivi) {
 						system("pause");
 						system("cls");
 						logo();
-						printf("Inserisci data di nascita\n");
+						printf("Inserisci data di nascita in cifre\n");
 					}
 				}while (isControllo_Numero(data_provvisoria, LUNGHEZZA_MAX) != 1);
 
@@ -333,7 +333,7 @@ int inserimento_utente(int utenti_effettivi) {
 					system("pause");
 					system("cls");
 					logo();
-					printf("Inserisci data di nascita\n");
+					printf("Inserisci data di nascita in cifre\n");
 				}
 			}while (UTENTI[utenti_effettivi].data_nascita.giorno < 1
 			        || UTENTI[utenti_effettivi].data_nascita.giorno > 29);
@@ -362,7 +362,7 @@ int inserimento_utente(int utenti_effettivi) {
 						system("pause");
 						system("cls");
 						logo();
-						printf("Inserisci data di nascita\n");
+						printf("Inserisci data di nascita in cifre\n");
 					}
 				}while (isControllo_Numero(data_provvisoria, LUNGHEZZA_MAX) != 1);
 
@@ -380,7 +380,7 @@ int inserimento_utente(int utenti_effettivi) {
 					system("pause");
 					system("cls");
 					logo();
-					printf("Inserisci data di nascita\n");
+					printf("Inserisci data di nascita in cifre\n");
 				}
 			}while (UTENTI[utenti_effettivi].data_nascita.giorno < 1
 			        || UTENTI[utenti_effettivi].data_nascita.giorno > 28);
@@ -415,7 +415,7 @@ int inserimento_utente(int utenti_effettivi) {
 						system("pause");
 						system("cls");
 						logo();
-						printf("Inserisci data di nascita\n");
+						printf("Inserisci data di nascita in cifre\n");
 					}
 				}while (isControllo_Numero(data_provvisoria, LUNGHEZZA_MAX) != 1);
 
@@ -433,7 +433,7 @@ int inserimento_utente(int utenti_effettivi) {
 					system("pause");
 					system("cls");
 					logo();
-					printf("Inserisci data di nascita\n");
+					printf("Inserisci data di nascita in cifre\n");
 				}
 			}while (UTENTI[utenti_effettivi].data_nascita.giorno <= 0
 			        || UTENTI[utenti_effettivi].data_nascita.giorno > 30);
@@ -462,7 +462,7 @@ int inserimento_utente(int utenti_effettivi) {
 						system("pause");
 						system("cls");
 						logo();
-						printf("Inserisci data di nascita\n");
+						printf("Inserisci data di nascita in cifre\n");
 					}
 				}while (isControllo_Numero(data_provvisoria, LUNGHEZZA_MAX) != 1);
 
@@ -480,7 +480,7 @@ int inserimento_utente(int utenti_effettivi) {
 					system("pause");
 					system("cls");
 					logo();
-					printf("Inserisci data di nascita\n");
+					printf("Inserisci data di nascita in cifre\n");
 				}
 			}while (UTENTI[utenti_effettivi].data_nascita.giorno <= 0
 			        || UTENTI[utenti_effettivi].data_nascita.giorno > 31);
@@ -1510,7 +1510,11 @@ int campo_artisti(int artisti_effettivi,int campo){
 		{
 			if(atoi(input)==ARTISTI[i].anno_inizio)
 			{
-				printf("%s\t\t%s\n", ARTISTI[i].codice, ARTISTI[i].nome);
+				SetColor(15);
+				printf("%s\t\t", ARTISTI[i].codice);
+				SetColor(3);
+				printf("%s\n", ARTISTI[i].nome);
+				SetColor(15);
 			}
 		}
 	}
@@ -1564,11 +1568,16 @@ int campo_artisti(int artisti_effettivi,int campo){
 			}
 		}while(trovato==0);
 
-		for(i=0;i<artisti_effettivi;i++)
+		for(i=0;i<artisti_effettivi;i++)		//Stampa lista artisti della nazionalita indicata
 		{
 			if(strcmp(input,ARTISTI[i].nazionalita)==0)
 			{
-				printf("%s\t\t%s\n", ARTISTI[i].codice, ARTISTI[i].nome);
+
+				SetColor(15);
+				printf("%s\t\t", ARTISTI[i].codice);
+				SetColor(3);
+				printf("%s\n", ARTISTI[i].nome);
+				SetColor(15);
 			}
 		}
 	}
@@ -1802,11 +1811,11 @@ void modifica_preferenze(int posizione_utente, int pos_artista) {
 		SetColor(2);
 		printf("[2]");
 		SetColor(15);
-		printf("Mi piace %s\n", ARTISTI[pos_artista].nome);
+		printf("Mi piace e ascolta%s\n", ARTISTI[pos_artista].nome);
 		SetColor(2);
 		printf("[3]");
 		SetColor(15);
-		printf("Non mi piace %s\n", ARTISTI[pos_artista].nome);
+		printf("Non mi piace e ascolta%s\n", ARTISTI[pos_artista].nome);
 		SetColor(15);
 		printf("\nInserisci comando: ");
 		fgets(artista, LUNGHEZZA_MAX, stdin);
