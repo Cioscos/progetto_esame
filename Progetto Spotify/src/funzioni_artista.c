@@ -23,9 +23,9 @@
  */
 int inserimento_artista(char lista_generi[][LUNGHEZZA_MAX], int artisti_effettivi) {
 
-	int posizione_genere = 0;							//pozione del genere nel vettore lista_generi
+	unsigned int posizione_genere = 0;							//pozione del genere nel vettore lista_generi
 	char genere_provvisorio[LUNGHEZZA_MAX];				//Contiene l'input inserito dall'utente
-	int genere_esistente = GENERI_TOT;					//0 genere non esistente | 1 genere esistente
+	unsigned int genere_esistente = GENERI_TOT;					//0 genere non esistente | 1 genere esistente
 	char risposta[LUNGHEZZA_MAX] = { "si" };			//Risposta alla domanda 'Vuoi inserire un'altra preferenza?'
 	char anno_provvisorio[LUNGHEZZA_MAX] = { '\0' };	//Contiene l'anno in formato stringa per poter effettuare controlli
 	int i = 0;
@@ -258,10 +258,10 @@ void visualizzazione_artisti(char lista_generi[][LUNGHEZZA_MAX], int artisti_eff
 void modifica_artista(int artisti_effettivi, char lista_generi[][LUNGHEZZA_MAX]) {
 	int i, j;
 	char scelta[LUNGHEZZA_MAX] = { "\0" };	//Variabile d'appoggio per l'input della scelta per il men? chiesto in input
-	int numero_generi = 0;						//Numero generi
-	int genere_trovato = 0;						//0 genere non trovato - 1 genere trovato
+	unsigned int numero_generi = 0;						//Numero generi
+	unsigned int genere_trovato = 0;						//0 genere non trovato - 1 genere trovato
 	char genere[LUNGHEZZA_MAX] = { "\0" };		//Variabile d'appoggio per il genere chiesto in input
-	int artista_trovato = 0;					//0 artista non trovato - 1 artista trovato
+	unsigned int artista_trovato = 0;					//0 artista non trovato - 1 artista trovato
 	char artista[LUNGHEZZA_MAX] = { "\0" };	 	//Variabile d'appoggio per l'artista chiesto in input
 
 	do
@@ -638,7 +638,7 @@ int scegli_artista(int artisti_effettivi){
 	int i,j;
 	char artista[LUNGHEZZA_MAX] = { "\0" };		//Variabile d'appoggio per l'artista chiesto in input
 	char scelta[LUNGHEZZA_MAX] = { "\0" };		//Variabile d'appoggio per l'input della scelta per il men? chiesto in input
-	int artista_trovato = 0;					//0 artista non trovato - 1 artista trovato
+	unsigned int artista_trovato = 0;					//0 artista non trovato - 1 artista trovato
 	int posizione_artista = -1;					//Contiene la posizone dell'artista trovato nel vettore
 
 	do{

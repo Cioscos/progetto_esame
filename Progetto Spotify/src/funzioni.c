@@ -163,7 +163,7 @@ void gestione_file(char modalita, int tipo, int *numero, char relative_path[]) {
 	char artisti_path[LUNGHEZZA_PATH] = { '\0' };
 	char preferenze_path[LUNGHEZZA_PATH] = { '\0' };
 	char utenti_path[LUNGHEZZA_PATH] = { '\0' };
-	int controllo_parametri=0;	//Controllo sui parametri d'ingresso  0 paramentri non corretti | 1 parametri corretti
+	unsigned int controllo_parametri=0;	//Controllo sui parametri d'ingresso  0 paramentri non corretti | 1 parametri corretti
 
 	//CREO PATH ARTISTI
 	strcpy(artisti_path, relative_path);
@@ -793,8 +793,8 @@ void stampa_menu_utente() {
  */
 int isControllo_Numero(char appoggio[], int lunghezza_massima) {
 	int i = 0;
-	int input_valido = 0;			//1 Input valido - 0 Input non valido
-	int lunghezza_effettiva = 0;	//Numero caratteri effettivi
+	unsigned int input_valido = 0;			//1 Input valido - 0 Input non valido
+	unsigned int lunghezza_effettiva = 0;	//Numero caratteri effettivi
 
 	while (i < lunghezza_massima)		//Conta numero effettivo di caratteri
 	{
@@ -947,9 +947,9 @@ char* eliminazione_acapo(char *input) {
  */
 int isControllo_Esistenza(int numero_presenze, char* campo, char* controllo) {
 	int i;
-	int presenza = 0;		//0 elemento già presente - 1 elemento non presente
+	unsigned int presenza = 0;		//0 elemento già presente - 1 elemento non presente
 
-	if (strcmp(controllo, "nome_artista") == 0)
+	if (strcmp(controllo, "nome_artista") == 0)	//Controllo sul nome degli artisti
 	{
 		for (i = 0; i < numero_presenze; i++)
 		{
@@ -960,7 +960,7 @@ int isControllo_Esistenza(int numero_presenze, char* campo, char* controllo) {
 		}
 	}
 
-	if (strcmp(controllo, "codice_artista") == 0)
+	if (strcmp(controllo, "codice_artista") == 0) //Controllo si codici degli artisti
 	{
 		for (i = 0; i < numero_presenze; i++)
 		{
@@ -971,7 +971,7 @@ int isControllo_Esistenza(int numero_presenze, char* campo, char* controllo) {
 		}
 	}
 
-	if (strcmp(controllo, "nickname_utente") == 0)
+	if (strcmp(controllo, "nickname_utente") == 0) //Controllo sul nickname degli artisti
 	{
 		for (i = 0; i < numero_presenze; i++)
 		{
@@ -1002,8 +1002,8 @@ int ordinamento_crescente(int vett[],int dim)
 {
 	int i,x;
 	int p=0;
-	int flag=0;
-	int ordinato=1;		//1 vettore ordinato - 0 vettore non ordinato
+	unsigned int flag=0;
+	unsigned int ordinato=1;		//1 vettore ordinato - 0 vettore non ordinato
 
 	while(p<dim-1 && flag!=1)
 	{

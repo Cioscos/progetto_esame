@@ -43,7 +43,7 @@ int inserimento_utente(int utenti_effettivi) {
 	unsigned int i = 0;	//Indice non negativo che conta il numero dei caratteri della password
 	char carattere_bf;//Variabile contenenete un solo carattere per la creazione della password
 	char controllo[LUNGHEZZA_PASS] = { '\0' };//Variabile utilizzata per effettuare un doppio controllo sulla password per verificare che corrisponda alla prima chiesta in input
-	int uguali;	//Variaibile utilizzata come flag    0=Controllo non superato | 1=Controllo superato
+	unsigned int uguali;	//Variaibile utilizzata come flag    0=Controllo non superato | 1=Controllo superato
 	char data_provvisoria[LUNGHEZZA_MAX] = { '\0' };//Variabile contenente la data di tipo char per effettuare i controlli
 
 //INSERIMENTO NOME UTENTE
@@ -604,8 +604,8 @@ void stampa_profilo(int posizione_utente) {
  */
 int isAutenticazione(int utenti_effettivi, int* posizione_utente) {
 	int i, j;
-	int utente_trovato = 0;			//0 Utente trovato - 1 Utente non trovato
-	int autenticazione = 0;	//0 autenticazione non riuscita - 1 autenticazione effettuata
+	unsigned int utente_trovato = 0;			//0 Utente trovato - 1 Utente non trovato
+	unsigned int autenticazione = 0;	//0 autenticazione non riuscita - 1 autenticazione effettuata
 	char utente[LUNGHEZZA_MAX];	//Variabile contenente il nome utente chiesto in input
 	char password[LUNGHEZZA_PASS] = { '\0' };//Variabile contenente la password chiesta in input
 	char carattere_bf;//Variabile contenenete un solo carattere per la creazione della password
@@ -710,7 +710,7 @@ void modifica_utente(int utenti_effettivi, int posizione_utente) {
 	char utente[LUNGHEZZA_MAX];							//Variabile d'appoggio per nickname, nome e cognome chiesti in input
 	char controllo[LUNGHEZZA_PASS] = { '\0' };			//Variabile utilizzata per effettuare un doppio controllo sulla password per verificare che corrisponda alla prima chiesta in input
 	char carattere_bf;									//Variabile contenenete un solo carattere per la creazione della password
-	int uguali;											//Variaibile utilizzata come flag    0=Controllo non superato | 1=Controllo superato
+	unsigned int uguali;											//Variaibile utilizzata come flag    0=Controllo non superato | 1=Controllo superato
 	char data_provvisoria[LUNGHEZZA_MAX] = { '\0' };	//Variabile contenente la data di tipo char per effettuare i controlli
 
 	do
@@ -1233,8 +1233,8 @@ void modifica_utente(int utenti_effettivi, int posizione_utente) {
 int conferma_eliminazione()
 {
 	char risposta[LUNGHEZZA_MAX] = { "si" };//Risposta alla domanda 'Sei sicuro di voler eliminare l'artista?'
-	do
-	{
+
+	do{
 		system("cls");
 		logo();
 		SetColor(30);
@@ -1320,7 +1320,7 @@ int elimina_utente(int utenti_effettivi, int posizione_utente) {
  * Questa funzione referenzia le sopra elencate funzioni.
  */
 void menu_preferenze(int posizione_utente, int artisti_effettivi) {
-	int pos_artista;	//Contiene la posizione nel vettore dell'artista trovato
+	unsigned int pos_artista;	//Contiene la posizione nel vettore dell'artista trovato
 	char metodo[LUNGHEZZA_MAX] = { '\0' };
 
 	do
@@ -1434,7 +1434,7 @@ void menu_preferenze(int posizione_utente, int artisti_effettivi) {
 int campo_artisti(int artisti_effettivi,int campo){
 
 	char input[LUNGHEZZA_MAX];	//Contiene l'input inserito dall'utente
-	int trovato=0;			//0 elemento non trovato - 1 elemento trovato
+	unsigned int trovato=0;			//0 elemento non trovato - 1 elemento trovato
 	int pos_artista = -1;//Contiene la posizione nel vettore dell'artista trovato
 	int vett[artisti_effettivi];	//vettore d'appoggio contenente gli anni di inizio attività degli artisti
 	int i,k,j;
@@ -1622,10 +1622,10 @@ int categoria_artisti(int artisti_effettivi) {
 	        "Dubstep", "EDM", "Hip-Hop", "House", "Musica leggera", "Trap",
 	        "Trance", "Disco", "Dance" };
 	char genere_provvisorio[LUNGHEZZA_MAX];	//Contiene l'input inserito dall'utente
-	int posizione_genere = 0;	//pozione del genere nel vettore lista_generi
-	int genere_esistente = 0;	//0 genere non esistente | 1 genere esistente
+	unsigned int posizione_genere = 0;	//pozione del genere nel vettore lista_generi
+	unsigned int genere_esistente = 0;	//0 genere non esistente | 1 genere esistente
 	char artista[LUNGHEZZA_MAX] = { "\0" };	//Variabile d'appoggio per l'artista chiesto in input
-	int artista_trovato = 0;		//0 artista non trovato | 1 artista trovato
+	unsigned int artista_trovato = 0;		//0 artista non trovato | 1 artista trovato
 	int pos_artista = -1;//Contiene la posizione nel vettore dell'artista trovato
 	int i;
 
@@ -1737,7 +1737,7 @@ int categoria_artisti(int artisti_effettivi) {
  */
 int totale_artisti(int artisti_effettivi) {
 	char artista[LUNGHEZZA_MAX] = { "\0" };	//Variabile d'appoggio per l'artista chiesto in input
-	int artista_trovato = 0;		//0 artista non trovato | 1 artista trovato
+	unsigned int artista_trovato = 0;		//0 artista non trovato | 1 artista trovato
 	int pos_artista = -1;//Contiene la posizione nel vettore dell'artista trovato
 	int i;
 	do
@@ -1797,11 +1797,10 @@ int totale_artisti(int artisti_effettivi) {
 
 void modifica_preferenze(int posizione_utente, int pos_artista) {
 	char artista[LUNGHEZZA_MAX] = { "\0" };	//Variabile d'appoggio per l'artista chiesto in input
-	int artista_trovato = 0;//0 artista non trovato | 1 artista trovato					//Contiene la posizione nel vettore dell'artista trovato
+	unsigned int artista_trovato = 0;//0 artista non trovato | 1 artista trovato					//Contiene la posizione nel vettore dell'artista trovato
 	int i;
 
-	do
-	{		//Controllo fin quando non viene digitato 1 2 o 3
+	do{		//Controllo fin quando non viene digitato 1 2 o 3
 		system("cls");
 		logo();
 		SetColor(2);
@@ -1986,9 +1985,9 @@ void modifica_preferenze(int posizione_utente, int pos_artista) {
  */
 int top(int artisti_effettivi, char* input) {
 	char artista[LUNGHEZZA_MAX] = { "\0" };	//Variabile d'appoggio per l'artista chiesto in input
-	int artista_trovato = 0;		//0 artista non trovato | 1 artista trovato
+	unsigned int artista_trovato = 0;		//0 artista non trovato | 1 artista trovato
 	int pos_artista = -1;//Contiene la posizione nel vettore dell'artista trovato
-	int i;
+	unsigned int i;
 
 	do{//Controllo fin quando non viene digitato il codice dell'artista correttamente
 
