@@ -128,13 +128,13 @@ struct ARTISTA {
 	/**Contiene il codice artista. */
 	char codice[LUNGHEZZA_CODICE];
 	/**Contiene il nome dell'artista o del gruppo. */
-	char nome[LUNGHEZZA_MAX];
+	char nome[LUNGHEZZA_MAX];	//TODO
 	/**Contiene il genere dell'artista o del gruppo. */
 	unsigned int genere[GENERI_TOT];
 	/**Contiene il mome della casa discografica */
 	char produttore[LUNGHEZZA_MAX];
 	/**Contiene la nazionalità dell'artista o del gruppo. */
-	char nazionalita[LUNGHEZZA_MAX];
+	char nazionalita[LUNGHEZZA_MAX];		//TODO
 	/**Contiene l'anno di inizio attività dell'artista. */
 	unsigned int anno_inizio;
 	/**Contiene il numero degli ascolti complessivi. */
@@ -160,9 +160,9 @@ struct UTENTE {
 	/** Utilizzata per accedere al programma dall'utente. */
 	char password[LUNGHEZZA_PASS];
 	/** Nome dell'utente. */
-	char nome[LUNGHEZZA_MAX];
+	char nome[LUNGHEZZA_MAX];	//TODO
 	/** Cognome dell'utente. */
-	char cognome[LUNGHEZZA_MAX];
+	char cognome[LUNGHEZZA_MAX];	//TODO
 	/**
 	 * @brief Data di nascita memorizzata nell'ordine GG/MM/AAAA
 	 *
