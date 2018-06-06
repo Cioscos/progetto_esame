@@ -54,7 +54,7 @@ int inserimento_utente(int utenti_effettivi) {
 		system("cls");
 		logo();
 		do
-		{
+		{	//Controllo fin quando non vengono inserite tutte lettere
 			printf("Inserisci nome nuovo utente: ");
 			SetColor(6);
 			fgets(inserimento_provvisorio, LUNGHEZZA_MAX, stdin);
@@ -74,6 +74,7 @@ int inserimento_utente(int utenti_effettivi) {
 			}
 		}while(isControllo_Lettera(inserimento_provvisorio, LUNGHEZZA_MAX)!=1);
 	}while ((strlen(inserimento_provvisorio) < 1));
+
 	strcpy(UTENTI[utenti_effettivi].nome, inserimento_provvisorio);
 	stringclear(inserimento_provvisorio, LUNGHEZZA_MAX);
 
@@ -84,7 +85,7 @@ int inserimento_utente(int utenti_effettivi) {
 		system("cls");
 		logo();
 		do
-		{
+		{	//Controllo fin quando non vengono inserite tutte lettere
 			printf("Inserisci cognome nuovo utente: ");
 			SetColor(6);
 			fgets(inserimento_provvisorio, LUNGHEZZA_MAX, stdin);
@@ -104,6 +105,7 @@ int inserimento_utente(int utenti_effettivi) {
 			}
 		}while(isControllo_Lettera(inserimento_provvisorio, LUNGHEZZA_MAX)!=1);
 	}while ((strlen(inserimento_provvisorio) < 1));
+
 	strcpy(UTENTI[utenti_effettivi].cognome, inserimento_provvisorio);
 
 //INSERIMENTO NICKNAME UTENTE
@@ -925,7 +927,7 @@ void modifica_utente(int utenti_effettivi, int posizione_utente) {
 				system("cls");
 				logo();
 				do
-				{
+				{ 	//Controllo fin quando non vengono inserite tutte lettere
 					printf("Inserisci nuovo nome utente: ");
 					SetColor(6);
 					fgets(inserimento_provvisorio, LUNGHEZZA_MAX, stdin);
@@ -945,6 +947,7 @@ void modifica_utente(int utenti_effettivi, int posizione_utente) {
 					}
 				}while(isControllo_Lettera(inserimento_provvisorio, LUNGHEZZA_MAX)!=1);
 			}while ((strlen(inserimento_provvisorio) < 1));
+
 			strcpy(UTENTI[utenti_effettivi].nome, inserimento_provvisorio);
 			stringclear(inserimento_provvisorio, LUNGHEZZA_MAX);
 		break;
@@ -957,7 +960,7 @@ void modifica_utente(int utenti_effettivi, int posizione_utente) {
 			system("cls");
 			logo();
 			do
-			{
+			{		//Controllo fin quando non vengono inserite tutte lettere
 				printf("Inserisci nuovo cognome utente: ");
 				SetColor(6);
 				fgets(inserimento_provvisorio, LUNGHEZZA_MAX, stdin);
@@ -977,6 +980,7 @@ void modifica_utente(int utenti_effettivi, int posizione_utente) {
 				}
 			}while(isControllo_Lettera(inserimento_provvisorio, LUNGHEZZA_MAX)!=1);
 		}while ((strlen(inserimento_provvisorio) < 1));
+
 		strcpy(UTENTI[utenti_effettivi].cognome, inserimento_provvisorio);
 		stringclear(inserimento_provvisorio, LUNGHEZZA_MAX);
 		break;

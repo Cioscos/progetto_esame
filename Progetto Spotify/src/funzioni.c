@@ -1041,7 +1041,8 @@ int ordinamento_crescente(int vett[],int dim)
  */
 int isControllo_Lettera(char stringa[], int DIMENSIONE_MAX){
 
-    unsigned int i, input_valido=0;
+    int i;
+    unsigned int input_valido=0;	//0 input non valido - 1 input valido
     unsigned int lettera_reale=0;	//Diventa 1 solo se trova effettivamente un carattere
 
     for(i=0;i<(strlen(stringa));i++)
