@@ -928,13 +928,6 @@ char* eliminazione_acapo(char *input) {
 	}
 
 	return (stringa);
-
-	/*int i;
-	for (i = 0; i < LUNGHEZZA_MAX; i++)
-	{
-		if (input[i] == 'c')
-			input[i] = '\0';
-	}*/
 }
 
 /**
