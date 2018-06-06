@@ -1032,3 +1032,39 @@ int ordinamento_crescente(int vett[],int dim)
 
 	return ordinato;
 }
+//TODO
+int isControllo_Lettera(char stringa[], int DIMENSIONE_MAX){
+
+    unsigned int i, input_valido=0;
+    unsigned int lettera_reale=0;	//Diventa 1 solo se trova effettivamente un carattere
+
+    for(i=0;i<(strlen(stringa));i++)
+    {
+        if(isalpha(stringa[i])!=0)
+        {
+            input_valido=1;
+            lettera_reale=1;
+        }
+        else
+        {
+            if(stringa[i]=='\0' || stringa[i]==32)  //32 spazio in ASCII
+            {
+                input_valido=1;
+            }
+            else
+            {
+                input_valido=0;
+                i=DIMENSIONE_MAX;
+            }
+        }
+    }
+
+    if(input_valido==1 && lettera_reale==1)
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
+}

@@ -325,6 +325,8 @@ void creazione_path(char* token_buffer, char* relative_path);
  * @return Ritorna 1 se l'ordinamento è andato a buon fine
  */
 int ordinamento_crescente(int vett[],int dim);
+//TODO
+int isControllo_Lettera(char stringa[], int DIMENSIONE_MAX);
 
 /**
  *
