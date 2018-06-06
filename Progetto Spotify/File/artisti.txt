@@ -1,24 +1,24 @@
 0001,Depeche Mode,Virgin Radio,Inglese,1980,17,3,Rock,Britpop
 0002,Martin Garrix,STMPD Records,Olandese,2013,12,5,EDM
-0003,Eminem,Interscope,Statunitense,1992,12,44,Pop,Rap
-0004,ACDC,Atlantic Records,Australiana,1973,76,43,Rock,Britpop
-0005,Kanye West,GOOD Music,Statunitense,1996,23,32,Pop
-0006,Daft Punk,Virgin Records,Francese,1992,29,17,House
+0003,Eminem,Interscope,Statunitense,1992,12,10,Pop,Rap
+0004,ACDC,Atlantic Records,Australiana,1973,21,13,Rock,Britpop
+0005,Kanye West,GOOD Music,Statunitense,1996,23,11,Pop
+0006,Daft Punk,Virgin Records,Francese,1992,30,17,House
 0007,Michael Jackson,Universal,Statunitense,1964,11,3,Pop
-0008,Claudio Baglioni,19,Italiana,1968,51,5,Musica leggera
+0008,Claudio Baglioni,19,Italiana,1968,13,5,Musica leggera
 0009,Vasco Rossi,EMI Italia,Italiana,1977,23,4,Pop,Rock
 0010,Giorgio Moroder,Sony Music,Italiana,1967,11,4,Disco
-0011,Armin van Buuren,Armada Music,Olandese,1996,32,12,Trance
+0011,Armin van Buuren,Armada Music,Olandese,1996,25,12,Trance
 0012,Barbra Streisand,Columbia,Statunitense,1962,0,0,Pop,Jazz
 0013,deadmau5,mau5trap,Canadese,2005,10,6,EDM
-0014,Britney Spears,Jiva Records,Statunitense,1992,0,0,Pop,Disco
-0015,Kool & the Gang,N.A.,Statunitense,1964,45,6,Disco
+0014,Britney Spears,Jiva Records,Statunitense,1992,3,0,Pop,Disco
+0015,Kool & the Gang,N.A.,Statunitense,1964,18,6,Disco
 0016,Fabrizio De Andre',Karim Musa,Italiana,1961,3,3,Musica leggera
-0017,Rolling Stones,Wenner Media LLC,Statunitense,1967,12,0,Rock
-0018,Lil Pump,Warner Bros. Records,Statunitense,2016,31,0,Trap
-0019,Will.i.am,Interscope,Statunitense,1992,23,0,Pop,Dance
-0020,Fergie Duhamel,Interscope,Statunitense,1996,43,0,Pop
-0021,Hardwell,Revealed Recordings,Olandese,2006,44,0,Electro,EDM,House
-0022,Axwell,Axtone,Svedese,1998,25,1,Electro,EDM
-0023,Ingrosso,Refune Records,Svedese,2001,65,0,EDM,House
-0024,Alesso,Refune Records,Svedese,2010,43,0,EDM,House
+0017,Rolling Stones,Wenner Media LLC,Statunitense,1967,12,3,Rock
+0018,Lil Pump,Warner Bros. Records,Statunitense,2016,3,2,Trap
+0019,Will.i.am,Interscope,Statunitense,1992,23,7,Pop,Dance
+0020,Fergie Duhamel,Interscope,Statunitense,1996,13,11,Pop
+0021,Hardwell,Revealed Recordings,Olandese,2006,23,9,Electro,EDM,House
+0022,Axwell,Axtone,Svedese,1998,25,13,Electro,EDM
+0023,Ingrosso,Refune Records,Svedese,2001,20,14,EDM,House
+0024,Alesso,Refune Records,Svedese,2010,24,15,EDM,House
