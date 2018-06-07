@@ -20,5 +20,3 @@
 0020,Fergie Duhamel,Interscope,Statunitense,1996,13,11,Pop
 0021,Hardwell,Revealed Recordings,Olandese,2006,23,9,Electro,EDM,House
 0022,Axwell,Axtone,Svedese,1998,25,13,Electro,EDM
-0023,Ingrosso,Refune Records,Svedese,2001,20,14,EDM,House
-0024,Alesso,Refune Records,Svedese,2010,24,15,EDM,House

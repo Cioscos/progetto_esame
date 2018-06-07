@@ -46,7 +46,7 @@ void logo() {
 	SetColor(15);
 	printf("%d/%s/%d", DATA_CORRENTE.giorno, mesi[DATA_CORRENTE.mese- 1], DATA_CORRENTE.anno);
 	SetColor(2);
-	printf("           |___/   %c\n\n\n", 169);
+	printf("            |___/   %c\n\n\n", 169);
 	SetColor(15);
 }
 

@@ -36,6 +36,7 @@ int inserimento_artista(char lista_generi[][LUNGHEZZA_MAX], int artisti_effettiv
 	{
 		system("cls");
 		logo();
+		printf("L'ultimo codice inserito e': %s\n\n",ARTISTI[artisti_effettivi-1].codice);
 		printf("Inserisci nome nuovo artista:");
 		fgets(ARTISTI[artisti_effettivi].nome, LUNGHEZZA_MAX, stdin);
 		strcpy(ARTISTI[artisti_effettivi].nome, eliminazione_acapo(ARTISTI[artisti_effettivi].nome));
@@ -274,7 +275,7 @@ void visualizzazione_artisti(char lista_generi[][LUNGHEZZA_MAX], int artisti_eff
 }
 
 void modifica_artista(int artisti_effettivi, char lista_generi[][LUNGHEZZA_MAX]) {
-	int i, j;
+	int i, j, x;
 	char scelta[LUNGHEZZA_MAX] = { "\0" };	//Variabile d'appoggio per l'input della scelta per il men? chiesto in input
 	unsigned int numero_generi = 0;						//Numero generi
 	unsigned int genere_trovato = 0;						//0 genere non trovato - 1 genere trovato
@@ -504,16 +505,24 @@ void modifica_artista(int artisti_effettivi, char lista_generi[][LUNGHEZZA_MAX])
 						}
 
 						SetColor(15);
-						printf("\nI generi disponibili sono: ");
-						for (j = 0; j < GENERI_TOT; j++)//Stampa tutti i generi disponibili
+						printf("\nI generi disponibili sono:\n");
+						x=1;
+						SetColor(6);
+						for (j = 0; j < GENERI_TOT; j++) //Stampa tutti i generi disponibili
 						{
 							if (ARTISTI[i].genere[j] == 0)
 							{
-								printf("%s  ", lista_generi[j]);
+								printf("%-31s", lista_generi[j]);
+								if ((x % 2) == 0)
+								{
+									printf("\n");
+								}
+								x++;
 							}
 						}
+						SetColor(15);
 
-						printf("\n\nInserire genere da aggiungere: ");
+						printf("\nInserire genere da aggiungere: ");
 						fgets(genere, LUNGHEZZA_MAX, stdin);
 						strcpy(genere, eliminazione_acapo(genere));
 						fflush(stdin);
